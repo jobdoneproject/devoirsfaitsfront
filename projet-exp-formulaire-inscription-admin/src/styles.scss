@@ -1,2 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/bootstrap.scss";
+
+.input-underline {
+    background: 0 0;
+    border: none;
+    box-shadow: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border-radius: 0;
+}
+.input-underline:focus {
+    border-bottom: 2px solid #fff;
+    box-shadow: none;
+}
