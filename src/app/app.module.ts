@@ -4,19 +4,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PageLandingComponent } from './page-landing/page-landing.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { PageInscripAdminComponent } from './page-inscrip-admin/page-inscrip-admin.component';
+import { PageHomeComponent } from './page-home/page-home.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: PageLandingComponent },
-  { path: '',
-    redirectTo: 'landing-page',
-    pathMatch: 'full'
-  },
+  { path: 'inscription-ecole', component: PageInscripAdminComponent },
+  { path: 'home', component: PageHomeComponent },
+  { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageLandingComponent
+    PageLandingComponent,
+    NavbarComponent,
+    PageInscripAdminComponent,
+    PageHomeComponent
   ],
   imports: [
     BrowserModule,
