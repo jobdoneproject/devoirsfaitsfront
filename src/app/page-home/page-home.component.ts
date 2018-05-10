@@ -9,7 +9,7 @@ import { User } from '../user';
 })
 export class PageHomeComponent implements OnInit {
 
-  currentUser: User[];
+  currentUser: User;
 
   constructor(private userService: UserService) { }
 
@@ -17,9 +17,9 @@ export class PageHomeComponent implements OnInit {
     this.getCurrentUser();
   }
 
-getCurrentUser(): void {
-  this.userService.getCurrentUser()
-    .subscribe(user => this.currentUser = user);
-}
+  getCurrentUser(): void {
+    this.userService.getCurrentUser()
+      .subscribe(user => this.currentUser = user);
+  }
 
 }
