@@ -1,3 +1,74 @@
-<p>
-  page-user-edit works!
-</p>
+<div class="container"> 
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>Gestion utilisateur</h2>
+      <h5>Ajouter / Modifier un élève / professeur.</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <label class="radio-inline">
+        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Elève
+      </label>
+      <label class="radio-inline" style="margin-left:20px">
+        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Professeur
+      </label>
+      <label class="radio-inline" style="margin-left:20px">
+        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" checked disabled> démo checked disabled
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <h4>Profil</h4>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">Nom</span>
+        </div>
+        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">Prénom</span>
+        </div>
+        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">Adresse email</span>
+        </div>
+        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">Téléphone</span>
+        </div>
+        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+      </div>
+      <label class="checkbox-inline">
+          <input type="checkbox" id="inlineCheckbox1" value="option1" checked> Disponible
+        </label>
+    </div>
+    <div class="col-lg-4">
+      <h4>Groupes souscrits</h4>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Groupe 12</li>
+        <li class="list-group-item">Groupe 13</li>
+        <li class="list-group-item">Groupe 14</li>
+        <li class="list-group-item">Groupe 15</li>
+      </ul>
+
+      <div class="input-group">
+          <select class="custom-select" id="inputGroupSelect04">
+            <option selected>Choose...</option>
+            <option value="1">Groupe 1</option>
+            <option value="2">Groupe 2</option>
+            <option value="3">Groupe 3</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Ajouter</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

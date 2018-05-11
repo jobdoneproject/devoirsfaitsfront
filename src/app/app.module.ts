@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'landing-page', component: PageLandingComponent },
   { path: 'inscription-ecole', component: PageInscripAdminComponent },
   { path: 'home', component: PageHomeComponent },
+  { path: 'creer-utilisateur', component: PageUserEditComponent },
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
 ];
 
