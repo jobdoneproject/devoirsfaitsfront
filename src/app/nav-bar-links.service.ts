@@ -6,69 +6,94 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class NavBarLinksService {
-
+  notLoggedLinks = [
+    {
+      href: '/landing-page',
+      title: 'Devoirs faits',
+      icon: 'fas fa-camera-retro'
+    },
+    {
+      href: '/inscription-ecole',
+      title: 'Inscription',
+      icon: ''
+    },
+    {
+      href: '#',
+      title: 'Login',
+      icon: ''
+    }
+  ];
   adminLinks = [
     {
-      href: 'https://www.google.fr',
-      title: 'Google !'
+      href: '/home',
+      title: 'Home',
+      icon: ''
     },
     {
-      href: 'https://duckduckgo.com/',
-      title: 'Duck duck go !'
+      href: '#',
+      title: 'Calendrier',
+      icon: ''
     },
     {
-      href: 'https://www.yaronet.com/',
-      title: 'Yaronet !'
+      href: '#',
+      title: 'Eleves',
+      icon: ''
     },
     {
-      href: 'http://www.lycos.fr/',
-      title: 'Lycos'
+      href: '#',
+      title: 'Profs',
+      icon: ''
     },
     {
-      href: 'https://outlook.live.com/owa/',
-      title: 'Outlook'
+      href: '#',
+      title: 'Profil',
+      icon: 'fas fa-users'
     },
-    {
-      href: 'https://myadmin.hull.ac.uk/main/',
-      title: 'MyAdminPage'
-    }
   ];
 
   profLinks = [
     {
-      href: 'https://www.google.fr',
-      title: 'Google !'
+      href: '/home',
+      title: 'Home',
+      icon: ''
     },
     {
-      href: 'https://duckduckgo.com/',
-      title: 'Duck duck go !'
+      href: '#',
+      title: 'Calendrier',
+      icon: ''
     },
     {
-      href: 'https://www.yaronet.com/',
-      title: 'Yaronet !'
+      href: '#',
+      title: 'Appel',
+      icon: ''
     },
     {
-      href: 'http://www.lycos.fr/',
-      title: 'Lycos'
-    },
-    {
-      href: 'https://outlook.live.com/owa/',
-      title: 'Outlook'
+      href: '#',
+      title: 'Profil',
+      icon: 'fas fa-chalkboard-teacher'
     }
   ];
 
   studentLinks = [
     {
-      href: 'https://www.google.fr',
-      title: 'Google !'
+      href: '/home',
+      title: 'Home',
+      icon: ''
     },
     {
-      href: 'https://duckduckgo.com/',
-      title: 'Duck duck go !'
+      href: '#',
+      title: 'Calendrier',
+      icon: ''
     },
     {
-      href: 'https://www.yaronet.com/',
-      title: 'Yaronet !'
+      href: '#',
+      title: 'Timeline',
+      icon: ''
+    },
+    {
+      href: '#',
+      title: 'Profil',
+      icon: 'fas fa-user-graduate'
     },
   ];
 
@@ -83,19 +108,24 @@ export class NavBarLinksService {
       lastName: '',
       email: '',
       admin: false,
-      prof: false
+      prof: false,
+      role: ''
     };
     this.userService.getCurrentUser()
       .subscribe(user => this.currentUser = user);
   }
 
   getLinks() {
-    if (this.currentUser.admin) {
-      return this.adminLinks;
-    } else if (this.currentUser.prof) {
-      return this.profLinks;
-    } else {
+    if (this.currentUser === null) {
+      return this.notLoggedLinks;
+    } else if (this.currentUser.role === 'eleve') {
       return this.studentLinks;
+    } else if (this.currentUser.role === 'prof') {
+      return this.profLinks;
+    } else if (this.currentUser.role === 'admin') {
+      return this.adminLinks;
+    } else {
+      return this.notLoggedLinks;
     }
   }
 }

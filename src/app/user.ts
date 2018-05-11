@@ -5,4 +5,5 @@ export class User {
     email: string;
     admin: boolean;
     prof: boolean;
+    role: string;
 }
