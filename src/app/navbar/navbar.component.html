@@ -37,6 +37,7 @@
 -->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Devoirs Faits</a>
-  <a *ngFor="let link of navBarLinks" class="navbar-brand" href="{{link.href}}">{{link.title}}</a>
+  <!--<a class="navbar-brand" href="#">Devoirs Faits</a>-->
+  <a *ngFor="let link of navBarLinks" class="navbar-brand" 
+  href="{{link.href}}"><i class="{{link.icon}}"></i> {{link.title}}</a>
 </nav>
