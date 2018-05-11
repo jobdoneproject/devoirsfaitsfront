@@ -6,11 +6,11 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class NavBarLinksService {
-  
+
   adminLinks = [
     {
       href: 'https://www.google.fr',
-      title: "Google !"
+      title: 'Google !'
     },
     {
       href: 'https://duckduckgo.com/',
@@ -37,7 +37,7 @@ export class NavBarLinksService {
   profLinks = [
     {
       href: 'https://www.google.fr',
-      title: "Google !"
+      title: 'Google !'
     },
     {
       href: 'https://duckduckgo.com/',
@@ -60,7 +60,7 @@ export class NavBarLinksService {
   studentLinks = [
     {
       href: 'https://www.google.fr',
-      title: "Google !"
+      title: 'Google !'
     },
     {
       href: 'https://duckduckgo.com/',
@@ -90,13 +90,11 @@ export class NavBarLinksService {
   }
 
   getLinks() {
-    if (this.currentUser.admin){
+    if (this.currentUser.admin) {
       return this.adminLinks;
-    }
-    else if (this.currentUser.prof) {
+    } else if (this.currentUser.prof) {
       return this.profLinks;
-    }
-    else {
+    } else {
       return this.studentLinks;
     }
   }
