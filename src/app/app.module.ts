@@ -7,6 +7,7 @@ import { PageLandingComponent } from './page-landing/page-landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PageInscripAdminComponent } from './page-inscrip-admin/page-inscrip-admin.component';
 import { PageHomeComponent } from './page-home/page-home.component';
+import { Navbar2Component } from './navbar2/navbar2.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: PageLandingComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
     PageLandingComponent,
     NavbarComponent,
     PageInscripAdminComponent,
-    PageHomeComponent
+    PageHomeComponent,
+    Navbar2Component
   ],
   imports: [
     BrowserModule,
