@@ -7,9 +7,11 @@ import { PageLandingComponent } from './page-landing/page-landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PageInscripAdminComponent } from './page-inscrip-admin/page-inscrip-admin.component';
 import { PageHomeComponent } from './page-home/page-home.component';
+import { PageLoginComponent } from './page-login/page-login.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: PageLandingComponent },
+  { path: 'login', component: PageLoginComponent },
   { path: 'inscription-ecole', component: PageInscripAdminComponent },
   { path: 'home', component: PageHomeComponent },
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
@@ -21,7 +23,8 @@ const routes: Routes = [
     PageLandingComponent,
     NavbarComponent,
     PageInscripAdminComponent,
-    PageHomeComponent
+    PageHomeComponent,
+    PageLoginComponent
   ],
   imports: [
     BrowserModule,
