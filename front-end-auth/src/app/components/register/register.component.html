@@ -8,25 +8,31 @@
     <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
       <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
       <span id="reauth-email" class="reauth-email"></span>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !fullName.valid }">
-        <label for="fullName">Full Name</label>
-        <input type="text" class="form-control" name="fullName" id="fullName" [(ngModel)]="user.fullName" #fullName="ngModel" required />
-        <div *ngIf="f.submitted && !fullName.valid" class="help-block">The full Name is required</div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !nom.valid }">
+        <label for="nom">Nom</label>
+        <input type="text" class="form-control" name="nom" id="nom" [(ngModel)]="user.nom" #nom="ngModel" required />
+        <div *ngIf="f.submitted && !nom.valid" class="help-block">The full Name is required</div>
       </div>
-      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-        <label for="username">Email Address</label>
-        <input type="text" class="form-control" name="username" id="username" pattern="[^ @]*@[^ @]*" [(ngModel)]="user.username" #username="ngModel" required />
-        <div *ngIf="f.submitted && !username.valid" class="help-block">
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !prenom.valid }">
+        <label for="prenom">Prenom</label>
+        <input type="text" class="form-control" name="prenom" id="prenom" [(ngModel)]="user.prenom" #prenom="ngModel" required />
+        <div *ngIf="f.submitted && !prenom.valid" class="help-block">The full Name is required</div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mail.valid }">
+        <label for="mail">Adresse Email</label>
+        <input type="text" class="form-control" name="mail" id="mail" pattern="[^ @]*@[^ @]*" [(ngModel)]="user.mail" #mail="ngModel" required />
+        <div *ngIf="f.submitted && !mail.valid" class="help-block">
 
-          <div *ngIf="username.errors.required">
+          <div *ngIf="mail.errors.required">
             Email is required.
           </div>
-          <div *ngIf="username.errors.pattern">
+          <div *ngIf="mail.errors.pattern">
             A valid email address is required
           </div>
-
+          
         </div>
       </div>
+      
       <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
         <label for="password">Password</label>
         <input type="password" class="form-control" name="password" id="password"[(ngModel)]="user.password" #password="ngModel" required minlength="4" />
@@ -40,6 +46,16 @@
           </div>
 
         </div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !etablissement.valid }">
+        <label for="etablissement">Etablissement</label>
+        <input type="text" class="form-control" name="etablissement" id="etablissement" [(ngModel)]="user.etablissement" #etablissement="ngModel" required />
+        <div *ngIf="f.submitted && !etablissement.valid" class="help-block">The full Name is required</div>
+      </div>
+      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !ville.valid }">
+        <label for="ville">Ville</label>
+        <input type="text" class="form-control" name="ville" id="ville" [(ngModel)]="user.ville" #ville="ngModel" required />
+        <div *ngIf="f.submitted && !ville.valid" class="help-block">The full Name is required</div>
       </div>
       <div id="remember" class="checkbox">
 
