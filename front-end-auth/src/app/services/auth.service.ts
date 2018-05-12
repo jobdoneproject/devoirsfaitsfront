@@ -12,7 +12,7 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Accept', 'application/json')
     // creating base64 encoded String from user name and password
-    var base64Credential: string = btoa( user.username+ ':' + user.password);
+    var base64Credential: string = btoa( user.mail+ ':' + user.password);
     headers.append("Authorization", "Basic " + base64Credential);
 
     let options = new RequestOptions();
