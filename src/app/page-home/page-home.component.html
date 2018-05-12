@@ -3,3 +3,11 @@
 <a href="/creer-utilisateur">Creer utilisateur</a>
 <br/>
 <a href="/creer-utilisateur/3">Editer utilisateur id 3</a>
+<br/>
+<!--<a *ngFor="let user of users"
+  [routerLink]="['/product-details', user.id]">
+  {{ user.firstName }}
+</a>-->
+<br/>
+<a [routerLink]="['/edition-utilisateur', 13 ]">Edition profil eleve</a>
+<br/>
