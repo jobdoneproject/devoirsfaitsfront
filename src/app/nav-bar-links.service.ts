@@ -108,9 +108,11 @@ export class NavBarLinksService {
       firstName: '',
       lastName: '',
       email: '',
+      tel: '',
       admin: false,
       prof: false,
-      role: ''
+      role: '',
+      disponible: false
     };
     this.userService.getCurrentUser()
       .subscribe(user => this.currentUser = user);

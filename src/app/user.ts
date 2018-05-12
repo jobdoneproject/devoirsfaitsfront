@@ -3,7 +3,9 @@ export class User {
     firstName: string;
     lastName: string;
     email: string;
+    tel: string;
     admin: boolean;
     prof: boolean;
     role: string;
+    disponible: boolean;
 }
