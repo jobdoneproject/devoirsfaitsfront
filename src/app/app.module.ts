@@ -8,11 +8,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PageInscripAdminComponent } from './page-inscrip-admin/page-inscrip-admin.component';
 import { PageHomeComponent } from './page-home/page-home.component';
 import { Navbar2Component } from './navbar2/navbar2.component';
+import { ContainerDashboardComponent } from './container-dashboard/container-dashboard.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: PageLandingComponent },
   { path: 'inscription-ecole', component: PageInscripAdminComponent },
-  { path: 'home', component: PageHomeComponent },
+  // { path: 'home', component: PageHomeComponent },
+  { path: 'home', component: ContainerDashboardComponent },
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
 ];
 
@@ -23,7 +25,8 @@ const routes: Routes = [
     NavbarComponent,
     PageInscripAdminComponent,
     PageHomeComponent,
-    Navbar2Component
+    Navbar2Component,
+    ContainerDashboardComponent
   ],
   imports: [
     BrowserModule,
