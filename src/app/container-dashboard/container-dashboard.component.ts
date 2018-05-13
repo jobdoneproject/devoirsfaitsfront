@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PageHomeComponent } from '../page-home/page-home.component';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
-  { path: 'home', component: PageHomeComponent }
-];
 
 @Component({
   selector: 'app-container-dashboard',
@@ -17,7 +14,6 @@ export class ContainerDashboardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

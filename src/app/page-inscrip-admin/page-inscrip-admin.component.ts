@@ -10,6 +10,9 @@ export class PageInscripAdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // Background picture abstract blue
+    const body = document.getElementsByTagName('body')[0];
+    body.style.backgroundImage = 'url(../../assets/pics/Abstract-Blue-Wallpapers.jpg)';
   }
 
 }
