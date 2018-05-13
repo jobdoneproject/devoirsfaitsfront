@@ -4,60 +4,89 @@
       <h2>Gestion utilisateur : 
         {{editedUser.firstName}} {{editedUser.lastName}}
       </h2>
-      <h4><div *ngIf="!editedUser; else" class="alert alert-warning" role="alert">
+      <div class="float-right">
+        <button type="button" class="btn btn-danger pull-right">Supprimer l'utilisateur</button>
+      </div>
+      <h4><div *ngIf="!editedUser;" class="alert alert-warning" role="alert">
           Aucun utilisateur correspondant
-        </div></h4>
+      </div></h4>
     </div>
   </div>
+
   <div class="row" style="margin-top:40px">
-    <div class="col-lg-8">
-      <label class="radio-inline">
-        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="eleve" disabled> Elève
-      </label>
-      <label class="radio-inline" style="margin-left:20px">
-        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="prof" disabled> Professeur
-      </label>
-    </div>
-    <div class="col-lg-4"><button type="button" class="btn btn-danger">Supprimer l'utilisateur</button></div>
-  </div>
-  <div class="row" style="margin-top:40px">
-    <div class="col-lg-8">
+    <div class="" [ngClass]="(editedUser.role === 'eleve')?'col-lg-8':'col-lg-12'">
       <h4>Profil</h4>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon3">Nom</span>
+
+      <form action="" method="POST">
+      
+        <input type="hidden" id="userId" name= "userId" value="{{editedUser.id}}">
+        <input type="hidden" id="idEtablissement" name= "idEtablissement" value="{{editedUser.idEtablissement}}">
+        <div class="row" style="margin-top:0px">
+          <div class="col-lg-8">
+            <label class="radio-inline">
+              <input type="radio" value="eleve" name="eleve" [checked]="editedUser.role === 'eleve'" Disabled> Elève
+            </label>
+            <label class="radio-inline" style="margin-left:20px">
+              <input type="radio" value="prof" name="prof" [checked]="editedUser.role === 'prof'" Disabled> Professeur
+            </label>
+          </div>
         </div>
-        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="{{editedUser.lastName}}">
-      </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon3">Prénom</span>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Nom</span>
+          </div>
+          <input type="text" class="form-control" id="userLastName" name="userLastName" value="{{editedUser.lastName}}">
         </div>
-        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="{{editedUser.firstName}}">
-      </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon3">Adresse email</span>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Prénom</span>
+          </div>
+          <input type="text" class="form-control" id="userFirstName" name="userFirstName" value="{{editedUser.firstName}}">
         </div>
-        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="{{editedUser.email}}">
-      </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon3">Téléphone</span>
+        <div *ngIf="editedUser.role ==='eleve'" class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Classe</span>
+          </div>
+          <input type="text" class="form-control" id="userClasse" name="userClasse" value="{{editedUser.classe}}">
         </div>
-        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="{{editedUser.tel}}">
-      </div>
-      <label class="checkbox-inline">
-          <input type="checkbox" id="inlineCheckbox1" value="option1" checked> Disponible
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Adresse email</span>
+          </div>
+          <input type="text" class="form-control" id="userEmail" name="userEmail" value="{{editedUser.email}}">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Mot de passe</span>
+          </div>
+          <input type="text" class="form-control" id="password" name="password" value="{{editedUser.password}}">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Téléphone</span>
+          </div>
+          <input type="text" class="form-control" id="userTelephone" name="userTelephone" value="{{editedUser.tel}}">
+        </div>
+        <label class="checkbox-inline">
+            <input type="checkbox" id="actif" value="actif" checked> Actif sur Devoirs Faits
+          </label>
+        <label class="checkbox-inline" style="margin-left:20px">
+          <input type="checkbox" id="disponible" value="disponible" checked> Disponible pour un créneau
         </label>
+        <div class="row" style="margin-top:40px; margin-bottom:40px">
+            <div class="col-lg-12"><button type="button" class="btn btn-primary col-lg-12">Enregistrer</button></div>
+          </div>
+      </form>
     </div>
-    <div class="col-lg-4">
+
+
+    <div class="col-lg-4" *ngIf="editedUser.role === 'eleve'">
       <h4>Groupes souscrits</h4>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Groupe 12</li>
-        <li class="list-group-item">Groupe 13</li>
-        <li class="list-group-item">Groupe 14</li>
-        <li class="list-group-item">Groupe 15</li>
+        <li class="list-group-item">Groupe 12 <button (click)="removeGroup(12)" class="float-right">Supprimer</button></li>
+        <li class="list-group-item">Groupe 13 <button (click)="removeGroup(13)" class="float-right">Supprimer</button></li>
+        <li class="list-group-item">Groupe 14 <button (click)="removeGroup(14)" class="float-right">Supprimer</button></li>
+        <li class="list-group-item">Groupe 15 <button (click)="removeGroup(15)" class="float-right">Supprimer</button></li>
       </ul>
 
       <div class="input-group">
@@ -73,7 +102,5 @@
         </div>
     </div>
   </div>
-  <div class="row" style="margin-top:40px; margin-bottom:40px">
-      <div class="col-lg-12"><button type="button" class="btn btn-primary col-lg-12">Enregistrer</button></div>
-    </div>
+  
 </div>
