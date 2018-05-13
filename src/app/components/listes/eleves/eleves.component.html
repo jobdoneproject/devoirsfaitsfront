@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+
+<div *ngIf="administrateur; else elseBlock">   
+  <p>
+    All eleves here !
+  </p>
+  <ul>
+      <li *ngFor='let eleve of listEleve | async'>
+          nom : {{ eleve.nom }},<br>
+          prenom : {{ eleve.prenom }},<br>
+          classe : {{ eleve.classe }}
+          <hr style="width: 100%; color: black; height: 1px; background-color:black;">
+
+        </li>
+    </ul>
+  </div>
+<ng-template #elseBlock>   
+    <p>
+      No eleves here !
+    </p>
+  </ng-template>

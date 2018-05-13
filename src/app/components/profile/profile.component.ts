@@ -1,10 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
-
-import { UserService } from '../../user.service';
-import { User } from '../../user';
+import {User} from "../../model/model.user";
 import {Router} from "@angular/router";
-
 
 @Component({
   selector: 'app-profile',

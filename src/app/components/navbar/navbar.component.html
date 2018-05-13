@@ -1,0 +1,26 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Devoirs Faits</a>
+  <div *ngIf="administrateur" class="navbar-brand">
+      menu Administrateur
+  </div>
+  <div *ngIf="professeur" class="navbar-brand">
+      menu Professeur
+  </div>
+  <div *ngIf="eleve" class="navbar-brand">
+      menu eleve
+  </div>
+  <ul class="nav navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="profile">Compte</a>
+    </li> 
+    <li class="nav-item">
+      <a class="nav-link" href="eleves"  *ngIf="administrateur">Élèves</a>
+    </li>
+  </ul>
+
+  <ul class="nav navbar-nav navbar-right">
+    <li><a href="#"><span class="glyphicon glyphicon-log-in" (click)="logOut()"></span> LogOut</a></li>
+  </ul>
+</nav>

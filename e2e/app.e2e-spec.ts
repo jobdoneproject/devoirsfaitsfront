@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('devoirsfaitsfront App', () => {
+describe('angular-social-auth App', () => {
   let page: AppPage;
 
   beforeEach(() => {

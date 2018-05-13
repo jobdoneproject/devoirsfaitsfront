@@ -1,34 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 
-import { Router, RouterOutlet } from "@angular/router";
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
-const routes: Routes = [
-  // { path: 'login', component: LoginComponent },
-  // { path : 'calendar', component: CalendarComponent },
-  { path: '', redirectTo: 'app', pathMatch: 'full' }
-];
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from "./services/auth.service";
+import {HttpModule} from "@angular/http";
+import {AccountService} from "./services/account.service";
+import { ProfileComponent } from './components/profile/profile.component';
+import {routing} from "./app.routing";
+import {UrlPermission} from "./urlPermission/url.permission";
+import {NavbarComponent} from "./components/navbar/navbar.component";
+import {UserService} from "./services/user.service";
+import {NavBarLinksService} from "./services/nav-bar-links.service";
+import {ElevesComponent} from "./components/listes/eleves/eleves.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    NavbarComponent,
+    ElevesComponent
+
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule.forRoot(
-      routes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    BrowserModule,HttpModule,FormsModule,routing,
   ],
-  exports: [ RouterModule],
-  providers: [],
+  providers: [AuthService,AccountService,UrlPermission,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
