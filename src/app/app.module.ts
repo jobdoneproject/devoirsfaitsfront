@@ -9,17 +9,20 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PageInscripAdminComponent } from './page-inscrip-admin/page-inscrip-admin.component';
 import { PageHomeComponent } from './page-home/page-home.component';
 import { Navbar2Component } from './navbar2/navbar2.component';
-import { ContainerDashboardComponent } from './container-dashboard/container-dashboard.component';
-import { ContainerHeaderComponent } from './container-header/container-header.component';
 import { ContainerFooterComponent } from './container-footer/container-footer.component';
+import { ContainerSidebarComponent } from './container-sidebar/container-sidebar.component';
+import { ContainerNavbarComponent } from './container-navbar/container-navbar.component';
+import { ContainerComponent } from './container/container.component';
+import { PageMentionsLegalesComponent } from './page-mentions-legales/page-mentions-legales.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
   { path: 'landing-page', component: PageLandingComponent },
   { path: 'inscription-ecole', component: PageInscripAdminComponent },
+  { path: 'mentions-legales', component: PageMentionsLegalesComponent },
   // { path: 'home', component: PageHomeComponent },
   { path: 'home',
-    component: ContainerDashboardComponent,
+    component: ContainerComponent,
     children: [
       {path: '', component: PageHomeComponent, outlet: 'connected'}
     ]
@@ -35,9 +38,11 @@ const routes: Routes = [
     PageInscripAdminComponent,
     PageHomeComponent,
     Navbar2Component,
-    ContainerDashboardComponent,
-    ContainerHeaderComponent,
     ContainerFooterComponent,
+    ContainerSidebarComponent,
+    ContainerNavbarComponent,
+    ContainerComponent,
+    PageMentionsLegalesComponent,
   ],
   imports: [
     BrowserModule,
