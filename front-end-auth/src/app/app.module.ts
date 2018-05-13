@@ -13,7 +13,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import {routing} from "./app.routing";
 import {FacebookModule} from "ngx-facebook";
 import {UrlPermission} from "./urlPermission/url.permission";
-
+import {NavbarComponent} from "./components/navbar/navbar.component"
+import {UserService} from "./services/user.service"
+import {NavBarLinksService} from "./services/nav-bar-links.service"
 
 @NgModule({
   declarations: [
@@ -21,13 +23,13 @@ import {UrlPermission} from "./urlPermission/url.permission";
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-
+    NavbarComponent
 
   ],
   imports: [
-    BrowserModule,HttpModule,FormsModule,routing, FacebookModule.forRoot(),
+    BrowserModule,HttpModule,FormsModule,routing,
   ],
-  providers: [AuthService,AccountService,UrlPermission],
+  providers: [AuthService,AccountService,UrlPermission,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

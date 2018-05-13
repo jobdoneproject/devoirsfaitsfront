@@ -1,9 +1,10 @@
 export class User {
-  id : string;
+  id : number;
   nom: string="";
   prenom: string="";
   mail: string="";
   password: string="";
   etablissement: string="";
   ville: string="";
+  privilege: string="";
 }
