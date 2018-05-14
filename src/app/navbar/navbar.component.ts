@@ -15,6 +15,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.navBarLinks = this.navBarLinksService.getLinks();
   }
-     
+
 
 }
