@@ -1,7 +1,7 @@
 <div class="container"> 
   <div class="row">
     <div class="col-lg-12">
-      <h2>Gestion 
+      <h2>Profil 
         <span *ngIf="editedUser.role ==='eleve'"> de l'élève :</span>
         <span *ngIf="editedUser.role ==='prof'"> du professeur :</span>
         {{editedUser.firstName}} {{editedUser.lastName}}
@@ -17,7 +17,7 @@
 
   <div class="row" style="margin-top:40px">
     <div class="" [ngClass]="(editedUser.role === 'eleve')?'col-lg-8':'col-lg-12'">
-      <h4>Profil</h4>
+      <h4>Informations</h4>
 
       <form action="" method="POST">
       
