@@ -14,7 +14,6 @@ import {routing} from "./app.routing";
 import {UrlPermission} from "./urlPermission/url.permission";
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import {UserService} from "./services/user.service";
-import {NavBarLinksService} from "./services/nav-bar-links.service";
 import {ElevesComponent} from "./components/listes/eleves/eleves.component";
 
 @NgModule({

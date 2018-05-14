@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {User} from "../model/model.user";
+import {RegisterUser} from "../model/model.registerUser";
 import {Http} from "@angular/http";
 import {AppComponent} from "../app.component";
 
@@ -7,8 +7,8 @@ import {AppComponent} from "../app.component";
 export class AccountService {
   constructor(public http: Http) { }
 
-  createAccount(user:User){
-    return this.http.post(AppComponent.API_URL+'/account/register',user)
+  createAccount(registerUser: RegisterUser ){
+    return this.http.post(AppComponent.API_URL+'/account/register',registerUser)
       .map(resp=>resp.json());
   }
 }
