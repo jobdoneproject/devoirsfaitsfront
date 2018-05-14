@@ -8,8 +8,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PageInscripAdminComponent } from './page-inscrip-admin/page-inscrip-admin.component';
 import { PageHomeComponent } from './page-home/page-home.component';
 import { PageUserEditComponent } from './page-user-edit/page-user-edit.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'landing-page', component: PageLandingComponent },
   { path: 'inscription-ecole', component: PageInscripAdminComponent },
   { path: 'home', component: PageHomeComponent },
@@ -24,7 +26,8 @@ const routes: Routes = [
     NavbarComponent,
     PageInscripAdminComponent,
     PageHomeComponent,
-    PageUserEditComponent
+    PageUserEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

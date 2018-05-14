@@ -1,11 +1,10 @@
 export class User {
     id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
+    nom: string;
+    prenom: string;
+    mail: string;
     tel: string;
-    admin: boolean;
-    prof: boolean;
-    role: string;
+    privilege: string;
     disponible: boolean;
+    password: string;
 }

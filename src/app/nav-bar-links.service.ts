@@ -19,7 +19,7 @@ export class NavBarLinksService {
       icon: ''
     },
     {
-      href: '#',
+      href: '/login',
       title: 'Login',
       icon: ''
     }
@@ -31,8 +31,8 @@ export class NavBarLinksService {
       icon: ''
     },
     {
-      href: '#',
-      title: 'Calendrier',
+      href: '/login',
+      title: 'login',
       icon: ''
     },
     {
@@ -59,8 +59,8 @@ export class NavBarLinksService {
       icon: ''
     },
     {
-      href: '#',
-      title: 'Calendrier',
+      href: '/login',
+      title: 'login',
       icon: ''
     },
     {
@@ -82,8 +82,8 @@ export class NavBarLinksService {
       icon: ''
     },
     {
-      href: '#',
-      title: 'Calendrier',
+      href: '/login',
+      title: 'login',
       icon: ''
     },
     {
@@ -105,14 +105,13 @@ export class NavBarLinksService {
   ) {
     this.currentUser = {
       id: -1,
-      firstName: '',
-      lastName: '',
-      email: '',
+      nom: '',
+      prenom: '',
+      mail: '',
       tel: '',
-      admin: false,
-      prof: false,
-      role: '',
-      disponible: false
+      privilege: '',
+      disponible: false,
+      password: ''
     };
     this.userService.getCurrentUser()
       .subscribe(user => this.currentUser = user);
@@ -122,11 +121,11 @@ export class NavBarLinksService {
 
     if (this.currentUser === null) {
       return this.notLoggedLinks;
-    } else if (this.currentUser.role === 'eleve') {
+    } else if (this.currentUser.privilege === 'eleve') {
       return this.studentLinks;
-    } else if (this.currentUser.role === 'prof') {
+    } else if (this.currentUser.privilege === 'prof') {
       return this.profLinks;
-    } else if (this.currentUser.role === 'admin') {
+    } else if (this.currentUser.privilege === 'admin') {
       return this.adminLinks;
     } else {
       return this.notLoggedLinks;
