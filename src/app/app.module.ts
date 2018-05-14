@@ -9,6 +9,11 @@ import { PageInscripAdminComponent } from './page-inscrip-admin/page-inscrip-adm
 import { PageHomeComponent } from './page-home/page-home.component';
 import { PageUserEditComponent } from './page-user-edit/page-user-edit.component';
 import {LoginComponent} from './login/login.component';
+import { HttpClientModule } from '@angular/common/http'; 
+import { HttpModule } from '@angular/http';
+import { AuthService } from './services/auth.service';
+
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,13 +37,14 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpModule,
     RouterModule.forRoot(
       routes,
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
   exports: [ RouterModule],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
