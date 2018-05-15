@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavBarLinksService } from '../nav-bar-links.service';
+import { NavBarLinksService } from '../services/nav-bar-links.service';
 
 @Component({
   selector: 'app-navbar',
