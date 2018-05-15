@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
 
   // login out from the app
   logOut() {
-    localStorage.clear();
+    console.log('logout navbar');
     this.authService.logOut()
       .subscribe(
         data => {

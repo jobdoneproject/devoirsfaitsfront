@@ -24,7 +24,7 @@ import {ElevesComponent} from "./components/listes/eleves/eleves.component";
     ProfileComponent,
     NavbarComponent,
     ElevesComponent
-
+  
   ],
   imports: [
     BrowserModule,HttpModule,FormsModule,routing,
@@ -33,3 +33,4 @@ import {ElevesComponent} from "./components/listes/eleves/eleves.component";
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+ 
