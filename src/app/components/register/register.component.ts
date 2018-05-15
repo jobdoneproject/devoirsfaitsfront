@@ -9,10 +9,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.css'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class RegisterComponent implements OnInit {
   user: User = new User();
   errorMessage: string;
-
+  
   constructor(public accountService: AccountService, public router: Router) {
   }
 

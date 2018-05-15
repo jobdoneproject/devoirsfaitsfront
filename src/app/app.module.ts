@@ -33,4 +33,3 @@ import {ElevesComponent} from "./components/listes/eleves/eleves.component";
   bootstrap: [AppComponent]
 })
 export class AppModule { }
- 
