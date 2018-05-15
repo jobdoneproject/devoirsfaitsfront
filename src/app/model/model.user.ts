@@ -10,4 +10,6 @@ export class User {
   privilege: string='';
   idEtablissement: number;
   ville: string='';
+  etablissement: string='';
+  telephone: string='';
 }

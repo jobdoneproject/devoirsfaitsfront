@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
   register() {
     this.accountService.createAccount(this.user).subscribe(data => {
         this.router.navigate(['/login']);
+        console.log("this user : " + this.user);
       }, err => {
         console.log(err);
         this.errorMessage = "username already exist";
