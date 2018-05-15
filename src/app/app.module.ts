@@ -15,7 +15,7 @@ import {UrlPermission} from "./urlPermission/url.permission";
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import {UserService} from "./services/user.service";
 import {ElevesComponent} from "./components/listes/eleves/eleves.component";
-
+ 
 @NgModule({
   declarations: [
     AppComponent,
