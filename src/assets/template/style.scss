@@ -15519,16 +15519,12 @@ select.form-control {
 /* === Landing screens === */
 /* Auth */
 .auth.login-full-bg {
-  background: url("./pics/login_1.jpg");
+  background: url("./assets/template/pics/login_1.jpg");
   background-size: cover; }
-
-/*.auth.register-full-bg {
-  background: url("./pics/register_1.jpg");
-  background-size: cover; }*/
 
  .container-scroller .container-fluid 
  .auth.register-full-bg{
-  background: url("./pics/register_1.jpg");
+  background: url("./assets/template/pics/register_1.jpg");
   background-size: cover;
  }
 
