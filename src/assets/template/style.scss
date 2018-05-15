@@ -7841,8 +7841,8 @@ pre {
 
 .container {
   width: 100%;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding-right: 0px;
+  padding-left: 0px;
   margin-right: auto;
   margin-left: auto; }
   @media (min-width: 576px) {
@@ -7865,10 +7865,11 @@ pre {
 
 .container-fluid {
   width: 100%;
-  padding-right: 0; /* edit */
-  padding-left: 0; /* edit */
-  margin-right: auto;
-  margin-left: auto; }
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+ }
 
 .row {
   display: flex;
@@ -14364,7 +14365,7 @@ html {
 
 .content-wrapper {
   background: #F6F8FA;
-  padding: 1.5rem 1.7rem;
+  padding: 0px;
   width: 100%;
   -webkit-flex-grow: 1;
   flex-grow: 1; }
@@ -15519,16 +15520,13 @@ select.form-control {
 /* === Landing screens === */
 /* Auth */
 .auth.login-full-bg {
-  background: url("./pics/login_1.jpg");
-  background-size: cover; }
-
-/*.auth.register-full-bg {
-  background: url("./pics/register_1.jpg");
-  background-size: cover; }*/
+  background: url("./assets/template/pics/notebook.jpg");
+  background-size: cover; 
+}
 
  .container-scroller .container-fluid 
  .auth.register-full-bg{
-  background: url("./pics/register_1.jpg");
+  background: url("./assets/template/pics/notebook.jpg");
   background-size: cover;
  }
 
