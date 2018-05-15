@@ -34,6 +34,10 @@ export class PageUserEditComponent implements OnInit {
       .subscribe(user => this.editedUser = user);
   }
 
+  removeGroup(id): void {
+    console.log(id);
+  }
+
   /*ngOnDestroy() {
     this.sub.unsubscribe();
   }*/
