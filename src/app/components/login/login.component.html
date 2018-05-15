@@ -1,4 +1,42 @@
+<div class="container-scroller background-picture">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth login-full-bg">
+        <div class="row w-100">
+          <div class="col-lg-5 mx-auto">
+            <div class="auth-form-dark text-left p-5">
 
+                <form name="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+                  <span id="reauth-email" class="reauth-email"></span>
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mail.valid }">
+                    <label for="mail">Mail</label>
+                    <input type="text" class="form-control" id="mail" name="mail"  [(ngModel)]="user.mail" #mail="ngModel" required />
+                    <div *ngIf="f.submitted && !username.valid" class="help-block">an valid email is required</div>
+                  </div>
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" #password="ngModel" required />
+                    <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                  </div>
+                  <div id="remember" class="checkbox">
+            
+                  </div>
+                  <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                </form>
+                  <a [routerLink]="['/register']" class="btn btn-link">Create new Account!</a>
+              
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 <div class="overlay"></div>
@@ -31,8 +69,9 @@
                   
                         </div>
                         <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+                        <a [routerLink]="['/register']" class="auth-link text-white">Créez votre compte</a>
                       </form><!-- /form -->
-                        <a [routerLink]="['/register']" class="btn btn-link">Create new Account!</a>
+                        
                     </div><!-- /card-container -->
 
           </div>
@@ -40,16 +79,6 @@
       </div>
     </div>
 
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="../../../assets/LandingPages/vendor/jquery/jquery.min.js"></script>
-    <script src="../../../assets/LandingPages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="../../../assets/LandingPages/vendor/vide/jquery.vide.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="../../../assets/LandingPages/js/coming-soon.min.js"></script>
 
 
 

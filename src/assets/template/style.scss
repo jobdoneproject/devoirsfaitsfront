@@ -14363,14 +14363,20 @@ html {
       width: 100%; } }
 
 .content-wrapper {
-  background: #F6F8FA;
+  /*background: #F6F8FA;*/
   padding: 1.5rem 1.7rem;
   width: 100%;
   -webkit-flex-grow: 1;
   flex-grow: 1; }
 
 .container-scroller {
-  overflow: hidden; }
+  overflow: hidden;
+}
+
+.background-picture {
+  background: url("./assets/template/pics/login_1.jpg");
+  background-size: cover;
+}
 
 .scroll-container {
   position: relative; }
@@ -15519,8 +15525,8 @@ select.form-control {
 /* === Landing screens === */
 /* Auth */
 .auth.login-full-bg {
-  background: url("./assets/template/pics/login_1.jpg");
-  background-size: cover; }
+  /*background: url("./assets/template/pics/login_1.jpg");
+  background-size: cover;*/ }
 
  .container-scroller .container-fluid 
  .auth.register-full-bg{
@@ -15613,3 +15619,5 @@ select.form-control {
     border-left: 3px solid rgba(255, 255, 255, 0.2); } }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+a.whiteLinkText{color:white;}

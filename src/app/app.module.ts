@@ -16,7 +16,7 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 import {UserService} from "./services/user.service";
 import {ElevesComponent} from "./components/listes/eleves/eleves.component";
 import { PageLandingComponent } from './components/page-landing/page-landing.component';
-
+ 
 @NgModule({
   declarations: [
     AppComponent,
