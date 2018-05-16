@@ -37,4 +37,11 @@ export class ElevesComponent implements OnInit {
 
   ngOnInit() {  }
 
+
+  eleve: User;
+
+onSelect(eleve: User): void {
+  this.eleve = eleve;
+}
+
 }

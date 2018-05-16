@@ -21,7 +21,7 @@ import { ContainerComponent } from './components/container/container.component';
 import { ContainerFooterComponent } from './components/container-footer/container-footer.component';
 import { ContainerNavbarComponent } from './components/container-navbar/container-navbar.component';
 import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
- 
+
 @NgModule({
   declarations: [
     AppComponent,
