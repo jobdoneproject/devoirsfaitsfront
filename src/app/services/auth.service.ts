@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions,Response} from '@angular/http';
 import {User} from "../model/model.user";
-import 'rxjs/add/operator/map';
 import {AppComponent} from "../app.component";
+
 @Injectable()
 export class AuthService {
   constructor(public http: Http) { }
@@ -19,14 +19,14 @@ export class AuthService {
     options.headers=headers;
 
     return this.http.get(AppComponent.API_URL+"/account/login" ,   options)
-      .map((response: Response) => {
+      .pipe(map((response: Response) => {
       // login successful if there's a jwt token in the response
       let user = response.json().principal;// the returned user object is a principal object
       if (user) {
         // store user details  in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
       }
-    });
+    }));
   }
 
   logOut() {
@@ -35,8 +35,8 @@ export class AuthService {
     localStorage.removeItem('currentUser');
 
     return this.http.post(AppComponent.API_URL+"logout",{})
-      .map((response: Response) => {
-      });
+      .pipe(map((response: Response) => {
+      }));
 
   }
 

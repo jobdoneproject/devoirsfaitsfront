@@ -38,7 +38,7 @@ import { ContainerSidebarComponent } from './components/container-sidebar/contai
     ContainerSidebarComponent
   ],
   imports: [
-    BrowserModule,HttpModule,FormsModule,routing,
+    BrowserModule,HttpModule,FormsModule,routing
   ],
   providers: [AuthService,AccountService,UrlPermission,UserService],
   bootstrap: [AppComponent]

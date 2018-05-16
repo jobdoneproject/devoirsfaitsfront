@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../../user';
+import { User } from '../../model/model.user';
 import { UserService } from '../../services/user.service';
 
 
@@ -25,14 +25,14 @@ export class PageUserEditComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.calledId = +params['id'];
       console.log('calledId : ' + this.calledId);
-      this.getUserById(this.calledId);
+      /*this.getUserById(this.calledId);*/
    });
   }
 
-  getUserById(id): void {
+  /*getUserById(id): void {
     this.userService.getUserById(id)
       .subscribe(user => this.editedUser = user);
-  }
+  }*/
 
   removeGroup(id): void {
     console.log(id);

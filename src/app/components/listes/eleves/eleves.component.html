@@ -3,18 +3,15 @@
 <div *ngIf="administrateur; else elseBlock">
 
 
-    <mat-list>
-        <mat-list-item> Pepper </mat-list-item>
-        <mat-list-item> Salt </mat-list-item>
-        <mat-list-item> Paprika </mat-list-item>
-       </mat-list>
+
+  
        
         
    
 </div>
 <ng-template #elseBlock>
   <p>
-    Vous n'aves pas les droits pour afficher cette page !
+    Vous n'avez pas les droits pour afficher cette page !
   </p>
 </ng-template>
 

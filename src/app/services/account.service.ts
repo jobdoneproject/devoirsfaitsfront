@@ -9,6 +9,6 @@ export class AccountService {
 
   createAccount(User: User ){
     return this.http.post(AppComponent.API_URL+'/account/register',User)
-      .map(resp=>resp.json());
+      .pipe(map(resp=>resp.json()));
   }
 }

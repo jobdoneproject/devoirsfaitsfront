@@ -31,7 +31,7 @@ export class ElevesComponent implements OnInit {
     }
 
     this.url = AppComponent.API_URL+"/eleve/etablissement/"+this.currentUser.idEtablissement;
-    this.listEleve = this.http.get(this.url).map((res: Response) => res.json());
+    this.listEleve = this.http.get(this.url).pipe(map((res: Response) => res.json())));
     
   }
 

@@ -13,4 +13,8 @@ export class UserService {
   getCurrentUser(): Observable<User> {
     return this.getCurrentUser();
   }
+
+  getUserById(id){
+
+  }
 }
