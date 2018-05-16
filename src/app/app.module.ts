@@ -16,7 +16,12 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 import {UserService} from "./services/user.service";
 import {ElevesComponent} from "./components/listes/eleves/eleves.component";
 import { PageLandingComponent } from './components/page-landing/page-landing.component';
-
+import { PageUserEditComponent } from './components/page-user-edit/page-user-edit.component';
+import { ContainerComponent } from './components/container/container.component';
+import { ContainerFooterComponent } from './components/container-footer/container-footer.component';
+import { ContainerNavbarComponent } from './components/container-navbar/container-navbar.component';
+import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +30,12 @@ import { PageLandingComponent } from './components/page-landing/page-landing.com
     ProfileComponent,
     NavbarComponent,
     ElevesComponent,
-    PageLandingComponent
+    PageLandingComponent,
+    PageUserEditComponent,
+    ContainerComponent,
+    ContainerFooterComponent,
+    ContainerNavbarComponent,
+    ContainerSidebarComponent
   ],
   imports: [
     BrowserModule,HttpModule,FormsModule,routing,
