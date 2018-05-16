@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {AppComponent} from "../../../app.component";
 import {AuthService} from "../../../services/auth.service";
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-eleves',
@@ -18,7 +19,7 @@ export class ElevesComponent implements OnInit {
   errorMessage:string;
   idEtablissement: number;
   url: string;
-  listEleve: Observable<any>;
+  listEleve: Observable<User>;
 
   constructor(public authService: AuthService, public router: Router,private http: Http) {
 
@@ -31,7 +32,8 @@ export class ElevesComponent implements OnInit {
     }
 
     this.url = AppComponent.API_URL+"/eleve/etablissement/"+this.currentUser.idEtablissement;
-    //this.listEleve = this.http.get(this.url).pipe(map((res: Response) => res.json())));
+    this.listEleve = this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+    //pipe(map((res: Response) => res.json())).subscribe;
     
   }
 

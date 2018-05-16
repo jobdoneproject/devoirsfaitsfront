@@ -3,9 +3,16 @@
 <div *ngIf="administrateur; else elseBlock">
 
 
-
-  
-       
+Liste des eleves:
+  <mat-nav-list>
+    <mat-list-item *ngFor="let eleve of listEleve | async">
+       <a matLine href="...">{{ eleve.nom }}</a>
+       <button mat-icon-button (click)="showInfo(link)">
+          <mat-icon>info</mat-icon>
+       </button>
+    </mat-list-item>
+  </mat-nav-list>
+        
         
    
 </div>

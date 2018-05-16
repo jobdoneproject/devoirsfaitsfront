@@ -21,6 +21,8 @@ import { ContainerComponent } from './components/container/container.component';
 import { ContainerFooterComponent } from './components/container-footer/container-footer.component';
 import { ContainerNavbarComponent } from './components/container-navbar/container-navbar.component';
 import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,12 @@ import { ContainerSidebarComponent } from './components/container-sidebar/contai
     ContainerSidebarComponent
   ],
   imports: [
-    BrowserModule,HttpModule,FormsModule,routing
+    BrowserModule, 
+    HttpModule, 
+    FormsModule, 
+    routing, 
+    MatListModule, 
+    MatIconModule
   ],
   providers: [AuthService,AccountService,UrlPermission,UserService],
   bootstrap: [AppComponent]
