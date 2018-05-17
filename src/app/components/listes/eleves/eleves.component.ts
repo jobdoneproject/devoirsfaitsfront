@@ -6,12 +6,14 @@ import {AppComponent} from "../../../app.component";
 import {AuthService} from "../../../services/auth.service";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { MatListOption, MatSelectionList } from '@angular/material/list';
+
 
 @Component({
   selector: 'app-eleves',
   templateUrl: './eleves.component.html',
   styleUrls: ['./eleves.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ElevesComponent implements OnInit {
   currentUser: User;

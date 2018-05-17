@@ -1,27 +1,31 @@
-<app-navbar></app-navbar>
-<br><br>
-<div *ngIf="administrateur; else elseBlock">
-
-
-Liste des eleves:
-  <mat-nav-list>
-    <mat-list-item *ngFor="let eleve of listEleve | async">
-       <a matLine href="...">{{ eleve.nom }}</a>
-       <button mat-icon-button (click)="showInfo(link)">
-          <mat-icon>info</mat-icon>
-       </button>
-    </mat-list-item>
-  </mat-nav-list>
-        
-        
-   
+<div class="col-md-12 d-flex align-items-stretch grid-margin">
+  <div class="row flex-grow">
+    <div class="col-12 stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div *ngIf="administrateur; else elseBlock">
+            <h4 class="card-title">
+              Liste des eleves
+            </h4>
+            <mat-selection-list #eleve>
+              <mat-list-option *ngFor="let eleve of listEleve | async">
+                <a matLine href="edition-utilisateur/{{ eleve.idUtilisateur }}">{{ eleve.nom }}</a>
+              </mat-list-option>
+              <button  (click)="test()">
+                  Effacer&nbsp;{{eleve.selectedOptions.selected.length}}&nbsp;eleve(s)
+              </button>
+            </mat-selection-list>
+          </div>
+          <ng-template #elseBlock>
+            <p>
+              Vous n'avez pas les droits pour afficher cette page !
+            </p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<ng-template #elseBlock>
-  <p>
-    Vous n'avez pas les droits pour afficher cette page !
-  </p>
-</ng-template>
-
 
 <!--
 <i class="fas fa-camera-retro fa-xs"></i>

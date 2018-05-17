@@ -17,8 +17,11 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent ,canActivate: [UrlPermission] },
-  { path: 'eleves', component: ElevesComponent ,canActivate: [UrlPermission] },
-  { path: 'eleves', component: ElevesComponent ,canActivate: [UrlPermission] },
+  { path: 'eleves', 
+    component: ContainerComponent ,canActivate: [UrlPermission],
+    children: [{path: '', component: ElevesComponent, outlet: 'connected'}]
+   },
+
   { path: 'edition-utilisateur/:id',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
