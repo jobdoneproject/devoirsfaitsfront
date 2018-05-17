@@ -1,10 +1,16 @@
 import { Routes, RouterModule } from '@angular/router';
+
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {UrlPermission} from "./urlPermission/url.permission";
 import {ElevesComponent} from "./components/listes/eleves/eleves.component"
 import { PageLandingComponent } from './components/page-landing/page-landing.component';
+import { PageUserEditComponent } from './components/page-user-edit/page-user-edit.component';
+import { ContainerComponent } from './components/container/container.component';
+import { ContainerFooterComponent } from './components/container-footer/container-footer.component';
+import { ContainerNavbarComponent } from './components/container-navbar/container-navbar.component';
+import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -12,6 +18,11 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent ,canActivate: [UrlPermission] },
   { path: 'eleves', component: ElevesComponent ,canActivate: [UrlPermission] },
+  { path: 'eleves', component: ElevesComponent ,canActivate: [UrlPermission] },
+  { path: 'edition-utilisateur/:id',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
+  },
   { path: '', redirectTo: 'bienvenue', pathMatch: 'full' },
 
   // otherwise redirect to profile
