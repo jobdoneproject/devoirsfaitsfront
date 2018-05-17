@@ -18,11 +18,15 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   // { path: 'profile', component: ProfileComponent ,canActivate: [UrlPermission] },
   // { path: 'eleves', component: ElevesComponent ,canActivate: [UrlPermission] },
-  { path: 'eleves', component: ElevesComponent ,canActivate: [UrlPermission] },
   { path: 'profile',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: ProfileComponent, outlet: 'connected'}]
   },
+  { path: 'eleves', 
+    component: ContainerComponent ,canActivate: [UrlPermission],
+    children: [{path: '', component: ElevesComponent, outlet: 'connected'}]
+   },
+
   { path: 'edition-utilisateur/:id',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]

@@ -1,21 +1,42 @@
-<app-navbar></app-navbar>
-
-<div *ngIf="administrateur; else elseBlock">   
-  <p>
-    All eleves here !
-  </p>
-  <ul>
-      <li *ngFor='let eleve of listEleve | async'>
-          nom : {{ eleve.nom }},<br>
-          prenom : {{ eleve.prenom }},<br>
-          classe : {{ eleve.classe }}
-          <hr style="width: 100%; color: black; height: 1px; background-color:black;">
-
-        </li>
-    </ul>
+<div class="col-md-12 d-flex align-items-stretch grid-margin">
+  <div class="row flex-grow">
+    <div class="col-12 stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <div *ngIf="administrateur; else elseBlock">
+            <h4 class="card-title">
+              Liste des élèves
+            </h4>
+            <mat-selection-list #eleve>
+              <mat-list-option *ngFor="let eleve of listEleve | async">
+                <a matLine href="edition-utilisateur/{{ eleve.idUtilisateur }}"><strong>{{ eleve.nom }} </strong> <em>{{ eleve.prenom }}</em> : {{ eleve.telephone }} {{ eleve.mail }}</a>
+              <hr>
+              </mat-list-option>
+              <div class="text-right">
+                <a class="btn btn-teal btn-lg font-weight-medium" href="#">
+                  Effacer&nbsp;{{eleve.selectedOptions.selected.length}}&nbsp;eleve(s)
+                </a>
+              </div>
+            </mat-selection-list>
+          </div>
+          <ng-template #elseBlock>
+            <p>
+              Vous n'avez pas les droits pour afficher cette page !
+            </p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
   </div>
-<ng-template #elseBlock>   
-    <p>
-      No eleves here !
-    </p>
-  </ng-template>
+</div>
+
+<!--
+<i class="fas fa-camera-retro fa-xs"></i>
+<i class="fas fa-camera-retro fa-sm"></i>
+<i class="fas fa-camera-retro fa-lg"></i>
+<i class="fas fa-camera-retro fa-2x"></i>
+<i class="fas fa-camera-retro fa-3x"></i>
+<i class="fas fa-camera-retro fa-5x"></i>
+<i class="fas fa-camera-retro fa-7x"></i>
+<i class="fas fa-camera-retro fa-10x"></i>
+-->

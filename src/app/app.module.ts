@@ -21,7 +21,9 @@ import { ContainerComponent } from './components/container/container.component';
 import { ContainerFooterComponent } from './components/container-footer/container-footer.component';
 import { ContainerNavbarComponent } from './components/container-navbar/container-navbar.component';
 import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
- 
+import {MatListModule } from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,9 @@ import { ContainerSidebarComponent } from './components/container-sidebar/contai
     HttpModule,
     FormsModule,
     routing,
-    HttpClientModule
+    HttpClientModule,
+    MatListModule, 
+    MatIconModule
   ],
   providers: [
     AuthService,
