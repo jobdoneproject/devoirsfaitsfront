@@ -10,7 +10,7 @@
                 <span *ngIf="editedUser.privilege ==='eleve'"> Elève :</span>
                 <span *ngIf="editedUser.privilege ==='prof'"> Professeur :</span>
                 {{editedUser.prenom}} {{editedUser.nom}}
-            </h4>
+            </h4> 
             <div *ngIf="!editedUser;" class="alert alert-warning" role="alert">
                 Aucun utilisateur correspondant
             </div>
