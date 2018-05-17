@@ -16,13 +16,18 @@ const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent ,canActivate: [UrlPermission] },
+  // { path: 'profile', component: ProfileComponent ,canActivate: [UrlPermission] },
+  // { path: 'eleves', component: ElevesComponent ,canActivate: [UrlPermission] },
   { path: 'eleves', component: ElevesComponent ,canActivate: [UrlPermission] },
-  { path: 'eleves', component: ElevesComponent ,canActivate: [UrlPermission] },
+  { path: 'profile',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{path: '', component: ProfileComponent, outlet: 'connected'}]
+  },
   { path: 'edition-utilisateur/:id',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
   },
+
   { path: '', redirectTo: 'bienvenue', pathMatch: 'full' },
 
   // otherwise redirect to profile
