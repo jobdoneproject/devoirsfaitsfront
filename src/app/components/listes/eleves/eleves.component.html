@@ -5,15 +5,18 @@
         <div class="card-body">
           <div *ngIf="administrateur; else elseBlock">
             <h4 class="card-title">
-              Liste des eleves
+              Liste des élèves
             </h4>
             <mat-selection-list #eleve>
               <mat-list-option *ngFor="let eleve of listEleve | async">
-                <a matLine href="edition-utilisateur/{{ eleve.idUtilisateur }}">{{ eleve.nom }}</a>
+                <a matLine href="edition-utilisateur/{{ eleve.idUtilisateur }}"><strong>{{ eleve.nom }} </strong> <em>{{ eleve.prenom }}</em> : {{ eleve.telephone }} {{ eleve.mail }}</a>
+              <hr>
               </mat-list-option>
-              <button  (click)="test()">
+              <div class="text-right">
+                <a class="btn btn-teal btn-lg font-weight-medium" href="#">
                   Effacer&nbsp;{{eleve.selectedOptions.selected.length}}&nbsp;eleve(s)
-              </button>
+                </a>
+              </div>
             </mat-selection-list>
           </div>
           <ng-template #elseBlock>
