@@ -20,6 +20,7 @@ import { USERS } from '../../mock-user';
 })
 export class PageUserEditComponent implements OnInit {
   public editedUser: User;
+  
   private calledId: number;
   id: number;
   private sub: any;
