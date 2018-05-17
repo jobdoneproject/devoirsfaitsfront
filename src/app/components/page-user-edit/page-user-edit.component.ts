@@ -19,7 +19,7 @@ import { USERS } from '../../mock-user';
   providers: [UserService]
 })
 export class PageUserEditComponent implements OnInit {
-  private editedUser: User;
+  public editedUser: User;
   
   
   private calledId: number;
