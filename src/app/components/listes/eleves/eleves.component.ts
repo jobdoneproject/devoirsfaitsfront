@@ -5,14 +5,15 @@ import {Router} from "@angular/router";
 import {AppComponent} from "../../../app.component";
 import {AuthService} from "../../../services/auth.service";
 import { Observable } from 'rxjs';
-import {environment} from '../../../../environments/environment';
+import { map } from 'rxjs/operators';
+import { MatListOption, MatSelectionList } from '@angular/material/list';
 
 
 @Component({
   selector: 'app-eleves',
   templateUrl: './eleves.component.html',
   styleUrls: ['./eleves.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ElevesComponent implements OnInit {
   currentUser: User;
@@ -20,7 +21,7 @@ export class ElevesComponent implements OnInit {
   errorMessage:string;
   idEtablissement: number;
   url: string;
-  listEleve: Observable<any>;
+  listEleve: Observable<User>;
 
   constructor(public authService: AuthService, public router: Router,private http: Http) {
 
@@ -33,11 +34,19 @@ export class ElevesComponent implements OnInit {
       this.administrateur = true;
     }
 
-    this.url = environment.API_URL+"/eleve/etablissement/"+this.currentUser.idEtablissement;
-    this.listEleve = this.http.get(this.url).map((res: Response) => res.json());
+    this.url = AppComponent.API_URL+"/eleve/etablissement/"+this.currentUser.idEtablissement;
+    this.listEleve = this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+    //pipe(map((res: Response) => res.json())).subscribe;
     
   }
 
   ngOnInit() {  }
+
+
+  eleve: User;
+
+onSelect(eleve: User): void {
+  this.eleve = eleve;
+}
 
 }
