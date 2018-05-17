@@ -24,9 +24,10 @@ export class ElevesComponent implements OnInit {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.idEtablissement = this.currentUser.idEtablissement;
-
-
+    
+    console.log("this.currentUser.privilege : " + this.currentUser.privilege);
     if (this.currentUser.privilege == "Administrateur"){
+      
       this.administrateur = true;
     }
 
