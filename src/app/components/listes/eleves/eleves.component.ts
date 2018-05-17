@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {AppComponent} from "../../../app.component";
 import {AuthService} from "../../../services/auth.service";
 import { Observable } from 'rxjs';
+import {environment} from '../../../../environments/environment';
+
 
 @Component({
   selector: 'app-eleves',
@@ -31,7 +33,7 @@ export class ElevesComponent implements OnInit {
       this.administrateur = true;
     }
 
-    this.url = AppComponent.API_URL+"/eleve/etablissement/"+this.currentUser.idEtablissement;
+    this.url = environment.API_URL+"/eleve/etablissement/"+this.currentUser.idEtablissement;
     this.listEleve = this.http.get(this.url).map((res: Response) => res.json());
     
   }
