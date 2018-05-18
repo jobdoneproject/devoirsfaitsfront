@@ -137,3 +137,23 @@ body, html {
 .forgot-password:focus{
   color: rgb(12, 97, 33);
 }
+
+input:-webkit-autofill {
+  /*border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 0 1px 9999px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);*/
+
+}
+
+input:focus,
+input:-webkit-autofill:focus {
+  border-color: #66afe9;
+  -webkit-box-shadow: inset 0 0 1px 9999px rgba(0, 0, 0, 0.137), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5500s ease-in-out 0s;
+    -webkit-text-fill-color: white !important;
+}
