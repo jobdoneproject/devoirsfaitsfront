@@ -24,6 +24,7 @@ import { ContainerSidebarComponent } from './components/container-sidebar/contai
 import {MatListModule } from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarDayComponent } from './components/calendar-day/calendar-day.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     ContainerFooterComponent,
     ContainerNavbarComponent,
     ContainerSidebarComponent,
-    CalendarComponent
+    CalendarComponent,
+    CalendarDayComponent
   ],
   imports: [
     BrowserModule,
