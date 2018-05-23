@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'calendar-day',
   templateUrl: './calendar-day.component.html',
   styleUrls: ['./calendar-day.component.scss'],
-  inputs: ['dayLabel : day-label']
 })
 export class CalendarDayComponent implements OnInit {
 
-  private dayLabel: String;
+  @Input() private dayLabel: String;
+  private slot1Date: Date;
 
-  constructor() { }
+  constructor() {
+    this.slot1Date = new Date();
+  }
 
   ngOnInit() {
   }
