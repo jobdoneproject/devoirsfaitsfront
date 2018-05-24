@@ -26,6 +26,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarDayComponent } from './components/calendar-day/calendar-day.component';
 import { CalendarSlotComponent } from './components/calendar-slot/calendar-slot.component';
+import { CalendarWeekendDayComponent } from './components/calendar-weekend-day/calendar-weekend-day.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CalendarSlotComponent } from './components/calendar-slot/calendar-slot.
     ContainerSidebarComponent,
     CalendarComponent,
     CalendarDayComponent,
-    CalendarSlotComponent
+    CalendarSlotComponent,
+    CalendarWeekendDayComponent
   ],
   imports: [
     BrowserModule,

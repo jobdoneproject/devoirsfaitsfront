@@ -7,8 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CalendarDayComponent implements OnInit {
 
-  @Input() private dayLabel: String;
-  private slot1Date: Date;
+  @Input() protected dayLabel: String;
+
+  // todo remplacer avec un service et un nom de variable plus approprié
+  protected slot1Date: Date;
 
   constructor() {
     this.slot1Date = new Date();

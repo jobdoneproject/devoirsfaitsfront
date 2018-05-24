@@ -1,0 +1,5 @@
+@import '../calendar-day/calendar-day.component.scss'; // Réutilisation du style de calendar-day
+
+.root {
+    height: 40vh; // La moitié de la valeur du composant calendar-day
+}

@@ -19,19 +19,20 @@
     <div class="col-12 col-md-2">
       
       <!--
-        La classe css week-end afin de redimensionner en hauteur : ce qui nous permet
-        de superposer les deux zones.
+        Le composant calendar-week-end-day est un composant similaire à
+        calendar-day mais avec une hauteur réduite de moitié : ce qui permet
+        de superposer les jours Samedi et Dimanche.
       -->
       <div class="row">
-        <calendar-day class="col-12 week-end" dayLabel="Samedi">
+        <calendar-weekend-day class="col-12" dayLabel="Samedi">
       
-        </calendar-day>
+        </calendar-weekend-day>
       </div>
 
       <div class="row">
-        <calendar-day class="col-12 week-end" dayLabel="Dimanche">
+        <calendar-weekend-day class="col-12" dayLabel="Dimanche">
       
-        </calendar-day>
+        </calendar-weekend-day>
       </div>
 
     </div>
