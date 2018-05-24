@@ -1,25 +1,40 @@
 <div class="container">
   <div class="row">
-    <calendar-day class="col-12 col-lg-2" dayLabel="Lundi">
+    <calendar-day class="col-12 col-md-2" dayLabel="Lundi">
 
     </calendar-day>
-    <calendar-day class="col-12 col-lg-2" dayLabel="Mardi">
+    <calendar-day class="col-12 col-md-2" dayLabel="Mardi">
       
     </calendar-day>
-    <calendar-day class="col-12 col-lg-2" dayLabel="Mercredi">
+    <calendar-day class="col-12 col-md-2" dayLabel="Mercredi">
       
     </calendar-day>
-    <calendar-day class="col-12 col-lg-2" dayLabel="Jeudi">
+    <calendar-day class="col-12 col-md-2" dayLabel="Jeudi">
       
     </calendar-day>
-    <calendar-day class="col-12 col-lg-2" dayLabel="Vendredi">
+    <calendar-day class="col-12 col-md-2" dayLabel="Vendredi">
       
     </calendar-day>
-    <calendar-day class="col-12 col-lg-1" dayLabel="Samedi">
+  
+    <div class="col-12 col-md-2">
       
-    </calendar-day>
-    <calendar-day class="col-12 col-lg-1" dayLabel="Dimanche">
+      <!--
+        La classe css week-end afin de redimensionner en hauteur : ce qui nous permet
+        de superposer les deux zones.
+      -->
+      <div class="row">
+        <calendar-day class="col-12 week-end" dayLabel="Samedi">
       
-    </calendar-day>
+        </calendar-day>
+      </div>
+
+      <div class="row">
+        <calendar-day class="col-12 week-end" dayLabel="Dimanche">
+      
+        </calendar-day>
+      </div>
+
+    </div>
   </div>
+
 </div>
