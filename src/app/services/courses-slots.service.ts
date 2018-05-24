@@ -18,59 +18,59 @@ export class CourseSlotsService {
         123
       ),
       new CourseSlot(
-        new Date(2018, 1, 12, 17, 23, 0, 0), 
+        new Date(2018, 1, 12, 18, 23, 0, 0), 
         new Date(0, 0, 0, 1, 15, 0, 0), 
         'Mrs Dupond', 
-        123
+        245
       ),
       new CourseSlot(
-        new Date(2018, 1, 10, 17, 23, 0, 0), 
+        new Date(2018, 1, 10, 19, 23, 0, 0), 
         new Date(0, 0, 0, 1, 15, 0, 0), 
         'Mrs Dupond', 
-        123
-      ),
-      /*new CourseSlot(
-        new Date(2018, 1, 11, 17, 23, 0, 0), 
-        new Date(0, 0, 0, 1, 15, 0, 0), 
-        'Mrs Dupond', 
-        123
+        366
       ),
       new CourseSlot(
-        new Date(2018, 1, 13, 17, 23, 0, 0), 
+        new Date(2018, 1, 11, 6, 23, 0, 0), 
         new Date(0, 0, 0, 1, 15, 0, 0), 
         'Mrs Dupond', 
-        123
+        288
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 13, 4, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        25
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 14, 22, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        70
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 18, 10, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        91
       ),
       new CourseSlot(
         new Date(2018, 1, 14, 17, 23, 0, 0), 
         new Date(0, 0, 0, 1, 15, 0, 0), 
         'Mrs Dupond', 
-        123
+        12
       ),
       new CourseSlot(
-        new Date(2018, 1, 18, 17, 23, 0, 0), 
+        new Date(2018, 1, 12, 8, 23, 0, 0), 
         new Date(0, 0, 0, 1, 15, 0, 0), 
         'Mrs Dupond', 
-        123
+        160
       ),
       new CourseSlot(
-        new Date(2018, 1, 14, 17, 23, 0, 0), 
+        new Date(2018, 1, 12, 9, 23, 0, 0), 
         new Date(0, 0, 0, 1, 15, 0, 0), 
         'Mrs Dupond', 
-        123
+        325
       ),
-      new CourseSlot(
-        new Date(2018, 1, 12, 17, 23, 0, 0), 
-        new Date(0, 0, 0, 1, 15, 0, 0), 
-        'Mrs Dupond', 
-        123
-      ),
-      new CourseSlot(
-        new Date(2018, 1, 12, 17, 23, 0, 0), 
-        new Date(0, 0, 0, 1, 15, 0, 0), 
-        'Mrs Dupond', 
-        123
-      ),*/
     ];
   }
 

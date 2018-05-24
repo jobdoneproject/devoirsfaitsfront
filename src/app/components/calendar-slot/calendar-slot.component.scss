@@ -15,3 +15,18 @@ h2 {
     font-size: 0.8em;
     text-align: center;
 }
+
+.content {
+    padding: 6px;
+}
+
+.content > p {
+    text-align: center;
+    font-size: 0.7em;
+    line-height: 0.2%;
+}
+
+p.organizer {
+    font-weight: 665;
+    font-style: italic;
+}
