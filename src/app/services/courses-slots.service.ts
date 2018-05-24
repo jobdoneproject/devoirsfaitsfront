@@ -29,7 +29,7 @@ export class CourseSlotsService {
         'Mrs Dupond', 
         123
       ),
-      new CourseSlot(
+      /*new CourseSlot(
         new Date(2018, 1, 11, 17, 23, 0, 0), 
         new Date(0, 0, 0, 1, 15, 0, 0), 
         'Mrs Dupond', 
@@ -70,7 +70,7 @@ export class CourseSlotsService {
         new Date(0, 0, 0, 1, 15, 0, 0), 
         'Mrs Dupond', 
         123
-      ),
+      ),*/
     ];
   }
 
