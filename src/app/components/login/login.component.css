@@ -1,3 +1,7 @@
 /*
-Les styles sont définies dans le fichier [RacineProjet]/src/styles.scss
+Les styles par défaut sont définies dans le fichier [RacineProjet]/src/styles.scss
 */
+
+a.btn.btn-lg.btn-warning.btn-block.btn-signin.font-weight-medium {
+    color: rgba(0, 0, 0, 0.6);
+}
