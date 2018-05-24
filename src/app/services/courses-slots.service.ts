@@ -12,7 +12,61 @@ export class CourseSlotsService {
     //TODO fetch and convert the slots from database
     return [
       new CourseSlot(
-        new Date(2018, 3, 12, 17, 23, 0, 0), 
+        new Date(2018, 1, 17, 17, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        123
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 12, 17, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        123
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 10, 17, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        123
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 11, 17, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        123
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 13, 17, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        123
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 14, 17, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        123
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 18, 17, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        123
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 14, 17, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        123
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 12, 17, 23, 0, 0), 
+        new Date(0, 0, 0, 1, 15, 0, 0), 
+        'Mrs Dupond', 
+        123
+      ),
+      new CourseSlot(
+        new Date(2018, 1, 12, 17, 23, 0, 0), 
         new Date(0, 0, 0, 1, 15, 0, 0), 
         'Mrs Dupond', 
         123
