@@ -13905,7 +13905,7 @@ input:focus {
         background-image: -webkit-linear-gradient(left, #d209fa 1%, #4f81d4 100%);
         background-image: -moz-linear-gradient(left, #d209fa 1%, #4f81d4 100%);
         background-image: -o-linear-gradient(left, #d209fa 1%, #4f81d4 100%);
-        background-image: linear-gradient(left, #d209fa 1%, #4f81d4 100%);
+        background-image: linear-gradient(to left, #d209fa 1%, #4f81d4 100%);
         color: #ffffff;
         text-align: center;
         display: block;
@@ -13924,7 +13924,7 @@ input:focus {
           background-image: -webkit-linear-gradient(left, #d209fa 1%, #4f81d4 100%);
           background-image: -moz-linear-gradient(left, #d209fa 1%, #4f81d4 100%);
           background-image: -o-linear-gradient(left, #d209fa 1%, #4f81d4 100%);
-          background-image: linear-gradient(left, #d209fa 1%, #4f81d4 100%); }
+          background-image: linear-gradient(to left, #d209fa 1%, #4f81d4 100%); }
       .sidebar .nav .nav-item.purchase-button:hover .nav-link {
         background-color: #d209fa !important;
         color: #ffffff !important; }
@@ -14552,7 +14552,7 @@ pre {
       background-image: -webkit-linear-gradient(left, #d209fa 1%, #4f81d4 100%);
       background-image: -moz-linear-gradient(left, #d209fa 1%, #4f81d4 100%);
       background-image: -o-linear-gradient(left, #d209fa 1%, #4f81d4 100%);
-      background-image: linear-gradient(left, #d209fa 1%, #4f81d4 100%);
+      background-image: linear-gradient(to left, #d209fa 1%, #4f81d4 100%);
       color: #ffffff;
       border: none;
       line-height: 1;
@@ -14703,7 +14703,7 @@ pre {
     padding: 0.5rem 0.75rem;
     font-size: 0.625rem; }
   .btn.btn-danger, .btn.btn-info, .btn.btn-teal, .btn.btn-warning {
-    color: #ffffff; }
+    color: #a76b7a; }
   .btn.btn-light {
     color: #000;
     border-color: #d9d9d9; }
