@@ -18,10 +18,9 @@
                     <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" #password="ngModel" required />
                     <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
                   </div>
-                  <div id="remember" class="checkbox">
-            
+                  <div class="mt-5">
+                    <button class="btn btn-lg btn-primary btn-block btn-signin font-weight-medium" type="submit">Enregistrement</button>
                   </div>
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Enregistrement</button>
                 </form>
                 <div class="mt-3 text-center" style="margin-top:15px">
                   <a [routerLink]="['/register']" class="auth-link text-white">Créér un nouveau compte</a>
