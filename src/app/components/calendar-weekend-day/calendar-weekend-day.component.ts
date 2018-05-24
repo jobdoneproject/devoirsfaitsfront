@@ -3,7 +3,7 @@ import { CalendarDayComponent } from '../calendar-day/calendar-day.component';
 
 @Component({
   selector: 'calendar-weekend-day',
-  templateUrl: './calendar-weekend-day.component.html',
+  templateUrl: '../calendar-day/calendar-day.component.html',
   styleUrls: ['./calendar-weekend-day.component.scss']
 })
 export class CalendarWeekendDayComponent extends CalendarDayComponent implements OnInit {
