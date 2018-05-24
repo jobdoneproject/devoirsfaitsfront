@@ -23,6 +23,7 @@ import { ContainerNavbarComponent } from './components/container-navbar/containe
 import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
 import {MatListModule } from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import { ElevesDisponiblesPipe } from './pipes/eleves-disponibles.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {MatIconModule} from '@angular/material/icon';
     ContainerComponent,
     ContainerFooterComponent,
     ContainerNavbarComponent,
-    ContainerSidebarComponent
+    ContainerSidebarComponent,
+    ElevesDisponiblesPipe
   ],
   imports: [
     BrowserModule,
