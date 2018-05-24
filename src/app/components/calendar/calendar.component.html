@@ -1,18 +1,18 @@
 <div class="container">
   <div class="row">
-    <calendar-day class="col-12 col-md-2" dayLabel="Lundi">
-
+    <calendar-day class="col-12 col-md-2" dayLabel="Lundi" [courseSlots]="courseSlots">
+    
     </calendar-day>
-    <calendar-day class="col-12 col-md-2" dayLabel="Mardi">
+    <calendar-day class="col-12 col-md-2" dayLabel="Mardi" [courseSlots]="courseSlots">
       
     </calendar-day>
-    <calendar-day class="col-12 col-md-2" dayLabel="Mercredi">
+    <calendar-day class="col-12 col-md-2" dayLabel="Mercredi" [courseSlots]="courseSlots">
       
     </calendar-day>
-    <calendar-day class="col-12 col-md-2" dayLabel="Jeudi">
+    <calendar-day class="col-12 col-md-2" dayLabel="Jeudi" [courseSlots]="courseSlots">
       
     </calendar-day>
-    <calendar-day class="col-12 col-md-2" dayLabel="Vendredi">
+    <calendar-day class="col-12 col-md-2" dayLabel="Vendredi" [courseSlots]="courseSlots">
       
     </calendar-day>
   
@@ -24,13 +24,13 @@
         de superposer les jours Samedi et Dimanche.
       -->
       <div class="row">
-        <calendar-weekend-day class="col-12" dayLabel="Samedi">
+        <calendar-weekend-day class="col-12" dayLabel="Samedi" [courseSlots]="courseSlots">
       
         </calendar-weekend-day>
       </div>
 
       <div class="row">
-        <calendar-weekend-day class="col-12" dayLabel="Dimanche">
+        <calendar-weekend-day class="col-12" dayLabel="Dimanche" [courseSlots]="courseSlots">
       
         </calendar-weekend-day>
       </div>

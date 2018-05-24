@@ -1,4 +1,4 @@
 <div class="root">
   <h2>{{dayLabel}}</h2>
-  <calendar-slot [date]="slot1Date"></calendar-slot>
+  <calendar-slot [slotValue]="slot" *ngFor="let slot of courseSlots"></calendar-slot>
 </div>

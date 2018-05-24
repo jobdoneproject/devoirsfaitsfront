@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CourseSlotsService } from '../../services/courses-slots.service';
+import { WeekDay } from '../../model/model.week-day';
+import { CourseSlot } from '../../model/model.course-slots';
 
 @Component({
   selector: 'week-calendar',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
 
-  constructor() { }
+  @Input() private weekNumber: Number;
+  private _courseSlots: CourseSlot [];
+
+  constructor( private coursesSlotService : CourseSlotsService ) {
+    // Using current date for initialisation 
+    this._courseSlots = this.coursesSlotService.getSlotsForWeekIncludingDate(new Date());
+  }
 
   ngOnInit() {
+  }
+
+  get courseSlots(): CourseSlot[] {
+    return this._courseSlots;
   }
 
 }

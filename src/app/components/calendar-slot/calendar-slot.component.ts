@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CourseSlot } from '../../model/model.course-slots';
 
 @Component({
   selector: 'calendar-slot',
@@ -7,11 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CalendarSlotComponent implements OnInit {
 
-  @Input() private date: Date;
+  @Input() private slotValue: CourseSlot;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public get slot(): CourseSlot {
+    return this.slotValue;
   }
 
 }

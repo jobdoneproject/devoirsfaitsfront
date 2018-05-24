@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {CourseSlot} from '../../model/model.course-slots';
 
 @Component({
   selector: 'calendar-day',
@@ -8,12 +9,9 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CalendarDayComponent implements OnInit {
 
   @Input() protected dayLabel: String;
-
-  // todo remplacer avec un service et un nom de variable plus approprié
-  protected slot1Date: Date;
+  @Input() protected courseSlots: CourseSlot[];
 
   constructor() {
-    this.slot1Date = new Date();
   }
 
   ngOnInit() {
