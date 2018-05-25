@@ -20,9 +20,12 @@ export class CalendarSlotComponent implements OnInit {
     return this.slotValue;
   }
 
-  public get organizerLabel() : String {
-    const mainTeacher = this.slotValue.teachers[0];
-    return `${mainTeacher.nom} ${mainTeacher.prenom}`;
+  public get teachers() : String[] {
+    let arrayToReturn: String[] = [];
+    for (let currentTeacher of this.slotValue.teachers){
+      arrayToReturn.push(`${currentTeacher.nom} ${currentTeacher.prenom}`);
+    }
+    return arrayToReturn;
   }
 
 }

@@ -71,7 +71,7 @@ export class CourseSlotsService {
   generateRandomTeachersArray(startId: number) : User[] {
     let arrayToReturn : User[] = [];
     
-    const maxTeachersCount = 7;
+    const maxTeachersCount = 2;
     const teachersCount = Math.floor(Math.random() * maxTeachersCount);
 
     arrayToReturn.push(

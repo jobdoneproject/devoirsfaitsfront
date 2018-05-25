@@ -1,7 +1,7 @@
 <div class="root">
     <h2>{{slot.date | date:'HH'}}h - Salle {{slot.roomNumber}}</h2>
     <div class="content">
-        <p class="organizer">{{organizerLabel}}</p>
+        <p class="teacher" *ngFor="let currentTeacher of teachers">{{currentTeacher}}</p>
         <p class="duration">{{slot.duration | date:'HH:mm'}}</p>
     </div>
 </div>
