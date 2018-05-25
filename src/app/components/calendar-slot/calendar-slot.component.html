@@ -1,5 +1,5 @@
 <div class="root">
-    <h2>{{slot.date | date:'HH'}}h - Salle {{slot.roomNumber}}</h2>
+    <h2>{{slot.date | date:'HH:mm'}} - Salle {{slot.roomNumber}}</h2>
     <div class="content">
         <p class="teacher" *ngFor="let currentTeacher of teachers">{{currentTeacher}}</p>
         <p class="duration">{{slot.duration | date:'HH:mm'}}</p>

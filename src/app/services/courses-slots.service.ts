@@ -63,6 +63,10 @@ export class CourseSlotsService {
 
     const dateToReturn = new Date(currentYear, currentMonth, currentDay, currentHour, currentMinutes, currentSeconds, currentMilliseconds);
 
+    /////////////////////
+    console.log(dateToReturn);
+    ///////////////////////
+
     return dateToReturn;
   }
 
@@ -183,14 +187,6 @@ export class CourseSlotsService {
       const currentYear = currentSlot.date.getFullYear();
       const currentWeekNumber = WeekUtils.getWeekNumberForDate(currentSlot.date);
       const weMustKeepIt = currentYear === year && currentWeekNumber === weekNumber;
-
-      ////////////////////////////////////////
-      console.log(`current year is ${currentYear}`);
-      console.log(`current week number is ${currentWeekNumber}`);
-      console.log(`year is ${year}`);
-      console.log(`weekNumber is ${weekNumber}`);
-      console.log("-----------------------------------------------");
-      ////////////////////////////////////////
 
       if (weMustKeepIt){
         arrayToReturn.push(currentSlot);
