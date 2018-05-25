@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CourseSlot } from '../model/model.course-slots';
-import { User } from "../model/model.user";
-import { DESTRUCTION } from 'dns';
+import { User } from "../model/model.user"; 
 import { WeekDay } from '../model/model.week-day';
+import { WeekUtils } from '../utils/WeekUtils';
 
 @Injectable({
   providedIn: 'root'
@@ -45,12 +45,12 @@ export class CourseSlotsService {
 
   generateRandomDate() : Date{
     const now = new Date();
-    const currentWeekNumber = CourseSlotsService.getWeekNumber(now);
-    const mondayOfCurrentWeek = CourseSlotsService.findMondayForWeekOfDay(now);
+    const currentWeekNumber = WeekUtils.getWeekNumberForDate(now);
+    const mondayOfCurrentWeek = WeekUtils.findMondayForWeekContainingDay(now);
 
     const currentYear = now.getFullYear();
     const currentMonth = now.getMonth();
-    const maxDaysForCurrentMonth = CourseSlotsService.daysInMonth(currentMonth - 1, currentYear);
+    const maxDaysForCurrentMonth = WeekUtils.daysInMonth(currentMonth - 1, currentYear);
     const currentDay = Math.floor(Math.random() * maxDaysForCurrentMonth) + 1;
 
     const currentHour = Math.floor(Math.random() * 24);
@@ -177,37 +177,7 @@ export class CourseSlotsService {
   }
 
   getSlotsForWeekIncludingDate(date: Date) : CourseSlot [] {
-    const matchingWeekNumber: Number = CourseSlotsService.getWeekNumber(date);
+    const matchingWeekNumber: Number = WeekUtils.getWeekNumberForDate(date);
     return this.getSlotsForWeekNumber(matchingWeekNumber);
-  }
-
-  /*
-    Credits to https://weeknumber.net/how-to/javascript
-    => [1, 53]
-  */
-  static getWeekNumber(date: Date): Number {
-    date.setHours(0, 0, 0, 0);
-    // Thursday in current week decides the year.
-    date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
-    // January 4 is always in week 0.
-    var week1 = new Date(date.getFullYear(), 0, 4);
-    // Adjust to Thursday in week 1 and count number of weeks from date to week1.
-    return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
-                        - 3 + (week1.getDay() + 6) % 7) / 7);
-  }
-
-  static findMondayForWeekOfDay(day: Date): Date {
-    let dayClone = new Date(day.getUTCDate());
-    dayClone.setDate(dayClone.getDate() - (dayClone.getDay() + 6) % 7);
-    return dayClone;
-  }
-
-  // Credits to https://stackoverflow.com/a/1184359/662618
-  // Month here is 1-indexed (January is 1, February is 2, etc). This is
-  // because we're using 0 as the day so that it returns the last day
-  // of the last month, so you have to add 1 to the month number 
-  // so it returns the correct amount of days
-  static daysInMonth (month, year) : number {
-    return new Date(year, month, 0).getDate();
   }
 }
