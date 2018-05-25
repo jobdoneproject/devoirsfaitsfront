@@ -10,6 +10,8 @@ import {Router} from "@angular/router";
   encapsulation: ViewEncapsulation.None
 })
 export class ProfileComponent implements OnInit {
+  title:string = "Vue du calendrier" ;
+
   currentUser: User;
   constructor(public authService: AuthService, public router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));

@@ -1,19 +1,11 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-  <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-  <a class="navbar-brand brand-logo" href="index.html">
-      <!-- <img src="./assets/template/images/logo.svg" alt="logo"/ -->
-      <img src="../../assets/template/img/logo.png" alt="logo"/>
-  </a>
-  <a class="navbar-brand brand-logo-mini" href="index.html">
-      <!-- <img src="./assets/template/images/logo-mini.svg" alt="logo"/> -->
-      <img src="../../assets/template/img/logo-mini.png" alt="logo"/>
-  </a>
-  </div>
+  
   <div class="navbar-menu-wrapper d-flex align-items-center">
-    <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+    <img src="../../../assets/template-wcs/img/logo-mini.png" alt="logo"/>
+  <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
         <li class="nav-item">
             <a class="nav-link" href="profile">Compte</a>
-        </li> 
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="eleves" *ngIf="administrateur">Élèves</a>
         </li>
@@ -29,24 +21,27 @@
       <a href="#" class="nav-link"><i class="mdi mdi-calendar"></i>Calendar</a>
       </li>
   </ul> -->
-  <ul class="navbar-nav navbar-nav-right">
-      
-      
+  <!--<ul class="navbar-nav navbar-nav-right">
+
+
       <li class="nav-item d-none d-lg-block">
       <a class="nav-link" href="#">
 
-          <!-- <img class="img-xs rounded-circle" src="../../../assets/template/images/faces/face4.jpg" alt=""> -->
-          <img class="img-xs rounded-circle" src="../../../assets/template/img/admin.png" alt="">
+          <img class="img-xs rounded-circle" src="../../../assets/template-wcs/img/admin.png" alt="">
       </a>
       </li>
-      
+
   </ul>
   <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" (click)="logOut()"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
-      </ul>
-  <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-      <!-- <span class="icon-menu"></span> -->
+        <li class="nav-item "><a href="#" (click)="logOut()"><span class="fas fa-sign-out-alt"></span></a></li>
+  </ul>-->
+  <div class="buttons-navbar-right">
+    <button class="navbar-toggler navbar-toggler-right align-self-center" type="button" (click)="logOut()">
+        <span class="fas fa-sign-out-alt"></span>
+    </button>
+  
+  <button class="navbar-toggler navbar-toggler-right d-md-none align-self-center" type="button" data-toggle="offcanvas">
       <span class="fas fa-bars"></span>
-  </button>
+  </button></div>
   </div>
 </nav>
