@@ -9,6 +9,10 @@ import { ActivatedRoute } from '@angular/router';
 import { UtilsService } from '../../services/utils.service';
 import { UserService } from '../../services/user.service';
 import { USERS } from '../../mock-user';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
+
 
 
 @Component({
@@ -19,8 +23,11 @@ import { USERS } from '../../mock-user';
   providers: [UserService]
 })
 export class PageUserEditComponent implements OnInit {
-  public editedUser: User;
-  
+  //public editedUser: User;
+  public editedUser: Observable<User>;
+
+  public edited: User;
+
   private calledId: number;
   id: number;
   private sub: any;
@@ -29,13 +36,16 @@ export class PageUserEditComponent implements OnInit {
   private errorMessage:string;
   private idEtablissement: number;
   private url: string;
+  public listEleve: Observable<User>;
+  public edUser: User;
+
   
-  // private editedUser: Observable<User>;
 
   constructor(
     public authService: AuthService, 
     public router: Router,
-    private http: Http,
+    // private http: Http,
+    private http: HttpClient,
     private route: ActivatedRoute,
     private userService: UserService,
   ) {
@@ -72,22 +82,57 @@ export class PageUserEditComponent implements OnInit {
     this.editedUser = this.http.get(this.url).map((res: Response) => res.json());
     // console.log('this.editedUser' + JSON.parse(this.editedUser));*/
 
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.idEtablissement = this.currentUser.idEtablissement;
+    
+    console.log("this.currentUser.privilege : " + this.currentUser.privilege);
+    if (this.currentUser.privilege == "Administrateur"){
+      this.administrateur = true;
+    }
+
+    this.url = AppComponent.API_URL+"/eleve/12";
+    // CORRIGER URL
+
+     this.editedUser =this.http.get<User>(this.url).pipe(map(
+      resp => resp
+    ));
+    console.log('this.editedUser : ' + this.editedUser);
+    //pipe(map((res: Response) => res.json())).subscribe;
 
 
 
+
+
+
+
+
+
+
+
+    // Inutile TEST : 
+    /*this.listEleve = this.http.get(this.url).pipe(map((resp: Response)=>
+    resp.json()));
+    console.log('this.listEleve : ' + this.listEleve);
+    */
 
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.calledId = +params['id'];
-      console.log('calledId : ' + this.calledId);
-      this.getUserById(this.calledId);
-    });
+    console.log('Init');
+    // this.sub = this.route.params.subscribe(params => {
+    //   this.calledId = +params['id'];
+    //   console.log('calledId : ' + this.calledId);
+    //   this.getUserById(this.calledId);
+    // });
+
+
     // this.editedUser = this.userService.getUserById(this.calledId);
     // console.log("editedUser : " + JSON.stringify(this.editedUser));
 
     // getUserByIdSecond(id)
+
+    // this.http.get(AppComponent.API_URL + 'eleve/' + this.calledId )
+    // .subscribe(json => console.log(json));
   }
 
   
@@ -111,8 +156,8 @@ export class PageUserEditComponent implements OnInit {
   // }
 
   getUserById(id): void {
-    this.userService.getUserById(id)
-      .subscribe(user => this.editedUser = user);
+    // this.userService.getUserById(id)
+    //   .subscribe(user => this.editedUser = user);
   }
 
   removeGroup(id): void {
@@ -122,5 +167,20 @@ export class PageUserEditComponent implements OnInit {
   /*ngOnDestroy() {
     this.sub.unsubscribe();
   }*/
+
+  onSubmit(){
+    console.log(this.edUser);
+  }
+
+  submitForm(value: any) {
+    console.log(value);
+  }
+
+    // // EDIT USER
+    // editUser(user: User){
+    //   console.log("Edited user : " )
+    // }
+
+
 
 }

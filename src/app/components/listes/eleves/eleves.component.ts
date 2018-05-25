@@ -23,7 +23,9 @@ export class ElevesComponent implements OnInit {
   url: string;
   listEleve: Observable<User>;
 
-  constructor(public authService: AuthService, public router: Router,private http: Http) {
+  constructor(public authService: AuthService, 
+              public router: Router,
+              private http: Http) {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.idEtablissement = this.currentUser.idEtablissement;
@@ -35,7 +37,9 @@ export class ElevesComponent implements OnInit {
     }
 
     this.url = AppComponent.API_URL+"/eleve/etablissement/"+this.currentUser.idEtablissement;
+    // this.url = AppComponent.API_URL+"/eleve/12"+this.currentUser.idEtablissement;
     this.listEleve = this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+    // console.log('this.listEleve changed : ' + this.listEleve);
     //pipe(map((res: Response) => res.json())).subscribe;
     
   }

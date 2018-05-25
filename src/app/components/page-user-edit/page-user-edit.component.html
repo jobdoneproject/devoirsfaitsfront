@@ -1,79 +1,111 @@
 
   <!-- <div *ngIf="administrateur; else elseBlock" class="col-md-12 d-flex align-items-stretch grid-margin">
      -->
-  <div class="col-md-12 d-flex align-items-stretch grid-margin">
+  <div class="col-md-12 d-flex align-items-stretch grid-margin" 
+    *ngIf="editedUser | async as edUser ; else loading">
     <div class="row flex-grow">
       <div class="col-12 stretch-card">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">
-                <span *ngIf="editedUser.privilege ==='eleve'"> Elève :</span>
-                <span *ngIf="editedUser.privilege ==='prof'"> Professeur :</span>
-                {{editedUser.prenom}} {{editedUser.nom}}
-            </h4> 
-            <div *ngIf="!editedUser;" class="alert alert-warning" role="alert">
+              {{edUser.prenom}} {{edUser.nom}}
+              <span *ngIf="edUser.privilege ==='Eleve'"> - {{edUser.classe}}</span>
+            </h4>
+            <div *ngIf="!edUser;" class="alert alert-warning" role="alert">
                 Aucun utilisateur correspondant
             </div>
-            <!-- <div class="float-right">
-              <button type="submit" class="btn btn-success mr-2">Supprimer l'utilisateur</button>
-            </div> -->
-            <p class="card-description">
-              <!-- Horizontal form layout -->
-            </p>
-            <form class="forms-sample" action="" method="POST">
-                <input type="hidden" id="userId" name= "userId" value="{{editedUser.id}}">
-                <input type="hidden" id="idEtablissement" name= "idEtablissement" value="{{editedUser.idEtablissement}}">
-                <input type="hidden" id="role" name= "role" value="{{editedUser.privilege}}">
+
+            <!-- <form class="forms-sample" action="" method="POST"> -->
+            <!-- <form class="forms-sample" #UserEditForm="ngForm" (ngSubmit)="onSubmit('ok')"> -->
+              <form class="forms-sample" #UserEditForm="ngForm" 
+              (ngSubmit)="submitForm(UserEditForm.value)">
+
+                https://angular.io/guide/forms
+
+              <input type="hidden" id="userId" name= "userId" value="{{edUser.id}}">
+              <input type="hidden" id="idEtablissement" name= "idEtablissement" value="{{edUser.idEtablissement}}">
+              <input type="hidden" id="role" name= "role" value="{{edUser.privilege}}">
 
               <div class="form-group row">
                 <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Nom</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="usernom" name="usernom" value="{{editedUser.nom}}">
+                  <input type="text" class="form-control" [(ngModel)]="edUser.nom"
+                  id="usernom" name="usernom">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Prénom</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="userprenom" name="userprenom" value="{{editedUser.prenom}}">
+                  <input type="text" class="form-control" [(ngModel)]="edUser.prenom"
+                  id="userprenom" name="userprenom">
                 </div>
               </div>
-              <div class="form-group row" *ngIf="editedUser.privilege ==='eleve'">
+              <div class="form-group row" *ngIf="edUser.privilege ==='Eleve'">
                 <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Classe</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="userclasse" name="userclasse" value="{{editedUser.classe}}">
+                  <input type="text" class="form-control" id="userclasse" name="userclasse" value="{{edUser.classe}}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
-                  <input type="email" class="form-control" id="useremail" name="useremail" value="{{editedUser.mail}}">
+                  <input type="email" class="form-control" id="useremail" name="useremail" value="{{edUser.mail}}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-9">
-                  <input type="password" class="form-control" id="userpassword" name="userpassword" value="{{editedUser.password}}">
+                  <input type="password" class="form-control" id="userpassword" name="userpassword" value="{{edUser.password}}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Téléphone</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" id="usertelephone" name="usertelephone" value="{{editedUser.telephone}}">
+                  <input type="text" class="form-control" id="usertelephone" name="usertelephone" value="{{edUser.telephone}}">
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-3"></div>
+
+                <!-- <>Check me!</mat-checkbox>
+
+                <mat-form-field>
+                    <input
+                      matInput
+                      type="text"
+                      formControlName="name">
+                  </mat-form-field> -->
+
+                <div>Utiliser un toggle pour disponible (avec MAJ label) et supprimer actif</div>
+                  
+
                 <label class="checkbox-inline col-sm-9">
-                    <input type="checkbox" id="actif" value="actif" [checked]="editedUser.actif"> Actif sur Devoirs Faits
+                    <input type="checkbox" id="actif" value="actif" [checked]="edUser.actif"> Actif sur Devoirs Faits
                   </label>
                 <div class="col-sm-3"></div>
                 <label class="checkbox-inline col-sm-9">
-                  <input type="checkbox" id="disponible" value="disponible" [checked]="editedUser.disponible"> Disponible pour un créneau
+                  <input type="checkbox" id="disponible" value="disponible" [checked]="edUser.disponible"> Disponible pour un créneau
                 </label>
               </div>
-              <button type="submit" class="btn btn-success mr-2">Submit</button>
-              <button class="btn btn-light">Cancel</button>&nbsp;
-              <button type="submit" class="btn btn-warning mr-2">Supprimer l'utilisateur</button>
+              
+
+
+              <div class="float-left">
+                <!-- <button type="submit" class="btn btn-success mr-2" (click)="editUser(edUser);"> -->
+                <button type="submit" class="btn btn-success mr-2">
+                  Submit
+                </button>
+                <button type="submit">Submit 2</button>
+              </div>
+              <div class="float-left">
+                <button class="btn btn-light" (click)="UserEditForm.reset()">
+                  Cancel
+                </button>
+              </div>
+              <div class="float-right">
+                <button type="submit" class="btn btn-warning mr-2 align-right">
+                  Supprimer l'utilisateur
+                </button></div>
+              
             </form>
           </div>
         </div>
@@ -89,8 +121,9 @@
 
 
 
-
-  <div class="col-md-12 d-flex align-items-stretch grid-margin">
+  
+  <!-- Gestion des groupes -->
+  <!-- <div class="col-md-12 d-flex align-items-stretch grid-margin">
     <div class="row flex-grow">
       <div class="col-12 stretch-card">
         <div class="card">
@@ -105,9 +138,7 @@
                   <option>Groupe 24</option>
                   <option>Groupe 25</option>
               </select>
-              <!-- <div class="input-group-append col-3"> -->
                 <button class="btn btn-outline-secondary col-3" type="button">Ajouter</button>
-              <!-- </div> -->
             </div>
             
             <ul class="list-group list-group-flush">
@@ -116,27 +147,19 @@
               <li class="list-group-item">Groupe 14 <button (click)="removeGroup(14)" class="float-right">Supprimer</button></li>
               <li class="list-group-item">Groupe 15 <button (click)="removeGroup(15)" class="float-right">Supprimer</button></li>
             </ul>
-      
-            <!-- <div class="form-group">
-                <label for="exampleFormControlSelect2">Default select</label>
-                <select class="form-control" id="exampleFormControlSelect2">
-                  <option>Groupe 21</option>
-                  <option>Groupe 22</option>
-                  <option>Groupe 23</option>
-                  <option>Groupe 24</option>
-                  <option>Groupe 25</option>
-                </select>
-              </div> -->
-
-            
+                 
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <ng-template #elseBlock>   
     <p>
       No eleves here !
     </p>
+  </ng-template>
+
+  <ng-template #loading>
+    Loading stuff...
   </ng-template>
