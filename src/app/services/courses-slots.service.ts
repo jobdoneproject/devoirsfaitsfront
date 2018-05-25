@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CourseSlot } from '../model/model.course-slots';
 import { User } from "../model/model.user";
 import { DESTRUCTION } from 'dns';
+import { WeekDay } from '../model/model.week-day';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,16 @@ export class CourseSlotsService {
       );
 
       arrayToReturn.push(currentSlot);
+    }
+
+    return arrayToReturn;
+  }
+
+  static filterSlotsKeepingThoseMatchingWeekDay(weekDay: WeekDay, inputSlots: CourseSlot[]) : CourseSlot[] {
+    let arrayToReturn : CourseSlot[] =  [];
+
+    for (let currentSlot of inputSlots){
+      //if (currentSlot.date.getDay)
     }
 
     return arrayToReturn;

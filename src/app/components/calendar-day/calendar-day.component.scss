@@ -26,6 +26,6 @@ h2 {
     height: 93%;
 
     @media (min-width: $mdLower) { 
-        overflow: scroll;
+        overflow: auto;
     }
 }
