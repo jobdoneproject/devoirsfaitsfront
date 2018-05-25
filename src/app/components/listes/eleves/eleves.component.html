@@ -11,8 +11,6 @@
                 <input type="checkbox" class="form-check-input" [(ngModel)]="filterItem.checked" [value]="filterItem.value" /> {{filterItem.nom}}
                 <span class="checkmark"></span>
               </label>
-            <!--<p>Selected items: <span *ngFor="let filterItem of checked()" style="padding-right:10px;">{{ filterItem.nom }}</span></p>-->
-
             <table class="table table-hover" >
                 <thead>
                   <tr>
@@ -35,7 +33,6 @@
                       </label>
                       </td>
                     <label class="containerCheck">
-                      <!--<mat-list-option></mat-list-option>-->
                       <input type="checkbox" class="form-check-input" />
                       <span class="checkmark"></span>
                     </label>
@@ -54,14 +51,3 @@
     </div>
   </div>
 </div>
-
-<!--
-<i class="fas fa-camera-retro fa-xs"></i>
-<i class="fas fa-camera-retro fa-sm"></i>
-<i class="fas fa-camera-retro fa-lg"></i>
-<i class="fas fa-camera-retro fa-2x"></i>
-<i class="fas fa-camera-retro fa-3x"></i>
-<i class="fas fa-camera-retro fa-5x"></i>
-<i class="fas fa-camera-retro fa-7x"></i>
-<i class="fas fa-camera-retro fa-10x"></i>
--->
