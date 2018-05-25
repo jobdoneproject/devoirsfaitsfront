@@ -13,22 +13,25 @@ import { WeekUtils } from '../../utils/WeekUtils';
 export class ProfileComponent implements OnInit {
   currentUser: User;
   protected referenceDate: Date;
-  @Input() protected weekNumber: number;
-  @Input() protected year: number;
+  protected weekNumber: number;
+  protected year: number;
 
   constructor(public authService: AuthService, public router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-
-  }
-
-  ngOnInit() {
     const attributesAreMissing = this.weekNumber === undefined || this.year === undefined;
     if (attributesAreMissing) {
       this.referenceDate = new Date();
       this.year = this.referenceDate.getFullYear();
       this.weekNumber = WeekUtils.getWeekNumberForDate(this.referenceDate);
     }
+    else {
+      this.referenceDate = WeekUtils.mondayForWeekNumber(this.weekNumber, this.year);
+    }
+  }
+
+  ngOnInit() {
+    
   }
 
   get startDate() : Date {

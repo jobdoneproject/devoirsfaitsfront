@@ -50,4 +50,18 @@ export class WeekUtils {
       return new Date(day.getTime());
   }
 
+  static dayOfWeekDay(weekDay: WeekDay): number{
+    let dayOffset;
+    switch(weekDay){
+      case WeekDay.Lundi : dayOffset = 0; break;
+      case WeekDay.Mardi : dayOffset = 1; break;
+      case WeekDay.Mercredi : dayOffset = 2; break;
+      case WeekDay.Jeudi : dayOffset = 3; break;
+      case WeekDay.Vendredi : dayOffset = 4; break;
+      case WeekDay.Samedi : dayOffset = 5; break;
+      case WeekDay.Dimanche : dayOffset = 6; break;
+    }
+    return dayOffset;
+  }
+
 }

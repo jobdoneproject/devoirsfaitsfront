@@ -25,11 +25,10 @@ export class CalendarComponent implements OnInit {
   };
 
   constructor( private coursesSlotService : CourseSlotsService ) {
-    // Using current date for initialisation 
-    this._courseSlots = this.coursesSlotService.getSlotsForWeekIncludingDate(new Date());
   }
 
   ngOnInit() {
+    this._courseSlots = this.coursesSlotService.getSlotsForWeekNumberAndYear(this.weekNumber, this.year);
   }
 
   public get courseSlots(): CourseSlot[] {

@@ -37,7 +37,10 @@ export class CourseSlotsService {
     let arrayToReturn : CourseSlot[] =  [];
 
     for (let currentSlot of inputSlots){
-      //if (currentSlot.date.getDay)
+      const weMustKeepIt = currentSlot.date.getDay() == WeekUtils.dayOfWeekDay(weekDay);
+      if (weMustKeepIt) {
+        arrayToReturn.push(currentSlot);
+      }
     }
 
     return arrayToReturn;
@@ -51,14 +54,16 @@ export class CourseSlotsService {
     const currentYear = now.getFullYear();
     const currentMonth = now.getMonth();
     const maxDaysForCurrentMonth = WeekUtils.daysInMonth(currentMonth - 1, currentYear);
-    const currentDay = Math.floor(Math.random() * maxDaysForCurrentMonth) + 1;
+    const currentDay = mondayOfCurrentWeek.getDate() +  Math.floor(Math.random() * 7);
 
     const currentHour = Math.floor(Math.random() * 24);
     const currentMinutes = Math.floor(Math.random() * 60);
     const currentSeconds = 0;
     const currentMilliseconds = 0;
 
-    return new Date(currentYear, currentMonth, currentDay, currentHour, currentMinutes, currentSeconds, currentMilliseconds);
+    const dateToReturn = new Date(currentYear, currentMonth, currentDay, currentHour, currentMinutes, currentSeconds, currentMilliseconds);
+
+    return dateToReturn;
   }
 
   generateRandomDuration() : Date {
@@ -170,14 +175,33 @@ export class CourseSlotsService {
     return Math.floor(Math.random() * 500);
   }
 
-  getSlotsForWeekNumber(weekNumber: Number) : CourseSlot [] {
-    //TODO fetch and convert the slots from database
-    //TODO : filter the slots
-    return this.getAllSlots();
+  getSlotsForWeekNumberAndYear(weekNumber: number, year: number) : CourseSlot [] {
+    const arrayToFilter: CourseSlot[] = this.getAllSlots();
+
+    let arrayToReturn: CourseSlot[] = [];
+    for (const currentSlot of arrayToFilter){
+      const currentYear = currentSlot.date.getFullYear();
+      const currentWeekNumber = WeekUtils.getWeekNumberForDate(currentSlot.date);
+      const weMustKeepIt = currentYear === year && currentWeekNumber === weekNumber;
+
+      ////////////////////////////////////////
+      console.log(`current year is ${currentYear}`);
+      console.log(`current week number is ${currentWeekNumber}`);
+      console.log(`year is ${year}`);
+      console.log(`weekNumber is ${weekNumber}`);
+      console.log("-----------------------------------------------");
+      ////////////////////////////////////////
+
+      if (weMustKeepIt){
+        arrayToReturn.push(currentSlot);
+      }
+    }
+
+    return arrayToReturn;
   }
 
   getSlotsForWeekIncludingDate(date: Date) : CourseSlot [] {
-    const matchingWeekNumber: Number = WeekUtils.getWeekNumberForDate(date);
-    return this.getSlotsForWeekNumber(matchingWeekNumber);
+    const matchingWeekNumber: number = WeekUtils.getWeekNumberForDate(date);
+    return this.getSlotsForWeekNumberAndYear(matchingWeekNumber, date.getFullYear());
   }
 }
