@@ -1,45 +1,45 @@
 <div class="container">
   <div class="row">
-    <calendar-day class="col-12 col-md-2" dayLabel="Lundi" [courseSlots]="courseSlots"
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Lundi" [courseSlots]="courseSlots"
      [day]="days.Lundi" [weekNumber]="weekNumber" [year]="year">
     
-    </calendar-day>
-    <calendar-day class="col-12 col-md-2" dayLabel="Mardi" [courseSlots]="courseSlots"
+    </week-calendar-day>
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Mardi" [courseSlots]="courseSlots"
      [day]="days.Mardi" [weekNumber]="weekNumber" [year]="year">
       
-    </calendar-day>
-    <calendar-day class="col-12 col-md-2" dayLabel="Mercredi" [courseSlots]="courseSlots"
+    </week-calendar-day>
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Mercredi" [courseSlots]="courseSlots"
      [day]="days.Mercredi" [weekNumber]="weekNumber" [year]="year">
       
-    </calendar-day>
-    <calendar-day class="col-12 col-md-2" dayLabel="Jeudi" [courseSlots]="courseSlots"
+    </week-calendar-day>
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Jeudi" [courseSlots]="courseSlots"
      [day]="days.Jeudi" [weekNumber]="weekNumber" [year]="year">
       
-    </calendar-day>
-    <calendar-day class="col-12 col-md-2" dayLabel="Vendredi" [courseSlots]="courseSlots"
+    </week-calendar-day>
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Vendredi" [courseSlots]="courseSlots"
      [day]="days.Vendredi" [weekNumber]="weekNumber" [year]="year">
       
-    </calendar-day>
+    </week-calendar-day>
   
     <div class="col-12 col-md-2">
       
       <!--
         Le composant calendar-week-end-day est un composant similaire à
-        calendar-day mais avec une hauteur réduite de moitié : ce qui permet
+        week-calendar-day mais avec une hauteur réduite de moitié : ce qui permet
         de superposer les jours Samedi et Dimanche.
       -->
       <div class="row">
-        <calendar-weekend-day class="col-12" dayLabel="Samedi" [courseSlots]="courseSlots"
+        <week-calendar-weekend-day class="col-12" dayLabel="Samedi" [courseSlots]="courseSlots"
          [day]="days.Samedi" [weekNumber]="weekNumber" [year]="year">
       
-        </calendar-weekend-day>
+        </week-calendar-weekend-day>
       </div>
 
       <div class="row">
-        <calendar-weekend-day class="col-12" dayLabel="Dimanche" [courseSlots]="courseSlots"
+        <week-calendar-weekend-day class="col-12" dayLabel="Dimanche" [courseSlots]="courseSlots"
          [day]="days.Dimanche" [weekNumber]="weekNumber" [year]="year">
       
-        </calendar-weekend-day>
+        </week-calendar-weekend-day>
       </div>
 
     </div>

@@ -2,6 +2,7 @@ import { User } from "./model.user";
 
 export class CourseSlot {
     date: Date;
+    // heure debut - heure fin
     duration: Date;
     teachers: User[];
     students: User[];

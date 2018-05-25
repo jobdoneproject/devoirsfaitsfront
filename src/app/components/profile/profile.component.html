@@ -4,9 +4,9 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">
-            Bonjour {{currentUser.prenom}} {{currentUser.nom}}
+            Semaine du {{ startDate | date:'dd/MM/yyyy' }} au {{ endDate | date:'dd/MM/yyyy' }}
           </h4>
-          <week-calendar></week-calendar>
+          <week-calendar [weekNumber]="weekNumber" [year]="year"></week-calendar>
         </div>
       </div>
     </div>

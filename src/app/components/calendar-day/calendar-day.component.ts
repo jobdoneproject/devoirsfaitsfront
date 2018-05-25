@@ -4,7 +4,7 @@ import { WeekDay } from '../../model/model.week-day';
 import { WeekUtils } from '../../utils/WeekUtils';
 
 @Component({
-  selector: 'calendar-day',
+  selector: 'week-calendar-day',
   templateUrl: './calendar-day.component.html',
   styleUrls: ['./calendar-day.component.scss'],
 })

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CalendarDayComponent } from '../calendar-day/calendar-day.component';
 
 @Component({
-  selector: 'calendar-weekend-day',
+  selector: 'week-calendar-weekend-day',
   templateUrl: '../calendar-day/calendar-day.component.html',
   styleUrls: ['./calendar-weekend-day.component.scss']
 })

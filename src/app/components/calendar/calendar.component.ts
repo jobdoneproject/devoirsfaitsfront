@@ -11,8 +11,8 @@ import { WeekUtils } from '../../utils/WeekUtils';
 })
 export class CalendarComponent implements OnInit {
 
-  @Input() private _weekNumber: number;
-  @Input() private _year: number;
+  @Input() protected weekNumber: number;
+  @Input() protected year: number;
   private _courseSlots: CourseSlot [];
   private _days = {
     Lundi : WeekDay.Lundi,
@@ -30,9 +30,6 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
-    const now = new Date();
-    this._weekNumber = WeekUtils.getWeekNumberForDate(now);
-    this._year = now.getFullYear();
   }
 
   public get courseSlots(): CourseSlot[] {
@@ -41,14 +38,6 @@ export class CalendarComponent implements OnInit {
 
   public get days() {
     return this._days;
-  }
-
-  public get weekNumber() : number {
-    return this._weekNumber;
-  }
-
-  public get year(): number {
-    return this._year;
   }
 
 }
