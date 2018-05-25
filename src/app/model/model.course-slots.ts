@@ -1,18 +1,23 @@
+import { User } from "./model.user";
+
 export class CourseSlot {
     date: Date;
     duration: Date;
-    organizer: String;
+    teachers: User[];
+    students: User[];
     roomNumber: Number;
 
     constructor(
         date: Date,
         duration: Date,
-        organizer: String,
+        teachers: User[],
+        students: User[],
         roomNumber: Number,
     ) {
         this.date = date;
         this.duration = duration;
-        this.organizer = organizer;
+        this.teachers = teachers;
+        this.students = students
         this.roomNumber = roomNumber;
     }
 }
