@@ -63,7 +63,11 @@ export class CourseSlotsService {
     const maxTeachersCount = 7;
     const teachersCount = Math.floor(Math.random() * maxTeachersCount);
 
-    let id = startId;
+    arrayToReturn.push(
+      this.generateTeacher(startId)
+    );
+
+    let id = startId + 1;
     for (let i = 0; i < teachersCount; i++){
       
 

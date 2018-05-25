@@ -20,8 +20,9 @@ export class CalendarSlotComponent implements OnInit {
     return this.slotValue;
   }
 
-  public teacherLabel(teacher: User) : String {
-    return `${teacher.nom} ${teacher.prenom}`;
+  public get organizerLabel() : String {
+    const mainTeacher = this.slotValue.teachers[0];
+    return `${mainTeacher.nom} ${mainTeacher.prenom}`;
   }
 
 }

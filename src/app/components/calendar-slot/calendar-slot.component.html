@@ -1,7 +1,7 @@
 <div class="root">
     <h2>{{slot.date | date:'HH'}}h - Salle {{slot.roomNumber}}</h2>
     <div class="content">
-        <p class="organizer">{{teacherLabel(slot.teachers[0])}}</p>
+        <p class="organizer">{{organizerLabel}}</p>
         <p class="duration">{{slot.duration | date:'h:mm'}}</p>
     </div>
 </div>
