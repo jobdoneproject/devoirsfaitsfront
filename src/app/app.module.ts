@@ -14,7 +14,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavbarComponent} from "./components/navbar/navbar.component";
-import { ElevesComponent} from "./components/listes/eleves/eleves.component";
 import { PageLandingComponent } from './components/page-landing/page-landing.component';
 import { PageUserEditComponent } from './components/page-user-edit/page-user-edit.component';
 import { ContainerComponent } from './components/container/container.component';
@@ -33,7 +32,6 @@ import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-
     RegisterComponent,
     ProfileComponent,
     NavbarComponent,
-    ElevesComponent,
     PageLandingComponent,
     PageUserEditComponent,
     ContainerComponent,
