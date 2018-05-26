@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'elevesDisponibles'
+  name: 'utilisateurDisponibles'
 })
-export class ElevesDisponiblesPipe implements PipeTransform {
+export class UtilisateurDisponiblesPipe implements PipeTransform {
     transform(eleves: any, filter: any, filterItems: Array<any>, disponible: boolean): any {
       console.log('Filtering ..');
       if (filter && Array.isArray(eleves) && filterItems) {

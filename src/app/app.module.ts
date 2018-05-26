@@ -23,7 +23,8 @@ import { ContainerNavbarComponent } from './components/container-navbar/containe
 import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
 import {MatListModule } from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
-import { ElevesDisponiblesPipe } from './pipes/eleves-disponibles.pipe';
+import { UtilisateurDisponiblesPipe } from './pipes/utilisateur-disponibles.pipe';
+import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-utilisateur.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ElevesDisponiblesPipe } from './pipes/eleves-disponibles.pipe';
     ContainerFooterComponent,
     ContainerNavbarComponent,
     ContainerSidebarComponent,
-    ElevesDisponiblesPipe
+    UtilisateurDisponiblesPipe,
+    ListeUtilisateurComponent
   ],
   imports: [
     BrowserModule,
