@@ -21,10 +21,11 @@
                 <option *ngFor="let classeDisponible of classeDisponibles;" [value]="classeDisponible" >{{classeDisponible}}</option>
               </select>
               <br>
+              <br>
               <label class="">
                 Nom
-                <input type="text" class="form-control" (change)="onChangeNom($event.target.value)">
-              </label>
+              <input type="text" class="form-control" (keyup)="onChangeNom($event.target.value)" size="15">
+            </label>
 
                 
 
