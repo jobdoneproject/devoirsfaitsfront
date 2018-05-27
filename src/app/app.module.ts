@@ -24,6 +24,11 @@ import { ContainerSidebarComponent } from './components/container-sidebar/contai
 import {MatListModule } from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { WeekPipe } from './components/datepicker/pipes/week.pipe';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +42,9 @@ import {MatIconModule} from '@angular/material/icon';
     ContainerComponent,
     ContainerFooterComponent,
     ContainerNavbarComponent,
-    ContainerSidebarComponent
+    ContainerSidebarComponent,
+    DatepickerComponent,
+    WeekPipe      // including the pipe in declarations
   ],
   imports: [
     BrowserModule,
@@ -46,7 +53,8 @@ import {MatIconModule} from '@angular/material/icon';
     routing,
     HttpClientModule,
     MatListModule, 
-    MatIconModule
+    MatIconModule,
+    NgbModule.forRoot()
   ],
   providers: [
     AuthService,

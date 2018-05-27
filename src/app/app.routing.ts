@@ -11,6 +11,7 @@ import { ContainerComponent } from './components/container/container.component';
 import { ContainerFooterComponent } from './components/container-footer/container-footer.component';
 import { ContainerNavbarComponent } from './components/container-navbar/container-navbar.component';
 import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -22,6 +23,10 @@ const appRoutes: Routes = [
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: ProfileComponent, outlet: 'connected'}]
   },
+  { path: 'datepicker',
+  component: ContainerComponent, canActivate: [UrlPermission],
+  children: [{path: '', component: DatepickerComponent, outlet: 'connected'}]
+},
   { path: 'eleves', 
     component: ContainerComponent ,canActivate: [UrlPermission],
     children: [{path: '', component: ElevesComponent, outlet: 'connected'}]
