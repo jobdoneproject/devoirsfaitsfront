@@ -52,8 +52,9 @@
   position: relative;
   padding-left: 30px;
   margin-bottom: 12px;
+  margin-right: 30px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 1em;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -70,7 +71,7 @@
 /* Create a custom checkbox */
 .checkmark {
   position: absolute;
-  top: 5px;
+  top: 0px;
   left: 0;
   height: 20px;
   width: 20px;

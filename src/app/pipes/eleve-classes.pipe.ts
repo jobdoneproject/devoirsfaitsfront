@@ -12,7 +12,7 @@ export class EleveClassesPipe implements PipeTransform {
     //console.log(utilisateur);
 
     var output: User[] = []; 
-    if (classe != "Classes"){
+    if (classe != "Toutes"){
       for (var i = 0; i < utilisateurs.length; i++) {
         if (utilisateurs[i].classe === classe) { 
           output.push(utilisateurs[i]); 

@@ -26,10 +26,10 @@ export class ListeUtilisateurComponent implements OnInit {
   idEtablissement: number;
   url: string;
   utilisateurs: Observable<any>;
-  filterDisponibles = [{nom:'disponible', select:'disponible', checked:true, value:true} ,{nom:'indisponible', select:'indisponible', checked:true, value:false}];
-  classeDisponibles = ['Classes'];
+  filterDisponibles = [{nom:'Oui', select:'disponible', checked:true, value:true} ,{nom:'Non', select:'indisponible', checked:true, value:false}];
+  classeDisponibles = ['Toutes'];
   nomDisponibles = [];
-  filterParClasse: string = "Classes";
+  filterParClasse: string = "Toutes";
   filterParNom: string;
   utilisateur: User;
 

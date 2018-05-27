@@ -26,7 +26,6 @@ export class ContainerComponent implements OnInit {
     console.log(this.etablissements); 
 
     this.etablissements.forEach(etablissement => {
-      console.log('foreach1');
       this.nomEtablissement = etablissement.nomEtablissement;
     });
   }

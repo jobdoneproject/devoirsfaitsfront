@@ -12,54 +12,70 @@
           <div class="card-body">
             <div *ngIf="administrateur; else elseBlock">
              
-              <label *ngFor="let filterDisponible of filterDisponibles;" class="containerCheck">
-                <input type="checkbox" class="form-check-input" [(ngModel)]="filterDisponible.checked" [value]="filterDisponible.value" /> {{filterDisponible.nom}}
-                <span class="checkmark"></span>
-              </label>
 
-              <select id="selectClasse" *ngIf="typeUtilisateur == 'eleve'"  name="classeDispo" (change)="onChange($event.target.value)">
-                <option *ngFor="let classeDisponible of classeDisponibles;" [value]="classeDisponible" >{{classeDisponible}}</option>
-              </select>
-              <br>
-              <br>
-              <label class="">
-                Nom
-              <input type="text" class="form-control" (keyup)="onChangeNom($event.target.value)" size="15">
-            </label>
-
-                
-
-              
-              <table class="table table-hover" >
-                  <thead>
-                    <tr>
-                      <th>Nom</th>
-                      <th *ngIf="typeUtilisateur == 'eleve'" class="hiddenMobile">classe</th>
-                      <th class="hiddenMobile">Email</th>
-                      <th>Présence</th>
-                      <th> </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let utilisateur of utilisateurs | async  | nomDisponibles: filterParNom | eleveClasses: filterParClasse | utilisateurDisponibles: { disponible: ''} : checked() : false" >
-                      <td (click)="redirectEditUser(utilisateur.idUtilisateur);">
-                          <strong>{{ utilisateur.nom }} </strong><em>{{ utilisateur.prenom }}</em>
-                      </td>
-                      <td *ngIf="typeUtilisateur == 'eleve'" (click)="redirectEditUser(utilisateur.idUtilisateur);" class="hiddenMobile">{{ utilisateur.classe }}</td>
-                      <td (click)="redirectEditUser(utilisateur.idUtilisateur);" class="hiddenMobile">{{ utilisateur.mail }}</td>
-                      <td>
-                        <label class="toggle-check">
-                          <input type="checkbox" class="toggle-check-input" [(ngModel)]="utilisateur.disponible"/>
-                          <span class="toggle-check-text"></span>
-                        </label>
-                        </td>
-                      <label class="containerCheck">
-                        <input type="checkbox" class="form-check-input" />
-                        <span class="checkmark"></span>
+             
+              <div class="col-md-12 d-flex align-items-stretch">
+                <div class="row flex-grow">
+                  <div class="col-md-2 col-xs-9">
+                      <label class="col-form-label">
+                        Nom
+                      <input type="text" class="form-control" (keyup)="onChangeNom($event.target.value)" >
+                    </label>
+                  </div>
+                  <div class="col-md-3 col-xs-12" *ngIf="typeUtilisateur == 'eleve'"  >
+                    <label class="col-form-label">
+                      Classe
+                      <select id="selectClasse" name="classeDispo" (change)="onChange($event.target.value)" class="form-control">
+                        <option *ngFor="let classeDisponible of classeDisponibles;" [value]="classeDisponible" >{{classeDisponible}}</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="col-md-3 col-xs-12">
+                      <label class="col-form-label">
+                        Disponibilité
                       </label>
-                    </tr>
-                  </tbody>
-                </table>
+                      <div class="d-flex">
+                        <label *ngFor="let filterDisponible of filterDisponibles;" class="containerCheck">
+                          <input type="checkbox" class="form-check-input" [(ngModel)]="filterDisponible.checked" [value]="filterDisponible.value" /> {{filterDisponible.nom}}&nbsp;
+                          <span class="checkmark"></span>
+                        </label></div>
+                    </div>
+                  </div>
+                </div>
+              <br>
+            
+          
+          
+            <table class="table table-hover" >
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th *ngIf="typeUtilisateur == 'eleve'" class="hiddenMobile">classe</th>
+                  <th class="hiddenMobile">Email</th>
+                  <th>Présence</th>
+                  <th> </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let utilisateur of utilisateurs | async  | nomDisponibles: filterParNom | eleveClasses: filterParClasse | utilisateurDisponibles: { disponible: ''} : checked() : false" >
+                  <td (click)="redirectEditUser(utilisateur.idUtilisateur);">
+                      <strong>{{ utilisateur.nom }} </strong><em>{{ utilisateur.prenom }}</em>
+                  </td>
+                  <td *ngIf="typeUtilisateur == 'eleve'" (click)="redirectEditUser(utilisateur.idUtilisateur);" class="hiddenMobile">{{ utilisateur.classe }}</td>
+                  <td (click)="redirectEditUser(utilisateur.idUtilisateur);" class="hiddenMobile">{{ utilisateur.mail }}</td>
+                  <td>
+                    <label class="toggle-check">
+                      <input type="checkbox" class="toggle-check-input" [(ngModel)]="utilisateur.disponible"/>
+                      <span class="toggle-check-text"></span>
+                    </label>
+                    </td>
+                  <label class="containerCheck">
+                    <input type="checkbox" class="form-check-input" />
+                    <span class="checkmark"></span>
+                  </label>
+                </tr>
+              </tbody>
+            </table>
   
             </div>
             <ng-template #elseBlock>
