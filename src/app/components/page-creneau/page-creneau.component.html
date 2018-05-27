@@ -1,0 +1,56 @@
+<h4 class="card-title">Création et Modification d'un créneau</h4>
+<form class="forms-sample">
+  <div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card-body">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="date-creneau" class="font-weight-medium">Date</label>
+            <input type="date" class="form-control" id="date-creneau" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="heure-debut">Heure de début</label>
+            <input type="time" class="form-control" id="heure-debut" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="heure-fin">Heure de fin</label>
+            <input type="time" class="form-control" id="heure-fin" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="salle-creneau">Salle</label>
+            <select class="form-control" id="salle-crneau" placeholder="salle">
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="prof">Professeur(s)</label>
+            <select class="form-control" id="prof" rows="2">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="opel">Opel</option>
+              <option value="audi">Audi</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card-body">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="date-creneau" class="font-weight-medium">Elèves</label>
+            <select class="form-control" id="eleves" rows="2">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="opel">Opel</option>
+              <option value="audi">Audi</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button type="submit" class="btn btn-success mr-2">Créer le créneau</button>
+  <button class="btn btn-light">Annuler</button>
+</form>

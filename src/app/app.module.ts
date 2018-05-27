@@ -26,7 +26,7 @@ import {MatIconModule} from '@angular/material/icon';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
-import { WeekPipe } from './components/datepicker/pipes/week.pipe';
+import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
 
 
 @NgModule({
@@ -44,7 +44,7 @@ import { WeekPipe } from './components/datepicker/pipes/week.pipe';
     ContainerNavbarComponent,
     ContainerSidebarComponent,
     DatepickerComponent,
-    WeekPipe      // including the pipe in declarations
+    PageCreneauComponent
   ],
   imports: [
     BrowserModule,
