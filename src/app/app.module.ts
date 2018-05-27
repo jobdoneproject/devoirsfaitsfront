@@ -25,6 +25,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { UtilisateurDisponiblesPipe } from './pipes/utilisateur-disponibles.pipe';
 import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-utilisateur.component';
 import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
+import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
     ContainerSidebarComponent,
     UtilisateurDisponiblesPipe,
     ListeUtilisateurComponent,
-    EleveClassesPipe
+    EleveClassesPipe,
+    NomDisponiblesPipe
   ],
   imports: [
     BrowserModule,

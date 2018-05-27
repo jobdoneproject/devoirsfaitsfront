@@ -20,7 +20,15 @@
               <select id="selectClasse" *ngIf="typeUtilisateur == 'eleve'"  name="classeDispo" (change)="onChange($event.target.value)">
                 <option *ngFor="let classeDisponible of classeDisponibles;" [value]="classeDisponible" >{{classeDisponible}}</option>
               </select>
+              <br>
+              <label class="">
+                Nom
+                <input type="text" class="form-control" (change)="onChangeNom($event.target.value)">
+              </label>
 
+                
+
+              
               <table class="table table-hover" >
                   <thead>
                     <tr>
@@ -32,7 +40,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let utilisateur of utilisateurs | async | eleveClasses: filterParClasse | utilisateurDisponibles: { disponible: ''} : checked() : false" >
+                    <tr *ngFor="let utilisateur of utilisateurs | async  | nomDisponibles: filterParNom | eleveClasses: filterParClasse | utilisateurDisponibles: { disponible: ''} : checked() : false" >
                       <td (click)="redirectEditUser(utilisateur.idUtilisateur);">
                           <strong>{{ utilisateur.nom }} </strong><em>{{ utilisateur.prenom }}</em>
                       </td>

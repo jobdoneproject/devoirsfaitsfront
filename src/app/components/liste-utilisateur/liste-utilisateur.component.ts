@@ -28,8 +28,9 @@ export class ListeUtilisateurComponent implements OnInit {
   utilisateurs: Observable<any>;
   filterDisponibles = [{nom:'disponible', select:'disponible', checked:true, value:true} ,{nom:'indisponible', select:'indisponible', checked:true, value:false}];
   classeDisponibles = ['Classes'];
+  nomDisponibles = [];
   filterParClasse: string = "Classes";
-  arrayUtilisateur: [User];
+  filterParNom: string;
   utilisateur: User;
 
   constructor(
@@ -58,13 +59,22 @@ export class ListeUtilisateurComponent implements OnInit {
     this.url = environment.API_URL+"/" + this.typeUtilisateur + "/etablissement/"+this.currentUser.idEtablissement;
     this.utilisateurs = this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
 
-    this.utilisateurs.forEach(arrayUtilisateur => {
-      arrayUtilisateur.forEach(utilisateur => {
+    this.utilisateurs.forEach(arrayClasseUtilisateur => {
+      arrayClasseUtilisateur.forEach(utilisateur => {
         if (this.classeDisponibles.indexOf(utilisateur.classe) == -1 ){
           this.classeDisponibles.push(utilisateur.classe);
         }
       })
     });
+
+    this.utilisateurs.forEach(arrayNomUtilisateur => {
+      arrayNomUtilisateur.forEach(utilisateur => {
+        if (this.nomDisponibles.indexOf(utilisateur.nom) == -1 ){
+          this.nomDisponibles.push(utilisateur.nom);
+        }
+      })
+    });
+
   }
 
   ngOnInit() {  }
@@ -83,6 +93,8 @@ export class ListeUtilisateurComponent implements OnInit {
   onChange(optionDuMenu) {
     this.filterParClasse = optionDuMenu;
   }
+  onChangeNom(optionDuMenu) {
+    this.filterParNom= optionDuMenu;
+  }
 
- 
 }
