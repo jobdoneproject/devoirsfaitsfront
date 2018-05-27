@@ -24,6 +24,7 @@ import {MatListModule } from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import { UtilisateurDisponiblesPipe } from './pipes/utilisateur-disponibles.pipe';
 import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-utilisateur.component';
+import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-
     ContainerNavbarComponent,
     ContainerSidebarComponent,
     UtilisateurDisponiblesPipe,
-    ListeUtilisateurComponent
+    ListeUtilisateurComponent,
+    EleveClassesPipe
   ],
   imports: [
     BrowserModule,

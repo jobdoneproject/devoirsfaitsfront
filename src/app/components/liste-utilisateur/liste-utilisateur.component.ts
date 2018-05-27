@@ -4,9 +4,12 @@ import {User} from "../../model/model.user";
 import {Router, ActivatedRoute} from "@angular/router";
 import {environment} from '../../../environments/environment';
 import {AuthService} from "../../services/auth.service";
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subscriber, Subscription } from 'rxjs';
+import { map, startWith} from 'rxjs/operators';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
+import { Scope } from '@angular/core/src/profile/wtf_impl';
+import { Subject } from 'rxjs/Subject';
+import { SubscribeOnObservable } from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-liste-utilisateur',
@@ -22,8 +25,12 @@ export class ListeUtilisateurComponent implements OnInit {
   errorMessage:string;
   idEtablissement: number;
   url: string;
-  utilisateurs: Observable<User>;
-  filterItems = [{nom:'disponible', select:'disponible', checked:true, value:true} ,{nom:'indisponible', select:'indisponible', checked:true, value:false}];
+  utilisateurs: Observable<any>;
+  filterDisponibles = [{nom:'disponible', select:'disponible', checked:true, value:true} ,{nom:'indisponible', select:'indisponible', checked:true, value:false}];
+  classeDisponibles = ['Classes'];
+  filterParClasse: string = "Classes";
+  arrayUtilisateur: [User];
+  utilisateur: User;
 
   constructor(
     public authService: AuthService, 
@@ -34,12 +41,15 @@ export class ListeUtilisateurComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.typeUtilisateur = params['type']});  
-
+    if (this.typeUtilisateur == "eleve"){
+      this.titrePage = "Élèves";
+    } else if (this.typeUtilisateur == "professeur"){
+      this.titrePage = "Professeurs";
+    }
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.idEtablissement = this.currentUser.idEtablissement;
     
-    console.log("this.currentUser.privilege : " + this.currentUser.privilege);
     if (this.currentUser.privilege == "Administrateur"){
       
       this.administrateur = true;
@@ -48,18 +58,17 @@ export class ListeUtilisateurComponent implements OnInit {
     this.url = environment.API_URL+"/" + this.typeUtilisateur + "/etablissement/"+this.currentUser.idEtablissement;
     this.utilisateurs = this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
 
-    if (this.typeUtilisateur == "eleve"){
-      this.titrePage = "Élèves";
-    } else if (this.typeUtilisateur == "professeur"){
-      this.titrePage = "Professeurs";
-    }
+    this.utilisateurs.forEach(arrayUtilisateur => {
+      arrayUtilisateur.forEach(utilisateur => {
+        if (this.classeDisponibles.indexOf(utilisateur.classe) == -1 ){
+          this.classeDisponibles.push(utilisateur.classe);
+        }
+      })
+    });
   }
 
   ngOnInit() {  }
-
-
-  utilisateur: User;
-
+  
   onSelect(utilisateur: User): void {
     this.utilisateur = utilisateur;
   }
@@ -68,6 +77,12 @@ export class ListeUtilisateurComponent implements OnInit {
   }
 
   checked() {
-    return this.filterItems.filter(utilisateur => { return utilisateur.checked; });
+    return this.filterDisponibles.filter(utilisateur => { return utilisateur.checked; });
   }
+
+  onChange(optionDuMenu) {
+    this.filterParClasse = optionDuMenu;
+  }
+
+ 
 }
