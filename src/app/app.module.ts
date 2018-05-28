@@ -14,7 +14,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavbarComponent} from "./components/navbar/navbar.component";
-import { ElevesComponent} from "./components/listes/eleves/eleves.component";
 import { PageLandingComponent } from './components/page-landing/page-landing.component';
 import { PageUserEditComponent } from './components/page-user-edit/page-user-edit.component';
 import { ContainerComponent } from './components/container/container.component';
@@ -23,7 +22,10 @@ import { ContainerNavbarComponent } from './components/container-navbar/containe
 import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
 import {MatListModule } from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
-import { ElevesDisponiblesPipe } from './pipes/eleves-disponibles.pipe';
+import { UtilisateurDisponiblesPipe } from './pipes/utilisateur-disponibles.pipe';
+import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-utilisateur.component';
+import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
+import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
 
 @NgModule({
   declarations: [
@@ -32,14 +34,16 @@ import { ElevesDisponiblesPipe } from './pipes/eleves-disponibles.pipe';
     RegisterComponent,
     ProfileComponent,
     NavbarComponent,
-    ElevesComponent,
     PageLandingComponent,
     PageUserEditComponent,
     ContainerComponent,
     ContainerFooterComponent,
     ContainerNavbarComponent,
     ContainerSidebarComponent,
-    ElevesDisponiblesPipe
+    UtilisateurDisponiblesPipe,
+    ListeUtilisateurComponent,
+    EleveClassesPipe,
+    NomDisponiblesPipe
   ],
   imports: [
     BrowserModule,

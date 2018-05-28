@@ -4,32 +4,33 @@
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item nav-profile">
-        <div class="nav-link">
-            <!--<div class="profile-image"> <img src="./assets/template/images/faces/face4.jpg" alt="image"/> <span class="online-status online"></span> </div>-->
-            <div class="profile-name">
-            <p class="name">Richard Welsh</p>
-            <p class="designation">Enseignant</p>
-            <div class="badge badge-teal mx-auto mt-3">Online</div>
+            <div class="nav-link">
+                <!--<div class="profile-image"> <img src="./assets/template/images/faces/face4.jpg" alt="image"/> <span class="online-status online"></span> </div>-->
+                <div class="profile-name">
+                <p class="name">{{currentUser.nom}} {{currentUser.prenom}}</p>
+                <p class="designation">{{currentUser.privilege}}</p>
+                <!--<div class="badge badge-teal mx-auto mt-3">Online</div>-->
+                </div>
             </div>
-        </div>
         </li>
-
-
         <li class="nav-item">
-                <a class="nav-link" href="eleves">
-                    <!-- &nbsp;-->
-                    <i class="fa fa-user-cog" aria-hidden="true"></i>&nbsp;Compte     
-                </a>
-                        
-            </li>
+            <a class="nav-link" href="profile">
+                <!-- &nbsp;-->
+                <i class="fa fa-user-cog" aria-hidden="true"></i>&nbsp;Compte     
+            </a>   
+        </li>
         <li class="nav-item">
-            <a class="nav-link" href="eleves" *ngIf="administrateur">
+            <a class="nav-link" href="liste/eleve" *ngIf="administrateur">
                 <!-- &nbsp;-->
                 <i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;Elèves     
-            </a>
-                    
+            </a>    
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="liste/professeur" *ngIf="administrateur">
+                <!-- &nbsp;-->
+                <i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;Professeurs     
+            </a>    
+        </li>
         <!-- <li class="nav-item"><a class="nav-link" href="index.html"><img class="menu-icon" src="./assets/template/images/menu_icons/01.png" alt="menu icon"><span class="menu-title">Dashboard</span></a></li>
         <li class="nav-item"><a class="nav-link" href="pages/widgets.html"><img class="menu-icon" src="./assets/template/images/menu_icons/02.png" alt="menu icon"><span class="menu-title">Widgets</span></a></li>
         <li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html"><img class="menu-icon" src="./assets/template/images/menu_icons/03.png" alt="menu icon"><span class="menu-title">Buttons</span></a></li>
