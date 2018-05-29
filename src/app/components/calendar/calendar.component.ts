@@ -3,6 +3,8 @@ import { CourseSlotsService } from '../../services/courses-slots.service';
 import { WeekDay } from '../../model/model.week-day';
 import { CourseSlot } from '../../model/model.course-slots';
 import { WeekUtils } from '../../utils/WeekUtils';
+import { forEach } from 'underscore';
+import { unix } from 'moment';
 
 @Component({
   selector: 'week-calendar',
@@ -13,8 +15,8 @@ export class CalendarComponent implements OnInit {
 
   @Input() protected weekNumber: number;
   @Input() protected year: number;
-  private _courseSlots: CourseSlot [];
-  private _days = {
+  protected courseSlots: CourseSlot [];
+  protected days = {
     Lundi : WeekDay.Lundi,
     Mardi : WeekDay.Mardi,
     Mercredi: WeekDay.Mercredi,
@@ -28,15 +30,12 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._courseSlots = this.coursesSlotService.getSlotsForWeekNumberAndYear(this.weekNumber, this.year);
-  }
-
-  public get courseSlots(): CourseSlot[] {
-    return this._courseSlots;
-  }
-
-  public get days() {
-    return this._days;
-  }
+    this.courseSlots = [];
+    this.coursesSlotService.fetchSlots().subscribe(resp => {
+      forEach(resp, (currentSlot) => {
+          this.courseSlots.push(currentSlot);
+        });
+      });
+   }
 
 }

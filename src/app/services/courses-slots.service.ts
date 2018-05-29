@@ -1,49 +1,23 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { CourseSlot } from '../model/model.course-slots';
 import { User } from "../model/model.user"; 
 import { WeekDay } from '../model/model.week-day';
 import { WeekUtils } from '../utils/WeekUtils';
+
+import {filter, forEach} from 'underscore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseSlotsService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  getAllSlots(): CourseSlot [] {
-    let arrayToReturn = [];
-    const maxValuesNumber = 10;
-    const valuesNumber = Math.floor(Math.random() * maxValuesNumber);
-
-
-    for (let i = 0; i < valuesNumber; i++){
-      const currentSlot = new CourseSlot
-      (
-        this.generateRandomDate(),
-        this.generateRandomDuration(),
-        this.generateRandomTeachersArray(0),
-        this.generateRandomStudentsArray(100),
-        this.generateRandomRoomNumber()
-      );
-
-      arrayToReturn.push(currentSlot);
-    }
-
-    return arrayToReturn;
-  }
-
-  static filterSlotsKeepingThoseMatchingWeekDay(weekDay: WeekDay, inputSlots: CourseSlot[]) : CourseSlot[] {
-    let arrayToReturn : CourseSlot[] =  [];
-
-    for (let currentSlot of inputSlots){
-      const weMustKeepIt = currentSlot.date.getDay() == WeekUtils.dayOfWeekDay(weekDay);
-      if (weMustKeepIt) {
-        arrayToReturn.push(currentSlot);
-      }
-    }
-
-    return arrayToReturn;
+  fetchSlots(): Observable<CourseSlot []>
+  {
+    return this.httpClient.get<CourseSlot []>('http://localhost:3000/creneaux');
   }
 
   generateRandomDate() : Date{
@@ -62,10 +36,6 @@ export class CourseSlotsService {
     const currentMilliseconds = 0;
 
     const dateToReturn = new Date(currentYear, currentMonth, currentDay, currentHour, currentMinutes, currentSeconds, currentMilliseconds);
-
-    /////////////////////
-    console.log(dateToReturn);
-    ///////////////////////
 
     return dateToReturn;
   }
@@ -177,27 +147,5 @@ export class CourseSlotsService {
 
   generateRandomRoomNumber() : number {
     return Math.floor(Math.random() * 500);
-  }
-
-  getSlotsForWeekNumberAndYear(weekNumber: number, year: number) : CourseSlot [] {
-    const arrayToFilter: CourseSlot[] = this.getAllSlots();
-
-    let arrayToReturn: CourseSlot[] = [];
-    for (const currentSlot of arrayToFilter){
-      const currentYear = currentSlot.date.getFullYear();
-      const currentWeekNumber = WeekUtils.getWeekNumberForDate(currentSlot.date);
-      const weMustKeepIt = currentYear === year && currentWeekNumber === weekNumber;
-
-      if (weMustKeepIt){
-        arrayToReturn.push(currentSlot);
-      }
-    }
-
-    return arrayToReturn;
-  }
-
-  getSlotsForWeekIncludingDate(date: Date) : CourseSlot [] {
-    const matchingWeekNumber: number = WeekUtils.getWeekNumberForDate(date);
-    return this.getSlotsForWeekNumberAndYear(matchingWeekNumber, date.getFullYear());
   }
 }

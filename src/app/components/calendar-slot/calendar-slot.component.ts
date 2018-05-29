@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { duration, utc } from 'moment';
 import { CourseSlot } from '../../model/model.course-slots';
 import { User } from '../../model/model.user';
 
@@ -22,10 +23,18 @@ export class CalendarSlotComponent implements OnInit {
 
   public get teachers() : String[] {
     let arrayToReturn: String[] = [];
-    for (let currentTeacher of this.slotValue.teachers){
+    for (let currentTeacher of this.slotValue.profs){
       arrayToReturn.push(`${currentTeacher.nom} ${currentTeacher.prenom}`);
     }
     return arrayToReturn;
+  }
+
+  public get duration(): Date {
+    const durationInstance = this.slotValue.dateFin - this.slotValue.dateDebut;
+    let date = new Date(1970, 0, 1);
+    date.setSeconds(durationInstance);
+
+    return date;
   }
 
 }
