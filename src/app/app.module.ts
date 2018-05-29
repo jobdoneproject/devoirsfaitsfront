@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormControlDirective, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from "./services/auth.service";
 import { HttpModule} from "@angular/http";
 import { AccountService} from "./services/account.service";
@@ -25,11 +25,14 @@ import { ContainerSidebarComponent } from './components/container-sidebar/contai
 import {MatListModule } from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatAutocompleteModule, MatInputModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
+import { CreneauService } from "./services/creneau.service";
 
 
 @NgModule({
@@ -59,13 +62,17 @@ import { PageCreneauComponent } from './components/page-creneau/page-creneau.com
     MatIconModule,
     NgbModule.forRoot(),
     MatSlideToggleModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatInputModule
   ],
   providers: [
     AuthService,
     AccountService,
     UrlPermission,
     UserService,
+    CreneauService
   ],
   bootstrap: [AppComponent]
 })
