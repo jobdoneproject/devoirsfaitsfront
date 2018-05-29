@@ -24,14 +24,13 @@
           <div class="form-group">
             <label for="prof">Professeur(s)</label>
             <select class="form-control" id="prof" rows="2">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="opel">Opel</option>
-              <option value="audi">Audi</option>
+              <option value="volvo">Snape</option>
+              <option value="saab">McGonagal</option>
+              <option value="opel">Fitwik</option>
+              <option value="audi">Chourave</option>
             </select>
           </div>
-
-        </div>
+                </div>
       </div>
     </div>
     <div class="col-md-6 grid-margin stretch-card">
@@ -39,18 +38,21 @@
         <div class="card-body">
           <div class="form-group">
             <label for="date-creneau" class="font-weight-medium">Elèves</label>
-            <select class="form-control" id="eleves" rows="2">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="opel">Opel</option>
-              <option value="audi">Audi</option>
-            </select>
+            <select class="form-control" #selectedValue name="selectedEleve" id="selectedEleve" [(ngModel)]="selectedEleve" (ngModelChange)="addEleveToSelected($event)">
+              <option *ngFor="let eleve of listEleve | async" [ngValue]="eleve">{{eleve.nom}}</option>
+          </select>
           </div>
         </div>
+        Liste des Eleves sélectionnés :
+        <mat-list #eleves>
+          <mat-list-item *ngFor="let eleve of selectedEleves" >
+            <mat-slide-toggle>{{ eleve.nom }} {{ eleve.prenom }}</mat-slide-toggle>
+          </mat-list-item>
+        </mat-list>
       </div>
     </div>
-
   </div>
   <button type="submit" class="btn btn-success mr-2">Créer le créneau</button>
   <button class="btn btn-light">Annuler</button>
 </form>
+<mat-slide-toggle>Slide me!</mat-slide-toggle>

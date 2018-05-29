@@ -9,6 +9,7 @@ import { UrlPermission} from "./urlPermission/url.permission";
 import { UserService} from "./services/user.service";
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -23,6 +24,8 @@ import { ContainerNavbarComponent } from './components/container-navbar/containe
 import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
 import {MatListModule } from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
@@ -54,7 +57,9 @@ import { PageCreneauComponent } from './components/page-creneau/page-creneau.com
     HttpClientModule,
     MatListModule, 
     MatIconModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    MatSlideToggleModule,
+    MatAutocompleteModule
   ],
   providers: [
     AuthService,
