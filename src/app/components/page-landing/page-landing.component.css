@@ -1,23 +1,7 @@
-.btn {
-  /*background-color: #4d90fe; */
-  background-color: rgb(104, 145, 162);
-  /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-  padding: 0px;
-  font-weight: 700;
-  font-size: 14px;
-  height: 36px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  border: none;
-  -o-transition: all 0.218s;
-  -moz-transition: all 0.218s;
-  -webkit-transition: all 0.218s;
-  transition: all 0.218s;
-}
+/*
+Les styles par défaut sont définies dans le fichier [RacineProjet]/src/styles.scss
+*/
 
-.btn.btn-signin:hover,
-.btn.btn-signin:active,
-.btn.btn-signin:focus {
-  background-color: rgb(12, 97, 33);
+button.btn.btn-lg.btn-warning.btn-block.btn-signin.font-weight-medium {
+    color: #FFFFFF;
 }

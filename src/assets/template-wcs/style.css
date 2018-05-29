@@ -1,0 +1,45 @@
+div.container-fluid.page-body-wrapper {
+  padding:0;
+}
+
+
+
+/* style for off-canvas menu*/
+.sidebar-offcanvas {
+  position: fixed;
+  max-height: calc(100vh - 58px);
+  top: 58px;
+  bottom: 0;
+  overflow: auto;
+  right: -255px;
+  -webkit-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out; 
+}
+.sidebar-offcanvas.active {
+  right: 0; 
+} 
+div.main-panel {
+  width: 100%;
+  margin-top: 58px;
+}
+
+div.navbar-menu-wrapper.d-flex.align-items-center {
+  width: 100%;
+}
+
+div.buttons-navbar-right {
+  width: 100%;
+  text-align: right;
+}
+
+h1{
+  font-size: 2rem !important;
+}
+
+@media (max-width: 576px) {
+  div.content-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

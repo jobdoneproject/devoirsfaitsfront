@@ -9,7 +9,6 @@ import * as moment from 'moment';
 })
 
 export class AppComponent {
-  static API_URL="http://localhost:8080";
     title = 'DevoirsFaits';
   
 }

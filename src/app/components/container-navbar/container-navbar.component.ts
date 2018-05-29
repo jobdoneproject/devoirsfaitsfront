@@ -33,14 +33,14 @@ export class ContainerNavbarComponent implements OnInit {
 
   // login out from the app
   logOut() {
-    console.log('logout navbar');
     this.authService.logOut()
-      .subscribe(
+      /*.subscribe(
         data => {
           this.router.navigate(['/login']);
         },
         error => {
 
-        });
+        });*/
+    this.router.navigate(['/login']);
   }
 }
