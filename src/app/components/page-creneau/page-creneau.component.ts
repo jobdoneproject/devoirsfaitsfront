@@ -15,6 +15,7 @@ import { Time } from '@angular/common';
 import * as moment from 'moment';
 import { CourseSlot } from "../../model/model.courseslot";
 import { environment } from '../../../environments/environment';
+import { CreneauService } from '../../services/creneau.service'
 
 @Component({
   selector: 'app-page-creneau',
@@ -23,7 +24,6 @@ import { environment } from '../../../environments/environment';
 })
 export class PageCreneauComponent implements OnInit {
 
-  newCreneau: CourseSlot = { id: null, dateDebut: 0, dateFin: 0, profs: [], eleves: [], salle: null };
   selectedEleves: User[] = [];
   selectedProfesseurs: User[] = [];
   currentUser: User;
@@ -33,18 +33,17 @@ export class PageCreneauComponent implements OnInit {
   url: string;
   listEleve: Observable<any>;
   listProfesseur: Observable<any>;
-  eleve: User;
   @Input() date_creneau: Date;
   @Input() heure_debut: Time;
   @Input() heure_fin: Time;
-  timestamp: any;
   nomDisponibles = [];
   filterParNom: String;
   titre: String = "Création d'un créneau";
   myControl: FormControl = new FormControl();
   filteredEleve: Observable<any[]>;
 
-  constructor(public authService: AuthService, public router: Router, private http: Http) {
+
+  constructor(private  courseservice: CreneauService, public authService: AuthService, public router: Router, private http: Http) {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.idEtablissement = this.currentUser.idEtablissement;
@@ -76,16 +75,11 @@ export class PageCreneauComponent implements OnInit {
   majTitre() { this.titre = "Création du créneau du " + this.date_creneau.toString(); }
 
   onSend() {
-    this.newCreneau.dateDebut = moment(this.date_creneau + " " + this.heure_debut).unix();
-    this.newCreneau.dateFin = moment(this.date_creneau + " " + this.heure_fin).unix();
-    this.newCreneau.eleves = this.selectedEleves;
-    this.newCreneau.profs = this.selectedProfesseurs;
-    this.newCreneau.salle = "20A";
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    let body = JSON.stringify(this.newCreneau);
-    console.log(body);
-    //this.http.post('/api/etablissement/'+this.currentUser.idEtablissement+'/creneaux/', body, options ).map((res: Response) => res.json());
+    this.courseservice.createSlot(moment(this.date_creneau + " " + this.heure_debut).unix(),
+                                  moment(this.date_creneau + " " + this.heure_fin).unix(),
+                                  this.selectedEleves,
+                                  this.selectedProfesseurs,
+                                  "20A" );
   }
 
   ngOnInit() {
