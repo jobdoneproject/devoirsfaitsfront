@@ -41,7 +41,8 @@ export class PageCreneauComponent implements OnInit {
   nomDisponibles = [];
   filterParNom: String;
   titre: String = "Création d'un créneau";
-
+  myControl: FormControl = new FormControl();
+  filteredEleve: Observable<any[]>;
 
   constructor(public authService: AuthService, public router: Router, private http: Http) {
 
@@ -68,17 +69,11 @@ export class PageCreneauComponent implements OnInit {
     });
   }
 
-  addEleveToSelected() {
-    this.selectedEleves.push(this.myControl.value);
-    console.log(this.myControl.value);
-  }
-  addProfesseurToSelected(selectedProfesseur) {
-    this.selectedProfesseurs.push(selectedProfesseur);
-  }
+  addEleveToSelected() { this.selectedEleves.push(this.myControl.value); }
 
-  majTitre() {
-    this.titre = "Création du créneau du " + this.date_creneau.toString();
-  }
+  addProfesseurToSelected(selectedProfesseur) { this.selectedProfesseurs.push(selectedProfesseur); }
+
+  majTitre() { this.titre = "Création du créneau du " + this.date_creneau.toString(); }
 
   onSend() {
     this.newCreneau.dateDebut = moment(this.date_creneau + " " + this.heure_debut).unix();
@@ -93,22 +88,19 @@ export class PageCreneauComponent implements OnInit {
     //this.http.post('/api/etablissement/'+this.currentUser.idEtablissement+'/creneaux/', body, options ).map((res: Response) => res.json());
   }
 
-  myControl: FormControl = new FormControl();
-
-  filteredEleve: Observable<any[]>;
-
   ngOnInit() {
   }
-  onChangeNom(optionDuMenu) {
-    this.filterParNom = optionDuMenu;
-  }
+
+  onChangeNom(optionDuMenu) { this.filterParNom = optionDuMenu; }
+
   displayFn(user: User): string {
     return user ? user.nom + " " + user.prenom : user.nom + " " + user.prenom;
   }
-  enleverEleve(eleve:User) {
+
+  enleverEleve(eleve: User) {
     const index: number = this.selectedEleves.indexOf(eleve);
     if (index !== -1) {
-        this.selectedEleves.splice(index, 1);
-    }        
-}
+      this.selectedEleves.splice(index, 1);
+    }
+  }
 }

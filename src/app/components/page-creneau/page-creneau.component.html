@@ -6,19 +6,19 @@
         <div class="card-body">
           <div class="form-group">
             <label for="date_creneau" class="font-weight-medium">Date</label>
-            <input (change)="majTitre()" type="date" class="form-control" id="date_creneau" placeholder="" name="date_creneau" id="date_creneau"[(ngModel)]="date_creneau">
+            <input (change)="majTitre()" type="date" class="form-control" id="date_creneau" placeholder="" name="date_creneau" id="date_creneau"[(ngModel)]="date_creneau" required>
           </div>
           <div class="form-group">
             <label for="heure_debut">Heure de début</label>
-            <input type="time" class="form-control" id="heure_debut" placeholder="" name="heure_debut" id="heure_debut"[(ngModel)]="heure_debut">
+            <input type="time" class="form-control" id="heure_debut" placeholder="" name="heure_debut" id="heure_debut"[(ngModel)]="heure_debut" required>
           </div>
           <div class="form-group">
             <label for="heure_fin">Heure de fin</label>
-            <input type="time" class="form-control" id="heure-fin" placeholder="" name="heure_fin" id="heure_fin"[(ngModel)]="heure_fin">
+            <input type="time" class="form-control" id="heure-fin" placeholder="" name="heure_fin" id="heure_fin"[(ngModel)]="heure_fin" required>
           </div>
           <div class="form-group">
             <label for="salle-creneau">Salle</label>
-            <select class="form-control" id="salle-crneau" placeholder="salle">
+            <select class="form-control" id="salle-crneau" placeholder="salle" required>
             </select>
           </div>
           <div class="form-group">
