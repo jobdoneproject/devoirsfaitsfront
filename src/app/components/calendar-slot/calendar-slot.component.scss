@@ -1,13 +1,8 @@
-$marginBottom: 4px;
-
-.root {
-    border: 2px solid black;
-    border-radius: 10px;
-    width: 85%;
-    margin-bottom: $marginBottom;
-    margin-left: auto;
-    margin-right: auto;
+.card-body {
+    width: 100%;
+    padding: 0px;
 }
+
 
 h2 {
     border-bottom: 2px solid black;
