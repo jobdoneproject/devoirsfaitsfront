@@ -5,7 +5,6 @@
           <div class="card-body">
     <h2>{{slot.dateDebut | date:'HH:mm'}} - Salle {{slot.salle}}</h2>
     <div class="content">
-        <p class="teacher" *ngFor="let currentTeacher of teachers">{{currentTeacher}}</p>
         <p class="duration">{{duration | date:'HH:mm'}}</p>
     </div>
 </div>
