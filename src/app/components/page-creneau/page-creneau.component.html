@@ -1,12 +1,12 @@
-<h4 class="card-title">Création et Modification d'un créneau</h4>
+<h4 class="card-title">{{titre}}</h4>
 <form class="forms-sample">
   <div class="row">
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card-body">
         <div class="card-body">
           <div class="form-group">
-            <label for="date_creneau" class="font-weight-medium" >Date</label>
-            <input type="date" class="form-control" id="date-creneau" placeholder="" name="date_creneau" id="date_creneau"[(ngModel)]="date_creneau">
+            <label for="date_creneau" class="font-weight-medium">Date</label>
+            <input (change)="majTitre()" type="date" class="form-control" id="date_creneau" placeholder="" name="date_creneau" id="date_creneau"[(ngModel)]="date_creneau">
           </div>
           <div class="form-group">
             <label for="heure_debut">Heure de début</label>
@@ -41,15 +41,20 @@
         <div class="card-body">
           <div class="form-group">
             <label for="listEleve" class="font-weight-medium">Elèves</label>
-            <select class="form-control" #selectedValue name="selectedEleve" id="selectedEleve" [(ngModel)]="selectedEleve" (ngModelChange)="addEleveToSelected($event)">
-              <option *ngFor="let eleve of listEleve | async" [ngValue]="eleve">{{eleve.nom}} {{eleve.prenom}}</option>
-            </select>
+            <mat-form-field class="example-full-width">
+              <input type="text" placeholder="Choisir un élève" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup)="onChangeNom($event.target.value)">
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addEleveToSelected()" [displayWith]="displayFn">
+                <mat-option *ngFor="let eleve of listEleve | async | nomDisponibles: filterParNom" [value]="eleve" >
+                  {{ eleve.nom }} {{ eleve.prenom }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
           </div>
         </div>
         Liste des Eleves sélectionnés :
         <mat-list #eleves>
           <mat-list-item *ngFor="let eleve of selectedEleves">
-            <mat-slide-toggle>{{ eleve.nom }} {{ eleve.prenom }}</mat-slide-toggle>
+            <mat-slide-toggle>{{ eleve.nom }} {{ eleve.prenom }}</mat-slide-toggle><button type="button" class="btn btn-link" (click)="enleverEleve(eleve)">Enlever</button>
           </mat-list-item>
         </mat-list>
       </div>

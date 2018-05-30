@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { AppComponent } from "../../app.component";
 import { AuthService } from "../../services/auth.service";
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Time } from '@angular/common';
 import * as moment from 'moment';
 import { CourseSlot } from "../../model/model.courseslot";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-page-creneau',
@@ -22,8 +23,7 @@ import { CourseSlot } from "../../model/model.courseslot";
 })
 export class PageCreneauComponent implements OnInit {
 
-  newCreneau: CourseSlot = {id:null, dateDebut:0, dateFin:0, profs:[], eleves:[], salle:null};
-  myForm: FormControl = new FormControl();
+  newCreneau: CourseSlot = { id: null, dateDebut: 0, dateFin: 0, profs: [], eleves: [], salle: null };
   selectedEleves: User[] = [];
   selectedProfesseurs: User[] = [];
   currentUser: User;
@@ -31,13 +31,16 @@ export class PageCreneauComponent implements OnInit {
   errorMessage: string;
   idEtablissement: number;
   url: string;
-  listEleve: Observable<User>;
-  listProfesseur: Observable<User>;
+  listEleve: Observable<any>;
+  listProfesseur: Observable<any>;
   eleve: User;
   @Input() date_creneau: Date;
   @Input() heure_debut: Time;
   @Input() heure_fin: Time;
   timestamp: any;
+  nomDisponibles = [];
+  filterParNom: String;
+  titre: String = "Création d'un créneau";
 
 
   constructor(public authService: AuthService, public router: Router, private http: Http) {
@@ -51,21 +54,30 @@ export class PageCreneauComponent implements OnInit {
       this.administrateur = true;
     }
 
-    this.url = AppComponent.API_URL + "/professeur/etablissement/" + this.currentUser.idEtablissement;
+    this.url = environment.API_URL + "/professeur/etablissement/" + this.currentUser.idEtablissement;
     this.listProfesseur = this.http.get(this.url).pipe(map((resp: Response) => resp.json()));
-    this.url = AppComponent.API_URL + "/eleve/etablissement/" + this.currentUser.idEtablissement;
+    this.url = environment.API_URL + "/eleve/etablissement/" + this.currentUser.idEtablissement;
     this.listEleve = this.http.get(this.url).pipe(map((resp: Response) => resp.json()));
+
+    this.listEleve.forEach(arrayNomUtilisateur => {
+      arrayNomUtilisateur.forEach(utilisateur => {
+        if (this.nomDisponibles.indexOf(utilisateur.nom) == -1) {
+          this.nomDisponibles.push(utilisateur.nom);
+        }
+      })
+    });
   }
 
-  addEleveToSelected(selectedEleve) {
-    this.selectedEleves.push(selectedEleve);
+  addEleveToSelected() {
+    this.selectedEleves.push(this.myControl.value);
+    console.log(this.myControl.value);
   }
   addProfesseurToSelected(selectedProfesseur) {
     this.selectedProfesseurs.push(selectedProfesseur);
   }
 
-
-  ngOnInit() {
+  majTitre() {
+    this.titre = "Création du créneau du " + this.date_creneau.toString();
   }
 
   onSend() {
@@ -81,4 +93,22 @@ export class PageCreneauComponent implements OnInit {
     //this.http.post('/api/etablissement/'+this.currentUser.idEtablissement+'/creneaux/', body, options ).map((res: Response) => res.json());
   }
 
+  myControl: FormControl = new FormControl();
+
+  filteredEleve: Observable<any[]>;
+
+  ngOnInit() {
+  }
+  onChangeNom(optionDuMenu) {
+    this.filterParNom = optionDuMenu;
+  }
+  displayFn(user: User): string {
+    return user ? user.nom + " " + user.prenom : user.nom + " " + user.prenom;
+  }
+  enleverEleve(eleve:User) {
+    const index: number = this.selectedEleves.indexOf(eleve);
+    if (index !== -1) {
+        this.selectedEleves.splice(index, 1);
+    }        
+}
 }

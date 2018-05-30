@@ -27,7 +27,6 @@ const appRoutes: Routes = [
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: ProfileComponent, outlet: 'connected'}]
   },
-<<<<<<< HEAD
   { path: 'datepicker',
   component: ContainerComponent, canActivate: [UrlPermission],
   children: [{path: '', component: DatepickerComponent, outlet: 'connected'}]
@@ -36,13 +35,6 @@ const appRoutes: Routes = [
   component: ContainerComponent, canActivate: [UrlPermission],
   children: [{path: '', component: PageCreneauComponent, outlet: 'connected'}]
 },
-  { path: 'eleves', 
-    component: ContainerComponent ,canActivate: [UrlPermission],
-    children: [{path: '', component: ElevesComponent, outlet: 'connected'}]
-   },
-=======
->>>>>>> dev
-
   { path: 'edition-utilisateur/:id',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
