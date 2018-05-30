@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, IterableDiffers, Input, EventEmitter } from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { User } from "../../model/model.user";
 import { Router } from "@angular/router";
 import { AppComponent } from "../../app.component";
 import { AuthService } from "../../services/auth.service";
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map} from 'rxjs/operators';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -13,9 +12,10 @@ import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Time } from '@angular/common';
 import * as moment from 'moment';
-import { CourseSlot } from "../../model/model.courseslot";
 import { environment } from '../../../environments/environment';
-import { CreneauService } from '../../services/creneau.service'
+import { CreneauService } from '../../services/creneau.service';
+import { UserService } from "../../services/user.service";
+
 
 @Component({
   selector: 'app-page-creneau',
@@ -29,8 +29,6 @@ export class PageCreneauComponent implements OnInit {
   currentUser: User;
   administrateur: boolean;
   errorMessage: string;
-  idEtablissement: number;
-  url: string;
   listEleve: Observable<any>;
   listProfesseur: Observable<any>;
   @Input() date_creneau: Date;
@@ -43,21 +41,17 @@ export class PageCreneauComponent implements OnInit {
   filteredEleve: Observable<any[]>;
 
 
-  constructor(private courseservice: CreneauService, public authService: AuthService, public router: Router, private http: Http) {
+  constructor(private courseservice: CreneauService, public authService: AuthService, public router: Router, private userService:UserService) {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.idEtablissement = this.currentUser.idEtablissement;
-
     console.log("this.currentUser.privilege : " + this.currentUser.privilege);
 
     if (this.currentUser.privilege == "Administrateur") {
       this.administrateur = true;
     }
 
-    this.url = environment.API_URL + "/professeur/etablissement/" + this.currentUser.idEtablissement;
-    this.listProfesseur = this.http.get(this.url).pipe(map((resp: Response) => resp.json()));
-    this.url = environment.API_URL + "/eleve/etablissement/" + this.currentUser.idEtablissement;
-    this.listEleve = this.http.get(this.url).pipe(map((resp: Response) => resp.json()));
+    this.listProfesseur = this.userService.getUsers("professeur", this.currentUser.idEtablissement);
+    this.listEleve =  this.userService.getUsers("eleve", this.currentUser.idEtablissement);
 
     this.listEleve.forEach(arrayNomUtilisateur => {
       arrayNomUtilisateur.forEach(utilisateur => {

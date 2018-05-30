@@ -82,7 +82,7 @@ export class PageUserEditComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.calledId = +params['id'];
       console.log('calledId : ' + this.calledId);
-      this.getUserById(this.calledId);
+//      this.getUserById(this.calledId);
     });
     // this.editedUser = this.userService.getUserById(this.calledId);
     // console.log("editedUser : " + JSON.stringify(this.editedUser));
@@ -110,10 +110,10 @@ export class PageUserEditComponent implements OnInit {
   //   return response;
   // }
 
-  getUserById(id): void {
-    this.userService.getUserById(id)
-      .subscribe(user => this.editedUser = user);
-  }
+//  getUserById(id): void {
+//    this.userService.getUserById(id)
+//      .subscribe(user => this.editedUser = user);
+//  }
 
   removeGroup(id): void {
     console.log(id);

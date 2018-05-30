@@ -31,6 +31,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
 import { CreneauService } from "./services/creneau.service";
+import { RoomService } from "./services/room.service";
 
 import { UtilisateurDisponiblesPipe } from './pipes/utilisateur-disponibles.pipe';
 import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-utilisateur.component';
@@ -77,7 +78,8 @@ import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
     AccountService,
     UrlPermission,
     UserService,
-    CreneauService
+    CreneauService,
+    RoomService
   ],
   bootstrap: [AppComponent]
 })

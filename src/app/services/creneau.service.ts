@@ -27,7 +27,6 @@ export class CreneauService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let body = JSON.stringify(newCreneau);
-    console.log(body);
     //this.http.post('/api/etablissement/'+this.currentUser.idEtablissement+'/creneaux/', body, options ).map((res: Response) => res.json());
   }
 }
