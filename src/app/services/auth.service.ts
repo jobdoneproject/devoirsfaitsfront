@@ -33,7 +33,6 @@ export class AuthService {
 
   logOut() {
     // remove user from local storage to log user out
-    console.log('logout service');
     localStorage.removeItem('currentUser');
 
     return this.http.post(environment.API_URL+"logout",{})

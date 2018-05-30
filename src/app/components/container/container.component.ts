@@ -21,16 +21,21 @@ export class ContainerComponent implements OnInit {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-    this.url = environment.API_URL+"/etablissement/"+this.currentUser.idEtablissement;
-    this.etablissements = this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
-    console.log(this.etablissements); 
+     this.url = environment.API_URL+"/etablissement/"+this.currentUser.idEtablissement;
+     this.etablissements = this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+     //console.log(this.etablissements); 
 
     this.etablissements.forEach(etablissement => {
       this.nomEtablissement = etablissement.nomEtablissement;
     });
   }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  ngAfterViewInit() {
+    require("../../../../node_modules/jquery/dist/jquery.js");
+    require("../../../assets/js/jquery-3.3.1.slim.min.js");
+  
   }
 
 }

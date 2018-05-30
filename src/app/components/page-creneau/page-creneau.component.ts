@@ -43,7 +43,7 @@ export class PageCreneauComponent implements OnInit {
   filteredEleve: Observable<any[]>;
 
 
-  constructor(private  courseservice: CreneauService, public authService: AuthService, public router: Router, private http: Http) {
+  constructor(private courseservice: CreneauService, public authService: AuthService, public router: Router, private http: Http) {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.idEtablissement = this.currentUser.idEtablissement;
