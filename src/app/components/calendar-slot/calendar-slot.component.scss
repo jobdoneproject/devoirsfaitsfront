@@ -20,7 +20,12 @@ h2 {
     line-height: 0.2%;
 }
 
-p.teacher {
-    font-weight: 665;
-    font-style: italic;
+p.duration {
+    width: 100%;
+}
+
+span.trash {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
 }
