@@ -5,6 +5,7 @@ import { CourseSlot } from '../../model/model.course-slots';
 import { WeekUtils } from '../../utils/WeekUtils';
 import { forEach } from 'underscore';
 import { unix } from 'moment';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'week-calendar',
@@ -15,7 +16,7 @@ export class CalendarComponent implements OnInit {
 
   @Input() protected weekNumber: number;
   @Input() protected year: number;
-  protected courseSlots: CourseSlot [];
+  protected courseSlotsObservable: Observable<CourseSlot []>;
   protected days = {
     Lundi : WeekDay.Lundi,
     Mardi : WeekDay.Mardi,
@@ -27,15 +28,11 @@ export class CalendarComponent implements OnInit {
   };
 
   constructor( private coursesSlotService : CourseSlotsService ) {
+    this.courseSlotsObservable = this.coursesSlotService.fetchSlots();
   }
 
   ngOnInit() {
-    this.courseSlots = [];
-    this.coursesSlotService.fetchSlots().subscribe(resp => {
-      forEach(resp, (currentSlot) => {
-          this.courseSlots.push(currentSlot);
-        });
-      });
+    
    }
 
 }

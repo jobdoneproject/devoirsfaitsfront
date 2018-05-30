@@ -13,6 +13,10 @@ export class CalendarWeekendDayComponent extends CalendarDayComponent implements
    }
 
   ngOnInit() {
+    this.courseSlotsObservable.subscribe((resp) => {
+      this.courseSlots = resp;  
+      this.filterSlots();
+    });
   }
 
 }

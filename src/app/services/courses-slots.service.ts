@@ -7,6 +7,7 @@ import { WeekDay } from '../model/model.week-day';
 import { WeekUtils } from '../utils/WeekUtils';
 
 import {filter, forEach} from 'underscore';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class CourseSlotsService {
 
   fetchSlots(): Observable<CourseSlot []>
   {
-    return this.httpClient.get<CourseSlot []>('http://localhost:3000/creneaux');
+    return this.httpClient.get<CourseSlot []>(environment.CRENEAUX_URL);
   }
 
   generateRandomDate() : Date{
