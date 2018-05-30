@@ -1,0 +1,45 @@
+.card-body {
+    width: 100%;
+    padding: 0px;
+    background-color: rgba(12, 12, 155, 0.2);
+}
+
+
+h2 {
+    font-size: 0.8em;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.card.slot {
+    border: 0;
+}
+
+.content {
+    padding: 5px;
+    padding-top: 10px;
+}
+
+.content > p {
+    text-align: center;
+    font-size: 0.7em;
+    line-height: 0.2%;
+}
+
+p.duration {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+span.trash {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+}
+
+.col-md-12.d-flex.align-items-stretch.grid-margin{
+    margin: 0;
+    margin-bottom: 2px;
+    padding: 5px;
+}

@@ -1,0 +1,36 @@
+$marginBottom: 10px;
+
+$smLower: 576px;
+$mdLower: 768px;
+$lgLower: 992px;
+$xlLower: 1220px;   
+
+.card-body {
+    width: 100%;
+    padding: 0px;
+    @media (min-width: $mdLower) { 
+        height: 80vh;
+    }
+    margin-bottom: $marginBottom;
+}
+
+h2 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 6px;
+    text-align: center;
+    font-size: 0.7em;
+}
+
+.courses {
+    height: 93%;
+
+    @media (min-width: $mdLower) { 
+        overflow: auto;
+        padding-bottom: 5px;
+    }
+}
+
+.col-md-12.d-flex.align-items-stretch.grid-margin{
+    margin: 0;
+    padding: 2px;
+}
