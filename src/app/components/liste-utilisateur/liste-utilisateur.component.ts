@@ -4,6 +4,7 @@ import {User} from "../../model/model.user";
 import {Router, ActivatedRoute} from "@angular/router";
 import {environment} from '../../../environments/environment';
 import {AuthService} from "../../services/auth.service";
+import { UserService } from "../../services/user.service";
 import { Observable, Subscriber, Subscription } from 'rxjs';
 import { map, startWith} from 'rxjs/operators';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
@@ -33,11 +34,13 @@ export class ListeUtilisateurComponent implements OnInit {
   filterParNom: string;
   utilisateur: User;
 
+
   constructor(
     public authService: AuthService, 
     public router: Router,
     private http: Http,
     private route: ActivatedRoute,
+    private userService:UserService
   ) {
 
     this.route.params.subscribe(params => {
@@ -52,12 +55,10 @@ export class ListeUtilisateurComponent implements OnInit {
     this.idEtablissement = this.currentUser.idEtablissement;
     
     if (this.currentUser.privilege == "Administrateur"){
-      
       this.administrateur = true;
     }
 
-    this.url = environment.API_URL+"/" + this.typeUtilisateur + "/etablissement/"+this.currentUser.idEtablissement;
-    this.utilisateurs = this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+    this.utilisateurs = this.userService.getUsers(this.typeUtilisateur, this.currentUser.idEtablissement);  
 
     this.utilisateurs.forEach(arrayClasseUtilisateur => {
       arrayClasseUtilisateur.forEach(utilisateur => {
@@ -75,6 +76,8 @@ export class ListeUtilisateurComponent implements OnInit {
       })
     });
 
+
+    
   }
 
   ngOnInit() {  }
@@ -96,5 +99,19 @@ export class ListeUtilisateurComponent implements OnInit {
   onChangeNom(optionDuMenu) {
     this.filterParNom= optionDuMenu;
   }
+  
+  updateDisponibilite(idUtilisateur){
+    this.userService.updateDisponibilite(this.typeUtilisateur, idUtilisateur);
+  }
 
+  state : boolean;
+  checkAll(ev) {
+    this.utilisateurs.forEach(x => x.state = ev.target.checked)
+  }
+  
+  isAllChecked() {
+    return this.utilisateurs.every(_ => _.state);
+  }
+  
+  
 }
