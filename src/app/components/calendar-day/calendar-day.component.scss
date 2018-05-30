@@ -12,10 +12,10 @@ $xlLower: 1220px;
         height: 80vh;
     }
     margin-bottom: $marginBottom;
+    background-color: rgba(0, 0, 0, 0.125);
 }
 
 h2 {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
     padding: 6px;
     text-align: center;
     font-size: 0.7em;
