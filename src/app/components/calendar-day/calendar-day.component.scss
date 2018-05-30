@@ -1,4 +1,4 @@
-$marginBottom: 4px;
+$marginBottom: 10px;
 
 $smLower: 576px;
 $mdLower: 768px;
@@ -15,7 +15,7 @@ $xlLower: 1220px;
 }
 
 h2 {
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
     padding: 6px;
     text-align: center;
     font-size: 0.7em;
@@ -26,5 +26,6 @@ h2 {
 
     @media (min-width: $mdLower) { 
         overflow: auto;
+        padding-bottom: 5px;
     }
 }

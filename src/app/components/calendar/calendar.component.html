@@ -1,27 +1,27 @@
 <div class="container">
   <div class="row">
-    <week-calendar-day dayLabel="Lundi" [courseSlotsObservable]="courseSlotsObservable"
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Lundi" [courseSlotsObservable]="courseSlotsObservable"
      [day]="days.Lundi" [weekNumber]="weekNumber" [year]="year">
     
     </week-calendar-day>
-    <week-calendar-day dayLabel="Mardi" [courseSlotsObservable]="courseSlotsObservable"
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Mardi" [courseSlotsObservable]="courseSlotsObservable"
      [day]="days.Mardi" [weekNumber]="weekNumber" [year]="year">
       
     </week-calendar-day>
-    <week-calendar-day dayLabel="Mercredi" [courseSlotsObservable]="courseSlotsObservable"
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Mercredi" [courseSlotsObservable]="courseSlotsObservable"
      [day]="days.Mercredi" [weekNumber]="weekNumber" [year]="year">
       
     </week-calendar-day>
-    <week-calendar-day dayLabel="Jeudi" [courseSlotsObservable]="courseSlotsObservable"
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Jeudi" [courseSlotsObservable]="courseSlotsObservable"
      [day]="days.Jeudi" [weekNumber]="weekNumber" [year]="year">
       
     </week-calendar-day>
-    <week-calendar-day dayLabel="Vendredi" [courseSlotsObservable]="courseSlotsObservable"
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Vendredi" [courseSlotsObservable]="courseSlotsObservable"
      [day]="days.Vendredi" [weekNumber]="weekNumber" [year]="year">
       
     </week-calendar-day>
   
-    <div>
+    <div class="col-12 col-md-2">
       
       <!--
         Le composant calendar-week-end-day est un composant similaire à
@@ -29,14 +29,14 @@
         de superposer les jours Samedi et Dimanche.
       -->
       <div class="row">
-        <week-calendar-weekend-day dayLabel="Samedi" [courseSlotsObservable]="courseSlotsObservable"
+        <week-calendar-weekend-day class="col-12" dayLabel="Samedi" [courseSlotsObservable]="courseSlotsObservable"
          [day]="days.Samedi" [weekNumber]="weekNumber" [year]="year">
       
         </week-calendar-weekend-day>
       </div>
 
       <div class="row">
-        <week-calendar-weekend-day dayLabel="Dimanche" [courseSlotsObservable]="courseSlotsObservable"
+        <week-calendar-weekend-day class="col-12" dayLabel="Dimanche" [courseSlotsObservable]="courseSlotsObservable"
          [day]="days.Dimanche" [weekNumber]="weekNumber" [year]="year">
       
         </week-calendar-weekend-day>
