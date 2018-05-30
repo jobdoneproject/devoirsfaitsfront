@@ -5,9 +5,12 @@
 
 
 h2 {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
     font-size: 0.8em;
     text-align: center;
+}
+
+.card.slot {
+    border: 0;
 }
 
 .content {
