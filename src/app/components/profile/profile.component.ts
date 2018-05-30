@@ -24,6 +24,11 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
+    /////////////////////////////////////////
+    this.year = 2018;
+    this.weekNumber = 23;
+    /////////////////////////////////////////
+
     const attributesAreMissing = this.weekNumber === undefined || this.year === undefined;
     if (attributesAreMissing) {
       this.referenceDate = new Date();
@@ -32,6 +37,8 @@ export class ProfileComponent implements OnInit {
     }
     else {
       this.referenceDate = WeekUtils.mondayForWeekNumber(this.weekNumber, this.year);
+      this.year = this.referenceDate.getFullYear();
+      this.weekNumber = WeekUtils.getWeekNumberForDate(this.referenceDate);
     }  
   }
 
@@ -63,11 +70,15 @@ export class ProfileComponent implements OnInit {
     const referenceDateAsMoment = moment(this.referenceDate);
     const newReferenceDateAsMoment = referenceDateAsMoment.subtract(1, 'weeks').startOf('isoWeek');
     this.referenceDate = newReferenceDateAsMoment.toDate();
+    this.year = this.referenceDate.getFullYear();
+    this.weekNumber = WeekUtils.getWeekNumberForDate(this.referenceDate);
   }
 
   semaineSuivante(){
     const referenceDateAsMoment = moment(this.referenceDate);
     const newReferenceDateAsMoment = referenceDateAsMoment.add(1, 'weeks').startOf('isoWeek');
     this.referenceDate = newReferenceDateAsMoment.toDate();
+    this.year = this.referenceDate.getFullYear();
+    this.weekNumber = WeekUtils.getWeekNumberForDate(this.referenceDate);
   }
 }
