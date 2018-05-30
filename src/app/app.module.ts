@@ -14,7 +14,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavbarComponent} from "./components/navbar/navbar.component";
-import { ElevesComponent} from "./components/listes/eleves/eleves.component";
 import { PageLandingComponent } from './components/page-landing/page-landing.component';
 import { PageUserEditComponent } from './components/page-user-edit/page-user-edit.component';
 import { ContainerComponent } from './components/container/container.component';
@@ -27,6 +26,10 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarDayComponent } from './components/calendar-day/calendar-day.component';
 import { CalendarSlotComponent } from './components/calendar-slot/calendar-slot.component';
 import { CalendarWeekendDayComponent } from './components/calendar-weekend-day/calendar-weekend-day.component';
+import { UtilisateurDisponiblesPipe } from './pipes/utilisateur-disponibles.pipe';
+import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-utilisateur.component';
+import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
+import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,6 @@ import { CalendarWeekendDayComponent } from './components/calendar-weekend-day/c
     RegisterComponent,
     ProfileComponent,
     NavbarComponent,
-    ElevesComponent,
     PageLandingComponent,
     PageUserEditComponent,
     ContainerComponent,
@@ -45,7 +47,11 @@ import { CalendarWeekendDayComponent } from './components/calendar-weekend-day/c
     CalendarComponent,
     CalendarDayComponent,
     CalendarSlotComponent,
-    CalendarWeekendDayComponent
+    CalendarWeekendDayComponent,
+    UtilisateurDisponiblesPipe,
+    ListeUtilisateurComponent,
+    EleveClassesPipe,
+    NomDisponiblesPipe
   ],
   imports: [
     BrowserModule,

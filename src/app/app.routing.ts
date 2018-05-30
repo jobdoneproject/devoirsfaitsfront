@@ -4,7 +4,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {UrlPermission} from "./urlPermission/url.permission";
-import {ElevesComponent} from "./components/listes/eleves/eleves.component"
+import {ListeUtilisateurComponent} from "./components/liste-utilisateur/liste-utilisateur.component"
 import { PageLandingComponent } from './components/page-landing/page-landing.component';
 import { PageUserEditComponent } from './components/page-user-edit/page-user-edit.component';
 import { ContainerComponent } from './components/container/container.component';
@@ -16,16 +16,15 @@ const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  // { path: 'profile', component: ProfileComponent ,canActivate: [UrlPermission] },
-  // { path: 'eleves', component: ElevesComponent ,canActivate: [UrlPermission] },
+  { path: 'liste/:type', 
+    component: ContainerComponent ,canActivate: [UrlPermission],
+    children: [{path: '', component: ListeUtilisateurComponent, outlet: 'connected'}]
+  },
+
   { path: 'profile',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: ProfileComponent, outlet: 'connected'}]
   },
-  { path: 'eleves', 
-    component: ContainerComponent ,canActivate: [UrlPermission],
-    children: [{path: '', component: ElevesComponent, outlet: 'connected'}]
-   },
 
   { path: 'edition-utilisateur/:id',
     component: ContainerComponent, canActivate: [UrlPermission],

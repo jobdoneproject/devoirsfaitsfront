@@ -27,6 +27,7 @@
     "@types/underscore": "^1.8.8",
     "angular4-social-login": "^1.1.1",
     "bootstrap": "^4.1.1",
+    "compass-mixins": "^0.12.10",
     "core-js": "^2.5.6",
     "handlebars": "^4.0.11",
     "jasmine": "^3.1.0",

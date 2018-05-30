@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions,Response} from '@angular/http';
 import {User} from "../model/model.user";
+import {environment} from "../../environments/environment";
 import {AppComponent} from "../app.component";
 import { map, throttle } from 'rxjs/operators';
 
@@ -19,7 +20,7 @@ export class AuthService {
     let options = new RequestOptions();
     options.headers=headers;
 
-    return this.http.get(AppComponent.API_URL+"/account/login" ,   options)
+    return this.http.get(environment.API_URL+"/account/login" ,   options)
       .pipe(map((response: Response) => {
       // login successful if there's a jwt token in the response
       let user = response.json().principal;// the returned user object is a principal object
@@ -35,7 +36,7 @@ export class AuthService {
     console.log('logout service');
     localStorage.removeItem('currentUser');
 
-    return this.http.post(AppComponent.API_URL+"logout",{})
+    return this.http.post(environment.API_URL+"logout",{})
       .pipe(map((response: Response) => {
       }));
 
