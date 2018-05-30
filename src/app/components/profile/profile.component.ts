@@ -3,6 +3,7 @@ import {AuthService} from "../../services/auth.service";
 import {User} from "../../model/model.user";
 import {Router} from "@angular/router";
 import { WeekUtils } from '../../utils/WeekUtils';
+import * as moment from "moment";
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +18,10 @@ export class ProfileComponent implements OnInit {
   protected year: number;
 
   constructor(public authService: AuthService, public router: Router) {
+  
+  }
+
+  ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     const attributesAreMissing = this.weekNumber === undefined || this.year === undefined;
@@ -27,11 +32,7 @@ export class ProfileComponent implements OnInit {
     }
     else {
       this.referenceDate = WeekUtils.mondayForWeekNumber(this.weekNumber, this.year);
-    }
-  }
-
-  ngOnInit() {
-    
+    }  
   }
 
   get startDate() : Date {
@@ -55,5 +56,18 @@ export class ProfileComponent implements OnInit {
         error => {
 
         });
+  }
+
+
+  semainePrecedente(){
+    const referenceDateAsMoment = moment(this.referenceDate);
+    const newReferenceDateAsMoment = referenceDateAsMoment.subtract(1, 'weeks').startOf('isoWeek');
+    this.referenceDate = newReferenceDateAsMoment.toDate();
+  }
+
+  semaineSuivante(){
+    const referenceDateAsMoment = moment(this.referenceDate);
+    const newReferenceDateAsMoment = referenceDateAsMoment.add(1, 'weeks').startOf('isoWeek');
+    this.referenceDate = newReferenceDateAsMoment.toDate();
   }
 }
