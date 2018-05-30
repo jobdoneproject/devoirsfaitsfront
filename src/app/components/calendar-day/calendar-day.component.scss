@@ -5,10 +5,9 @@ $mdLower: 768px;
 $lgLower: 992px;
 $xlLower: 1220px;   
 
-.root {
-    border: 2px solid black;
-    border-radius: 10px;
+.card-body {
     width: 100%;
+    padding: 0px;
     @media (min-width: $mdLower) { 
         height: 80vh;
     }
