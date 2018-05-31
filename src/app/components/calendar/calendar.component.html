@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Lundi" [courseSlotsObservable]="courseSlotsObservable"
+     [day]="days.Lundi" [weekNumber]="weekNumber" [year]="year">
+    
+    </week-calendar-day>
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Mardi" [courseSlotsObservable]="courseSlotsObservable"
+     [day]="days.Mardi" [weekNumber]="weekNumber" [year]="year">
+      
+    </week-calendar-day>
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Mercredi" [courseSlotsObservable]="courseSlotsObservable"
+     [day]="days.Mercredi" [weekNumber]="weekNumber" [year]="year">
+      
+    </week-calendar-day>
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Jeudi" [courseSlotsObservable]="courseSlotsObservable"
+     [day]="days.Jeudi" [weekNumber]="weekNumber" [year]="year">
+      
+    </week-calendar-day>
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Vendredi" [courseSlotsObservable]="courseSlotsObservable"
+     [day]="days.Vendredi" [weekNumber]="weekNumber" [year]="year">
+      
+    </week-calendar-day>
+  
+    <div class="col-12 col-md-2">
+      
+      <!--
+        Le composant calendar-week-end-day est un composant similaire à
+        week-calendar-day mais avec une hauteur réduite de moitié : ce qui permet
+        de superposer les jours Samedi et Dimanche.
+      -->
+      <div class="row">
+        <week-calendar-weekend-day class="col-12" dayLabel="Samedi" [courseSlotsObservable]="courseSlotsObservable"
+         [day]="days.Samedi" [weekNumber]="weekNumber" [year]="year">
+      
+        </week-calendar-weekend-day>
+      </div>
+
+      <div class="row">
+        <week-calendar-weekend-day class="col-12" dayLabel="Dimanche" [courseSlotsObservable]="courseSlotsObservable"
+         [day]="days.Dimanche" [weekNumber]="weekNumber" [year]="year">
+      
+        </week-calendar-weekend-day>
+      </div>
+
+    </div>
+  </div>
+
+</div>

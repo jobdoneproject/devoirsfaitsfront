@@ -33,6 +33,10 @@ import { PageCreneauComponent } from './components/page-creneau/page-creneau.com
 import { CreneauService } from "./services/creneau.service";
 import { RoomService } from "./services/room.service";
 
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarDayComponent } from './components/calendar-day/calendar-day.component';
+import { CalendarSlotComponent } from './components/calendar-slot/calendar-slot.component';
+import { CalendarWeekendDayComponent } from './components/calendar-weekend-day/calendar-weekend-day.component';
 import { UtilisateurDisponiblesPipe } from './pipes/utilisateur-disponibles.pipe';
 import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-utilisateur.component';
 import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
@@ -53,6 +57,10 @@ import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
     ContainerSidebarComponent,
     DatepickerComponent,
     PageCreneauComponent,
+    CalendarComponent,
+    CalendarDayComponent,
+    CalendarSlotComponent,
+    CalendarWeekendDayComponent,
     UtilisateurDisponiblesPipe,
     ListeUtilisateurComponent,
     EleveClassesPipe,
