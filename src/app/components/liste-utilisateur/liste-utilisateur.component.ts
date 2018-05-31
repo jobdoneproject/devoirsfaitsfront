@@ -11,6 +11,7 @@ import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { Scope } from '@angular/core/src/profile/wtf_impl';
 import { Subject } from 'rxjs/Subject';
 import { SubscribeOnObservable } from 'rxjs/internal-compatibility';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-liste-utilisateur',
@@ -80,13 +81,47 @@ export class ListeUtilisateurComponent implements OnInit {
     
   }
 
-  ngOnInit() {  }
+  ngOnInit() { 
+
+(function($) {
+  $(document).ready(function(){
+  // Check or Uncheck All checkboxes
+  $("#checkall").change(function(){
+    var checked = $(this).is(':checked');
+    if(checked){
+      $(".checkbox").each(function(){
+        $(this).prop("checked",true);
+      });
+    }else{
+      $(".checkbox").each(function(){
+        $(this).prop("checked",false);
+      });
+    }
+  });
+
+ // Changing state of CheckAll checkbox 
+ $(".checkbox").click(function(){
+
+   if($(".checkbox").length == $(".checkbox:checked").length) {
+     $("#checkall").prop("checked", true);
+   } else {
+     $("#checkall").removeAttr("checked");
+   }
+
+ });
+});
+})(jQuery);
+   }
   
   onSelect(utilisateur: User): void {
     this.utilisateur = utilisateur;
   }
+  
   redirectEditUser(idUtilisateur: number) {
-    this.router.navigate(['edition-utilisateur/' + idUtilisateur]);
+    //this.route.params.subscribe(params => {
+    //this.typeUtilisateur = params['type']});
+
+    this.router.navigate(['edition-utilisateur/' + this.typeUtilisateur + '/' + idUtilisateur]);
   }
 
   checked() {

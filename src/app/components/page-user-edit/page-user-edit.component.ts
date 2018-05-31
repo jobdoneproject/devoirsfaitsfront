@@ -4,7 +4,7 @@ import { User} from "../../model/model.user";
 import { Router} from "@angular/router";
 import { AppComponent} from "../../app.component";
 import { AuthService} from "../../services/auth.service";
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { UtilsService } from '../../services/utils.service';
 import { UserService } from '../../services/user.service';
@@ -16,11 +16,10 @@ import { USERS } from '../../mock-user';
   templateUrl: './page-user-edit.component.html',
   styleUrls: ['./page-user-edit.component.css'],
   encapsulation: ViewEncapsulation.None,
-  providers: [UserService]
 })
 export class PageUserEditComponent implements OnInit {
   public editedUser: User;
-  
+
   private calledId: number;
   id: number;
   private sub: any;
@@ -29,7 +28,8 @@ export class PageUserEditComponent implements OnInit {
   private errorMessage:string;
   private idEtablissement: number;
   private url: string;
-  
+  private typeUtilisateur:string;
+
   // private editedUser: Observable<User>;
 
   constructor(
@@ -41,14 +41,20 @@ export class PageUserEditComponent implements OnInit {
   ) {
 
     // Vérif user Administrateur :
-    /*this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.idEtablissement = this.currentUser.idEtablissement;
-    console.log("this.currentUser : " + JSON.stringify(this.currentUser));
-    console.log("this.currentUser.privilege : " + this.currentUser.privilege);
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
     if (this.currentUser.privilege == "Administrateur"){
       this.administrateur = true;
-    }*/
+    }
 
+
+    this.route.params.subscribe(params => {
+      this.typeUtilisateur = params['type'];
+      this.calledId = params['id'];}); 
+
+      this.userService.getUser( this.typeUtilisateur, this.calledId)
+      .map((value: User) => this.editedUser = value)
+      .subscribe();
 
 
     // Récupération editedUser
@@ -79,11 +85,11 @@ export class PageUserEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.calledId = +params['id'];
-      console.log('calledId : ' + this.calledId);
-      this.getUserById(this.calledId);
-    });
+    // this.sub = this.route.params.subscribe(params => {
+    //   this.calledId = +params['id'];
+    //   console.log('calledId : ' + this.calledId);
+    //   this.getUserById(this.calledId);
+    // });
     // this.editedUser = this.userService.getUserById(this.calledId);
     // console.log("editedUser : " + JSON.stringify(this.editedUser));
 
@@ -110,10 +116,10 @@ export class PageUserEditComponent implements OnInit {
   //   return response;
   // }
 
-  getUserById(id): void {
-    this.userService.getUserById(id)
-      .subscribe(user => this.editedUser = user);
-  }
+  // getUserById(id): void {
+  //   this.userService.getUserById(id)
+  //     .subscribe(user => this.editedUser = user);
+  // }
 
   removeGroup(id): void {
     console.log(id);

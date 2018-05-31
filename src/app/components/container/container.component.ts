@@ -32,10 +32,4 @@ export class ContainerComponent implements OnInit {
 
   ngOnInit() { }
 
-  ngAfterViewInit() {
-    require("../../../../node_modules/jquery/dist/jquery.js");
-    require("../../../assets/js/jquery-3.3.1.slim.min.js");
-  
-  }
-
 }

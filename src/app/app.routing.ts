@@ -27,7 +27,7 @@ const appRoutes: Routes = [
   },
 
 
-  { path: 'edition-utilisateur/:id',
+  { path: 'edition-utilisateur/:type/:id',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
   },

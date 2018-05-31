@@ -36,7 +36,6 @@ export class UserService {
   getUsers(typeUtilisateur:string , idEtablissement: number) {
     this.url = environment.API_URL+"/" + typeUtilisateur + "/etablissement/" + idEtablissement;
     return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
-
   }
 
 
@@ -45,6 +44,10 @@ export class UserService {
     this.http.put( this.url, "").subscribe(res => console.log("url partie"));;
   }
 
+  getUser(typeUtilisateur: string, idUtilisateur: number){
+    this.url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
+    return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+  }
 
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
