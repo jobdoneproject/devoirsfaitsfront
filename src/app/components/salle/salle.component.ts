@@ -48,15 +48,15 @@ export class SalleComponent implements OnInit {
       this.administrateur = true;
     }
 
-    this.listSalle = this.roomservice.getAll(this.currentUser.idEtablissement);
+    //this.listSalle = this.roomservice.getAll(this.currentUser.idEtablissement);
 
-    this.listSalle.forEach(arrayNomUtilisateur => {
+  /*  this.listSalle.forEach(arrayNomUtilisateur => {
       arrayNomUtilisateur.forEach(salle => {
         if (this.nomDisponibles.indexOf(salle.nom) == -1) {
           this.nomDisponibles.push(salle.nom);
         }
       })
-    });
+    });*/
   }
 
   ngOnInit() {
