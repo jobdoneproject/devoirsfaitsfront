@@ -1,6 +1,4 @@
 
-  <!-- <div *ngIf="administrateur; else elseBlock" class="col-md-12 d-flex align-items-stretch grid-margin">
-     -->
   <div class="col-md-12 d-flex align-items-stretch grid-margin">
     <div class="row flex-grow">
       <div class="col-12 stretch-card">
@@ -14,11 +12,7 @@
             <div *ngIf="!editedUser;" class="alert alert-warning" role="alert">
                 Aucun utilisateur correspondant
             </div>
-            <!-- <div class="float-right">
-              <button type="submit" class="btn btn-success mr-2">Supprimer l'utilisateur</button>
-            </div> -->
             <p class="card-description">
-              <!-- Horizontal form layout -->
             </p>
             <form class="forms-sample" action="" method="POST">
                 <input type="hidden" id="userId" name= "userId" value="{{editedUser.id}}">
@@ -80,63 +74,3 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-  <div class="col-md-12 d-flex align-items-stretch grid-margin">
-    <div class="row flex-grow">
-      <div class="col-12 stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4>Groupes souscrits</h4>
-
-            <div class="form-group">
-              <select class="custom-select col-9" id="inputGroupSelect04">
-                  <option>Groupe 21</option>
-                  <option>Groupe 22</option>
-                  <option>Groupe 23</option>
-                  <option>Groupe 24</option>
-                  <option>Groupe 25</option>
-              </select>
-              <!-- <div class="input-group-append col-3"> -->
-                <button class="btn btn-outline-secondary col-3" type="button">Ajouter</button>
-              <!-- </div> -->
-            </div>
-            
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Groupe 12 <button (click)="removeGroup(12)" class="float-right">Supprimer</button></li>
-              <li class="list-group-item">Groupe 13 <button (click)="removeGroup(13)" class="float-right">Supprimer</button></li>
-              <li class="list-group-item">Groupe 14 <button (click)="removeGroup(14)" class="float-right">Supprimer</button></li>
-              <li class="list-group-item">Groupe 15 <button (click)="removeGroup(15)" class="float-right">Supprimer</button></li>
-            </ul>
-      
-            <!-- <div class="form-group">
-                <label for="exampleFormControlSelect2">Default select</label>
-                <select class="form-control" id="exampleFormControlSelect2">
-                  <option>Groupe 21</option>
-                  <option>Groupe 22</option>
-                  <option>Groupe 23</option>
-                  <option>Groupe 24</option>
-                  <option>Groupe 25</option>
-                </select>
-              </div> -->
-
-            
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <ng-template #elseBlock>   
-    <p>
-      No eleves here !
-    </p>
-  </ng-template>
