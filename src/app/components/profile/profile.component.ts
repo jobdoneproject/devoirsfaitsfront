@@ -15,9 +15,9 @@ export class ProfileComponent implements OnInit {
   title:string = "Vue du calendrier" ;
 
   currentUser: User;
-  protected referenceDate: Date;
-  protected weekNumber: number;
-  protected year: number;
+  referenceDate: Date;
+  weekNumber: number;
+  year: number;
 
   constructor(public authService: AuthService, public router: Router) {
   
