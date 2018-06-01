@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../model/model.user";
 import {Router} from "@angular/router";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-container-navbar',
@@ -27,8 +28,20 @@ export class ContainerNavbarComponent implements OnInit {
       this.eleve = true;
     }
   }  
+
+  
+
   
   ngOnInit() {
+    (function($) {
+      'use strict';
+      $(function() {
+        $('[data-toggle="offcanvas"]').on("click", function() {
+          $('.sidebar-offcanvas').toggleClass('active')
+        });
+      });
+    })(jQuery);
+  
   }
 
   // login out from the app

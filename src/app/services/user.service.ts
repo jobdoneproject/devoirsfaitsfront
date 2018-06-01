@@ -5,10 +5,13 @@ import { of } from 'rxjs/observable/of';
 import {User} from "../model/model.user";
 import { UtilsService } from './utils.service';
 import { HttpClient } from '@angular/common/http';
+import { map, startWith} from 'rxjs/operators';
+
 import "rxjs/Rx";
 import { Url } from 'url';
 import { USERS } from '../mock-user';
 import { Http, Headers, RequestOptions,Response} from '@angular/http';
+import {environment} from '../../environments/environment';
 
 
 @Injectable()
@@ -17,32 +20,33 @@ export class UserService {
   searchedUser: User;
   users: User[];
 
-  private url = 'http://localhost:8080/eleve/'; // Changer par url prod
-
+  //private url = 'http://localhost:8080/eleve/'; // Changer par url prod
+  private url : string;
 
   constructor(
     // private http: Http,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private http: Http
   ) { }
 
   getCurrentUser(): Observable<User> {
     return this.getCurrentUser();
   } 
 
-  // UTILISE MOCK
-  getUserById(id): Observable<User> {
-    // Récupération all users
-    this.users = USERS;
-    this.searchedUser = this.findById(this.users, id);
-    console.log('searchedUser : ' + this.searchedUser);
-    return of(this.searchedUser);
+  getUsers(typeUtilisateur:string , idEtablissement: number) {
+    this.url = environment.API_URL+"/" + typeUtilisateur + "/etablissement/" + idEtablissement;
+    return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
   }
 
 
+  updateDisponibilite(typeUtilisateur: string, idUtilisateur: number){
+    this.url = environment.API_URL+"/" + typeUtilisateur + "/disponible/" + idUtilisateur;
+    this.http.put( this.url, "").subscribe(res => console.log("url partie"));;
+  }
 
-  getUserByIdSecond(id){
-    console.log('url : ' + this.url + 'eleve/' + id)
-    return this.httpClient.get(this.url + 'eleve/' + id);
+  getUser(typeUtilisateur: string, idUtilisateur: number){
+    this.url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
+    return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
   }
 
   private handleError(error: Response) {

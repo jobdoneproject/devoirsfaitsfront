@@ -14,10 +14,10 @@ import { Observable } from 'rxjs/Observable';
 })
 export class CalendarComponent implements OnInit {
 
-  @Input() protected weekNumber: number;
-  @Input() protected year: number;
-  protected courseSlotsObservable: Observable<CourseSlot []>;
-  protected days = {
+  @Input() weekNumber: number;
+  @Input() year: number;
+   courseSlotsObservable: Observable<CourseSlot []>;
+   days = {
     Lundi : WeekDay.Lundi,
     Mardi : WeekDay.Mardi,
     Mercredi: WeekDay.Mercredi,

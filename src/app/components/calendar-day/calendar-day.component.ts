@@ -13,12 +13,12 @@ import * as _ from 'underscore';
 })
 export class CalendarDayComponent implements OnInit {
 
-  @Input() protected dayLabel: String;
-  @Input() protected courseSlotsObservable: Observable<CourseSlot[]>;
-  protected courseSlots: CourseSlot[];
-  @Input() protected day: WeekDay;
-  @Input() protected weekNumber: number;
-  @Input() protected year: number;
+  @Input() dayLabel: String;
+  @Input() courseSlotsObservable: Observable<CourseSlot[]>;
+  courseSlots: CourseSlot[];
+  @Input() day: WeekDay;
+  @Input() weekNumber: number;
+  @Input() year: number;
 
   constructor() {
   }

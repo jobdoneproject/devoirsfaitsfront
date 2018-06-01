@@ -6,5 +6,4 @@
 export const environment = {
   production: false,
   API_URL : "http://localhost:8080",
-  CRENEAUX_URL: 'http://localhost:3000/creneaux',
 };

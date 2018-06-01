@@ -17,14 +17,19 @@
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "assets": [
-              "src/assets",
-              "src/favicon.ico"
+                    "src/assets",
+                    "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.css"
+                    "src/styles.scss",
+                    "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
-            "scripts": []
+            "scripts": [
+                      "node_modules/jquery/dist/jquery.js",
+                      "node_modules/popper.js/dist/popper.min.js",
+                      "node_modules/bootstrap/dist/js/bootstrap.min.js",
+                      "src/assets/template-master/js/misc.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -70,10 +75,15 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [],
+            "scripts": [
+                      "node_modules/jquery/dist/jquery.js",
+                      "node_modules/popper.js/dist/popper.min.js",
+                      "node_modules/bootstrap/dist/js/bootstrap.min.js",
+                      "src/assets/template-master/js/misc.js"
+            ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.css"
+                    "src/styles.scss",
+                    "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "assets": [
               "src/assets",

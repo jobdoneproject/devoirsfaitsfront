@@ -7,8 +7,8 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">
-                <span *ngIf="editedUser.privilege ==='eleve'"> Elève :</span>
-                <span *ngIf="editedUser.privilege ==='prof'"> Professeur :</span>
+                <span *ngIf="editedUser.privilege ==='Eleve'"> Elève :</span>
+                <span *ngIf="editedUser.privilege ==='Professeur'"> Professeur :</span>
                 {{editedUser.prenom}} {{editedUser.nom}}
             </h4> 
             <div *ngIf="!editedUser;" class="alert alert-warning" role="alert">
@@ -37,7 +37,7 @@
                   <input type="text" class="form-control" id="userprenom" name="userprenom" value="{{editedUser.prenom}}">
                 </div>
               </div>
-              <div class="form-group row" *ngIf="editedUser.privilege ==='eleve'">
+              <div class="form-group row" *ngIf="editedUser.privilege =='Eleve'">
                 <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Classe</label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" id="userclasse" name="userclasse" value="{{editedUser.classe}}">
@@ -72,7 +72,7 @@
                 </label>
               </div>
               <button type="submit" class="btn btn-success mr-2">Submit</button>
-              <button class="btn btn-light">Cancel</button>&nbsp;
+              <button class="btn btn-light" onclick="onCancel()">Cancel</button>&nbsp;
               <button type="submit" class="btn btn-warning mr-2">Supprimer l'utilisateur</button>
             </form>
           </div>
