@@ -1,0 +1,28 @@
+<h4 class="card-title">Salles de l'Etablissement</h4>
+<form class="forms-sample">
+  <div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card-body">
+        <div class="card-body">
+          Créer une nouvelle salle
+          <div class="form-group">
+            <label for="heure_debut">Nom</label>
+            <input type="text" class="form-control" id="nom_salle" placeholder="" name="nom_salle" id="nom_salle"[(ngModel)]="nom_salle" required>
+            <button type="button" class="btn btn-link" (click)="createSalle(nom_salle.ngValue)">Créer</button>
+          </div>
+        </div>
+        Liste des Salles de l'Etablissement :
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Choisir une salle" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup)="onChangeNom($event.target.value)">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let salle of allSalles | async | nomDisponibles: filterParNom" [value]="eleve" >
+              {{ salle.nom }} - <button type="button" class="btn btn-link" (click)="deleteSalle(salle)">Créer</button>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</form>
+
+
