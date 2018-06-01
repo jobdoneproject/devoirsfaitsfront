@@ -116,10 +116,10 @@ export class PageUserEditComponent implements OnInit {
   //   return response;
   // }
 
-  // getUserById(id): void {
-  //   this.userService.getUserById(id)
-  //     .subscribe(user => this.editedUser = user);
-  // }
+//  getUserById(id): void {
+//    this.userService.getUserById(id)
+//      .subscribe(user => this.editedUser = user);
+//  }
 
   removeGroup(id): void {
     console.log(id);
