@@ -24,7 +24,7 @@ import { Room } from '../../model/model.room';
   templateUrl: './salle.component.html',
   styleUrls: ['./salle.component.scss']
 })
-export class SalleComponenet implements OnInit {
+export class SalleComponent implements OnInit {
 
   roomservice: RoomService;
   currentUser: User;

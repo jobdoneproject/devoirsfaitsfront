@@ -41,7 +41,7 @@ import { UtilisateurDisponiblesPipe } from './pipes/utilisateur-disponibles.pipe
 import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-utilisateur.component';
 import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
 import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
-import { SalleComponent } from './salle/salle.component';
+import { SalleComponent } from './components/salle/salle.component';
 
 @NgModule({
   declarations: [
