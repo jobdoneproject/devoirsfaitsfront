@@ -118,9 +118,6 @@ export class ListeUtilisateurComponent implements OnInit {
   }
   
   redirectEditUser(idUtilisateur: number) {
-    //this.route.params.subscribe(params => {
-    //this.typeUtilisateur = params['type']});
-
     this.router.navigate(['edition-utilisateur/' + this.typeUtilisateur + '/' + idUtilisateur]);
   }
 
