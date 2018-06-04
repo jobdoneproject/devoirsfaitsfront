@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
     /////////////////////////////////////////
     this.year = 2018;
-    this.weekNumber = 24;
+    this.weekNumber = 23;
     /////////////////////////////////////////
 
     const attributesAreMissing = this.weekNumber === undefined || this.year === undefined;
