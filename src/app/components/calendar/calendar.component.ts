@@ -28,7 +28,11 @@ export class CalendarComponent implements OnInit {
   };
 
   constructor( private coursesSlotService : CourseSlotsService ) {
-    this.courseSlotsObservable = this.coursesSlotService.fetchSlots();
+    this.courseSlotsObservable = this.coursesSlotService.fetchSlots(1, 2018, 25);
+  }
+
+  updateSlots () {
+    this.courseSlotsObservable = this.coursesSlotService.fetchSlots(1, this.year, this.weekNumber);
   }
 
   ngOnInit() {

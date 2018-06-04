@@ -8,8 +8,14 @@ import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { UtilsService } from '../../services/utils.service';
 import { UserService } from '../../services/user.service';
-import { USERS } from '../../mock-user';
-
+import {
+  ReactiveFormsModule,
+  FormsModule,
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder
+} from '@angular/forms';
 
 @Component({
   selector: 'app-page-user-edit',
@@ -18,14 +24,15 @@ import { USERS } from '../../mock-user';
   encapsulation: ViewEncapsulation.None,
 })
 export class PageUserEditComponent implements OnInit {
-  public editedUser: User;
+   
+  editedUser: User;
 
    currentUser: User;
    administrateur: boolean;
    typeUtilisateur:string;
    idUtilisateur: number;
-
-  // private editedUser: Observable<User>;
+   editUserForm: FormGroup;
+   //utilisateurs: Observable<User>;
 
   constructor(
     public authService: AuthService, 
@@ -33,6 +40,7 @@ export class PageUserEditComponent implements OnInit {
     public http: Http,
     public route: ActivatedRoute,
     public userService: UserService,
+    private formBuilder: FormBuilder,
   ) {
 
     // Vérif user Administrateur :
@@ -47,19 +55,43 @@ export class PageUserEditComponent implements OnInit {
       this.typeUtilisateur = params['type'];
       this.idUtilisateur = params['id'];}); 
 
-    this.userService.getUser( this.typeUtilisateur, this.idUtilisateur)
-      .map((value: User) => this.editedUser = value)
-      .subscribe();
+      this.initUser();
+
+
 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
 
-  /*onCancel() {
-    if (this.editUserForm.valid) {
+  //   this.editUserForm = this.formBuilder.group({
+  //     nom: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),
+  //     prenom: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),
+  // });
+
+  }
+
+  initUser(){
+    this.userService.getUser( this.typeUtilisateur, this.idUtilisateur)
+      .map((value: User) => {this.editedUser = value;})
+      .subscribe();
+  }
+
+  onReset() {
+    this.initUser();
+    console.log("Form reset!");
+  }
+
+  onSubmit() {
+    this.userService.putUser(this.typeUtilisateur, this.editedUser);
       console.log("Form Submitted!");
-      this.editUserForm.reset();
-    }
-  }*/
+      this.router.navigate(['liste/' + this.typeUtilisateur]);
+  }
 
+  onSupress() {
+    if(confirm("Voulez-vous vraiment supprimer "+ this.editedUser.nom + " " +this.editedUser.prenom + " ?")){
+      this.userService.deleteUser(this.typeUtilisateur, this.idUtilisateur);
+      console.log("Form Suppress!");
+      this.router.navigate(['liste/' + this.typeUtilisateur]);
+    }
+}
 }

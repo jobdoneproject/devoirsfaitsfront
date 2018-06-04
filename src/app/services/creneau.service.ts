@@ -3,6 +3,7 @@ import { CourseSlot } from "./../model/model.courseslot";
 import { User } from "./../model/model.user";
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Moment } from 'moment';
+import { Room } from '../model/model.room';
 
 
 
@@ -14,7 +15,7 @@ export class CreneauService {
   constructor() { }
 
 
-  createSlot(debut:number, fin:number, eleves:User[], profs:User[], salle:String ) {
+  createSlot(debut:number, fin:number, eleves:User[], profs:User[], salle:Room ) {
     this.newCreneau.dateDebut = debut;
     this.newCreneau.dateFin = fin;
     this.newCreneau.eleves = eleves;

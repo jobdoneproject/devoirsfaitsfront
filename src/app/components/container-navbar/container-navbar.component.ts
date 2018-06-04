@@ -5,6 +5,11 @@ import {AuthService} from "../../services/auth.service";
 import {User} from "../../model/model.user";
 import {Router} from "@angular/router";
 import * as $ from 'jquery';
+import { map} from 'rxjs/operators';
+import { Observable, Subscriber, Subscription } from 'rxjs';
+import {environment} from '../../../environments/environment';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+
 
 @Component({
   selector: 'app-container-navbar',
@@ -13,12 +18,15 @@ import * as $ from 'jquery';
 })
 export class ContainerNavbarComponent implements OnInit {
 
+  nomEtablissement: String;
   currentUser: User;
   administrateur: boolean;
   professeur: boolean;
   eleve: boolean;
+  url:string;
+  etablissements: Observable<any> ;
   
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(public authService: AuthService, public router: Router,private http: Http) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.currentUser.privilege == "Administrateur"){
       this.administrateur = true;
@@ -27,6 +35,13 @@ export class ContainerNavbarComponent implements OnInit {
     }else{
       this.eleve = true;
     }
+    this.url = environment.API_URL+"/etablissement/"+this.currentUser.idEtablissement;
+     this.etablissements = this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+
+    this.etablissements.forEach(etablissement => {
+      this.nomEtablissement = etablissement.nomEtablissement;
+
+    });
   }  
 
   
