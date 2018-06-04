@@ -64,6 +64,7 @@ export class SalleComponent implements OnInit {
   onChangeNom(optionDuMenu) { this.filterParNom = optionDuMenu; }
 
   createSalle(nom:String) {
+    console.log(nom);
     this.roomsv.createNew(this.currentUser.idEtablissement, nom);
   }
 

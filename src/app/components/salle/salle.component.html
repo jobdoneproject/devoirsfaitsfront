@@ -8,7 +8,7 @@
             <label for="heure_debut">Créer une nouvelle salle :</label>
             <input type="text" class="form-control" id="nom_salle" placeholder="" name="nom_salle" id="nom_salle" [(ngModel)]="nom_salle"
               required>
-            <button type="button" class="btn btn-link" (click)="createSalle(nom_salle.ngValue)">Créer</button>
+            <button type="button" class="btn btn-link" (click)="createSalle(nom_salle)">Créer</button>
           </div>
           <label for="listSalle" class="font-weight-medium">Liste des Salles de l'Etablissement</label>
           <div class="form-group">
@@ -16,7 +16,7 @@
               <input type="text" placeholder="Choisir une salle" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto"
                 (keyup)="onChangeNom($event.target.value)">
               <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let salle of listSalle | async | nomDisponibles: filterParNom" [value]="eleve">
+                <mat-option *ngFor="let salle of listSalle | async | nomDisponibles: filterParNom" [value]="salle">
                   {{ salle.nom }} -
                   <button type="button" class="btn btn-link" (click)="deleteSalle(salle)">Supprimer</button>
                 </mat-option>
