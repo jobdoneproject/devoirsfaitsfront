@@ -28,7 +28,7 @@ export class CalendarComponent implements OnInit {
   };
 
   constructor( private coursesSlotService : CourseSlotsService ) {
-    this.courseSlotsObservable = this.coursesSlotService.fetchSlots(1, this.year, this.weekNumber);
+    this.courseSlotsObservable = this.coursesSlotService.fetchSlots(1, 2018, 25);
   }
 
   updateSlots () {
