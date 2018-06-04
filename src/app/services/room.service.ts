@@ -27,6 +27,7 @@ export class RoomService {
     this.room.nom = name;
     this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles/";
     let body = JSON.stringify(this.room);
+    console.log(body);
     this.http.post(this.url, body, this.options ).map((res: Response) => res.json());
   }
 
