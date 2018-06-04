@@ -121,6 +121,10 @@ export class ListeUtilisateurComponent implements OnInit {
     this.router.navigate(['edition-utilisateur/' + this.typeUtilisateur + '/' + idUtilisateur]);
   }
 
+  redirectNewUser(){
+    this.router.navigate(['creation-utilisateur/' + this.typeUtilisateur]);
+  }
+
   checked() {
     return this.filterDisponibles.filter(utilisateur => { return utilisateur.checked; });
   }

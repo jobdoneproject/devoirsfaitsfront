@@ -20,8 +20,6 @@ export class UserService {
   users: User[];
 
   //private url = 'http://localhost:8080/eleve/'; // Changer par url prod
-  private url : string;
-
   constructor(
     // private http: Http,
     private httpClient: HttpClient,
@@ -33,32 +31,41 @@ export class UserService {
   } 
 
   getUsers(typeUtilisateur:string , idEtablissement: number) {
-    this.url = environment.API_URL+"/" + typeUtilisateur + "/etablissement/" + idEtablissement;
-    return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+    const url = environment.API_URL+"/" + typeUtilisateur + "/etablissement/" + idEtablissement;
+    return this.http.get(url).pipe(map((resp: Response)=>resp.json()));
   }
 
-
   updateDisponibilite(typeUtilisateur: string, idUtilisateur: number){
-    this.url = environment.API_URL+"/" + typeUtilisateur + "/disponible/" + idUtilisateur;
-    this.http.put( this.url, "").subscribe(res => console.log("url partie"));
+    const url = environment.API_URL+"/" + typeUtilisateur + "/disponible/" + idUtilisateur;
+    this.http.put( url, "").subscribe(res => console.log("url partie"));
   }
 
   getUser(typeUtilisateur: string, idUtilisateur: number){
-    this.url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
-    return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+    const url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
+    return this.http.get(url).pipe(map((resp: Response)=>resp.json()));
+  }
+
+  postUser(typeUtilisateur: string, nouvelUtilisateur: User){
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const options = new RequestOptions({ headers: headers });
+
+    const url = environment.API_URL+"/" + typeUtilisateur + "";
+    this.http.post(url, JSON.stringify(nouvelUtilisateur), options)
+    .map((res: Response) => res.json());
+    //.subscribe(res => console.log("url partie"));
   }
 
   putUser(typeUtilisateur: string, utilisateurUpdate: User){
     const headers = new Headers({'Content-Type': 'application/json'});
     const options = new RequestOptions({ headers: headers });
 
-    this.url = environment.API_URL+"/" + typeUtilisateur + "/" + utilisateurUpdate.idUtilisateur;
-    this.http.put(this.url, JSON.stringify(utilisateurUpdate), options).subscribe(res => console.log("url partie"));
+    const url = environment.API_URL+"/" + typeUtilisateur + "/" + utilisateurUpdate.idUtilisateur;
+    this.http.put(url, JSON.stringify(utilisateurUpdate), options).subscribe(res => console.log("url partie"));
   }
 
   deleteUser(typeUtilisateur: string, idUtilisateur: number){
-    this.url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
-    return this.http.delete(this.url).subscribe(res => console.log("url partie"));
+    const url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
+    return this.http.delete(url).subscribe(res => console.log("url partie"));
   }
 
   private handleError(error: Response) {

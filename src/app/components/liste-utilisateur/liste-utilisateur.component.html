@@ -7,8 +7,10 @@
   </div>
 <div class="col-md-12 d-flex align-items-stretch grid-margin">
   <div class="row flex-grow">
+
     <div class="col-12 stretch-card">
       <div class="card">
+      <button type="button" class="btn btn-light" style="width: 150px; margin: 5px 0 0 45px;" (click)="redirectNewUser()">Nouveau</button>
         <div class="card-body">
           <div *ngIf="administrateur; else elseBlock">
             
@@ -31,7 +33,7 @@
                 </div>
                 <div class="col-md-3 col-xs-12">
                   <label class="col-form-label">
-                    Disponibilité
+                    Présence
                   </label>
                   <div class="d-flex">
                     <label *ngFor="let filterDisponible of filterDisponibles;" class="containerCheck">
@@ -39,6 +41,15 @@
                       <span class="checkmark"></span>
                     </label>
                   </div>
+                </div>
+                <div class="col-md-3 col-xs-12" *ngIf="typeUtilisateur == 'eleve'" >
+                  <label class="col-form-label">
+                    Actions groupées
+                    <select id="selectClasse" name="classeDispo" (change)="onChange($event.target.value)" class="form-control">
+                        <option value="" > </option>
+                        <option value="" >Supprimer</option>
+                      </select>
+                  </label>
                 </div>
               </div>
             </div>

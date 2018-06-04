@@ -38,12 +38,17 @@ const appRoutes: Routes = [
   component: ContainerComponent, canActivate: [UrlPermission],
   children: [{path: '', component: PageCreneauComponent, outlet: 'connected'}]
 },
-  { path: 'edition-utilisateur/:type/:id',
-    component: ContainerComponent, canActivate: [UrlPermission],
-    children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
-  },
+{ path: 'edition-utilisateur/:type/:id',
+component: ContainerComponent, canActivate: [UrlPermission],
+children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
+},
 
-  { path: '', redirectTo: 'bienvenue', pathMatch: 'full' },
+{ path: 'creation-utilisateur/:type',
+component: ContainerComponent, canActivate: [UrlPermission],
+children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
+},
+
+{ path: '', redirectTo: 'bienvenue', pathMatch: 'full' },
 
   // otherwise redirect to profile
   { path: '**', redirectTo: '/login' }

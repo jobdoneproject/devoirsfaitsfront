@@ -53,20 +53,19 @@ export class PageUserEditComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.typeUtilisateur = params['type'];
-      this.idUtilisateur = params['id'];}); 
-
+      this.idUtilisateur = params['id'];
+    }); 
+    if (this.idUtilisateur != null){
       this.initUser();
-
+    } else {
+      this.newUser();
+      console.log('new user')
+    }
 
 
   }
 
   ngOnInit() {
-
-  //   this.editUserForm = this.formBuilder.group({
-  //     nom: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),
-  //     prenom: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),
-  // });
 
   }
 
@@ -75,20 +74,39 @@ export class PageUserEditComponent implements OnInit {
       .map((value: User) => {this.editedUser = value;})
       .subscribe();
   }
+  
+  newUser(){
+    this.editedUser = new User();
+    this.editedUser.idEtablissement = this.currentUser.idEtablissement;
+    this.editedUser.nom = null;
+    this.editedUser.prenom = null;
+    this.editedUser.mail = null;
+    this.editedUser.classe = null;
+    this.editedUser.password = null;
+    this.editedUser.telephone = null;
+  }
 
   onReset() {
-    this.initUser();
-    console.log("Form reset!");
+    if (this.idUtilisateur != null){
+      this.initUser();
+    } else {
+      this.newUser();
+      console.log('new user')
+    }
   }
 
   onSubmit() {
-    this.userService.putUser(this.typeUtilisateur, this.editedUser);
+    if (this.idUtilisateur != null){
+      this.userService.putUser(this.typeUtilisateur, this.editedUser);
+    } else {
+      this.userService.postUser(this.typeUtilisateur, this.editedUser);
+    }
       console.log("Form Submitted!");
-      this.router.navigate(['liste/' + this.typeUtilisateur]);
+      //this.router.navigate(['liste/' + this.typeUtilisateur]);
   }
 
   onSupress() {
-    if(confirm("Voulez-vous vraiment supprimer "+ this.editedUser.nom + " " +this.editedUser.prenom + " ?")){
+    if(confirm("Voulez-vous vraiment supprimer "+ this.editedUser.nom + " " + this.editedUser.prenom + " ?")){
       this.userService.deleteUser(this.typeUtilisateur, this.idUtilisateur);
       console.log("Form Suppress!");
       this.router.navigate(['liste/' + this.typeUtilisateur]);
