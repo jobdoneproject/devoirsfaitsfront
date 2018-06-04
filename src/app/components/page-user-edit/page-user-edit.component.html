@@ -27,43 +27,43 @@
                 <input type="hidden" id="role" name= "role" value="{{editedUser.privilege}}">
 
               <div class="form-group row">
-                <label for="usernom" class="col-sm-3 col-form-label text-right">Nom</label>
+                <label for="usernom" class="col-sm-3 col-form-label text-sm-right">Nom</label>
                 <div class="col-sm-7">
                   <input type="text" class="form-control" id="usernom" name="usernom" [(ngModel)]="editedUser.nom" [ngModelOptions]="{standalone: true}" >
                 </div>
               </div>
               <div class="form-group row">
-                <label for="userprenom" class="col-sm-3 col-form-label text-right">Prénom</label>
+                <label for="userprenom" class="col-sm-3 col-form-label text-sm-right">Prénom</label>
                 <div class="col-sm-7">
                   <input type="text" class="form-control" id="userprenom" name="userprenom" [(ngModel)]="editedUser.prenom" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="form-group row" *ngIf="editedUser.privilege =='Eleve'">
-                <label for="userclasse" class="col-sm-3 col-form-label text-right">Classe</label>
+                <label for="userclasse" class="col-sm-3 col-form-label text-sm-right">Classe</label>
                 <div class="col-sm-7">
                   <input type="text" class="form-control" id="userclasse" name="userclasse" [(ngModel)]="editedUser.classe" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="useremail" class="col-sm-3 col-form-label text-right">Email</label>
+                <label for="useremail" class="col-sm-3 col-form-label text-sm-right">Email</label>
                 <div class="col-sm-7">
                   <input type="email" class="form-control" id="useremail" name="useremail" [(ngModel)]="editedUser.mail" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="exampleInputPassword2" class="col-sm-3 col-form-label text-right">Password</label>
+                <label for="exampleInputPassword2" class="col-sm-3 col-form-label text-sm-right">Password</label>
                 <div class="col-sm-7">
                   <input type="password" class="form-control" id="userpassword" name="userpassword" [(ngModel)]="editedUser.password" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="usertelephone" class="col-sm-3 col-form-label text-right">Téléphone</label>
+                <label for="usertelephone" class="col-sm-3 col-form-label text-sm-right">Téléphone</label>
                 <div class="col-sm-7">
                   <input type="text" class="form-control" id="usertelephone" name="usertelephone" [(ngModel)]="editedUser.telephone" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="form-group row">
-                <label class="toggle-check col-sm-12 col-form-label"><div class="col-sm-3 text-right" style="display: inline-block;"><span class="text-right">Disponible</span>&nbsp;&nbsp;</div>
+                <label class="toggle-check col-sm-12 col-form-label"><div class="col-sm-3 text-sm-right" style="display: inline-block;"><span class="text-right">Disponible</span>&nbsp;&nbsp;</div>
                   <div class="col-sm-7 col-form-label" style="display: inline-block;"><input type="checkbox" class="toggle-check-input" [(ngModel)]="editedUser.disponible" [ngModelOptions]="{standalone: true}" ng-click="editedUser.disponible = !editedUser.disponible" />
                   <span class="toggle-check-text"></span></div>
                 </label>
