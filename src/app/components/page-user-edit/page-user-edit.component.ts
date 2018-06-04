@@ -82,10 +82,16 @@ export class PageUserEditComponent implements OnInit {
   }
 
   onSubmit() {
+    this.userService.putUser(this.typeUtilisateur, this.editedUser);
       console.log("Form Submitted!");
+      this.router.navigate(['liste/' + this.typeUtilisateur]);
   }
 
   onSupress() {
-    console.log("Form Suppress!");
+    if(confirm("Voulez-vous vraiment supprimer "+ this.editedUser.nom + " " +this.editedUser.prenom + " ?")){
+      this.userService.deleteUser(this.typeUtilisateur, this.idUtilisateur);
+      console.log("Form Suppress!");
+      this.router.navigate(['liste/' + this.typeUtilisateur]);
+    }
 }
 }

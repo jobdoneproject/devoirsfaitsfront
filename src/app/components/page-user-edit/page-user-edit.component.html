@@ -22,10 +22,6 @@
             <p class="card-description">
             </p>
             <form class="forms-sample" [formGroup]="editUserForm" >
-                <input type="hidden" id="userId" name= "userId" value="{{editedUser.idUtilisateur}}">
-                <input type="hidden" id="idEtablissement" name= "idEtablissement" value="{{editedUser.idEtablissement}}">
-                <input type="hidden" id="role" name= "role" value="{{editedUser.privilege}}">
-
               <div class="form-group row">
                 <label for="usernom" class="col-sm-3 col-form-label text-sm-right">Nom</label>
                 <div class="col-sm-7">
@@ -69,7 +65,7 @@
                 </label>
               </div>
               <div class="form-group row "> 
-                <span class="col-sm-9 align-items-left"><button type="button" class="btn btn-success mr-2" (click)="onSubmit()">Mettre à jour</button>
+                <span class="col-sm-9 align-items-left"><button type="submit" class="btn btn-success mr-2" (click)="onSubmit()">Mettre à jour</button>
                 <button type="button" class="btn btn-light mr-2 pull-left" (click)="onReset()">Reinitialiser</button></span>
                 <span class="col-sm-3 align-items-right"><button type="button" class="btn btn-danger pull-right" (click)="onSupress()">Supprimer</button>
               </span></div>

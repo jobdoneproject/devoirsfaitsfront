@@ -9,7 +9,6 @@ import { map, startWith} from 'rxjs/operators';
 
 import "rxjs/Rx";
 import { Url } from 'url';
-import { USERS } from '../mock-user';
 import { Http, Headers, RequestOptions,Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 
@@ -41,12 +40,25 @@ export class UserService {
 
   updateDisponibilite(typeUtilisateur: string, idUtilisateur: number){
     this.url = environment.API_URL+"/" + typeUtilisateur + "/disponible/" + idUtilisateur;
-    this.http.put( this.url, "").subscribe(res => console.log("url partie"));;
+    this.http.put( this.url, "").subscribe(res => console.log("url partie"));
   }
 
   getUser(typeUtilisateur: string, idUtilisateur: number){
     this.url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
     return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+  }
+
+  putUser(typeUtilisateur: string, utilisateurUpdate: User){
+    const headers = new Headers({'Content-Type': 'application/json'});
+    const options = new RequestOptions({ headers: headers });
+
+    this.url = environment.API_URL+"/" + typeUtilisateur + "/" + utilisateurUpdate.idUtilisateur;
+    this.http.put(this.url, JSON.stringify(utilisateurUpdate), options).subscribe(res => console.log("url partie"));
+  }
+
+  deleteUser(typeUtilisateur: string, idUtilisateur: number){
+    this.url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
+    return this.http.delete(this.url).subscribe(res => console.log("url partie"));
   }
 
   private handleError(error: Response) {
