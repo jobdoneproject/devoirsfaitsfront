@@ -15,6 +15,7 @@ import * as moment from 'moment';
 import { environment } from '../../../environments/environment';
 import { CreneauService } from '../../services/creneau.service';
 import { UserService } from "../../services/user.service";
+import { Room } from "../../model/model.room";
 
 
 @Component({
@@ -39,6 +40,7 @@ export class PageCreneauComponent implements OnInit {
   titre: String = "Création d'un créneau";
   myControl: FormControl = new FormControl();
   filteredEleve: Observable<any[]>;
+  salle: Room;
 
 
   constructor(private courseservice: CreneauService, public authService: AuthService, public router: Router, private userService:UserService) {
@@ -73,7 +75,7 @@ export class PageCreneauComponent implements OnInit {
                                   moment(this.date_creneau + " " + this.heure_fin).unix(),
                                   this.selectedEleves,
                                   this.selectedProfesseurs,
-                                  "20A" );
+                                  this.salle );
   }
 
   ngOnInit() {

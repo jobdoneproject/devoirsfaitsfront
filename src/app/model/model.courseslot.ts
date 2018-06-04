@@ -1,4 +1,5 @@
 import { User } from "./model.user";
+import { Room } from "./model.room";
 
 export class CourseSlot {
     id: number;
@@ -6,5 +7,5 @@ export class CourseSlot {
     dateFin: number;
     profs: User[];
     eleves: User[];
-    salle: String;
+    salle: Room;
 }
