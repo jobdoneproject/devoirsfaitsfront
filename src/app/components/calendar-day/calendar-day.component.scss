@@ -5,10 +5,19 @@ $mdLower: 768px;
 $lgLower: 992px;
 $xlLower: 1220px;   
 
+::-webkit-scrollbar {
+    display: none;
+    }
+
+    @-moz-document url-prefix() {
+        html,body{overflow: hidden !important;}
+    }
+    
 .colonne-semaine {
     background-color: rgba(128, 128, 128, 0.068);
     border: none;
     border-radius: 15px;
+    overflow: scroll;
 }
 
 .card-body {
@@ -24,7 +33,7 @@ $xlLower: 1220px;
 h2 {
     padding: 6px;
     text-align: center;
-    font-size: 0.7em;
+    font-size: 1em;
     font-weight: bold;
 }
 
