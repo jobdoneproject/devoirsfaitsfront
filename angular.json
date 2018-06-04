@@ -25,10 +25,11 @@
                     "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [
-                      "node_modules/jquery/dist/jquery.js",
-                      "node_modules/popper.js/dist/popper.min.js",
-                      "node_modules/bootstrap/dist/js/bootstrap.min.js",
-                      "src/assets/template-master/js/misc.js"
+              "node_modules/jquery/dist/jquery.js",
+              "src/assets/js/popper.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/template-master/js/off-canvas.js",
+              "src/assets/template-master/js/misc.js"
             ]
           },
           "configurations": {
