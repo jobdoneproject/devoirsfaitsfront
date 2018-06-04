@@ -1,73 +1,78 @@
-
+<div class="row purchace-popup">
+  <div class="col-12">
+    <span class="d-flex alifn-items-center">
+        <h1>
+          {{editedUser.prenom}} {{editedUser.nom}}
+          <span *ngIf="editedUser.privilege ==='Eleve'"> - {{editedUser.classe}}</span>
+        </h1>
+      </span>
+  </div>
+</div>
   <div class="col-md-12 d-flex align-items-stretch grid-margin">
     <div class="row flex-grow">
       <div class="col-12 stretch-card">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">
-                <span *ngIf="editedUser.privilege ==='Eleve'"> Elève :</span>
-                <span *ngIf="editedUser.privilege ==='Professeur'"> Professeur :</span>
-                {{editedUser.prenom}} {{editedUser.nom}}
+              
             </h4> 
             <div *ngIf="!editedUser;" class="alert alert-warning" role="alert">
                 Aucun utilisateur correspondant
             </div>
             <p class="card-description">
             </p>
-            <form class="forms-sample" action="" method="POST">
-                <input type="hidden" id="userId" name= "userId" value="{{editedUser.id}}">
+            <form class="forms-sample" [formGroup]="editUserForm" >
+                <input type="hidden" id="userId" name= "userId" value="{{editedUser.idUtilisateur}}">
                 <input type="hidden" id="idEtablissement" name= "idEtablissement" value="{{editedUser.idEtablissement}}">
                 <input type="hidden" id="role" name= "role" value="{{editedUser.privilege}}">
 
               <div class="form-group row">
-                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Nom</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="usernom" name="usernom" value="{{editedUser.nom}}">
+                <label for="usernom" class="col-sm-3 col-form-label text-right">Nom</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="usernom" name="usernom" [(ngModel)]="editedUser.nom" [ngModelOptions]="{standalone: true}" >
                 </div>
               </div>
               <div class="form-group row">
-                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Prénom</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="userprenom" name="userprenom" value="{{editedUser.prenom}}">
+                <label for="userprenom" class="col-sm-3 col-form-label text-right">Prénom</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="userprenom" name="userprenom" [(ngModel)]="editedUser.prenom" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="form-group row" *ngIf="editedUser.privilege =='Eleve'">
-                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Classe</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="userclasse" name="userclasse" value="{{editedUser.classe}}">
+                <label for="userclasse" class="col-sm-3 col-form-label text-right">Classe</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="userclasse" name="userclasse" [(ngModel)]="editedUser.classe" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
-                <div class="col-sm-9">
-                  <input type="email" class="form-control" id="useremail" name="useremail" value="{{editedUser.mail}}">
+                <label for="useremail" class="col-sm-3 col-form-label text-right">Email</label>
+                <div class="col-sm-7">
+                  <input type="email" class="form-control" id="useremail" name="useremail" [(ngModel)]="editedUser.mail" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
-                <div class="col-sm-9">
-                  <input type="password" class="form-control" id="userpassword" name="userpassword" value="{{editedUser.password}}">
+                <label for="exampleInputPassword2" class="col-sm-3 col-form-label text-right">Password</label>
+                <div class="col-sm-7">
+                  <input type="password" class="form-control" id="userpassword" name="userpassword" [(ngModel)]="editedUser.password" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Téléphone</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" id="usertelephone" name="usertelephone" value="{{editedUser.telephone}}">
+                <label for="usertelephone" class="col-sm-3 col-form-label text-right">Téléphone</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="usertelephone" name="usertelephone" [(ngModel)]="editedUser.telephone" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-3"></div>
-                <label class="checkbox-inline col-sm-9">
-                    <input type="checkbox" id="actif" value="actif" [checked]="editedUser.actif"> Actif sur Devoirs Faits
-                  </label>
-                <div class="col-sm-3"></div>
-                <label class="checkbox-inline col-sm-9">
-                  <input type="checkbox" id="disponible" value="disponible" [checked]="editedUser.disponible"> Disponible pour un créneau
+                <label class="toggle-check col-sm-12 col-form-label"><div class="col-sm-3 text-right" style="display: inline-block;"><span class="text-right">Disponible</span>&nbsp;&nbsp;</div>
+                  <div class="col-sm-7 col-form-label" style="display: inline-block;"><input type="checkbox" class="toggle-check-input" [(ngModel)]="editedUser.disponible" [ngModelOptions]="{standalone: true}" ng-click="editedUser.disponible = !editedUser.disponible" />
+                  <span class="toggle-check-text"></span></div>
                 </label>
               </div>
-              <button type="submit" class="btn btn-success mr-2">Submit</button>
-              <button class="btn btn-light" onclick="onCancel()">Cancel</button>&nbsp;
-              <button type="submit" class="btn btn-warning mr-2">Supprimer l'utilisateur</button>
+              <div class="form-group row "> 
+                <span class="col-sm-9 align-items-left"><button type="button" class="btn btn-success mr-2" (click)="onSubmit()">Mettre à jour</button>
+                <button type="button" class="btn btn-light mr-2 pull-left" (click)="onReset()">Reinitialiser</button></span>
+                <span class="col-sm-3 align-items-right"><button type="button" class="btn btn-danger pull-right" (click)="onSupress()">Supprimer</button>
+              </span></div>
             </form>
           </div>
         </div>
