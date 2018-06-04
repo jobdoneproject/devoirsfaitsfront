@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Url } from 'url';
 import {environment} from '../../environments/environment';
 import { map, startWith} from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,9 @@ export class RoomService {
     this.http.post(this.url, body, this.options ).map((res: Response) => res.json());
   }
 
-  getAll (idEtablissement:number) {
-    this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles/";
+  getAll (idEtablissement:number): Observable<any> {
+    //this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles/";
+    this.url = "http://localhost:3000/salle";
     return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
   }
 

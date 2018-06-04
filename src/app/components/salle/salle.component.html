@@ -16,9 +16,9 @@
               <input type="text" placeholder="Choisir une salle" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto"
                 (keyup)="onChangeNom($event.target.value)">
               <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let salle of allSalles | async | nomDisponibles: filterParNom" [value]="eleve">
+                <mat-option *ngFor="let salle of listSalle | async | nomDisponibles: filterParNom" [value]="eleve">
                   {{ salle.nom }} -
-                  <button type="button" class="btn btn-link" (click)="deleteSalle(salle)">Créer</button>
+                  <button type="button" class="btn btn-link" (click)="deleteSalle(salle)">Supprimer</button>
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>

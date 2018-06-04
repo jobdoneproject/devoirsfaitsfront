@@ -22,6 +22,7 @@ export class CreneauService {
     this.newCreneau.profs = profs;
     this.newCreneau.salle = salle;
     this.postSlot(this.newCreneau);
+    console.log(profs);
   }
 
   postSlot(newCreneau:CourseSlot) {

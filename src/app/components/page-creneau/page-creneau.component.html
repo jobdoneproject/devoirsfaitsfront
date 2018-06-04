@@ -22,8 +22,8 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="listProfesseur" class="font-weight-medium">Professeurs</label>
-            <select class="form-control" #selectedValue name="selectedProfesseurs" id="selectedProfesseurs" [(ngModel)]="selectedProfesseurs" (ngModelChange)="addProfesseurToSelected($event)">
+            <label for="listProfesseurs" class="font-weight-medium">Professeurs</label>
+            <select class="form-control" #selectedValue name="selectedProfesseur" id="selectedProfesseur" [(ngModel)]="selectedProfesseur" (ngModelChange)="addProfesseurToSelected($event)">
               <option *ngFor="let professeur of listProfesseur | async" [ngValue]="professeur">{{professeur.nom}} {{professeur.prenom}}</option>
             </select>
           </div>

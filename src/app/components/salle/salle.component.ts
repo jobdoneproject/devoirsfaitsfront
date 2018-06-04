@@ -26,7 +26,6 @@ import { Room } from '../../model/model.room';
 })
 export class SalleComponent implements OnInit {
 
-  roomservice: RoomService;
   currentUser: User;
   administrateur: boolean;
   errorMessage: string;
@@ -39,7 +38,7 @@ export class SalleComponent implements OnInit {
   filteredEleve: Observable<any[]>;
 
 
-  constructor(private courseservice: CreneauService, public authService: AuthService, public router: Router, private userService:UserService) {
+  constructor(private roomsv: RoomService, public authService: AuthService, public router: Router, private userService:UserService) {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log("this.currentUser.privilege : " + this.currentUser.privilege);
@@ -48,15 +47,15 @@ export class SalleComponent implements OnInit {
       this.administrateur = true;
     }
 
-    //this.listSalle = this.roomservice.getAll(this.currentUser.idEtablissement);
+    this.listSalle = this.roomsv.getAll(1);
 
-  /*  this.listSalle.forEach(arrayNomUtilisateur => {
+  this.listSalle.forEach(arrayNomUtilisateur => {
       arrayNomUtilisateur.forEach(salle => {
         if (this.nomDisponibles.indexOf(salle.nom) == -1) {
           this.nomDisponibles.push(salle.nom);
         }
       })
-    });*/
+    });
   }
 
   ngOnInit() {
@@ -65,10 +64,10 @@ export class SalleComponent implements OnInit {
   onChangeNom(optionDuMenu) { this.filterParNom = optionDuMenu; }
 
   createSalle(nom:String) {
-    this.roomservice.createNew(this.currentUser.idEtablissement, nom);
+    this.roomsv.createNew(this.currentUser.idEtablissement, nom);
   }
 
   deleteSalle (salle: Room) {
-    this.roomservice.deleteSelected(this.currentUser.idEtablissement,salle.id);
+    this.roomsv.deleteSelected(this.currentUser.idEtablissement,salle.id);
   }
 }

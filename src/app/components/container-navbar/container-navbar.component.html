@@ -1,16 +1,20 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
   
   <div class="navbar-menu-wrapper d-flex align-items-center">Collège {{nomEtablissement}}
-    <img src="../../../assets/template-wcs/img/logo.png" alt="logo"/>
+    <!--<img src="../../../assets/template-wcs/img/logo.png" alt="logo"/>-->
+    <h4>DEVOIRS FAITS</h4>
   <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
         <li class="nav-item">
-            <a class="nav-link" href="profile">Compte</a>
+            <a class="nav-link" href="profile">Calendrier</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="liste/eleve" *ngIf="administrateur">Élèves</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="liste/professeur" *ngIf="administrateur">Professeurs</a>
+        </li>
+        <li class="nav-item">
+                <a class="nav-link" href="salle" *ngIf="administrateur">Salles</a>
         </li>
     </ul>
   <!-- <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
