@@ -125,3 +125,8 @@
 .auth form .form-group .form-control{
   padding-right: 0 !important;
 }
+
+.form-group button{
+  margin-bottom: 5px ;
+
+}

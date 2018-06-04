@@ -7,9 +7,10 @@ import { User } from '../model/model.user'
 
 export class EleveClassesPipe implements PipeTransform {
 
-  transform(utilisateurs: User[], classe?: any): any {
+ // utilisateurs:User[] = new User[''];
+  utilisateurs:User[];
 
-    //console.log(utilisateur);
+  transform(utilisateurs: User[], classe?: any): any {
 
     var output: User[] = []; 
     if (classe != "Toutes"){
