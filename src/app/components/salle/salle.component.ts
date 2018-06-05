@@ -29,7 +29,7 @@ export class SalleComponent implements OnInit {
   currentUser: User;
   administrateur: boolean;
   errorMessage: string;
-  listSalle: Observable<any>;
+  allSalleEtb: Observable<any>;
   @Input() nom_salle: String;
   nomDisponibles = [];
   filterParNom: String;
@@ -47,9 +47,9 @@ export class SalleComponent implements OnInit {
       this.administrateur = true;
     }
 
-    this.listSalle = this.roomsv.getAll(this.currentUser.idEtablissement);
+    this.allSalleEtb = this.roomsv.getAll(this.currentUser.idEtablissement);
 
-  this.listSalle.forEach(arrayNomUtilisateur => {
+  this.allSalleEtb.forEach(arrayNomUtilisateur => {
       arrayNomUtilisateur.forEach(salle => {
         if (this.nomDisponibles.indexOf(salle.nom) == -1) {
           this.nomDisponibles.push(salle.nom);
@@ -68,7 +68,6 @@ export class SalleComponent implements OnInit {
   }
 
   deleteSalle (salle: Room) {
-    console.log(salle.id_salle);
-    this.roomsv.deleteSelected(this.currentUser.idEtablissement,salle.id_salle);
+    this.roomsv.deleteSelected(this.currentUser.idEtablissement,salle.idSalle);
   }
 }

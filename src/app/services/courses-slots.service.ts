@@ -18,7 +18,6 @@ export class CourseSlotsService {
 
   fetchSlots(id: number, year: number, week:number): Observable<CourseSlot []>
   {
-    console.log ("Je passe bien dans le service lors de l'update");
     return this.httpClient.get<CourseSlot []>(environment.API_URL + "/etablissement/1/creneaux?year="+ year + "&week=" + week );
   }
 }
