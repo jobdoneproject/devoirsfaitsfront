@@ -10,13 +10,13 @@
               required>
             <button type="button" class="btn btn-link" (click)="createSalle(nom_salle)">Créer</button>
           </div>
-          <label for="listSalle" class="font-weight-medium">Liste des Salles de l'Etablissement</label>
+          <label for="allSalleEtb" class="font-weight-medium">Liste des Salles de l'Etablissement</label>
           <div class="form-group">
             <mat-form-field class="example-full-width">
               <input type="text" placeholder="Choisir une salle" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto"
                 (keyup)="onChangeNom($event.target.value)">
               <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let salle of listSalle | async | nomDisponibles: filterParNom" [value]="salle">
+                <mat-option *ngFor="let salle of allSalleEtb | async | nomDisponibles: filterParNom" [value]="salle">
                   {{ salle.nom }} -
                   <button type="button" class="btn btn-link" (click)="deleteSalle(salle)">Supprimer</button>
                 </mat-option>

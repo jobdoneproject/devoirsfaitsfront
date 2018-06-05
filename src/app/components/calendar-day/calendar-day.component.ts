@@ -19,6 +19,9 @@ export class CalendarDayComponent implements OnInit {
   @Input() day: WeekDay;
   @Input() weekNumber: number;
   @Input() year: number;
+  ngOnChanges(weekNumber: number) {
+    this.ngOnInit();
+  }
 
   constructor() {
   }
