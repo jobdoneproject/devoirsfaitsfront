@@ -68,6 +68,7 @@ export class SalleComponent implements OnInit {
   }
 
   deleteSalle (salle: Room) {
-    this.roomsv.deleteSelected(this.currentUser.idEtablissement,salle.id);
+    console.log(salle.id_salle);
+    this.roomsv.deleteSelected(this.currentUser.idEtablissement,salle.id_salle);
   }
 }

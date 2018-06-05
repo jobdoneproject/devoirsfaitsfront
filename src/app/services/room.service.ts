@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class RoomService {
 
-  room:Room = {id:null, nom:""};
+  room:Room;
   options:RequestOptions;
   url:string;
     
@@ -44,6 +44,7 @@ export class RoomService {
 
   deleteSelected (idEtablissement:number, id:number) {
     this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles/" + id + "/";
+    this.url = "http://localhost:3000/salle?id_salle=" + id;
     return this.http.delete(this.url).pipe(map((resp: Response)=>resp.json()));
   }
 

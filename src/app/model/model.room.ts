@@ -1,4 +1,5 @@
 export class Room {
-    id: number;
+    id_salle: number;
     nom: String;
+    id_etablissement: number;
 }
