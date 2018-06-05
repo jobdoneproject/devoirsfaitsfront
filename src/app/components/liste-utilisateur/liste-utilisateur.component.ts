@@ -37,7 +37,7 @@ export class ListeUtilisateurComponent implements OnInit {
 
 
   constructor(
-    public authService: AuthService, 
+    public authService: AuthService,
     public router: Router,
     private http: Http,
     private route: ActivatedRoute,
@@ -45,7 +45,7 @@ export class ListeUtilisateurComponent implements OnInit {
   ) {
 
     this.route.params.subscribe(params => {
-      this.typeUtilisateur = params['type']});  
+      this.typeUtilisateur = params['type']});
     if (this.typeUtilisateur == "eleve"){
       this.titrePage = "Élèves";
     } else if (this.typeUtilisateur == "professeur"){
@@ -54,12 +54,12 @@ export class ListeUtilisateurComponent implements OnInit {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.idEtablissement = this.currentUser.idEtablissement;
-    
+
     if (this.currentUser.privilege == "Administrateur"){
       this.administrateur = true;
     }
 
-    this.utilisateurs = this.userService.getUsers(this.typeUtilisateur, this.currentUser.idEtablissement);  
+    this.utilisateurs = this.userService.getUsers(this.typeUtilisateur, this.currentUser.idEtablissement);
 
     this.utilisateurs.forEach(arrayClasseUtilisateur => {
       arrayClasseUtilisateur.forEach(utilisateur => {
@@ -78,10 +78,10 @@ export class ListeUtilisateurComponent implements OnInit {
     });
 
 
-    
+
   }
 
-  ngOnInit() { 
+  ngOnInit() {
 
 (function($) {
   $(document).ready(function(){
@@ -99,7 +99,7 @@ export class ListeUtilisateurComponent implements OnInit {
     }
   });
 
- // Changing state of CheckAll checkbox 
+ // Changing state of CheckAll checkbox
  $(".checkbox").click(function(){
 
    if($(".checkbox").length == $(".checkbox:checked").length) {
@@ -112,11 +112,11 @@ export class ListeUtilisateurComponent implements OnInit {
 });
 })(jQuery);
    }
-  
+
   onSelect(utilisateur: User): void {
     this.utilisateur = utilisateur;
   }
-  
+
   redirectEditUser(idUtilisateur: number) {
     this.router.navigate(['edition-utilisateur/' + this.typeUtilisateur + '/' + idUtilisateur]);
   }
@@ -135,19 +135,19 @@ export class ListeUtilisateurComponent implements OnInit {
   onChangeNom(optionDuMenu) {
     this.filterParNom= optionDuMenu;
   }
-  
+
   updateDisponibilite(idUtilisateur){
-    this.userService.updateDisponibilite(this.typeUtilisateur, idUtilisateur);
+    this.userService.updateDisponibilite(this.typeUtilisateur, this.currentUser.idEtablissement, idUtilisateur);
   }
 
   state : boolean;
   checkAll(ev) {
     this.utilisateurs.forEach(x => x.state = ev.target.checked)
   }
-  
+
   isAllChecked() {
     return this.utilisateurs.every(_ => _.state);
   }
-  
-  
+
+
 }
