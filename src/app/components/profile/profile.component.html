@@ -15,8 +15,7 @@
   <div class="col-md-3 offset-3">
     <span class="d-flex alifn-items-center">
         <button type="button" class="btn-picker btn date-picker" (click)="semainePrecedente()"><<</button>
-      <input class=" date-picker" (change)="update()" id="weeknum" type="week" name="weeknum" [(ngModel)]="weeknum" placeholder="YYYY-W##"
-        min="2012-W32" max="2050-W52" />
+      <input type="week" class="date-picker" (change)="update($event.target.value)" id="weeknum" name="weeknum" value="{{year}}-W{{weekNumber}}">
         <button type="button" class="btn btn-picker date-picker" (click)="semaineSuivante()">>></button>
         </span>
   </div>
