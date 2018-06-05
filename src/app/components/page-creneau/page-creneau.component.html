@@ -21,7 +21,8 @@
           </div>
           <div class="form-group">
             <label for="salle-creneau">Salle</label>
-            <select class="form-control" id="salle-crneau" placeholder="salle" required>
+            <select class="form-control" #selectedValueSalle name="selectedSalle" id="selectedPSalle" [(ngModel)]="selectedSalle">
+              <option *ngFor="let salle of allSalleEtb | async" [ngValue]="salle">{{salle.nom}}</option>
             </select>
           </div>
           <div class="form-group">

@@ -18,6 +18,8 @@ import { UserService } from "../../services/user.service";
 import { Room } from "../../model/model.room"
 import { CourseSlot } from "../../model/model.courseslot";
 import { HttpClient } from '@angular/common/http';
+import { RoomService } from "../../services/room.service";
+
 
 @Component({
   selector: 'app-page-creneau',
@@ -46,9 +48,9 @@ export class PageCreneauComponent implements OnInit {
   salleSelected: Room;
   creneau: Observable<CourseSlot>;
   private url: string;
+  allSalleEtb: Observable<any>;
 
-
-  constructor(private httpClient: HttpClient, private courseservice: CreneauService, public authService: AuthService, public router: Router, private userService: UserService) {
+  constructor(private roomsv: RoomService, private httpClient: HttpClient, private courseservice: CreneauService, public authService: AuthService, public router: Router, private userService: UserService) {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log("this.currentUser.privilege : " + this.currentUser.privilege);
@@ -59,6 +61,7 @@ export class PageCreneauComponent implements OnInit {
 
     this.listProfesseur = this.userService.getUsers("professeur", this.currentUser.idEtablissement);
     this.listEleve = this.userService.getUsers("eleve", this.currentUser.idEtablissement);
+    this.allSalleEtb = this.roomsv.getAll(this.currentUser.idEtablissement);
 
     this.listEleve.forEach(arrayNomUtilisateur => {
       arrayNomUtilisateur.forEach(utilisateur => {
