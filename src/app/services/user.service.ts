@@ -49,10 +49,10 @@ export class UserService {
     const headers = new Headers({'Content-Type': 'application/json'});
     const options = new RequestOptions({ headers: headers });
 
-    const url = environment.API_URL+"/" + typeUtilisateur + "";
+    const url ="http://localhost:8080" + "/" + typeUtilisateur;
     this.http.post(url, JSON.stringify(nouvelUtilisateur), options)
-    .map((res: Response) => res.json());
-    //.subscribe(res => console.log("url partie"));
+    .map((resp: Response)=>resp.json())
+    .subscribe(res => console.log("url partie" + res));
   }
 
   putUser(typeUtilisateur: string, utilisateurUpdate: User){
@@ -60,7 +60,8 @@ export class UserService {
     const options = new RequestOptions({ headers: headers });
 
     const url = environment.API_URL+"/" + typeUtilisateur + "/" + utilisateurUpdate.idUtilisateur;
-    this.http.put(url, JSON.stringify(utilisateurUpdate), options).subscribe(res => console.log("url partie"));
+    this.http.put(url, JSON.stringify(utilisateurUpdate), options)
+             .subscribe(res => console.log("url partie"));
   }
 
   deleteUser(typeUtilisateur: string, idUtilisateur: number){

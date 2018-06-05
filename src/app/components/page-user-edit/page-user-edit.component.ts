@@ -111,5 +111,9 @@ export class PageUserEditComponent implements OnInit {
       console.log("Form Suppress!");
       this.router.navigate(['liste/' + this.typeUtilisateur]);
     }
-}
+  }
+
+  doTheBack() {
+    window.history.back();
+  }
 }
