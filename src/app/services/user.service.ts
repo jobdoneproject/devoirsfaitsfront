@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 import {User} from "../model/model.user";
 import { UtilsService } from './utils.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, startWith} from 'rxjs/operators';
 
 import "rxjs/Rx";
@@ -19,53 +19,47 @@ export class UserService {
   searchedUser: User;
   users: User[];
 
-  //private url = 'http://localhost:8080/eleve/'; // Changer par url prod
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(
-    // private http: Http,
-    private httpClient: HttpClient,
-    private http: Http
+    private http: HttpClient
   ) { }
 
   getCurrentUser(): Observable<User> {
     return this.getCurrentUser();
-  } 
+  }
 
   getUsers(typeUtilisateur:string , idEtablissement: number) {
-    const url = environment.API_URL+"/" + typeUtilisateur + "/etablissement/" + idEtablissement;
+    const url = this.getUtilisateursUrl(idEtablissement, typeUtilisateur) ;
     return this.http.get(url).pipe(map((resp: Response)=>resp.json()));
   }
 
-  updateDisponibilite(typeUtilisateur: string, idUtilisateur: number){
-    const url = environment.API_URL+"/" + typeUtilisateur + "/disponible/" + idUtilisateur;
+  updateDisponibilite(typeUtilisateur: string, idUtilisateur: number, idEtablissement: number){
+    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, idUtilisateur);
     this.http.put( url, "").subscribe(res => console.log("url partie"));
   }
 
-  getUser(typeUtilisateur: string, idUtilisateur: number){
-    const url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
+  getUser(typeUtilisateur: string, idEtablissement: number, idUtilisateur: number){
+    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, idUtilisateur);
     return this.http.get(url).pipe(map((resp: Response)=>resp.json()));
   }
 
-  postUser(typeUtilisateur: string, nouvelUtilisateur: User){
-    const headers = new Headers({'Content-Type': 'application/json'});
-    const options = new RequestOptions({ headers: headers });
-
-    const url ="http://localhost:8080" + "/" + typeUtilisateur;
-    this.http.post(url, JSON.stringify(nouvelUtilisateur), options)
-    .map((resp: Response)=>resp.json())
-    .subscribe(res => console.log("url partie" + res));
+  postUser(typeUtilisateur: string, idEtablissement: number, utilisateur: User){
+    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, utilisateur.idUtilisateur);
+    this.http.post(url, utilisateur, this.httpOptions).subscribe( res =>
+      console.log("Subscribed")
+    );
   }
 
-  putUser(typeUtilisateur: string, utilisateurUpdate: User){
-    const headers = new Headers({'Content-Type': 'application/json'});
-    const options = new RequestOptions({ headers: headers });
-
-    const url = environment.API_URL+"/" + typeUtilisateur + "/" + utilisateurUpdate.idUtilisateur;
-    this.http.put(url, JSON.stringify(utilisateurUpdate), options)
-             .subscribe(res => console.log("url partie"));
+  putUser(typeUtilisateur: string, idEtablissement: number, utilisateur: User){
+    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, utilisateur.idUtilisateur);
+    this.http.put(url, JSON.stringify(utilisateur), this.httpOptions).subscribe(res => console.log("url partie"));
   }
 
-  deleteUser(typeUtilisateur: string, idUtilisateur: number){
-    const url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
+  deleteUser(typeUtilisateur: string, idUtilisateur: number, idEtablissement: number){
+    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, idUtilisateur);
     return this.http.delete(url).subscribe(res => console.log("url partie"));
   }
 
@@ -81,6 +75,25 @@ export class UserService {
       }
     }
     return null;
+  }
+
+  /**
+   * Renvoie l'url de base de l'API pour le type d'utilisateurs donné
+   * @param idEtablissement
+   * @param typeUtilisateur
+   */
+  private getUtilisateursUrl(idEtablissement: number, typeUtilisateur: string): string {
+    return environment.API_URL + '/etablissements/'+ idEtablissement+ '/' + typeUtilisateur;
+  }
+
+  /**
+   * Renvoie l'url de base de l'API pour un utilisateur particulier
+   * @param idEtablissement
+   * @param typeUtilisateur
+   * @param idUtilisateur
+   */
+  private getSingleUtilisateurUrl(idEtablissement: number, typeUtilisateur: string, idUtilisateur): string {
+    return this.getUtilisateursUrl(idEtablissement, typeUtilisateur) + '/' + idUtilisateur;
   }
 
 }
