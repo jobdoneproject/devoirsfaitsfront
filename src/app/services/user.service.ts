@@ -19,12 +19,12 @@ export class UserService {
   searchedUser: User;
   users: User[];
 
-  private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  private options = {
+    headers: new Headers({ 'Content-Type': 'application/json' })
   };
 
   constructor(
-    private http: HttpClient
+    private http: Http
   ) { }
 
   getCurrentUser(): Observable<User> {
@@ -47,15 +47,15 @@ export class UserService {
   }
 
   postUser(typeUtilisateur: string, idEtablissement: number, utilisateur: User){
-    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, utilisateur.idUtilisateur);
-    this.http.post(url, utilisateur, this.httpOptions).subscribe( res =>
+    const url = this.getUtilisateursUrl(idEtablissement, typeUtilisateur);
+    this.http.post(url, utilisateur, this.options).subscribe( res =>
       console.log("Subscribed")
     );
   }
 
   putUser(typeUtilisateur: string, idEtablissement: number, utilisateur: User){
     const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, utilisateur.idUtilisateur);
-    this.http.put(url, JSON.stringify(utilisateur), this.httpOptions).subscribe(res => console.log("url partie"));
+    this.http.put(url, JSON.stringify(utilisateur), this.options).subscribe(res => console.log("url partie"));
   }
 
   deleteUser(typeUtilisateur: string, idUtilisateur: number, idEtablissement: number){
@@ -83,7 +83,7 @@ export class UserService {
    * @param typeUtilisateur
    */
   private getUtilisateursUrl(idEtablissement: number, typeUtilisateur: string): string {
-    return environment.API_URL + '/etablissements/'+ idEtablissement+ '/' + typeUtilisateur;
+    return environment.API_URL + '/etablissements/'+ idEtablissement+ '/' + typeUtilisateur +'s';
   }
 
   /**

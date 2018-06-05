@@ -90,9 +90,9 @@ export class ListeUtilisateurComponent implements OnInit {
       })
     });
 
-    this.formUsers = this.formBuilder.group({
-      utilisateurs: this.buildSelected()
-      });
+    // this.formUsers = this.formBuilder.group({
+    //   utilisateurs: this.buildSelected()
+    //   });
   
   }
 
@@ -164,27 +164,27 @@ export class ListeUtilisateurComponent implements OnInit {
     return this.utilisateurs.every(_ => _.state);
   }
   
-  actionSelectAll(event){
-    var collectChecks = document.getElementsByName('selectedUtilisateur')
+  // actionSelectAll(event){
+  //   var collectChecks = document.getElementsByName('selectedUtilisateur')
  
-    for (var i=0;i<collectChecks.length;i++){
-			if (collectChecks[i].attributes.type === "checkbox"){
-				var msg="le checkbox nommé "+ collectChecks[i].name 
-				msg+=(collectChecks[i].checked==true)?" est checkée":"n'est pas checkée"
-        console.log(msg);
-      }
-    }
+  //   for (var i=0;i<collectChecks.length;i++){
+	// 		if (collectChecks[i].attributes.type === "checkbox"){
+	// 			var msg="le checkbox nommé "+ collectChecks[i].name 
+	// 			msg+=(collectChecks[i].checked==true)?" est checkée":"n'est pas checkée"
+  //       console.log(msg);
+  //     }
+  //   }
     
-    const test = this.formBuilder.control(this.utilisateur.disponible);
-    console.log("action : " + event);
-    this.isUtilisateurSelected =  _.filter(test, (utilisateur) => { return this.utilisateur.disponible}); 
-    console.log(this.isUtilisateurSelected);
-  }
+  //   const test = this.formBuilder.control(this.utilisateur.disponible);
+  //   console.log("action : " + event);
+  //   this.isUtilisateurSelected =  _.filter(test, (utilisateur) => { return this.utilisateur.disponible}); 
+  //   console.log(this.isUtilisateurSelected);
+  // }
 
-  buildSelected() {
-    const arr = this.IdDisponibles.map(skill => {
-      return this.formBuilder.control(this.utilisateur.disponible);
-    });
-    return this.formBuilder.array(arr);
-  }
+  // buildSelected() {
+  //   const arr = this.IdDisponibles.map(skill => {
+  //     return this.formBuilder.control(this.utilisateur.disponible);
+  //   });
+  //   return this.formBuilder.array(arr);
+  // }
 }
