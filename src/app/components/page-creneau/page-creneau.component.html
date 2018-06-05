@@ -26,7 +26,8 @@
           </div>
           <div class="form-group">
             <label for="listProfesseur" class="font-weight-medium">Professeurs</label>
-            <select class="form-control" #selectedValue name="selectedProfesseurs" id="selectedProfesseurs" [(ngModel)]="selectedProfesseur" (ngModelChange)="addProfesseurToSelected($event)">
+            <select class="form-control" #selectedValue name="selectedProfesseurs" id="selectedProfesseurs" [(ngModel)]="selectedProfesseur"
+              (ngModelChange)="addProfesseurToSelected($event)">
               <option *ngFor="let professeur of listProfesseur | async" [ngValue]="professeur">{{professeur.nom}} {{professeur.prenom}}</option>
             </select>
           </div>
@@ -34,7 +35,10 @@
         Liste des Professeurs sélectionnés :
         <mat-list #professeurs>
           <mat-list-item *ngFor="let professeur of selectedProfesseurs">
-            {{ professeur.nom }} {{ professeur.prenom }}
+            <button type="button" class="btn btn-link pull-right" (click)="enleverProfesseur(professeur)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+            &nbsp;{{ professeur.nom }} {{ professeur.prenom }}
           </mat-list-item>
         </mat-list>
       </div>
@@ -49,7 +53,7 @@
                 (keyup)="onChangeNom($event.target.value)">
               <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addEleveToSelected()" [displayWith]="displayFn">
                 <mat-option *ngFor="let eleve of listEleve | async | nomDisponibles: filterParNom" [value]="eleve">
-                  {{ eleve.nom }} {{ eleve.prenom }}
+                  {{ eleve.nom }} {{ eleve.prenom }} - {{eleve.classe}}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
@@ -58,13 +62,13 @@
         Liste des Eleves sélectionnés :
         <mat-list #eleves>
           <mat-list-item *ngFor="let eleve of selectedEleves">
+              <button type="button" class="btn btn-link pull-right" (click)="enleverEleve(eleve)"><i class="fas fa-trash-alt"></i></button>
             <mat-slide-toggle>{{ eleve.nom }} {{ eleve.prenom }}</mat-slide-toggle>
-            <button type="button" class="btn btn-link" (click)="enleverEleve(eleve)">Enlever</button>
           </mat-list-item>
         </mat-list>
       </div>
     </div>
   </div>
   <button (click)="onSend()" type="submit" class="btn btn-success mr-2">Créer le créneau</button>
-  <button class="btn btn-light">Annuler</button>
+  <button (click)="onCancel()" class="btn btn-light">Annuler</button>
 </form>
