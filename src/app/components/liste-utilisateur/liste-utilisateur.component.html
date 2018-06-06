@@ -12,7 +12,7 @@
       <div class="card">
       <button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="redirectNewUser()">Nouveau</button>
         <div class="card-body">
-          <div *ngIf="administrateur; else elseBlock">
+          <div *ngIf="isAdministrateur; else elseBlock">
             
 
             <div class="col-md-12 d-flex align-items-stretch">
@@ -26,14 +26,14 @@
                 <div class="col-md-3 col-xs-12" *ngIf="typeUtilisateur == 'eleve'" >
                   <label class="col-form-label">
                     Classe
-                    <select id="selectClasse" name="classeDispo" (change)="onChange($event.target.value)" class="form-control">
+                    <select id="selectClasse" name="classeDispo" (change)="onChangeClasse($event.target.value)" class="form-control">
                       <option *ngFor="let classeDisponible of classeDisponibles;" [value]="classeDisponible" >{{classeDisponible}}</option>
                     </select>
                   </label>
                 </div>
                 <div class="col-md-3 col-xs-12">
                   <label class="col-form-label">
-                    Présence
+                    Disponibilité
                   </label>
                   <div class="d-flex">
                     <label *ngFor="let filterDisponible of filterDisponibles;" class="containerCheck">
@@ -43,15 +43,16 @@
                   </div>
                 </div>
                 <div class="col-md-3 col-xs-12">
+                  <form name="actiongroupee">
                   <label class="col-form-label">
-                    Actions groupées
+                    &nbsp;
                     <select id="selectAction" name="selectAction" (change)="actionSelectAll($event.target.value)" class="form-control">
-                        <option value="" > </option>
+                        <option value="" >Actions groupées</option>
                         <option value="supprimer" >Supprimer</option>
-                        <option value="absent" >Marquer comme absent</option>
-                        <option value="present" >Marquer comme présent</option>
+                        <option value="indisponible" >Marquer indisponible</option>
+                        <option value="disponible" >Marquer disponible</option>
                       </select>
-                  </label>
+                  </label></form>
                 </div>
               </div>
             </div>
@@ -66,18 +67,17 @@
                   <th>Nom</th>
                   <th *ngIf="typeUtilisateur == 'eleve'" class="hiddenMobile">classe</th>
                   <th class="hiddenMobile">Email</th>
-                  <th>Présence</th>
-                  <th> 
-                      
+                  <th>Disponibilité</th>
+                  <th>
                     <label class="containerCheck" style="top: 0.9em">
-                      <input type="checkbox" name="all" id='checkall' unchecked />
+                      <input type="checkbox" name="all" id='checkall' unchecked (click)="onSelectAll($event.target)" />
                       <span class="checkmark" ></span> Tout sélectionner
                     </label>
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let utilisateur of utilisateurs | async  | nomDisponibles: filterParNom | eleveClasses: filterParClasse | utilisateurDisponibles: { disponible: ''} : checked() : false" >
+                <tr *ngFor="let utilisateur of utilisateurs$ | async  | nomDisponibles: filterParNom | eleveClasses: filterParClasse | utilisateurDisponibles: { disponible: ''} : checked() : false" >
                   <td (click)="redirectEditUser(utilisateur.idUtilisateur);">
                       <strong>{{ utilisateur.nom }} </strong><em>{{ utilisateur.prenom }}</em>
                   </td>
@@ -91,7 +91,7 @@
                   </td>
                   <td>
                     <label class="containerCheck">
-                      <input type="checkbox" class="form-check-input checkbox" name="selectedUtilisateur" value="{{utilisateur.idUtilisateur}}" ng-checked="selectall"/>
+                      <input type="checkbox" class="form-check-input checkbox" name="selectedUtilisateur" (click)="switchSelectedUtilisateur(utilisateur, $event.target)" value="{{utilisateur}}" [checked]="isSelected" />
                       <span class="checkmark" ></span>
                     </label>
                   </td> 

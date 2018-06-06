@@ -54,4 +54,4 @@ children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
   { path: '**', redirectTo: '/login' }
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'});
