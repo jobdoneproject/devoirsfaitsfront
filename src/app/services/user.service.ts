@@ -35,10 +35,15 @@ export class UserService {
     const url = this.getUtilisateursUrl(idEtablissement, typeUtilisateur) ;
     return this.http.get(url).pipe(map((resp: Response)=>resp.json()));
   }
-
-  updateDisponibilite(typeUtilisateur: string, idUtilisateur: number, idEtablissement: number){
-    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, idUtilisateur);
+  
+  updateDisponibilite(typeUtilisateur: string, idEtablissement: number, idUtilisateur: number){
+    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, idUtilisateur)+"/switch";
     this.http.put( url, "").subscribe(res => console.log("url partie"));
+  }
+
+  updateUsers(typeUtilisateur: string, idEtablissement: number, utilisateurs: User[]){
+    const url = this.getUtilisateursUrl(idEtablissement, typeUtilisateur);
+    this.http.put(url, JSON.stringify(utilisateurs), this.options).subscribe(res => console.log("url partie"));
   }
 
   getUser(typeUtilisateur: string, idEtablissement: number, idUtilisateur: number){
@@ -58,9 +63,17 @@ export class UserService {
     this.http.put(url, JSON.stringify(utilisateur), this.options).subscribe(res => console.log("url partie"));
   }
 
-  deleteUser(typeUtilisateur: string, idUtilisateur: number, idEtablissement: number){
+  deleteUser(typeUtilisateur: string, idEtablissement: number, idUtilisateur: number){
     const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, idUtilisateur);
     return this.http.delete(url).subscribe(res => console.log("url partie"));
+  }
+
+  deleteUsers(typeUtilisateur: string, idEtablissement: number, utilisateurs: User[]){
+    const url = this.getUtilisateursUrl(idEtablissement, typeUtilisateur);
+    this.http.delete(url,new RequestOptions({
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: utilisateurs
+   })).subscribe(res => true);
   }
 
   private handleError(error: Response) {

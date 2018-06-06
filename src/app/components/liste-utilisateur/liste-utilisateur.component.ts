@@ -5,13 +5,14 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {environment} from '../../../environments/environment';
 import {AuthService} from "../../services/auth.service";
 import { UserService } from "../../services/user.service";
-import { Observable, Subscriber, Subscription } from 'rxjs';
+import { Observable, Subscriber, Subscription, BehaviorSubject } from 'rxjs';
 import { map, startWith} from 'rxjs/operators';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { Scope } from '@angular/core/src/profile/wtf_impl';
 import { Subject } from 'rxjs/Subject';
 import { SubscribeOnObservable } from 'rxjs/internal-compatibility';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Location } from '@angular/common';
 import * as $ from 'jquery';
 import * as _ from 'underscore';
 
@@ -25,20 +26,16 @@ export class ListeUtilisateurComponent implements OnInit {
   typeUtilisateur:string;
   titrePage:string;
   currentUser: User;
-  administrateur: boolean;
-  errorMessage:string;
+  isAdministrateur: boolean;
   idEtablissement: number;
-  url: string;
-  utilisateurs: Observable<any>;
+  utilisateurs$: BehaviorSubject<User[]>;
   filterDisponibles = [{nom:'Oui', select:'disponible', checked:true, value:true} ,{nom:'Non', select:'indisponible', checked:true, value:false}];
   classeDisponibles = ['Toutes'];
   nomDisponibles = [];
-  IdDisponibles = [];
-  isUtilisateurSelected = [];
   filterParClasse: string = "Toutes";
   filterParNom: string;
-  utilisateur: User;
-  formUsers: FormGroup;
+  selectedUtilisateurs: User[] = [];
+  isSelected: boolean = false;
 
   constructor(
     public authService: AuthService,
@@ -47,6 +44,7 @@ export class ListeUtilisateurComponent implements OnInit {
     private route: ActivatedRoute,
     private userService:UserService,
     private formBuilder: FormBuilder,
+    private location: Location,
   ) {
 
     this.route.params.subscribe(params => {
@@ -61,76 +59,33 @@ export class ListeUtilisateurComponent implements OnInit {
     this.idEtablissement = this.currentUser.idEtablissement;
 
     if (this.currentUser.privilege == "Administrateur"){
-      this.administrateur = true;
+      this.isAdministrateur = true;
     }
 
-    this.utilisateurs = this.userService.getUsers(this.typeUtilisateur, this.currentUser.idEtablissement);
 
-    this.utilisateurs.forEach(arrayClasseUtilisateur => {
-      arrayClasseUtilisateur.forEach(utilisateur => {
-        if (this.classeDisponibles.indexOf(utilisateur.classe) == -1 ){
-          this.classeDisponibles.push(utilisateur.classe);
-        }
-      })
+    this.userService.getUsers(this.typeUtilisateur, this.currentUser.idEtablissement).subscribe(newUsers => {
+      this.utilisateurs$ = new BehaviorSubject<Array<User>>(newUsers);
+      this.utilisateurs$.forEach(arrayClasseUtilisateur => {
+        arrayClasseUtilisateur.forEach(utilisateur => {
+          if (this.classeDisponibles.indexOf(utilisateur.classe) == -1 ){
+            this.classeDisponibles.push(utilisateur.classe);
+          }
+        })
+      });
+  
+      this.utilisateurs$.forEach(arrayNomUtilisateur => {
+        arrayNomUtilisateur.forEach(utilisateur => {
+          if (this.nomDisponibles.indexOf(utilisateur.nom) == -1 ){
+            this.nomDisponibles.push(utilisateur.nom);
+          }
+        })
+      });
     });
-
-    this.utilisateurs.forEach(arrayNomUtilisateur => {
-      arrayNomUtilisateur.forEach(utilisateur => {
-        if (this.nomDisponibles.indexOf(utilisateur.nom) == -1 ){
-          this.nomDisponibles.push(utilisateur.nom);
-        }
-      })
-    });
-
-    this.utilisateurs.forEach(arrayIdUtilisateur => {
-      arrayIdUtilisateur.forEach(utilisateur => {
-        if (this.IdDisponibles.indexOf(utilisateur.id) == -1 ){
-          this.IdDisponibles.push(utilisateur.id);
-        }
-      })
-    });
-
-    // this.formUsers = this.formBuilder.group({
-    //   utilisateurs: this.buildSelected()
-    //   });
   
   }
 
   ngOnInit() {
-
-(function($) {
-  $(document).ready(function(){
-  // Check or Uncheck All checkboxes
-  $("#checkall").change(function(){
-    var checked = $(this).is(':checked');
-    if(checked){
-      $(".checkbox").each(function(){
-        $(this).prop("checked",true);
-      });
-    }else{
-      $(".checkbox").each(function(){
-        $(this).prop("checked",false);
-      });
-    }
-  });
-
- // Changing state of CheckAll checkbox
- $(".checkbox").click(function(){
-
-   if($(".checkbox").length == $(".checkbox:checked").length) {
-     $("#checkall").prop("checked", true);
-   } else {
-     $("#checkall").removeAttr("checked");
    }
-
- });
-});
-})(jQuery);
-   }
-
-  onSelect(utilisateur: User): void {
-    this.utilisateur = utilisateur;
-  }
 
   redirectEditUser(idUtilisateur: number) {
     this.router.navigate(['edition-utilisateur/' + this.typeUtilisateur + '/' + idUtilisateur]);
@@ -144,47 +99,86 @@ export class ListeUtilisateurComponent implements OnInit {
     return this.filterDisponibles.filter(utilisateur => { return utilisateur.checked; });
   }
 
-  onChange(optionDuMenu) {
+  onChangeClasse(optionDuMenu) {
     this.filterParClasse = optionDuMenu;
   }
   onChangeNom(optionDuMenu) {
     this.filterParNom= optionDuMenu;
   }
 
+  onSelectAll(selection){
+    if (selection.checked){
+      this.utilisateurs$.forEach(utilisateurs => {
+        utilisateurs.forEach(utilisateur => {
+          this.selectedUtilisateurs.push(utilisateur);
+          this.isSelected = true;
+        })
+      });
+    } else {
+      this.selectedUtilisateurs.splice(0,this.selectedUtilisateurs.length);
+      this.isSelected = false;
+    }
+  }
+
   updateDisponibilite(idUtilisateur){
     this.userService.updateDisponibilite(this.typeUtilisateur, this.currentUser.idEtablissement, idUtilisateur);
   }
 
-  state : boolean;
-  checkAll(ev) {
-    this.utilisateurs.forEach(x => x.state = ev.target.checked);
+  switchSelectedUtilisateur(selectedUtilisateur: User, selection) {
+    if (selection.checked) {
+      this.selectedUtilisateurs.push(selectedUtilisateur);
+    } else {
+      const indexUtilisateur = this.selectedUtilisateurs.findIndex(u => u.idUtilisateur == selectedUtilisateur.idUtilisateur);
+      if (indexUtilisateur >=0) {
+        this.selectedUtilisateurs.splice(indexUtilisateur,1);
+      }
+      console.log('Index found ' + indexUtilisateur);
+    }
   }
 
-  isAllChecked() {
-    return this.utilisateurs.every(_ => _.state);
-  }
+
+  // state : boolean;
+  // checkAll(ev) {
+  //   this.utilisateurs$.forEach(x => x.state = ev.target.checked);
+  // }
+
+  // isAllChecked() {
+  //   return this.utilisateurs$.every(_ => _.state);
+  // }
   
-  // actionSelectAll(event){
-  //   var collectChecks = document.getElementsByName('selectedUtilisateur')
- 
-  //   for (var i=0;i<collectChecks.length;i++){
-	// 		if (collectChecks[i].attributes.type === "checkbox"){
-	// 			var msg="le checkbox nommé "+ collectChecks[i].name 
-	// 			msg+=(collectChecks[i].checked==true)?" est checkée":"n'est pas checkée"
-  //       console.log(msg);
-  //     }
-  //   }
-    
-  //   const test = this.formBuilder.control(this.utilisateur.disponible);
-  //   console.log("action : " + event);
-  //   this.isUtilisateurSelected =  _.filter(test, (utilisateur) => { return this.utilisateur.disponible}); 
-  //   console.log(this.isUtilisateurSelected);
-  // }
+  actionSelectAll(event){
+    if (event == "supprimer") {
+      if(confirm("Voulez-vous vraiment supprimer " + this.selectedUtilisateurs.length + " " + this.typeUtilisateur + "(s) ?")){
+        this.userService.deleteUsers(this.typeUtilisateur, this.currentUser.idEtablissement, this.selectedUtilisateurs);
+        this.userService.getUsers(this.typeUtilisateur, this.currentUser.idEtablissement).subscribe(newUsers => {
+          this.utilisateurs$.next(newUsers);
+        });
+        this.selectedUtilisateurs.splice(0,this.selectedUtilisateurs.length);
+        this.isSelected = false;
+      }
 
-  // buildSelected() {
-  //   const arr = this.IdDisponibles.map(skill => {
-  //     return this.formBuilder.control(this.utilisateur.disponible);
-  //   });
-  //   return this.formBuilder.array(arr);
-  // }
+    }
+
+    if (event == "disponible") {
+      this.selectedUtilisateurs.forEach(utilisateur => {
+        utilisateur.disponible = true;
+      });
+      this.userService.updateUsers(this.typeUtilisateur, this.currentUser.idEtablissement, this.selectedUtilisateurs); 
+    }
+
+    if (event == "indisponible") {
+        this.selectedUtilisateurs.forEach(utilisateur => {
+          utilisateur.disponible = false;
+        });
+        this.userService.updateUsers(this.typeUtilisateur, this.currentUser.idEtablissement, this.selectedUtilisateurs); 
+
+      }
+
+
+    console.log("collect : " + this.selectedUtilisateurs.length);
+
+    console.log("action : " + event);
+    document.forms["actiongroupee"].reset();
+  }
+
 }
