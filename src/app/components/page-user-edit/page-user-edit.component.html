@@ -2,8 +2,10 @@
   <div class="col-12">
     <span class="d-flex alifn-items-center">
         <h1>
-          {{editedUser.prenom}} {{editedUser.nom}}
-          <span *ngIf="editedUser.privilege ==='Eleve'"> - {{editedUser.classe}}</span>
+          <span *ngIf="typeUtilisateur =='eleve'; else profBlock">Élève </span>
+          <ng-template #profBlock>Professeur </ng-template>
+          {{editedUser.nom}} <em>{{editedUser.prenom}}</em>
+          <span *ngIf="typeUtilisateur =='eleve' && editedUser.classe != null"> {{editedUser.classe}}</span>
         </h1>
       </span>
   </div>
