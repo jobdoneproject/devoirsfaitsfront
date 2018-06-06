@@ -18,8 +18,6 @@ export class ProfileComponent implements OnInit {
   referenceDate: Date;
   weekNumber: number;
   year: number;
-  @Input()
-  weeknum: Date;
 
   constructor(public authService: AuthService, public router: Router) {
   
@@ -29,8 +27,8 @@ export class ProfileComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     /////////////////////////////////////////
-    this.year = 2018;
-    this.weekNumber = 25;
+    this.year = moment().toDate().getFullYear();
+    this.weekNumber = WeekUtils.getWeekNumberForDate(moment().toDate());
     /////////////////////////////////////////
 
     const attributesAreMissing = this.weekNumber === undefined || this.year === undefined;
@@ -86,10 +84,10 @@ export class ProfileComponent implements OnInit {
     this.weekNumber = WeekUtils.getWeekNumberForDate(this.referenceDate);
   }
 
-  update() {
-    const referenceDateAsMoment = moment(this.weeknum);
+  update(weeknum:Date) {
+    const referenceDateAsMoment = moment(weeknum);
     this.referenceDate = referenceDateAsMoment.toDate();
-  this.year = Number(this.weeknum.toString().substring(0, 4));
-  this.weekNumber = Number(this.weeknum.toString().substring(6, 9));
+    this.year = Number(weeknum.toString().substring(0, 4));
+    this.weekNumber = Number(weeknum.toString().substring(6, 9));
   }
 }
