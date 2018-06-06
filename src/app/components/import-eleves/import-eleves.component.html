@@ -12,6 +12,25 @@
         <h4 class="card-title">Importer ci-dessous ...</h4>
         <div class="card-body">
             <div *ngIf="administrateur; else elseBlock">
+
+                <div class="col-md-12 d-flex align-items-stretch">
+                  <form action="#" method="POST">
+                      <div class="row flex-grow">
+                          <div class="col-7">
+                              <input type="text" id="upload_file" name="upload_file" />
+                            </div>
+                            <div class="col-5">
+                              <button id="upload_file_selection" name="upload_file_selection">Sélectionner</button> 
+                            </div>
+                          </div>
+                      <div class="row flex-grow">
+                        <div class="col">
+                          <button type="submit" name="submit" id="submit">Importer</button>
+                        </div>
+                      </div>
+                  </form>
+                </div>
+
               </div>
               <ng-template #elseBlock>
                   <p>
