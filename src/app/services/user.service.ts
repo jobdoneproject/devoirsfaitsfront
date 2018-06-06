@@ -33,7 +33,7 @@ export class UserService {
   } 
 
   getUsers(typeUtilisateur:string , idEtablissement: number) {
-    this.url = environment.API_URL+"/" + typeUtilisateur + "/etablissement/" + idEtablissement;
+    this.url = environment.API_URL+"/etablissements/" + idEtablissement+ "/" +typeUtilisateur + "/" ;
     return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
   }
 

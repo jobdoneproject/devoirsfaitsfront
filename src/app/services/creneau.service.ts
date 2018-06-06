@@ -12,7 +12,7 @@ export class CreneauService {
 
   newCreneau: CourseSlot = { id: null, dateDebut: 0, dateFin: 0, profs: [], eleves: [], salle: null };
 
-  constructor() { }
+  constructor(private http: Http) { }
 
 
   createSlot(debut:number, fin:number, eleves:User[], profs:User[], salle:Room ) {
@@ -29,6 +29,6 @@ export class CreneauService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let body = JSON.stringify(newCreneau);
-    //this.http.post('/api/etablissement/'+this.currentUser.idEtablissement+'/creneaux/', body, options ).map((res: Response) => res.json());
+    this.http.post('http://localhost:8080/etablissement/1/creneaux', body, options ).subscribe(res => console.log(res.json()));
   }
 }
