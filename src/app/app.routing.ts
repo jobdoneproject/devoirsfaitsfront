@@ -49,7 +49,7 @@ children: [{path: '', component: SalleComponent, outlet: 'connected'}]
     children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
   },
   
-  { path: 'import-eleves',
+  { path: 'import',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: ImportElevesComponent, outlet: 'connected'}]
   },

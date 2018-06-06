@@ -25,12 +25,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
+    
     /////////////////////////////////////////
     this.year = moment().toDate().getFullYear();
     this.weekNumber = WeekUtils.getWeekNumberForDate(moment().toDate());
     /////////////////////////////////////////
-
     const attributesAreMissing = this.weekNumber === undefined || this.year === undefined;
     if (attributesAreMissing) {
       this.referenceDate = new Date();
