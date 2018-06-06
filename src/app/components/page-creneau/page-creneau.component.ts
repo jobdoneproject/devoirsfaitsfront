@@ -43,10 +43,10 @@ export class PageCreneauComponent implements OnInit {
   titre: String = "Création d'un créneau";
   myControl: FormControl = new FormControl();
   filteredEleve: Observable<any[]>;
-  salleSelected: Room;
+  // salleSelected: Room;
   allSalleEtb: Observable<any>;
   idEtablissement: number;
-  selectedSalle: string;
+  selectedSalle: Room;
 
   constructor(private roomsv: RoomService, private courseservice: CreneauService, public authService: AuthService, public router: Router, private userService:UserService) {
 
@@ -72,13 +72,23 @@ export class PageCreneauComponent implements OnInit {
     });
   }
 
-  addEleveToSelected() { this.selectedEleves.push(this.myControl.value); }
+  addEleveToSelected() { 
+    let eleveAdded = this.myControl.value;
+    // If eleveAdded ! contains present, ajout avec true
+    if(!eleveAdded.hasOwnProperty('present')){
+      console.log("ne contient pas present");
+    }else{
+      console.log("le contient");
+    }
+    this.selectedEleves.push(eleveAdded); 
+  }
 
   addProfesseurToSelected(selectedProfesseur) { this.selectedProfesseurs.push(selectedProfesseur); console.log(selectedProfesseur); }
 
   addSalleToSelected(salle){ 
-    this.selectedSalle = salle; 
-    console.log(this.selectedSalle);
+    this.selectedSalle = salle;
+    console.log("salle added"); 
+    console.log(salle);
   }
 
   majTitre() { this.titre = "Création du créneau du " + this.date_creneau.toString(); }
@@ -88,7 +98,7 @@ export class PageCreneauComponent implements OnInit {
                                   moment(this.date_creneau + " " + this.heure_fin).unix(),
                                   this.selectedEleves,
                                   this.selectedProfesseurs,
-                                  this.salleSelected,
+                                  this.selectedSalle,
                                   this.idEtablissement);
   }
 

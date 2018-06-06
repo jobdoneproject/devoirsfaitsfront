@@ -16,12 +16,14 @@ export class CreneauService {
   createSlot(debut:number, fin:number, eleves:User[], profs:User[], 
               salle:Room, idEtablissement: number) {
     let newCreneau: CourseSlot = { id: null, dateDebut: 0, dateFin: 0, 
-                                profs: [], eleves: [], salle: null };
-    newCreneau.dateDebut = debut;
+      professeurs: [], eleves: [], salle: null };
+                                newCreneau.dateDebut = debut;
     newCreneau.dateFin = fin;
     newCreneau.eleves = eleves;
-    newCreneau.profs = profs;
+    newCreneau.professeurs = profs;
     newCreneau.salle = salle;
+    console.log('salle');
+    console.log(salle);
     this.postSlot(newCreneau, idEtablissement);
   }
 
@@ -30,6 +32,8 @@ export class CreneauService {
     let options = new RequestOptions({ headers: headers });
     let body = JSON.stringify(newCreneau);
     let url = environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux";
+    console.log("body");
+    console.log(body);
     this.http.post(
       url, 
       body, 

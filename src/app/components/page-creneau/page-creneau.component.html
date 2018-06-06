@@ -19,7 +19,7 @@
           <div class="form-group">
             <label for="salle-creneau">Salle</label>
             <select class="form-control" #selectedValue name="selectedSalles" id="selectedSalles" 
-            [(ngModel)]="selectedSalles" (optionSelected)="addSalleToSelected($event)">
+            [(ngModel)]="selectedSalles" (ngModelChange)="addSalleToSelected($event)">
               <option *ngFor="let salle of allSalleEtb | async" 
                       [ngValue]="salle" >{{salle.nom}}</option>
             </select>
