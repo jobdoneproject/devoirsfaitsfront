@@ -31,6 +31,7 @@ export class PageCreneauComponent implements OnInit {
   selectedProfesseurs: User[] = [];
   selectedProfesseur: any;
   currentUser: User;
+  selectedSalles:any;
   administrateur: boolean;
   errorMessage: string;
   listEleve: Observable<any>;
