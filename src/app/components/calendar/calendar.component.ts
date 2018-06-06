@@ -14,12 +14,17 @@ import { Observable } from 'rxjs/Observable';
 })
 export class CalendarComponent implements OnInit {
 
-  @Input() weekNumber: number;
+  
   @Input() year: number;
-   courseSlotsObservable: Observable<CourseSlot []>;
-   days = {
-    Lundi : WeekDay.Lundi,
-    Mardi : WeekDay.Mardi,
+  @Input() weekNumber: number;
+  ngOnChanges(weekNumber: number) {
+    this.updateSlots();
+  }
+
+  courseSlotsObservable: Observable<CourseSlot[]>;
+  days = {
+    Lundi: WeekDay.Lundi,
+    Mardi: WeekDay.Mardi,
     Mercredi: WeekDay.Mercredi,
     Jeudi: WeekDay.Jeudi,
     Vendredi: WeekDay.Vendredi,
@@ -27,16 +32,18 @@ export class CalendarComponent implements OnInit {
     Dimanche: WeekDay.Dimanche
   };
 
-  constructor( private coursesSlotService : CourseSlotsService ) {
-    this.courseSlotsObservable = this.coursesSlotService.fetchSlots(1, 2018, 25);
+  constructor(private coursesSlotService: CourseSlotsService) {
+    this.courseSlotsObservable = coursesSlotService.fetchSlots(1, this.year, this.weekNumber);
   }
 
-  updateSlots () {
+  updateSlots() {
+    console.log("year : " + this.year + " & week : " + this.weekNumber);
     this.courseSlotsObservable = this.coursesSlotService.fetchSlots(1, this.year, this.weekNumber);
+    console.log(this.courseSlotsObservable);
   }
 
   ngOnInit() {
-    
-   }
+
+  }
 
 }
