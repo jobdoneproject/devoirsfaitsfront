@@ -13,6 +13,7 @@ import { ContainerNavbarComponent } from './components/container-navbar/containe
 import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
+import { SalleComponent } from './components/salle/salle.component';
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -47,7 +48,11 @@ children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
 component: ContainerComponent, canActivate: [UrlPermission],
 children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
 },
-
+{ path: 'salle',
+component: ContainerComponent, canActivate: [UrlPermission],
+children: [{path: '', component: SalleComponent, outlet: 'connected'}]
+},
+  
 { path: '', redirectTo: 'bienvenue', pathMatch: 'full' },
 
   // otherwise redirect to profile

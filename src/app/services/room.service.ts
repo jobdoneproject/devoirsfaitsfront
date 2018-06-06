@@ -6,30 +6,25 @@ import { HttpClient } from '@angular/common/http';
 import { Url } from 'url';
 import {environment} from '../../environments/environment';
 import { map, startWith} from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomService {
 
-  room:Room = {id:null, nom:""};
+  room:Room = {id_etablissement:null, idSalle:null, nom:""};
   options:RequestOptions;
   url:string;
     
-  constructor(private httpClient: HttpClient, private http: Http) {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    this.options = new RequestOptions({ headers: headers });
-     
-  }
+  constructor(private http: Http) { }
 
   createNew (idEtablissement:number, name:String) {
-    this.room.nom = name;
-    this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles/";
-    let body = JSON.stringify(this.room);
-    this.http.post(this.url, body, this.options ).map((res: Response) => res.json());
+    this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles";
+    this.http.post(this.url, {"nom":name}).subscribe(res => console.log(res.json()));
   }
 
-  getAll (idEtablissement:number) {
+  getAll (idEtablissement:number): Observable<any> {
     this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles/";
     return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
   }

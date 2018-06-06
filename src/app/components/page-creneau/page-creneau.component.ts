@@ -15,6 +15,7 @@ import * as moment from 'moment';
 import { environment } from '../../../environments/environment';
 import { CreneauService } from '../../services/creneau.service';
 import { UserService } from "../../services/user.service";
+import { Room } from "../../model/model.room"
 
 
 @Component({
@@ -22,6 +23,7 @@ import { UserService } from "../../services/user.service";
   templateUrl: './page-creneau.component.html',
   styleUrls: ['./page-creneau.component.scss']
 })
+
 export class PageCreneauComponent implements OnInit {
 
   selectedEleves: User[] = [];
@@ -39,6 +41,7 @@ export class PageCreneauComponent implements OnInit {
   titre: String = "Création d'un créneau";
   myControl: FormControl = new FormControl();
   filteredEleve: Observable<any[]>;
+  salleSelected: Room;
 
 
   constructor(private courseservice: CreneauService, public authService: AuthService, public router: Router, private userService:UserService) {
@@ -64,7 +67,7 @@ export class PageCreneauComponent implements OnInit {
 
   addEleveToSelected() { this.selectedEleves.push(this.myControl.value); }
 
-  addProfesseurToSelected(selectedProfesseur) { this.selectedProfesseurs.push(selectedProfesseur); }
+  addProfesseurToSelected(selectedProfesseur) { this.selectedProfesseurs.push(selectedProfesseur); console.log(selectedProfesseur); }
 
   majTitre() { this.titre = "Création du créneau du " + this.date_creneau.toString(); }
 
@@ -73,7 +76,7 @@ export class PageCreneauComponent implements OnInit {
                                   moment(this.date_creneau + " " + this.heure_fin).unix(),
                                   this.selectedEleves,
                                   this.selectedProfesseurs,
-                                  "20A" );
+                                  this.salleSelected );
   }
 
   ngOnInit() {
