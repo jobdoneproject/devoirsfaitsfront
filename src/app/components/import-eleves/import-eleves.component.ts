@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../services/auth.service";
+import {User} from "../../model/model.user";
 
 @Component({
   selector: 'app-import-eleves',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImportElevesComponent implements OnInit {
 
-  constructor() { }
+  administrateur: boolean;
+  currentUser: User;
+
+  constructor(private authService: AuthService) {
+   }
 
   ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (this.currentUser.privilege == "Administrateur"){
+      this.administrateur = true;
+    }
   }
 
 }
