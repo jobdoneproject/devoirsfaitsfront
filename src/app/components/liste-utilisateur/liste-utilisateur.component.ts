@@ -152,11 +152,9 @@ export class ListeUtilisateurComponent implements OnInit {
         this.userService.deleteUsers(this.typeUtilisateur, this.currentUser.idEtablissement, this.selectedUtilisateurs);
         this.userService.getUsers(this.typeUtilisateur, this.currentUser.idEtablissement).subscribe(newUsers => {
           this.utilisateurs$.next(newUsers);
-
-          this.selectedUtilisateurs.splice(0,this.selectedUtilisateurs.length);
-          this.isSelected = false;
-
         });
+        this.selectedUtilisateurs.splice(0,this.selectedUtilisateurs.length);
+        this.isSelected = false;
       }
 
     }
