@@ -40,6 +40,15 @@ const appRoutes: Routes = [
   component: ContainerComponent, canActivate: [UrlPermission],
   children: [{path: '', component: PageCreneauComponent, outlet: 'connected'}]
 },
+{ path: 'edition-utilisateur/:type/:id',
+component: ContainerComponent, canActivate: [UrlPermission],
+children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
+},
+
+{ path: 'creation-utilisateur/:type',
+component: ContainerComponent, canActivate: [UrlPermission],
+children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
+},
 { path: 'salle',
 component: ContainerComponent, canActivate: [UrlPermission],
 children: [{path: '', component: SalleComponent, outlet: 'connected'}]
@@ -59,5 +68,4 @@ children: [{path: '', component: SalleComponent, outlet: 'connected'}]
   // otherwise redirect to profile
   { path: '**', redirectTo: '/login' }
 ];
-
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'});

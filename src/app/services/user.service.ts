@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 import {User} from "../model/model.user";
 import { UtilsService } from './utils.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, startWith} from 'rxjs/operators';
 
 import "rxjs/Rx";
@@ -19,46 +19,61 @@ export class UserService {
   searchedUser: User;
   users: User[];
 
-  //private url = 'http://localhost:8080/eleve/'; // Changer par url prod
-  private url : string;
+  private options = {
+    headers: new Headers({ 'Content-Type': 'application/json' })
+  };
 
   constructor(
-    // private http: Http,
-    private httpClient: HttpClient,
     private http: Http
   ) { }
 
   getCurrentUser(): Observable<User> {
     return this.getCurrentUser();
-  } 
+  }
 
   getUsers(typeUtilisateur:string , idEtablissement: number) {
-    this.url = environment.API_URL+"/" + typeUtilisateur + "/etablissement/" + idEtablissement;
-    return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+    const url = this.getUtilisateursUrl(idEtablissement, typeUtilisateur) ;
+    return this.http.get(url).pipe(map((resp: Response)=>resp.json()));
+  }
+  
+  updateDisponibilite(typeUtilisateur: string, idEtablissement: number, idUtilisateur: number){
+    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, idUtilisateur)+"/switch";
+    this.http.put( url, "").subscribe(res => console.log("url partie"));
   }
 
-
-  updateDisponibilite(typeUtilisateur: string, idUtilisateur: number){
-    this.url = environment.API_URL+"/" + typeUtilisateur + "/disponible/" + idUtilisateur;
-    this.http.put( this.url, "").subscribe(res => console.log("url partie"));
+  updateUsers(typeUtilisateur: string, idEtablissement: number, utilisateurs: User[]){
+    const url = this.getUtilisateursUrl(idEtablissement, typeUtilisateur);
+    this.http.put(url, JSON.stringify(utilisateurs), this.options).subscribe(res => console.log("url partie"));
   }
 
-  getUser(typeUtilisateur: string, idUtilisateur: number){
-    this.url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
-    return this.http.get(this.url).pipe(map((resp: Response)=>resp.json()));
+  getUser(typeUtilisateur: string, idEtablissement: number, idUtilisateur: number){
+    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, idUtilisateur);
+    return this.http.get(url).pipe(map((resp: Response)=>resp.json()));
   }
 
-  putUser(typeUtilisateur: string, utilisateurUpdate: User){
-    const headers = new Headers({'Content-Type': 'application/json'});
-    const options = new RequestOptions({ headers: headers });
-
-    this.url = environment.API_URL+"/" + typeUtilisateur + "/" + utilisateurUpdate.idUtilisateur;
-    this.http.put(this.url, JSON.stringify(utilisateurUpdate), options).subscribe(res => console.log("url partie"));
+  postUser(typeUtilisateur: string, idEtablissement: number, utilisateur: User){
+    const url = this.getUtilisateursUrl(idEtablissement, typeUtilisateur);
+    this.http.post(url, utilisateur, this.options).subscribe( res =>
+      console.log("Subscribed")
+    );
   }
 
-  deleteUser(typeUtilisateur: string, idUtilisateur: number){
-    this.url = environment.API_URL+"/" + typeUtilisateur + "/" + idUtilisateur;
-    return this.http.delete(this.url).subscribe(res => console.log("url partie"));
+  putUser(typeUtilisateur: string, idEtablissement: number, utilisateur: User){
+    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, utilisateur.idUtilisateur);
+    this.http.put(url, JSON.stringify(utilisateur), this.options).subscribe(res => console.log("url partie"));
+  }
+
+  deleteUser(typeUtilisateur: string, idEtablissement: number, idUtilisateur: number){
+    const url = this.getSingleUtilisateurUrl(idEtablissement, typeUtilisateur, idUtilisateur);
+    return this.http.delete(url).subscribe(res => console.log("url partie"));
+  }
+
+  deleteUsers(typeUtilisateur: string, idEtablissement: number, utilisateurs: User[]){
+    const url = this.getUtilisateursUrl(idEtablissement, typeUtilisateur);
+    this.http.delete(url,new RequestOptions({
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: utilisateurs
+   })).subscribe(res => true);
   }
 
   private handleError(error: Response) {
@@ -73,6 +88,25 @@ export class UserService {
       }
     }
     return null;
+  }
+
+  /**
+   * Renvoie l'url de base de l'API pour le type d'utilisateurs donné
+   * @param idEtablissement
+   * @param typeUtilisateur
+   */
+  private getUtilisateursUrl(idEtablissement: number, typeUtilisateur: string): string {
+    return environment.API_URL + '/etablissements/'+ idEtablissement+ '/' + typeUtilisateur +'s';
+  }
+
+  /**
+   * Renvoie l'url de base de l'API pour un utilisateur particulier
+   * @param idEtablissement
+   * @param typeUtilisateur
+   * @param idUtilisateur
+   */
+  private getSingleUtilisateurUrl(idEtablissement: number, typeUtilisateur: string, idUtilisateur): string {
+    return this.getUtilisateursUrl(idEtablissement, typeUtilisateur) + '/' + idUtilisateur;
   }
 
 }
