@@ -18,8 +18,10 @@
           </div>
           <div class="form-group">
             <label for="salle-creneau">Salle</label>
-            <select class="form-control" #selectedValue name="selectedSalles" id="selectedSalles" [(ngModel)]="selectedSalles">
-              <option *ngFor="let salle of allSalleEtb | async" [ngValue]="salle">{{salle.nom}}</option>
+            <select class="form-control" #selectedValue name="selectedSalles" id="selectedSalles" 
+            [(ngModel)]="selectedSalles" (optionSelected)="addSalleToSelected($event)">
+              <option *ngFor="let salle of allSalleEtb | async" 
+                      [ngValue]="salle" >{{salle.nom}}</option>
             </select>
           </div>
           <div class="form-group">
@@ -32,7 +34,8 @@
         Liste des Professeurs sélectionnés :
         <mat-list #professeurs>
           <mat-list-item *ngFor="let professeur of selectedProfesseurs">
-            {{ professeur.nom }} {{ professeur.prenom }}
+              <button type="button" class="btn btn-link pull-right" (click)="enleverProfesseur(professeur)"><i class="fas fa-trash-alt"></i></button>
+              &nbsp;{{ professeur.nom }} {{ professeur.prenom }}
           </mat-list-item>
         </mat-list>
       </div>
@@ -55,12 +58,15 @@
         Liste des Eleves sélectionnés :
         <mat-list #eleves>
           <mat-list-item *ngFor="let eleve of selectedEleves">
-            <mat-slide-toggle>{{ eleve.nom }} {{ eleve.prenom }}</mat-slide-toggle><button type="button" class="btn btn-link" (click)="enleverEleve(eleve)">Enlever</button>
+              <button type="button" class="btn btn-link pull-right" (click)="enleverEleve(eleve)"><i class="fas fa-trash-alt"></i></button>
+              &nbsp;
+            <mat-slide-toggle>{{ eleve.nom }} {{ eleve.prenom }}</mat-slide-toggle>
+            <!-- <button type="button" class="btn btn-link" (click)="enleverEleve(eleve)">Enlever</button> -->
           </mat-list-item>
         </mat-list>
       </div>
     </div>
   </div>
   <button (click)="onSend()" type="submit" class="btn btn-success mr-2">Créer le créneau</button>
-  <button class="btn btn-light">Annuler</button>
+  <button (click)="onCancel()" class="btn btn-light">Annuler</button>
 </form>

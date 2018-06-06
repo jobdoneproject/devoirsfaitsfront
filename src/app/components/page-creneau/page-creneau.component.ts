@@ -45,12 +45,15 @@ export class PageCreneauComponent implements OnInit {
   filteredEleve: Observable<any[]>;
   salleSelected: Room;
   allSalleEtb: Observable<any>;
-
+  idEtablissement: number;
+  selectedSalle: string;
 
   constructor(private roomsv: RoomService, private courseservice: CreneauService, public authService: AuthService, public router: Router, private userService:UserService) {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log("this.currentUser.privilege : " + this.currentUser.privilege);
+
+    this.idEtablissement = this.currentUser.idEtablissement;
 
     if (this.currentUser.privilege == "Administrateur") {
       this.administrateur = true;
@@ -73,6 +76,11 @@ export class PageCreneauComponent implements OnInit {
 
   addProfesseurToSelected(selectedProfesseur) { this.selectedProfesseurs.push(selectedProfesseur); console.log(selectedProfesseur); }
 
+  addSalleToSelected(salle){ 
+    this.selectedSalle = salle; 
+    console.log(this.selectedSalle);
+  }
+
   majTitre() { this.titre = "Création du créneau du " + this.date_creneau.toString(); }
 
   onSend() {
@@ -80,7 +88,17 @@ export class PageCreneauComponent implements OnInit {
                                   moment(this.date_creneau + " " + this.heure_fin).unix(),
                                   this.selectedEleves,
                                   this.selectedProfesseurs,
-                                  this.salleSelected );
+                                  this.salleSelected,
+                                  this.idEtablissement);
+  }
+
+  onCancel(){
+    this.date_creneau = undefined;
+    this.heure_debut = undefined;
+    this.heure_fin = undefined;
+    this.selectedProfesseurs = undefined;
+    this.selectedEleves = undefined;
+    this.allSalleEtb = undefined;
   }
 
   ngOnInit() {
@@ -98,4 +116,13 @@ export class PageCreneauComponent implements OnInit {
       this.selectedEleves.splice(index, 1);
     }
   }
+
+  enleverProfesseur(professeur: User) {
+    const index: number = this.selectedProfesseurs.indexOf(professeur);
+    if(index !== -1){
+      this.selectedProfesseurs.splice(index, 1);
+    }
+  }
+
+
 }

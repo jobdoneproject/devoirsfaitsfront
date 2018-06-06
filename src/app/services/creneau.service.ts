@@ -4,31 +4,36 @@ import { User } from "./../model/model.user";
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Moment } from 'moment';
 import { Room } from '../model/model.room';
-
+import {environment} from '../../environments/environment';
 
 
 @Injectable()
 export class CreneauService {
 
-  newCreneau: CourseSlot = { id: null, dateDebut: 0, dateFin: 0, profs: [], eleves: [], salle: null };
-
   constructor(private http: Http) { }
 
 
-  createSlot(debut:number, fin:number, eleves:User[], profs:User[], salle:Room ) {
-    this.newCreneau.dateDebut = debut;
-    this.newCreneau.dateFin = fin;
-    this.newCreneau.eleves = eleves;
-    this.newCreneau.profs = profs;
-    this.newCreneau.salle = salle;
-    this.postSlot(this.newCreneau);
-    console.log(profs);
+  createSlot(debut:number, fin:number, eleves:User[], profs:User[], 
+              salle:Room, idEtablissement: number) {
+    let newCreneau: CourseSlot = { id: null, dateDebut: 0, dateFin: 0, 
+                                profs: [], eleves: [], salle: null };
+    newCreneau.dateDebut = debut;
+    newCreneau.dateFin = fin;
+    newCreneau.eleves = eleves;
+    newCreneau.profs = profs;
+    newCreneau.salle = salle;
+    this.postSlot(newCreneau, idEtablissement);
   }
 
-  postSlot(newCreneau:CourseSlot) {
+  postSlot(newCreneau:CourseSlot, idEtablissement: number) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let body = JSON.stringify(newCreneau);
-    this.http.post('http://localhost:8080/etablissement/1/creneaux', body, options ).subscribe(res => console.log(res.json()));
+    let url = environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux";
+    this.http.post(
+      url, 
+      body, 
+      options 
+    ).subscribe(res => console.log(res.json()));
   }
 }
