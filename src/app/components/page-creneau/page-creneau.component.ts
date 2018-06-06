@@ -76,6 +76,7 @@ export class PageCreneauComponent implements OnInit {
     let eleveAdded = this.myControl.value;
     // If eleveAdded ! contains present, ajout avec true
     if(!eleveAdded.hasOwnProperty('present')){
+      eleveAdded.present = true;
       console.log("ne contient pas present");
     }else{
       console.log("le contient");
