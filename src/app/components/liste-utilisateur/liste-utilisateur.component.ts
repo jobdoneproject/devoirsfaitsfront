@@ -11,7 +11,9 @@ import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { Scope } from '@angular/core/src/profile/wtf_impl';
 import { Subject } from 'rxjs/Subject';
 import { SubscribeOnObservable } from 'rxjs/internal-compatibility';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import * as $ from 'jquery';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-liste-utilisateur',
@@ -31,21 +33,24 @@ export class ListeUtilisateurComponent implements OnInit {
   filterDisponibles = [{nom:'Oui', select:'disponible', checked:true, value:true} ,{nom:'Non', select:'indisponible', checked:true, value:false}];
   classeDisponibles = ['Toutes'];
   nomDisponibles = [];
+  IdDisponibles = [];
+  isUtilisateurSelected = [];
   filterParClasse: string = "Toutes";
   filterParNom: string;
   utilisateur: User;
-
+  formUsers: FormGroup;
 
   constructor(
-    public authService: AuthService, 
+    public authService: AuthService,
     public router: Router,
     private http: Http,
     private route: ActivatedRoute,
-    private userService:UserService
+    private userService:UserService,
+    private formBuilder: FormBuilder,
   ) {
 
     this.route.params.subscribe(params => {
-      this.typeUtilisateur = params['type']});  
+      this.typeUtilisateur = params['type']});
     if (this.typeUtilisateur == "eleve"){
       this.titrePage = "Élèves";
     } else if (this.typeUtilisateur == "professeur"){
@@ -54,12 +59,12 @@ export class ListeUtilisateurComponent implements OnInit {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.idEtablissement = this.currentUser.idEtablissement;
-    
+
     if (this.currentUser.privilege == "Administrateur"){
       this.administrateur = true;
     }
 
-    this.utilisateurs = this.userService.getUsers(this.typeUtilisateur, this.currentUser.idEtablissement);  
+    this.utilisateurs = this.userService.getUsers(this.typeUtilisateur, this.currentUser.idEtablissement);
 
     this.utilisateurs.forEach(arrayClasseUtilisateur => {
       arrayClasseUtilisateur.forEach(utilisateur => {
@@ -77,11 +82,21 @@ export class ListeUtilisateurComponent implements OnInit {
       })
     });
 
+    this.utilisateurs.forEach(arrayIdUtilisateur => {
+      arrayIdUtilisateur.forEach(utilisateur => {
+        if (this.IdDisponibles.indexOf(utilisateur.id) == -1 ){
+          this.IdDisponibles.push(utilisateur.id);
+        }
+      })
+    });
 
-    
+    // this.formUsers = this.formBuilder.group({
+    //   utilisateurs: this.buildSelected()
+    //   });
+  
   }
 
-  ngOnInit() { 
+  ngOnInit() {
 
 (function($) {
   $(document).ready(function(){
@@ -99,7 +114,7 @@ export class ListeUtilisateurComponent implements OnInit {
     }
   });
 
- // Changing state of CheckAll checkbox 
+ // Changing state of CheckAll checkbox
  $(".checkbox").click(function(){
 
    if($(".checkbox").length == $(".checkbox:checked").length) {
@@ -112,13 +127,17 @@ export class ListeUtilisateurComponent implements OnInit {
 });
 })(jQuery);
    }
-  
+
   onSelect(utilisateur: User): void {
     this.utilisateur = utilisateur;
   }
-  
+
   redirectEditUser(idUtilisateur: number) {
     this.router.navigate(['edition-utilisateur/' + this.typeUtilisateur + '/' + idUtilisateur]);
+  }
+
+  redirectNewUser(){
+    this.router.navigate(['creation-utilisateur/' + this.typeUtilisateur]);
   }
 
   checked() {
@@ -131,19 +150,41 @@ export class ListeUtilisateurComponent implements OnInit {
   onChangeNom(optionDuMenu) {
     this.filterParNom= optionDuMenu;
   }
-  
+
   updateDisponibilite(idUtilisateur){
-    this.userService.updateDisponibilite(this.typeUtilisateur, idUtilisateur);
+    this.userService.updateDisponibilite(this.typeUtilisateur, this.currentUser.idEtablissement, idUtilisateur);
   }
 
   state : boolean;
   checkAll(ev) {
-    this.utilisateurs.forEach(x => x.state = ev.target.checked)
+    this.utilisateurs.forEach(x => x.state = ev.target.checked);
   }
-  
+
   isAllChecked() {
     return this.utilisateurs.every(_ => _.state);
   }
   
-  
+  // actionSelectAll(event){
+  //   var collectChecks = document.getElementsByName('selectedUtilisateur')
+ 
+  //   for (var i=0;i<collectChecks.length;i++){
+	// 		if (collectChecks[i].attributes.type === "checkbox"){
+	// 			var msg="le checkbox nommé "+ collectChecks[i].name 
+	// 			msg+=(collectChecks[i].checked==true)?" est checkée":"n'est pas checkée"
+  //       console.log(msg);
+  //     }
+  //   }
+    
+  //   const test = this.formBuilder.control(this.utilisateur.disponible);
+  //   console.log("action : " + event);
+  //   this.isUtilisateurSelected =  _.filter(test, (utilisateur) => { return this.utilisateur.disponible}); 
+  //   console.log(this.isUtilisateurSelected);
+  // }
+
+  // buildSelected() {
+  //   const arr = this.IdDisponibles.map(skill => {
+  //     return this.formBuilder.control(this.utilisateur.disponible);
+  //   });
+  //   return this.formBuilder.array(arr);
+  // }
 }

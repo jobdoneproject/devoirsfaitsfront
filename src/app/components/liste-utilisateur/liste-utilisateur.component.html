@@ -7,8 +7,10 @@
   </div>
 <div class="col-md-12 d-flex align-items-stretch grid-margin">
   <div class="row flex-grow">
+
     <div class="col-12 stretch-card">
       <div class="card">
+      <button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="redirectNewUser()">Nouveau</button>
         <div class="card-body">
           <div *ngIf="administrateur; else elseBlock">
             
@@ -31,7 +33,7 @@
                 </div>
                 <div class="col-md-3 col-xs-12">
                   <label class="col-form-label">
-                    Disponibilité
+                    Présence
                   </label>
                   <div class="d-flex">
                     <label *ngFor="let filterDisponible of filterDisponibles;" class="containerCheck">
@@ -39,6 +41,17 @@
                       <span class="checkmark"></span>
                     </label>
                   </div>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                  <label class="col-form-label">
+                    Actions groupées
+                    <select id="selectAction" name="selectAction" (change)="actionSelectAll($event.target.value)" class="form-control">
+                        <option value="" > </option>
+                        <option value="supprimer" >Supprimer</option>
+                        <option value="absent" >Marquer comme absent</option>
+                        <option value="present" >Marquer comme présent</option>
+                      </select>
+                  </label>
                 </div>
               </div>
             </div>
@@ -57,7 +70,7 @@
                   <th> 
                       
                     <label class="containerCheck" style="top: 0.9em">
-                      <input type="checkbox" name="all" id='checkall' />
+                      <input type="checkbox" name="all" id='checkall' unchecked />
                       <span class="checkmark" ></span> Tout sélectionner
                     </label>
                   </th>
@@ -78,7 +91,7 @@
                   </td>
                   <td>
                     <label class="containerCheck">
-                      <input type="checkbox" class="form-check-input checkbox" name="all" value="{{utilisateur.idUtilisateur}}" ng-checked="selectall"/>
+                      <input type="checkbox" class="form-check-input checkbox" name="selectedUtilisateur" value="{{utilisateur.idUtilisateur}}" ng-checked="selectall"/>
                       <span class="checkmark" ></span>
                     </label>
                   </td> 

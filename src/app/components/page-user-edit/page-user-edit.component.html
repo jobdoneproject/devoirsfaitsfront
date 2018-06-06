@@ -12,16 +12,11 @@
     <div class="row flex-grow">
       <div class="col-12 stretch-card">
         <div class="card">
+          <button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="doTheBack()" >Retour à la liste</button>
           <div class="card-body">
-            <h4 class="card-title">
-              
-            </h4> 
-            <div *ngIf="!editedUser;" class="alert alert-warning" role="alert">
-                Aucun utilisateur correspondant
-            </div>
-            <p class="card-description">
-            </p>
-            <form class="forms-sample" [formGroup]="editUserForm" >
+
+          
+            <form class="forms-sample" >
               <div class="form-group row">
                 <label for="usernom" class="col-sm-3 col-form-label text-sm-right">Nom</label>
                 <div class="col-sm-7">
@@ -34,16 +29,16 @@
                   <input type="text" class="form-control" id="userprenom" name="userprenom" [(ngModel)]="editedUser.prenom" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
-              <div class="form-group row" *ngIf="editedUser.privilege =='Eleve'">
+              <div class="form-group row" *ngIf="typeUtilisateur =='eleve'">
                 <label for="userclasse" class="col-sm-3 col-form-label text-sm-right">Classe</label>
                 <div class="col-sm-7">
                   <input type="text" class="form-control" id="userclasse" name="userclasse" [(ngModel)]="editedUser.classe" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="form-group row">
-                <label for="useremail" class="col-sm-3 col-form-label text-sm-right">Email</label>
+                <label for="email" class="col-sm-3 col-form-label text-sm-right">Email</label>
                 <div class="col-sm-7">
-                  <input type="email" class="form-control" id="useremail" name="useremail" [(ngModel)]="editedUser.mail" [ngModelOptions]="{standalone: true}">
+                  <input type="email" class="form-control" id="email" name="email" [(ngModel)]="editedUser.mail" [ngModelOptions]="{standalone: true}" value={{editedUser.mail}}>
                 </div>
               </div>
               <div class="form-group row">
@@ -65,9 +60,9 @@
                 </label>
               </div>
               <div class="form-group row "> 
-                <span class="col-sm-9 align-items-left"><button type="submit" class="btn btn-success mr-2" (click)="onSubmit()">Mettre à jour</button>
+                <span class="col-sm-9 align-items-left"><button type="submit" class="btn btn-success mr-2" (click)="onSubmit()">Enregistrer</button>
                 <button type="button" class="btn btn-light mr-2 pull-left" (click)="onReset()">Reinitialiser</button></span>
-                <span class="col-sm-3 align-items-right"><button type="button" class="btn btn-danger pull-right" (click)="onSupress()">Supprimer</button>
+                <span *ngIf="editedUser.idUtilisateur != null;" class="col-sm-3 align-items-right"><button type="button" class="btn btn-danger pull-right" (click)="onSupress()">Supprimer</button>
               </span></div>
             </form>
           </div>
