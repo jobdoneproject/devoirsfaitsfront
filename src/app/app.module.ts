@@ -42,6 +42,7 @@ import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-
 import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
 import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
 import { SalleComponent } from './components/salle/salle.component';
+import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { SalleComponent } from './components/salle/salle.component';
     ListeUtilisateurComponent,
     EleveClassesPipe,
     NomDisponiblesPipe,
-    SalleComponent
+    SalleComponent,
+    ImportElevesComponent
   ],
   imports: [
     BrowserModule,

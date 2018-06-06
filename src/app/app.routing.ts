@@ -14,6 +14,7 @@ import { ContainerSidebarComponent } from './components/container-sidebar/contai
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
 import { SalleComponent } from './components/salle/salle.component';
+import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -46,6 +47,11 @@ children: [{path: '', component: SalleComponent, outlet: 'connected'}]
   { path: 'edition-utilisateur/:type/:id',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
+  },
+  
+  { path: 'import-eleves',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{path: '', component: ImportElevesComponent, outlet: 'connected'}]
   },
 
   { path: '', redirectTo: 'bienvenue', pathMatch: 'full' },
