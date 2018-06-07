@@ -5,7 +5,7 @@ export class CourseSlot {
     id: number;
     dateDebut: number;
     dateFin: number;
-    profs: User[];
+    professeurs: User[];
     eleves: User[];
     salle: Room;
 }

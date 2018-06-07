@@ -77,6 +77,7 @@ export class PageCreneauComponent implements OnInit {
   majTitre() { this.titre = "Création du créneau du " + this.date_creneau.toString(); }
 
   onSend() {
+    console.log(this.salleSelected);
     this.courseservice.createSlot(moment(this.date_creneau + " " + this.heure_debut).unix(),
                                   moment(this.date_creneau + " " + this.heure_fin).unix(),
                                   this.selectedEleves,
@@ -98,5 +99,9 @@ export class PageCreneauComponent implements OnInit {
     if (index !== -1) {
       this.selectedEleves.splice(index, 1);
     }
+  }
+
+  addSalleToSelected(salle) {
+    this.salleSelected=salle;
   }
 }

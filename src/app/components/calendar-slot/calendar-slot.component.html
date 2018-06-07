@@ -3,13 +3,18 @@
         <div class="col-12 stretch-card">
             <div class="card slot">
                 <div class="card-body">
-                    <h2>{{slot.dateDebut | date:'HH:mm'}} - Salle {{salle}}</h2>
+                    <a href="creneau?id={{slot.idCreneau}}">
+                        <h2>{{slot.dateDebut | date:'HH:mm'}} - Salle {{salle}}</h2>
+                    </a>
                     <div class="content">
                         <p class="duration">{{duration | date:'HH:mm'}} h</p>
-                        <span class="far fa-trash-alt trash"></span>
+                        <button class="btn btn-link" (click)="deleteSlot(slot.idCreneau)">
+                            <span class="far fa-trash-alt trash"></span>
+                        </button>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

@@ -18,6 +18,6 @@ export class CourseSlotsService {
 
   fetchSlots(id: number, year: number, week:number): Observable<CourseSlot []>
   {
-    return this.httpClient.get<CourseSlot []>(environment.API_URL + "/etablissement/1/creneaux?year="+ year + "&week=" + week );
+    return this.httpClient.get<CourseSlot []>(environment.API_URL + "/etablissements/1/creneaux?year="+ year + "&week=" + week );
   }
 }
