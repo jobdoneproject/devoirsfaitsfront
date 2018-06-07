@@ -87,12 +87,13 @@ export class PageUserEditComponent implements OnInit {
   }
 
   onReset() {
-    if (this.idUtilisateur != null){
-      this.initUser();
-    } else {
-      this.newUser();
-      console.log('new user')
-    }
+    // if (this.idUtilisateur != null){
+    //   this.initUser();
+    // } else {
+    //   this.newUser();
+    //   console.log('new user')
+    // }
+    this.router.navigate(['liste/' + this.typeUtilisateur]);
   }
 
   onSubmit() {
@@ -102,7 +103,7 @@ export class PageUserEditComponent implements OnInit {
       this.userService.postUser(this.typeUtilisateur, this.editedUser.idEtablissement, this.editedUser);
     }
       console.log("Form Submitted!");
-      //this.router.navigate(['liste/' + this.typeUtilisateur]);
+      this.router.navigate(['liste/' + this.typeUtilisateur]);
   }
 
   onSupress() {

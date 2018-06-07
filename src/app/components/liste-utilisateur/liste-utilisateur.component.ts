@@ -64,7 +64,9 @@ export class ListeUtilisateurComponent implements OnInit {
 
 
     this.userService.getUsers(this.typeUtilisateur, this.currentUser.idEtablissement).subscribe(newUsers => {
+
       this.utilisateurs$ = new BehaviorSubject<Array<User>>(newUsers);
+
       this.utilisateurs$.forEach(arrayClasseUtilisateur => {
         arrayClasseUtilisateur.forEach(utilisateur => {
           if (this.classeDisponibles.indexOf(utilisateur.classe) == -1 ){
@@ -80,6 +82,7 @@ export class ListeUtilisateurComponent implements OnInit {
           }
         })
       });
+      
     });
   
   }
@@ -136,15 +139,6 @@ export class ListeUtilisateurComponent implements OnInit {
     }
   }
 
-
-  // state : boolean;
-  // checkAll(ev) {
-  //   this.utilisateurs$.forEach(x => x.state = ev.target.checked);
-  // }
-
-  // isAllChecked() {
-  //   return this.utilisateurs$.every(_ => _.state);
-  // }
   
   actionSelectAll(event){
     if (event == "supprimer") {
@@ -156,7 +150,6 @@ export class ListeUtilisateurComponent implements OnInit {
         this.selectedUtilisateurs.splice(0,this.selectedUtilisateurs.length);
         this.isSelected = false;
       }
-
     }
 
     if (event == "disponible") {

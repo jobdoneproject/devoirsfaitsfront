@@ -14,7 +14,7 @@
     <div class="row flex-grow">
       <div class="col-12 stretch-card">
         <div class="card">
-          <button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="doTheBack()" >Retour à la liste</button>
+          <!--<button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="doTheBack()" >Retour à la liste</button>-->
           <div class="card-body">
 
           
@@ -63,7 +63,7 @@
               </div>
               <div class="form-group row "> 
                 <span class="col-sm-9 align-items-left"><button type="submit" class="btn btn-success mr-2" (click)="onSubmit()">Enregistrer</button>
-                <button type="button" class="btn btn-light mr-2 pull-left" (click)="onReset()">Reinitialiser</button></span>
+                <button type="button" class="btn btn-light mr-2 pull-left" (click)="onReset()">Annuler</button></span>
                 <span *ngIf="editedUser.idUtilisateur != null;" class="col-sm-3 align-items-right"><button type="button" class="btn btn-danger pull-right" (click)="onSupress()">Supprimer</button>
               </span></div>
             </form>
