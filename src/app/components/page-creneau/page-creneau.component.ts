@@ -15,7 +15,8 @@ import * as moment from 'moment';
 import { environment } from '../../../environments/environment';
 import { CreneauService } from '../../services/creneau.service';
 import { UserService } from "../../services/user.service";
-import { Room } from "../../model/model.room"
+import { Room } from "../../model/model.room";
+import { RoomService } from "../../services/room.service";
 
 
 @Component({
@@ -28,7 +29,9 @@ export class PageCreneauComponent implements OnInit {
 
   selectedEleves: User[] = [];
   selectedProfesseurs: User[] = [];
+  selectedProfesseur: any;
   currentUser: User;
+  selectedSalles:any;
   administrateur: boolean;
   errorMessage: string;
   listEleve: Observable<any>;
@@ -42,11 +45,16 @@ export class PageCreneauComponent implements OnInit {
   myControl: FormControl = new FormControl();
   filteredEleve: Observable<any[]>;
   salleSelected: Room;
+  allSalleEtb: Observable<any>;
 
+  
+  constructor(private roomsv: RoomService,
+              private courseservice: CreneauService, 
+              public authService: AuthService, 
+              public router: Router, 
+              private userService:UserService) {
 
-  constructor(private courseservice: CreneauService, public authService: AuthService, public router: Router, private userService:UserService) {
-
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = this.userService.getCurrentUserLogged();
     console.log("this.currentUser.privilege : " + this.currentUser.privilege);
 
     if (this.currentUser.privilege == "Administrateur") {
@@ -55,6 +63,7 @@ export class PageCreneauComponent implements OnInit {
 
     this.listProfesseur = this.userService.getUsers("professeur", this.currentUser.idEtablissement);
     this.listEleve =  this.userService.getUsers("eleve", this.currentUser.idEtablissement);
+    this.allSalleEtb = this.roomsv.getAll(this.currentUser.idEtablissement);
 
     this.listEleve.forEach(arrayNomUtilisateur => {
       arrayNomUtilisateur.forEach(utilisateur => {
@@ -72,6 +81,7 @@ export class PageCreneauComponent implements OnInit {
   majTitre() { this.titre = "Création du créneau du " + this.date_creneau.toString(); }
 
   onSend() {
+    console.log(this.salleSelected);
     this.courseservice.createSlot(moment(this.date_creneau + " " + this.heure_debut).unix(),
                                   moment(this.date_creneau + " " + this.heure_fin).unix(),
                                   this.selectedEleves,
@@ -93,5 +103,9 @@ export class PageCreneauComponent implements OnInit {
     if (index !== -1) {
       this.selectedEleves.splice(index, 1);
     }
+  }
+
+  addSalleToSelected(salle) {
+    this.salleSelected=salle;
   }
 }

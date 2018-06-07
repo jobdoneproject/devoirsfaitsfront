@@ -1,4 +1,10 @@
-<h4 class="card-title">{{titre}}</h4>
+<div class="row purchace-popup">
+  <div class="col-12">
+    <span class="d-flex alifn-items-center">
+      <h1>{{titre}}</h1>
+    </span>
+  </div>
+</div>
 <form class="forms-sample">
   <div class="row">
     <div class="col-md-6 grid-margin stretch-card">
@@ -18,12 +24,13 @@
           </div>
           <div class="form-group">
             <label for="salle-creneau">Salle</label>
-            <select class="form-control" id="salle-crneau" placeholder="salle" required>
+            <select class="form-control" #selectedValue name="selectedSalles" id="selectedSalles" [(ngModel)]="selectedSalles" (ngModelChange)="addSalleToSelected($event)">
+              <option *ngFor="let salle of allSalleEtb | async" [ngValue]="salle">{{salle.nom}}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="listProfesseurs" class="font-weight-medium">Professeurs</label>
-            <select class="form-control" #selectedValue name="selectedProfesseur" id="selectedProfesseur" (ngModelChange)="addProfesseurToSelected($event)">
+            <select class="form-control" #selectedValue name="selectedProfesseurs" id="selectedProfesseurs" [(ngModel)]="selectedProfesseur" (ngModelChange)="addProfesseurToSelected($event)">
               <option *ngFor="let professeur of listProfesseur | async" [ngValue]="professeur">{{professeur.nom}} {{professeur.prenom}}</option>
             </select>
           </div>
@@ -45,7 +52,7 @@
               <input type="text" placeholder="Choisir un élève" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup)="onChangeNom($event.target.value)">
               <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addEleveToSelected()" [displayWith]="displayFn">
                 <mat-option *ngFor="let eleve of listEleve | async | nomDisponibles: filterParNom" [value]="eleve" >
-                  {{ eleve.nom }} {{ eleve.prenom }}
+                  {{ eleve.nom }} {{ eleve.prenom }} - {{ eleve.classe }}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>

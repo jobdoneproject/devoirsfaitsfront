@@ -33,14 +33,15 @@ export class SalleComponent implements OnInit {
   @Input() nom_salle: String;
   nomDisponibles = [];
   filterParNom: String;
-  titre: String = "Création d'un créneau";
   myControl: FormControl = new FormControl();
-  filteredEleve: Observable<any[]>;
+  selectedSalle: any;
+  @Input() newName: string;
+
 
 
   constructor(private roomsv: RoomService, public authService: AuthService, public router: Router, private userService:UserService) {
 
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = this.userService.getCurrentUserLogged();
     console.log("this.currentUser.privilege : " + this.currentUser.privilege);
 
     if (this.currentUser.privilege == "Administrateur") {
@@ -69,5 +70,17 @@ export class SalleComponent implements OnInit {
 
   deleteSalle (salle: Room) {
     this.roomsv.deleteSelected(this.currentUser.idEtablissement,salle.idSalle);
+  }
+
+  displayFn(salle: Room): String {
+    return salle ? salle.nom : salle.nom ;
+  }
+
+  onSelectionChanged(salle) {
+    this.selectedSalle = salle;
+  }
+
+  updateSalle(salle) {
+    this.roomsv.updateSelected(this.currentUser.idEtablissement, salle.idSalle, this.newName)
   }
 }

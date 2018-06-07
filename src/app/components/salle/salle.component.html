@@ -1,4 +1,10 @@
-<h4 class="card-title">Salles de l'Etablissement</h4>
+<div class="row purchace-popup">
+  <div class="col-12">
+    <span class="d-flex alifn-items-center">
+      <h1>Salles de l'Etablissement</h1>
+    </span>
+  </div>
+</div>
 <form class="forms-sample">
   <div class="row">
     <div class="col-md-6 grid-margin stretch-card">
@@ -8,20 +14,25 @@
             <label for="heure_debut">Créer une nouvelle salle :</label>
             <input type="text" class="form-control" id="nom_salle" placeholder="" name="nom_salle" id="nom_salle" [(ngModel)]="nom_salle"
               required>
-            <button type="button" class="btn btn-link" (click)="createSalle(nom_salle)">Créer</button>
+            <button type="button" class="btn btn-success" (click)="createSalle(nom_salle)">Créer</button>
           </div>
           <label for="allSalleEtb" class="font-weight-medium">Liste des Salles de l'Etablissement</label>
           <div class="form-group">
             <mat-form-field class="example-full-width">
               <input type="text" placeholder="Choisir une salle" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto"
                 (keyup)="onChangeNom($event.target.value)">
-              <mat-autocomplete #auto="matAutocomplete">
+              <mat-autocomplete (optionSelected)="onSelectionChanged($event.option.value)" #auto="matAutocomplete" [displayWith]="displayFn">
                 <mat-option *ngFor="let salle of allSalleEtb | async | nomDisponibles: filterParNom" [value]="salle">
-                  {{ salle.nom }} -
-                  <button type="button" class="btn btn-link" (click)="deleteSalle(salle)">Supprimer</button>
+                  {{ salle.nom }}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
+          </div>
+
+          <div>
+            <input *ngIf="selectedSalle != null;" type="text" name="newName" id="newName" [(ngModel)]="newName" placeholder="Nouveau nom">
+            <button *ngIf="selectedSalle != null;" type="button" class="btn btn-light" (click)="updateSalle(selectedSalle)">Renommer</button>
+            <button *ngIf="selectedSalle != null;" type="button" class="btn btn-danger" (click)="deleteSalle(selectedSalle)">Supprimer</button>
           </div>
         </div>
       </div>

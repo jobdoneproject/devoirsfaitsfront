@@ -13,9 +13,10 @@ import { Observable } from 'rxjs';
 })
 export class RoomService {
 
-  room:Room = {id_etablissement:null, idSalle:null, nom:""};
-  options:RequestOptions;
-  url:string;
+  private options = {
+    headers: new Headers({ 'Content-Type': 'application/json' })
+  };
+  private url:string;
     
   constructor(private http: Http) { }
 
@@ -36,13 +37,13 @@ export class RoomService {
 
   deleteSelected (idEtablissement:number, id:number) {
     this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles/" + id + "/";
-    return this.http.delete(this.url).pipe(map((resp: Response)=>resp.json()));
+    return this.http.delete(this.url).subscribe(res => console.log(res.json()));
   }
 
   updateSelected (idEtablissement:number, id:number, name:string) {
-    this.room.nom = name;
+    const room:Room = {id_etablissement:idEtablissement, idSalle:id, nom:name};
     this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles/" + id + "/";
-    let body = JSON.stringify(this.room);
-    this.http.put(this.url, body, this.options ).map((res: Response) => res.json());
+    let body = JSON.stringify(room);
+    this.http.put(this.url, body, this.options ).subscribe(res => console.log(res.json()));
   }
 }

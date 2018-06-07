@@ -13,7 +13,7 @@ export class NomDisponiblesPipe implements PipeTransform {
       var output: User[] = []; 
       if (nom != null && nom != ""){
         for (var i = 0; i < utilisateurs.length; i++) {
-          if (utilisateurs[i].nom.toLowerCase().includes(nom.toLowerCase())) { 
+          if (utilisateurs[i].nom.toLowerCase().includes(nom.toLowerCase()) || utilisateurs[i].classe.toLowerCase().includes(nom.toLowerCase())) { 
             output.push(utilisateurs[i]); 
           } 
         } 

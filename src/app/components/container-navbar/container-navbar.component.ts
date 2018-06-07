@@ -9,6 +9,7 @@ import { map} from 'rxjs/operators';
 import { Observable, Subscriber, Subscription } from 'rxjs';
 import {environment} from '../../../environments/environment';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -26,8 +27,8 @@ export class ContainerNavbarComponent implements OnInit {
   url:string;
   etablissements: Observable<any> ;
   
-  constructor(public authService: AuthService, public router: Router,private http: Http) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private userService: UserService, public authService: AuthService, public router: Router,private http: Http) {
+    this.currentUser = this.userService.getCurrentUserLogged();
     if (this.currentUser.privilege == "Administrateur"){
       this.administrateur = true;
     }else if (this.currentUser.privilege == "Professeur"){
