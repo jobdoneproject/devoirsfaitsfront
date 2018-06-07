@@ -4,6 +4,7 @@ import { CourseSlot } from '../../model/model.course-slots';
 import { User } from '../../model/model.user';
 import { CreneauService } from '../../services/creneau.service';
 import {UserService} from "../../services/user.service";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class CalendarSlotComponent implements OnInit {
   currentUser: User;
   administrateur: boolean;
 
-  constructor(private userService: UserService, private creneauService: CreneauService) {
+  constructor(private userService: UserService, private creneauService: CreneauService, private router: Router) {
     this.currentUser = this.userService.getCurrentUserLogged();
     console.log("this.currentUser.privilege : " + this.currentUser.privilege);
 
@@ -58,5 +59,6 @@ export class CalendarSlotComponent implements OnInit {
 
   deleteSlot(slotId: number) {
     this.creneauService.deleteSelected(this.currentUser.idEtablissement, slotId);
+    this.router.navigate(['profile'])
   }
 }

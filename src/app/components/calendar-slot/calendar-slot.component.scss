@@ -6,6 +6,11 @@
 }
 
 
+a {
+    text-decoration: none;
+    color : black;
+}
+
 a h2 {
     color: black;
     font-size: 0.8em;
@@ -36,7 +41,7 @@ p.duration {
     padding: 0;
 }
 
-.btn, .btn-link,  span.trash {
+span {
     color: red;
     display: inline-block;
     width: 100%;
