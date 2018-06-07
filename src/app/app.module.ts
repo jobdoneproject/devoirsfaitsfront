@@ -26,6 +26,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatAutocompleteModule, MatInputModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
@@ -68,7 +69,8 @@ import { ImportElevesComponent } from './components/import-eleves/import-eleves.
     EleveClassesPipe,
     NomDisponiblesPipe,
     SalleComponent,
-    ImportElevesComponent
+    ImportElevesComponent,
+    FileSelectDirective,
   ],
   imports: [
     BrowserModule,
