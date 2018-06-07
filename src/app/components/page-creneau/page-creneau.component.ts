@@ -47,10 +47,14 @@ export class PageCreneauComponent implements OnInit {
   salleSelected: Room;
   allSalleEtb: Observable<any>;
 
+  
+  constructor(private roomsv: RoomService,
+              private courseservice: CreneauService, 
+              public authService: AuthService, 
+              public router: Router, 
+              private userService:UserService) {
 
-  constructor(private roomsv: RoomService, private courseservice: CreneauService, public authService: AuthService, public router: Router, private userService:UserService) {
-
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = this.userService.getCurrentUserLogged();
     console.log("this.currentUser.privilege : " + this.currentUser.privilege);
 
     if (this.currentUser.privilege == "Administrateur") {

@@ -11,7 +11,7 @@ import {environment} from '../../environments/environment';
 @Injectable()
 export class CreneauService {
 
-  newCreneau: CourseSlot = { id: null, dateDebut: 0, dateFin: 0, professeurs: [], eleves: [], salle: null };
+  newCreneau: CourseSlot = { idCreneau: null, dateDebut: 0, dateFin: 0, professeurs: [], eleves: [], salle: null };
 
   constructor(private http: Http) { }
 

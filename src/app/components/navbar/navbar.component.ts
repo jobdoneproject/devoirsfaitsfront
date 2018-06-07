@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../model/model.user";
 import {Router} from "@angular/router";
+import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -16,8 +17,8 @@ export class NavbarComponent implements OnInit {
   professeur: boolean;
   eleve: boolean;
   
-  constructor(public authService: AuthService, public router: Router) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private userService: UserService, public authService: AuthService, public router: Router) {
+    this.currentUser = this.userService.getCurrentUserLogged();
     if (this.currentUser.privilege == "Administrateur"){
       this.administrateur = true;
     }else if (this.currentUser.privilege == "Professeur"){

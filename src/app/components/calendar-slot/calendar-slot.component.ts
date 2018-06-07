@@ -3,6 +3,8 @@ import { duration, utc } from 'moment';
 import { CourseSlot } from '../../model/model.course-slots';
 import { User } from '../../model/model.user';
 import { CreneauService } from '../../services/creneau.service';
+import {UserService} from "../../services/user.service";
+
 
 @Component({
   selector: 'calendar-slot',
@@ -15,8 +17,8 @@ export class CalendarSlotComponent implements OnInit {
   currentUser: User;
   administrateur: boolean;
 
-  constructor(private creneauService: CreneauService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private userService: UserService, private creneauService: CreneauService) {
+    this.currentUser = this.userService.getCurrentUserLogged();
     console.log("this.currentUser.privilege : " + this.currentUser.privilege);
 
     if (this.currentUser.privilege == "Administrateur") {
