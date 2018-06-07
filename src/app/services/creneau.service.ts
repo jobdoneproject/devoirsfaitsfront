@@ -4,13 +4,15 @@ import { User } from "./../model/model.user";
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Moment } from 'moment';
 import { Room } from '../model/model.room';
-import {environment} from '../../environments/environment';
-
+import { environment} from '../../environments/environment';
+import { map, startWith} from 'rxjs/operators';
+import { HttpClient} from  '@angular/common/http';
 
 @Injectable()
 export class CreneauService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private  httpClient:  HttpClient) {}
 
 
   createSlot(debut:number, fin:number, eleves:User[], profs:User[], 
@@ -39,5 +41,11 @@ export class CreneauService {
       body, 
       options 
     ).subscribe(res => console.log(res.json()));
+  }
+
+  getSlot(idEtablissement: number, idCreneau: number){
+    const url =  environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux/" + idCreneau;
+    // return this.http.get(url).pipe(map((resp: Response)=>resp.json()));
+    return  this.httpClient.get(environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux/" + idCreneau);
   }
 }

@@ -17,6 +17,9 @@ import { CreneauService } from '../../services/creneau.service';
 import { UserService } from "../../services/user.service";
 import { Room } from "../../model/model.room";
 import { RoomService } from "../../services/room.service";
+import { ActivatedRoute } from '@angular/router';
+import { CourseSlot } from "../../model/model.courseslot";
+
 
 
 @Component({
@@ -35,9 +38,9 @@ export class PageCreneauComponent implements OnInit {
   errorMessage: string;
   listEleve: Observable<any>;
   listProfesseur: Observable<any>;
-  @Input() date_creneau: Date;
-  @Input() heure_debut: Time;
-  @Input() heure_fin: Time;
+  @Input() date_creneau: any;
+  @Input() heure_debut: any;
+  @Input() heure_fin: any;
   nomDisponibles = [];
   filterParNom: String;
   titre: String = "Création d'un créneau";
@@ -47,8 +50,21 @@ export class PageCreneauComponent implements OnInit {
   allSalleEtb: Observable<any>;
   idEtablissement: number;
   selectedSalle: Room;
+  idCreneau: number;
+  // editedCreneau:Observable<any>;
+  // editedCreneau:CourseSlot;
+  editedCreneau:CourseSlot;
+  // date_creneau: any;
 
-  constructor(private roomsv: RoomService, private courseservice: CreneauService, public authService: AuthService, public router: Router, private userService:UserService) {
+
+  constructor(private roomsv: RoomService, 
+              private courseservice: CreneauService, 
+              public authService: AuthService, 
+              public router: Router, 
+              private userService:UserService,
+              private route: ActivatedRoute,
+              private creneauService: CreneauService) {
+
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log("this.currentUser.privilege : " + this.currentUser.privilege);
@@ -74,17 +90,36 @@ export class PageCreneauComponent implements OnInit {
 
   addEleveToSelected() { 
     let eleveAdded = this.myControl.value;
-    // If eleveAdded ! contains present, ajout avec true
-    if(!eleveAdded.hasOwnProperty('present')){
-      eleveAdded.present = true;
-      console.log("ne contient pas present");
-    }else{
-      console.log("le contient");
+    let doublon = false;
+    this.selectedEleves.forEach(eleve => {
+      if(eleve.idUtilisateur === eleveAdded.idUtilisateur){
+        console.log("eleve present");
+        doublon = true;
+      }
+    });
+    if(!doublon){
+      // If eleveAdded ne contient pas property present, ajout avec true
+      if(!eleveAdded.hasOwnProperty('present')){
+        eleveAdded.present = true;
+      }
+      this.selectedEleves.push(eleveAdded);
     }
-    this.selectedEleves.push(eleveAdded); 
   }
 
-  addProfesseurToSelected(selectedProfesseur) { this.selectedProfesseurs.push(selectedProfesseur); console.log(selectedProfesseur); }
+  addProfesseurToSelected(selectedProfesseur) {
+    let doublon = false;
+
+    this.selectedProfesseurs.forEach(professeur => {
+      if(professeur.idUtilisateur === selectedProfesseur.idUtilisateur){
+        console.log("prof present");
+        doublon = true;
+      }
+    })
+    if(!doublon){
+      this.selectedProfesseurs.push(selectedProfesseur); 
+      console.log(selectedProfesseur); 
+    }
+  }
 
   addSalleToSelected(salle){ 
     this.selectedSalle = salle;
@@ -113,6 +148,15 @@ export class PageCreneauComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.idCreneau = parseInt(this.route.snapshot.paramMap.get('id'),10);
+    // this.editedCreneau = { id: null, dateDebut: 0, dateFin: 0, professeurs: [], eleves: [], salle: null };
+    // this.editedCreneau = this.creneauService.getSlot(this.idEtablissement, this.idCreneau);
+    // this.editedCreneau = this.getSlot();
+    this.getSlot();
+    // console.log(this.editedCreneau);
+
+    // this.dateCreneau = moment.unix(this.editedCreneau.dateDebut).format("DD/MM/YYYY");
+
   }
 
   onChangeNom(optionDuMenu) { this.filterParNom = optionDuMenu; }
@@ -135,5 +179,27 @@ export class PageCreneauComponent implements OnInit {
     }
   }
 
+  public getSlot(){
+    this.creneauService.getSlot(this.idEtablissement, this.idCreneau)
+          .subscribe((data: CourseSlot) => {
+            this.editedCreneau = data;
 
+            this.editedCreneau.id = data.id;
+            // this.editedCreneau.dateDebut = data.dateDebut;
+            // this.editedCreneau.dateFin = data.dateFin;
+            this.editedCreneau.salle = data.salle;
+            this.editedCreneau.professeurs = data.professeurs;
+            // this.editedCreneau.eleves = data.eleves;
+
+            console.log(data);
+            this.date_creneau = moment.unix(this.editedCreneau.dateDebut).format("YYYY-MM-DD");
+            this.heure_debut =  moment.unix(this.editedCreneau.dateDebut).format("HH:mm");
+            this.heure_fin =  moment.unix(this.editedCreneau.dateFin).format("HH:mm");
+            this.selectedSalle = this.editedCreneau.salle;
+            // this.salle = 
+            this.selectedProfesseurs = this.editedCreneau.professeurs;
+            this.selectedEleves = this.editedCreneau.eleves;
+
+          });
+  }
 }
