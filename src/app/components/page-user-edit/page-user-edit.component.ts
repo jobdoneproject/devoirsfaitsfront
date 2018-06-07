@@ -44,7 +44,7 @@ export class PageUserEditComponent implements OnInit {
   ) {
 
     // Vérif user Administrateur :
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = this.userService.getCurrentUserLogged();
 
     if (this.currentUser.privilege == "Administrateur"){
       this.administrateur = true;

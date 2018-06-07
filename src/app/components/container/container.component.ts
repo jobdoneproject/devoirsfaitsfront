@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { User } from "../../model/model.user";
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import {UserService} from "../../services/user.service";
 
 
 
@@ -14,9 +15,9 @@ export class ContainerComponent implements OnInit {
   currentUser: User;
 
 
-  constructor(public authService: AuthService) { 
+  constructor(private userService: UserService, public authService: AuthService) { 
 
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = this.userService.getCurrentUserLogged();
 
      
     

@@ -55,7 +55,7 @@ export class ListeUtilisateurComponent implements OnInit {
       this.titrePage = "Professeurs";
     }
 
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = this.userService.getCurrentUserLogged();
     this.idEtablissement = this.currentUser.idEtablissement;
 
     if (this.currentUser.privilege == "Administrateur"){

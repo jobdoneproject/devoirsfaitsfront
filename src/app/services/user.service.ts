@@ -27,6 +27,11 @@ export class UserService {
     private http: Http
   ) { }
 
+  getCurrentUserLogged() {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
+ 
+
   getCurrentUser(): Observable<User> {
     return this.getCurrentUser();
   }
