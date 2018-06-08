@@ -11,11 +11,10 @@ import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { Scope } from '@angular/core/src/profile/wtf_impl';
 import { Subject } from 'rxjs/Subject';
 import { SubscribeOnObservable } from 'rxjs/internal-compatibility';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Location } from '@angular/common';
 import * as $ from 'jquery';
 import * as _ from 'underscore';
-
+import {EleveClassesPipe} from '../../pipes/eleve-classes.pipe'
 @Component({
   selector: 'app-liste-utilisateur',
   templateUrl: './liste-utilisateur.component.html',
@@ -23,6 +22,7 @@ import * as _ from 'underscore';
 })
 export class ListeUtilisateurComponent implements OnInit {
 
+  pipeClass: EleveClassesPipe = new EleveClassesPipe;
   typeUtilisateur:string;
   titrePage:string;
   currentUser: User;
@@ -43,7 +43,6 @@ export class ListeUtilisateurComponent implements OnInit {
     private http: Http,
     private route: ActivatedRoute,
     private userService:UserService,
-    private formBuilder: FormBuilder,
     private location: Location,
   ) {
 
@@ -83,11 +82,13 @@ export class ListeUtilisateurComponent implements OnInit {
         })
       });
       
+
     });
   
   }
 
   ngOnInit() {
+
    }
 
   redirectEditUser(idUtilisateur: number) {
@@ -105,8 +106,8 @@ export class ListeUtilisateurComponent implements OnInit {
   onChangeClasse(optionDuMenu) {
     this.filterParClasse = optionDuMenu;
   }
-  onChangeNom(optionDuMenu) {
-    this.filterParNom= optionDuMenu;
+  onChangeNom(optionDuMenu : string) {
+    this.filterParNom = optionDuMenu;
   }
 
   onSelectAll(selection){
@@ -114,14 +115,34 @@ export class ListeUtilisateurComponent implements OnInit {
       this.utilisateurs$.forEach(utilisateurs => {
         utilisateurs.forEach(utilisateur => {
           this.selectedUtilisateurs.push(utilisateur);
-          this.isSelected = true;
         })
       });
     } else {
       this.selectedUtilisateurs.splice(0,this.selectedUtilisateurs.length);
-      this.isSelected = false;
+      this.utilisateurs$.forEach(utilisateurs => {
+        utilisateurs.forEach(utilisateur => {
+          utilisateur.selected = false;
+        })
+      })
     }
+
+    if (this.filterParClasse != "Toutes"){
+      this.selectedUtilisateurs = this.selectedUtilisateurs.filter(s => s.classe.includes(this.filterParClasse));
+    }
+
+    var regex = new RegExp('.*' + this.filterParNom + '.*', 'i');
+    if (this.filterParNom != null){
+      this.selectedUtilisateurs = this.selectedUtilisateurs.filter(s => regex.test(s.nom));
+    }
+    console.log(this.selectedUtilisateurs.length);
+
+    this.selectedUtilisateurs.forEach(utilisateur => {
+       utilisateur.selected = true;
+    });
   }
+
+
+
 
   updateDisponibilite(idUtilisateur){
     this.userService.updateDisponibilite(this.typeUtilisateur, this.currentUser.idEtablissement, idUtilisateur);
@@ -132,15 +153,15 @@ export class ListeUtilisateurComponent implements OnInit {
       this.selectedUtilisateurs.push(selectedUtilisateur);
     } else {
       const indexUtilisateur = this.selectedUtilisateurs.findIndex(u => u.idUtilisateur == selectedUtilisateur.idUtilisateur);
-      if (indexUtilisateur >=0) {
+      if (indexUtilisateur >= 0) {
         this.selectedUtilisateurs.splice(indexUtilisateur,1);
       }
-      console.log('Index found ' + indexUtilisateur);
     }
   }
 
   
-  actionSelectAll(event){
+  actionsGroupees(event){
+
     if (event == "supprimer") {
       if(confirm("Voulez-vous vraiment supprimer " + this.selectedUtilisateurs.length + " " + this.typeUtilisateur + "(s) ?")){
         this.userService.deleteUsers(this.typeUtilisateur, this.currentUser.idEtablissement, this.selectedUtilisateurs);
@@ -167,7 +188,7 @@ export class ListeUtilisateurComponent implements OnInit {
 
       }
 
-
+     
     console.log("collect : " + this.selectedUtilisateurs.length);
 
     console.log("action : " + event);

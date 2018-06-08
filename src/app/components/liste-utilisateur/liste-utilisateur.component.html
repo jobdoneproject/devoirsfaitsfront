@@ -23,7 +23,7 @@
                     <input type="text" class="form-control" (keyup)="onChangeNom($event.target.value)" >
                   </label>
                 </div>
-                <div class="col-md-3 col-xs-12" *ngIf="typeUtilisateur == 'eleve'" >
+                <div class="col-md-3 col-xs-12" *ngIf="typeUtilisateur === 'eleve'" >
                   <label class="col-form-label">
                     Classe
                     <select id="selectClasse" name="classeDispo" (change)="onChangeClasse($event.target.value)" class="form-control">
@@ -46,7 +46,7 @@
                   <form name="actiongroupee">
                   <label class="col-form-label">
                     &nbsp;
-                    <select id="selectAction" name="selectAction" (change)="actionSelectAll($event.target.value)" class="form-control">
+                    <select id="selectAction" name="selectAction" (change)="actionsGroupees($event.target.value)" class="form-control">
                         <option value="" >Actions groupées</option>
                         <option value="supprimer" >Supprimer</option>
                         <option value="indisponible" >Marquer indisponible</option>
@@ -91,7 +91,7 @@
                   </td>
                   <td>
                     <label class="containerCheck">
-                      <input type="checkbox" class="form-check-input checkbox" name="selectedUtilisateur" (click)="switchSelectedUtilisateur(utilisateur, $event.target)" value="{{utilisateur}}" [checked]="isSelected" />
+                      <input type="checkbox" class="form-check-input checkbox" name="selectedUtilisateurs" (click)="switchSelectedUtilisateur(utilisateur, $event.target)" [checked]="utilisateur.selected" />
                       <span class="checkmark" ></span>
                     </label>
                   </td> 

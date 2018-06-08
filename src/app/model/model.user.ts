@@ -12,6 +12,7 @@ export class User {
   ville: string='';
   etablissement: string='';
   telephone: string='';
+  selected: boolean;
 
 
 }
