@@ -2,8 +2,10 @@
   <div class="col-12">
     <span class="d-flex alifn-items-center">
         <h1>
-          {{editedUser.prenom}} {{editedUser.nom}}
-          <span *ngIf="editedUser.privilege ==='Eleve'"> - {{editedUser.classe}}</span>
+          <span *ngIf="typeUtilisateur =='eleve'; else profBlock">Élève </span>
+          <ng-template #profBlock>Professeur </ng-template>
+          {{editedUser.nom}} <em>{{editedUser.prenom}}</em>
+          <span *ngIf="typeUtilisateur =='eleve' && editedUser.classe != null"> {{editedUser.classe}}</span>
         </h1>
       </span>
   </div>
@@ -12,7 +14,7 @@
     <div class="row flex-grow">
       <div class="col-12 stretch-card">
         <div class="card">
-          <button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="doTheBack()" >Retour à la liste</button>
+          <!--<button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="doTheBack()" >Retour à la liste</button>-->
           <div class="card-body">
 
           
@@ -61,7 +63,7 @@
               </div>
               <div class="form-group row "> 
                 <span class="col-sm-9 align-items-left"><button type="submit" class="btn btn-success mr-2" (click)="onSubmit()">Enregistrer</button>
-                <button type="button" class="btn btn-light mr-2 pull-left" (click)="onReset()">Reinitialiser</button></span>
+                <button type="button" class="btn btn-light mr-2 pull-left" (click)="onReset()">Annuler</button></span>
                 <span *ngIf="editedUser.idUtilisateur != null;" class="col-sm-3 align-items-right"><button type="button" class="btn btn-danger pull-right" (click)="onSupress()">Supprimer</button>
               </span></div>
             </form>

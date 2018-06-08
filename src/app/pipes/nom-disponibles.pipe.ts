@@ -5,7 +5,8 @@ import { User } from '../model/model.user'
   name: 'nomDisponibles'
 })
 export class NomDisponiblesPipe implements PipeTransform {
-      utilisateurs:User[];
+
+    //utilisateurs:User[] = [];
 
     transform(utilisateurs: User[], nom?: any): any {
 

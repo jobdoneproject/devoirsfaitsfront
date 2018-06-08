@@ -7,8 +7,7 @@ import { User } from '../model/model.user'
 
 export class EleveClassesPipe implements PipeTransform {
 
- // utilisateurs:User[] = new User[''];
-  utilisateurs:User[];
+  //utilisateurs:User[] = [];
 
   transform(utilisateurs: User[], classe?: any): any {
 

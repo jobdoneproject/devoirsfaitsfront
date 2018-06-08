@@ -77,7 +77,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let utilisateur of utilisateurs$ | async  | nomDisponibles: filterParNom | eleveClasses: filterParClasse | utilisateurDisponibles: { disponible: ''} : checked() : false" >
+                <tr *ngFor="let utilisateur of utilisateurs$ | async | nomDisponibles: filterParNom | eleveClasses: filterParClasse | utilisateurDisponibles: { disponible: ''} : checked() : false" >
                   <td (click)="redirectEditUser(utilisateur.idUtilisateur);">
                       <strong>{{ utilisateur.nom }} </strong><em>{{ utilisateur.prenom }}</em>
                   </td>
