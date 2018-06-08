@@ -6,31 +6,26 @@
     "configurations": [
         {
             "name": "Launch index.html",
-            "type": "firefox",
+            "type": "chrome",
             "request": "launch",
-            "reAttach": true,
             "file": "${workspaceFolder}/index.html"
         },
         {
             "name": "Launch localhost",
-            "type": "firefox",
+            "type": "chrome",
             "request": "launch",
-            "reAttach": true,
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
         },
         {
             "name": "Attach",
-            "type": "firefox",
+            "type": "chrome",
             "request": "attach"
         },
         {
             "name": "Launch addon",
-            "type": "firefox",
+            "type": "chrome",
             "request": "launch",
-            "reAttach": true,
-            "addonType": "webExtension",
-            "addonPath": "${workspaceFolder}"
         }
     ]
 }
