@@ -1,0 +1,113 @@
+<div class="row purchace-popup">
+    <div class="col-12">
+      <span class="d-flex alifn-items-center">
+          <h1>{{titrePage}}</h1>
+        </span>
+    </div>
+  </div>
+<div class="col-md-12 d-flex align-items-stretch grid-margin">
+  <div class="row flex-grow">
+
+    <div class="col-12 stretch-card">
+      <div class="card">
+      <button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="redirectNewUser()">Nouveau</button>
+        <div class="card-body">
+          <div *ngIf="isAdministrateur; else elseBlock">
+            
+
+            <div class="col-md-12 d-flex align-items-stretch">
+              <div class="row flex-grow">
+                <div class="col-md-2 col-xs-9">
+                    <label class="col-form-label">
+                      Nom
+                    <input type="text" class="form-control" (keyup)="onChangeNom($event.target.value)" >
+                  </label>
+                </div>
+                <div class="col-md-3 col-xs-12" *ngIf="typeUtilisateur == 'eleve'" >
+                  <label class="col-form-label">
+                    Classe
+                    <select id="selectClasse" name="classeDispo" (change)="onChangeClasse($event.target.value)" class="form-control">
+                      <option *ngFor="let classeDisponible of classeDisponibles;" [value]="classeDisponible" >{{classeDisponible}}</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                  <label class="col-form-label">
+                    Disponibilité
+                  </label>
+                  <div class="d-flex">
+                    <label *ngFor="let filterDisponible of filterDisponibles;" class="containerCheck">
+                      <input type="checkbox" class="form-check-input" [(ngModel)]="filterDisponible.checked" [value]="filterDisponible.value" /> {{filterDisponible.nom}}&nbsp;
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                  <form name="actiongroupee">
+                  <label class="col-form-label">
+                    &nbsp;
+                    <select id="selectAction" name="selectAction" (change)="actionSelectAll($event.target.value)" class="form-control">
+                        <option value="" >Actions groupées</option>
+                        <option value="supprimer" >Supprimer</option>
+                        <option value="indisponible" >Marquer indisponible</option>
+                        <option value="disponible" >Marquer disponible</option>
+                      </select>
+                  </label></form>
+                </div>
+              </div>
+            </div>
+
+
+            <br>
+          
+        
+            <table class="table table-hover" >
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th *ngIf="typeUtilisateur == 'eleve'" class="hiddenMobile">classe</th>
+                  <th class="hiddenMobile">Email</th>
+                  <th>Disponibilité</th>
+                  <th>
+                    <label class="containerCheck" style="top: 0.9em">
+                      <input type="checkbox" name="all" id='checkall' unchecked (click)="onSelectAll($event.target)" />
+                      <span class="checkmark" ></span> Tout sélectionner
+                    </label>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let utilisateur of utilisateurs$ | async | nomDisponibles: filterParNom | eleveClasses: filterParClasse | utilisateurDisponibles: { disponible: ''} : checked() : false" >
+                  <td (click)="redirectEditUser(utilisateur.idUtilisateur);">
+                      <strong>{{ utilisateur.nom }} </strong><em>{{ utilisateur.prenom }}</em>
+                  </td>
+                  <td *ngIf="typeUtilisateur == 'eleve'" (click)="redirectEditUser(utilisateur.idUtilisateur);" class="hiddenMobile">{{ utilisateur.classe }}</td>
+                  <td (click)="redirectEditUser(utilisateur.idUtilisateur);" class="hiddenMobile">{{ utilisateur.mail }}</td>
+                  <td>
+                    <label class="toggle-check">
+                      <input type="checkbox" class="toggle-check-input" [(ngModel)]="utilisateur.disponible" (click)="updateDisponibilite(utilisateur.idUtilisateur)"/>
+                      <span class="toggle-check-text"></span>
+                    </label>
+                  </td>
+                  <td>
+                    <label class="containerCheck">
+                      <input type="checkbox" class="form-check-input checkbox" name="selectedUtilisateur" (click)="switchSelectedUtilisateur(utilisateur, $event.target)" value="{{utilisateur}}" [checked]="isSelected" />
+                      <span class="checkmark" ></span>
+                    </label>
+                  </td> 
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+          <ng-template #elseBlock>
+            <p>
+              Vous n'avez pas les droits pour afficher cette page !
+            </p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
