@@ -59,6 +59,5 @@ export class CalendarSlotComponent implements OnInit {
 
   deleteSlot(slotId: number) {
     this.creneauService.deleteSelected(this.currentUser.idEtablissement, slotId);
-    this.router.navigate(['profile'])
   }
 }
