@@ -8,7 +8,7 @@
 
 a {
     text-decoration: none;
-    color : black;
+    color : red;
 }
 
 a h2 {
@@ -41,7 +41,7 @@ p.duration {
     padding: 0;
 }
 
-span a{
+span{
     color: red;
     display: inline-block;
     width: 100%;
@@ -51,4 +51,8 @@ span a{
 .col-md-12.d-flex.align-items-stretch.grid-margin{
     margin: 0;
     margin-bottom: 2px;
+}
+
+p {
+    color:black;
 }

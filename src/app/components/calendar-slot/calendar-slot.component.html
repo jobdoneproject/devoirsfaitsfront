@@ -4,7 +4,7 @@
             <div class="card slot">
                 <a href="creneau?id={{slot.idCreneau}}">
                 <div class="card-body">
-                    <h2>{{slot.dateDebut | date:'HH:mm'}} - Salle {{salle}}</h2>
+                    <h2>{{slot.dateDebut * 1000 | date:'HH:mm'}} - {{salle}}</h2>
                     <div class="content">
                         <p class="duration">{{duration | date:'HH:mm'}} h</p>
                         <span>

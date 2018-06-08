@@ -5,6 +5,8 @@ import { User } from '../../model/model.user';
 import { CreneauService } from '../../services/creneau.service';
 import {UserService} from "../../services/user.service";
 import { Router } from '@angular/router';
+import * as moment from 'moment';
+
 
 
 @Component({
@@ -46,7 +48,7 @@ export class CalendarSlotComponent implements OnInit {
     const durationInstance = this.slotValue.dateFin - this.slotValue.dateDebut;
     let date = new Date(1970, 0, 1);
     date.setSeconds(durationInstance);
-
+    console.log(this.slotValue.dateDebut);
     return date;
   }
 
