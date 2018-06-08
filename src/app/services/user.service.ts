@@ -22,6 +22,11 @@ export class UserService {
     private http: Http
   ) { }
 
+  getCurrentUserLogged() {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
+ 
+
   getCurrentUser(): Observable<User> {
     return this.getCurrentUser();
   }
@@ -82,7 +87,6 @@ export class UserService {
   findById(source, id) {
     for (let i = 0; i < source.length; i++) {
       if (source[i].id === id) {
-        console.log(source[i]);
         return source[i];
       }
     }

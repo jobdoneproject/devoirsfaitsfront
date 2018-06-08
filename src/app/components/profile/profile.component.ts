@@ -4,6 +4,8 @@ import {User} from "../../model/model.user";
 import {Router} from "@angular/router";
 import { WeekUtils } from '../../utils/WeekUtils';
 import * as moment from "moment";
+import {UserService} from "../../services/user.service";
+
 
 @Component({
   selector: 'app-profile',
@@ -19,13 +21,13 @@ export class ProfileComponent implements OnInit {
   weekNumber: number;
   year: number;
 
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(private userService: UserService, public authService: AuthService, public router: Router) {
   
   }
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    
+    this.currentUser = this.userService.getCurrentUserLogged();
+
     /////////////////////////////////////////
     this.year = moment().toDate().getFullYear();
     this.weekNumber = WeekUtils.getWeekNumberForDate(moment().toDate());
@@ -88,5 +90,9 @@ export class ProfileComponent implements OnInit {
     this.referenceDate = referenceDateAsMoment.toDate();
     this.year = Number(weeknum.toString().substring(0, 4));
     this.weekNumber = Number(weeknum.toString().substring(6, 9));
+  }
+
+  get monthFromDate () {
+    return WeekUtils.getMonthFromDate(this.weekNumber).toString();
   }
 }

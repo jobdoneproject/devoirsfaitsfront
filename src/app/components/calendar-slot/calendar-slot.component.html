@@ -2,13 +2,17 @@
     <div class="row flex-grow">
         <div class="col-12 stretch-card">
             <div class="card slot">
+                <a href="creneau?id={{slot.idCreneau}}">
                 <div class="card-body">
-                    <h2>{{slot.dateDebut | date:'HH:mm'}} - Salle {{slot.salle.nom}}</h2>
+                    <h2>{{slot.dateDebut * 1000 | date:'HH:mm'}} - {{salle}}</h2>
                     <div class="content">
                         <p class="duration">{{duration | date:'HH:mm'}} h</p>
-                        <span class="far fa-trash-alt trash"></span>
+                        <span>
+                            <a class="far fa-trash-alt trash" (click)="deleteSlot(slot.idCreneau)" href="/profile"></a>
+                        </span>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
     </div>

@@ -7,6 +7,7 @@ import {AppComponent} from "../../app.component";
 import {AuthService} from "../../services/auth.service";
 import { Observable } from 'rxjs';
 import {environment} from '../../../environments/environment';
+import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -23,11 +24,9 @@ export class ContainerSidebarComponent implements OnInit {
   url: string;
   listEleve: Observable<any>;
 
-  constructor(public authService: AuthService, public router: Router,private http: Http) { 
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private userService: UserService, public authService: AuthService, public router: Router,private http: Http) { 
+    this.currentUser = this.userService.getCurrentUserLogged();
     this.idEtablissement = this.currentUser.idEtablissement;
-    
-    console.log("this.currentUser.privilege : " + this.currentUser.privilege);
     if (this.currentUser.privilege == "Administrateur"){
       
       this.administrateur = true;

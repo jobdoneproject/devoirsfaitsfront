@@ -1,65 +1,91 @@
-<h4 class="card-title">{{titre}}</h4>
-<form class="forms-sample">
-  <div class="row">
-    <div class="col-md-6 grid-margin stretch-card">
-      <div class="card-body">
+<div class="row purchace-popup">
+  <div class="col-12">
+    <span class="d-flex alifn-items-center">
+      <h1>{{titre}}</h1>
+    </span>
+  </div>
+</div>
+<div class="col-md-12 d-flex align-items-stretch grid-margin">
+  <div class="row flex-grow">
+    <div class="col-12 stretch-card">
+      <div class="card">
+        <!--<button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="doTheBack()" >Retour à la liste</button>-->
         <div class="card-body">
-          <div class="form-group">
-            <label for="date_creneau" class="font-weight-medium">Date</label>
-            <input (change)="majTitre()" type="date" class="form-control" id="date_creneau" placeholder="" name="date_creneau" id="date_creneau"[(ngModel)]="date_creneau" required>
-          </div>
-          <div class="form-group">
-            <label for="heure_debut">Heure de début</label>
-            <input type="time" class="form-control" id="heure_debut" placeholder="" name="heure_debut" id="heure_debut"[(ngModel)]="heure_debut" required>
-          </div>
-          <div class="form-group">
-            <label for="heure_fin">Heure de fin</label>
-            <input type="time" class="form-control" id="heure-fin" placeholder="" name="heure_fin" id="heure_fin"[(ngModel)]="heure_fin" required>
-          </div>
-          <div class="form-group">
-            <label for="salle-creneau">Salle</label>
-            <select class="form-control" id="salle-crneau" placeholder="salle" required>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="listProfesseurs" class="font-weight-medium">Professeurs</label>
-            <select class="form-control" #selectedValue name="selectedProfesseur" id="selectedProfesseur" (ngModelChange)="addProfesseurToSelected($event)">
-              <option *ngFor="let professeur of listProfesseur | async" [ngValue]="professeur">{{professeur.nom}} {{professeur.prenom}}</option>
-            </select>
-          </div>
+          <form class="forms-sample">
+            <div class="row">
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card-body">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="date_creneau" class="font-weight-medium">Date</label>
+                      <input (change)="majTitre()" type="date" class="form-control" id="date_creneau" placeholder="" name="date_creneau" id="date_creneau"
+                        [(ngModel)]="date_creneau" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="heure_debut">Heure de début</label>
+                      <input type="time" class="form-control" id="heure_debut" placeholder="" name="heure_debut" id="heure_debut" [(ngModel)]="heure_debut"
+                        required>
+                    </div>
+                    <div class="form-group">
+                      <label for="heure_fin">Heure de fin</label>
+                      <input type="time" class="form-control" id="heure-fin" placeholder="" name="heure_fin" id="heure_fin" [(ngModel)]="heure_fin"
+                        required>
+                    </div>
+                    <div class="form-group">
+                      <label for="salle-creneau">Salle</label>
+                      <select class="form-control" #selectedValue name="selectedSalles" id="selectedSalles" [(ngModel)]="selectedSalles" (ngModelChange)="addSalleToSelected($event)">
+                        <option *ngFor="let salle of allSalleEtb | async" [ngValue]="salle">{{salle.nom}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="listProfesseurs" class="font-weight-medium">Professeurs</label>
+                      <select class="form-control" #selectedValue name="selectedProfesseurs" id="selectedProfesseurs" [(ngModel)]="selectedProfesseur"
+                        (ngModelChange)="addProfesseurToSelected($event)">
+                        <option *ngFor="let professeur of listProfesseur | async" [ngValue]="professeur">{{professeur.nom}} {{professeur.prenom}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  Liste des Professeurs sélectionnés :
+                  <mat-list #professeurs>
+                    <mat-list-item *ngFor="let professeur of selectedProfesseurs">
+                      {{ professeur.nom }} {{ professeur.prenom }}
+                    </mat-list-item>
+                  </mat-list>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card-body">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="listEleve" class="font-weight-medium">Elèves</label>
+                      <mat-form-field class="example-full-width">
+                        <input type="text" placeholder="Choisir un élève" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto"
+                          (keyup)="onChangeNom($event.target.value)">
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addEleveToSelected()" [displayWith]="displayFn">
+                          <mat-option *ngFor="let eleve of listEleve | async | nomDisponibles: filterParNom" [value]="eleve">
+                            {{ eleve.nom }} {{ eleve.prenom }} - {{ eleve.classe }}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  Liste des Eleves sélectionnés :
+                  <mat-list #eleves>
+                    <mat-list-item *ngFor="let eleve of selectedEleves">
+                      <mat-slide-toggle>{{ eleve.nom }} {{ eleve.prenom }}</mat-slide-toggle>
+                      <button type="button" class="btn btn-link" (click)="enleverEleve(eleve)">Enlever</button>
+                    </mat-list-item>
+                  </mat-list>
+                </div>
+              </div>
+            </div>
+            <button (click)="onSend()" type="submit" class="btn btn-success mr-2">Créer le créneau</button>
+            <button class="btn btn-light">
+              <a href="/profile">Annuler</a>
+            </button>
+          </form>
         </div>
-        Liste des Professeurs sélectionnés :
-        <mat-list #professeurs>
-          <mat-list-item *ngFor="let professeur of selectedProfesseurs">
-            {{ professeur.nom }} {{ professeur.prenom }}
-          </mat-list-item>
-        </mat-list>
-      </div>
-    </div>
-    <div class="col-md-6 grid-margin stretch-card">
-      <div class="card-body">
-        <div class="card-body">
-          <div class="form-group">
-            <label for="listEleve" class="font-weight-medium">Elèves</label>
-            <mat-form-field class="example-full-width">
-              <input type="text" placeholder="Choisir un élève" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto" (keyup)="onChangeNom($event.target.value)">
-              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addEleveToSelected()" [displayWith]="displayFn">
-                <mat-option *ngFor="let eleve of listEleve | async | nomDisponibles: filterParNom" [value]="eleve" >
-                  {{ eleve.nom }} {{ eleve.prenom }}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-          </div>
-        </div>
-        Liste des Eleves sélectionnés :
-        <mat-list #eleves>
-          <mat-list-item *ngFor="let eleve of selectedEleves">
-            <mat-slide-toggle>{{ eleve.nom }} {{ eleve.prenom }}</mat-slide-toggle><button type="button" class="btn btn-link" (click)="enleverEleve(eleve)">Enlever</button>
-          </mat-list-item>
-        </mat-list>
       </div>
     </div>
   </div>
-  <button (click)="onSend()" type="submit" class="btn btn-success mr-2">Créer le créneau</button>
-  <button class="btn btn-light">Annuler</button>
-</form>
+</div>
