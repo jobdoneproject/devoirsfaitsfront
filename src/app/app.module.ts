@@ -42,6 +42,8 @@ import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-
 import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
 import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
 import { SalleComponent } from './components/salle/salle.component';
+import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-week.component';
+
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { SalleComponent } from './components/salle/salle.component';
     ListeUtilisateurComponent,
     EleveClassesPipe,
     NomDisponiblesPipe,
-    SalleComponent
+    SalleComponent,
+    DuplicateWeekComponent
   ],
   imports: [
     BrowserModule,

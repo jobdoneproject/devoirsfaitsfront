@@ -14,6 +14,7 @@ import { ContainerSidebarComponent } from './components/container-sidebar/contai
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
 import { SalleComponent } from './components/salle/salle.component';
+import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-week.component';
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -30,9 +31,11 @@ const appRoutes: Routes = [
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: ProfileComponent, outlet: 'connected' }]
   },
-
-
-
+  {
+    path: 'duplicate',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{ path: '', component: DuplicateWeekComponent, outlet: 'connected' }]
+  },
   {
     path: 'datepicker',
     component: ContainerComponent, canActivate: [UrlPermission],
