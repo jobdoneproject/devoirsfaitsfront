@@ -42,7 +42,6 @@ export class SalleComponent implements OnInit {
   constructor(private roomsv: RoomService, public authService: AuthService, public router: Router, private userService:UserService) {
 
     this.currentUser = this.userService.getCurrentUserLogged();
-    console.log("this.currentUser.privilege : " + this.currentUser.privilege);
 
     if (this.currentUser.privilege == "Administrateur") {
       this.administrateur = true;

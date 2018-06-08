@@ -10,7 +10,6 @@ export class UtilsService {
   findById(source, id) {
     for (let i = 0; i < source.length; i++) {
       if (source[i].id === id) {
-        // console.log(source[i]);
         return source[i];
       }
     }

@@ -92,4 +92,8 @@ export class ProfileComponent implements OnInit {
     this.year = Number(weeknum.toString().substring(0, 4));
     this.weekNumber = Number(weeknum.toString().substring(6, 9));
   }
+
+  get monthFromDate () {
+    return WeekUtils.getMonthFromDate(this.weekNumber).toString();
+  }
 }

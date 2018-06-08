@@ -1,4 +1,6 @@
 import { WeekDay } from "../model/model.week-day";
+import * as moment from "moment";
+
 
 export class WeekUtils {
     /*
@@ -62,6 +64,12 @@ export class WeekUtils {
       case WeekDay.Dimanche : dayOffset = 6; break;
     }
     return dayOffset;
+  }
+
+  static getMonthFromDate (week: number) {
+    const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+                        "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Décembre"];
+    return monthNames[moment().week(week).month()];
   }
 
 }
