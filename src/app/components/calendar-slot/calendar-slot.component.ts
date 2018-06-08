@@ -22,7 +22,6 @@ export class CalendarSlotComponent implements OnInit {
 
   constructor(private userService: UserService, private creneauService: CreneauService, private router: Router) {
     this.currentUser = this.userService.getCurrentUserLogged();
-    console.log("this.currentUser.privilege : " + this.currentUser.privilege);
 
     if (this.currentUser.privilege == "Administrateur") {
       this.administrateur = true;
@@ -48,7 +47,6 @@ export class CalendarSlotComponent implements OnInit {
     const durationInstance = this.slotValue.dateFin - this.slotValue.dateDebut;
     let date = new Date(1970, 0, 1);
     date.setSeconds(durationInstance);
-    console.log(this.slotValue.dateDebut);
     return date;
   }
 

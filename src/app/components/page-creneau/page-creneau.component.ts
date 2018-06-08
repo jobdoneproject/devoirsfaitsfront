@@ -55,7 +55,6 @@ export class PageCreneauComponent implements OnInit {
               private userService:UserService) {
 
     this.currentUser = this.userService.getCurrentUserLogged();
-    console.log("this.currentUser.privilege : " + this.currentUser.privilege);
 
     if (this.currentUser.privilege == "Administrateur") {
       this.administrateur = true;
@@ -81,7 +80,6 @@ export class PageCreneauComponent implements OnInit {
   majTitre() { this.titre = "Création du créneau du " + this.date_creneau.toString(); }
 
   onSend() {
-    console.log(this.salleSelected);
     this.courseservice.createSlot(moment(this.date_creneau + " " + this.heure_debut).unix(),
                                   moment(this.date_creneau + " " + this.heure_fin).unix(),
                                   this.selectedEleves,

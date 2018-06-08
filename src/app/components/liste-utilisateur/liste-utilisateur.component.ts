@@ -135,7 +135,6 @@ export class ListeUtilisateurComponent implements OnInit {
       if (indexUtilisateur >=0) {
         this.selectedUtilisateurs.splice(indexUtilisateur,1);
       }
-      console.log('Index found ' + indexUtilisateur);
     }
   }
 
@@ -166,11 +165,6 @@ export class ListeUtilisateurComponent implements OnInit {
         this.userService.updateUsers(this.typeUtilisateur, this.currentUser.idEtablissement, this.selectedUtilisateurs); 
 
       }
-
-
-    console.log("collect : " + this.selectedUtilisateurs.length);
-
-    console.log("action : " + event);
     document.forms["actiongroupee"].reset();
   }
 

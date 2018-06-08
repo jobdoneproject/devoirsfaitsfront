@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class UtilisateurDisponiblesPipe implements PipeTransform {
   transform(utilisateurs: any, filter: any, filterDisponibles: Array<any>, disponible: boolean): any {
-    //console.log('Filtering ..');
     if (filter && Array.isArray(utilisateurs) && filterDisponibles) {
       let filterKeys = Object.keys(filter);
       let checkedItems = filterDisponibles.filter(filterDisponible => { return filterDisponible.checked; });
