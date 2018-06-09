@@ -81,8 +81,6 @@ export class ListeUtilisateurComponent implements OnInit {
           }
         })
       });
-      
-
     });
   
   }
@@ -130,8 +128,8 @@ export class ListeUtilisateurComponent implements OnInit {
       this.selectedUtilisateurs = this.selectedUtilisateurs.filter(s => s.classe.includes(this.filterParClasse));
     }
 
-    var regex = new RegExp('.*' + this.filterParNom + '.*', 'i');
     if (this.filterParNom != null){
+      var regex = new RegExp('.*' + this.filterParNom + '.*', 'i');
       this.selectedUtilisateurs = this.selectedUtilisateurs.filter(s => regex.test(s.nom));
     }
     console.log(this.selectedUtilisateurs.length);
@@ -140,9 +138,6 @@ export class ListeUtilisateurComponent implements OnInit {
        utilisateur.selected = true;
     });
   }
-
-
-
 
   updateDisponibilite(idUtilisateur){
     this.userService.updateDisponibilite(this.typeUtilisateur, this.currentUser.idEtablissement, idUtilisateur);
@@ -159,10 +154,15 @@ export class ListeUtilisateurComponent implements OnInit {
     }
   }
 
-  
-  actionsGroupees(event){
+  actionDemandee: string;
+  action(event){
+    this.actionDemandee = event;
+  }
 
-    if (event == "supprimer") {
+  actionsGroupees(){
+    // const event = document.getElementById('selectAction').nodeValue;
+     console.log(this.actionDemandee)
+    if (this.actionDemandee == "supprimer") {
       if(confirm("Voulez-vous vraiment supprimer " + this.selectedUtilisateurs.length + " " + this.typeUtilisateur + "(s) ?")){
         this.userService.deleteUsers(this.typeUtilisateur, this.currentUser.idEtablissement, this.selectedUtilisateurs);
         this.userService.getUsers(this.typeUtilisateur, this.currentUser.idEtablissement).subscribe(newUsers => {
@@ -173,14 +173,14 @@ export class ListeUtilisateurComponent implements OnInit {
       }
     }
 
-    if (event == "disponible") {
+    if (this.actionDemandee == "disponible") {
       this.selectedUtilisateurs.forEach(utilisateur => {
         utilisateur.disponible = true;
       });
       this.userService.updateUsers(this.typeUtilisateur, this.currentUser.idEtablissement, this.selectedUtilisateurs); 
     }
 
-    if (event == "indisponible") {
+    if (this.actionDemandee == "indisponible") {
         this.selectedUtilisateurs.forEach(utilisateur => {
           utilisateur.disponible = false;
         });
@@ -188,11 +188,10 @@ export class ListeUtilisateurComponent implements OnInit {
 
       }
 
-     
     console.log("collect : " + this.selectedUtilisateurs.length);
 
     console.log("action : " + event);
-    document.forms["actiongroupee"].reset();
+    //document.forms["actiongroupee"].reset();
   }
 
 }
