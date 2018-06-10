@@ -4,10 +4,8 @@
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card-body">
         <div class="card-body">
-          <!-- <div ng-if="selectedSalle">DEBUG : {{selectedSalle.nom}}</div> -->
           <div class="form-group">
-              <label>Id</label>
-              <input type="text" name="creneauId" 
+              <input type="hidden" name="creneauId" 
               id="creneauId"[(ngModel)]="creneauId">
             </div>
           <div class="form-group">
@@ -29,16 +27,6 @@
           </div>
           <div class="form-group">
             <label for="salle-creneau">Salle</label>
-            <!-- <select class="form-control" #selectedValue name="selectedSalles" id="selectedSalles" 
-            [(ngModel)]="selectedSalle" (ngModelChange)="addSalleToSelected($event)">
-              <option *ngFor="let salle of allSalleEtb | async" 
-              [value]="salle" >
-              {{salle.nom}}</option> -->
-                      <!-- [ngValue]="salle" [value]="selectedSalle" [selected]="editedCreneau.salle.idSalle">{{salle.nom}}</option> -->
-                      <!-- [selected]="salle.id === editedCreneau.salle.idSalle" -->
-                      <!-- [selected]="salle.idSalle === editedCreneau.salle.idSalle" -->
-                      
-            <!-- </select> -->
             <select class="form-control" #selectedValue name="selectedSalles" 
                     id="selectedSalles" [(ngModel)]="selectedSalle" 
                     (ngModelChange)="addSalleToSelected($event)">
@@ -85,7 +73,9 @@
           <mat-list-item *ngFor="let eleve of selectedEleves">
               <button type="button" class="btn btn-link pull-right" (click)="enleverEleve(eleve)"><i class="fas fa-trash-alt"></i></button>
               &nbsp;
-            <mat-slide-toggle>{{ eleve.nom }} {{ eleve.prenom }} - {{ eleve.classe }}</mat-slide-toggle>
+            <mat-slide-toggle (change)="onSlideChange($event)" 
+            (click)="onActiveHomeboxP(eleve)">
+              {{ eleve.nom }} {{ eleve.prenom }} - {{ eleve.classe }}</mat-slide-toggle>
             <!-- <button type="button" class="btn btn-link" (click)="enleverEleve(eleve)">Enlever</button> -->
           </mat-list-item>
         </mat-list>

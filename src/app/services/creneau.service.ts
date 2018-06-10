@@ -17,7 +17,6 @@ export class CreneauService {
 
   getSlot(idEtablissement: number, idCreneau: number){
     const url =  environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux/" + idCreneau;
-    // return this.http.get(url).pipe(map((resp: Response)=>resp.json()));
     return  this.httpClient.get(environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux/" + idCreneau);
   }
 
@@ -59,8 +58,7 @@ export class CreneauService {
       editedTimeSlot.eleves = eleves;
       editedTimeSlot.professeurs = profs;
       editedTimeSlot.salle = salle;
-      // console.log("editedTYimeSlot");
-      // console.log(editedTimeSlot);
+      console.log(editedTimeSlot);
       this.putSlot(editedTimeSlot, idEtablissement, idCreneau)
   }
 
@@ -69,8 +67,6 @@ export class CreneauService {
     let options = new RequestOptions({ headers: headers });
     let body = JSON.stringify(editedCreneau);
     let url = environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux/" + idCreneau;
-    // console.log("body put slot :");
-    // console.log(body);
     this.http.put(
       url, 
       body, 

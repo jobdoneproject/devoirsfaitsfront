@@ -43,18 +43,15 @@ export class PageCreneauComponent implements OnInit {
   @Input() heure_fin: any;
   nomDisponibles = [];
   filterParNom: String;
-  titre: String = "Création d'un créneau";
+  titre: String;
   myControl: FormControl = new FormControl();
   filteredEleve: Observable<any[]>;
-  // salleSelected: Room;
   allSalleEtb: Observable<any>;
   idEtablissement: number;
   selectedSalle: Room;
+  selectedSallePut: Room;
   idCreneau: number;
-  // editedCreneau:Observable<any>;
-  // editedCreneau:CourseSlot;
   editedCreneau:CourseSlot;
-  // date_creneau: any;
   salle: Room;
   creneauId: number;
   pageModeCreation: boolean;
@@ -70,7 +67,7 @@ export class PageCreneauComponent implements OnInit {
 
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log("this.currentUser.privilege : " + this.currentUser.privilege);
+    // console.log("this.currentUser.privilege : " + this.currentUser.privilege);
 
     this.idEtablissement = this.currentUser.idEtablissement;
 
@@ -80,9 +77,7 @@ export class PageCreneauComponent implements OnInit {
 
     this.listProfesseur = this.userService.getUsers("professeur", this.currentUser.idEtablissement);
     this.listEleve =  this.userService.getUsers("eleve", this.currentUser.idEtablissement);
-    // this.allSalleEtb = this.roomsv.getAll(this.currentUser.idEtablissement);
     
-
     this.listEleve.forEach(arrayNomUtilisateur => {
       arrayNomUtilisateur.forEach(utilisateur => {
         if (this.nomDisponibles.indexOf(utilisateur.nom) == -1) {
@@ -90,58 +85,55 @@ export class PageCreneauComponent implements OnInit {
         }
       })
     });
+
+    // this.selectedEleves.forEach(eleve => {
+    //   if(!eleve.hasOwnProperty('present')){
+    //     eleve.present = true;
+    //   }
+    // });
+
+    
   }
 
   ngOnInit() {
     
-      console.log(this.route.snapshot.paramMap.get('id'));
-      if(this.route.snapshot.paramMap.get('id') != null){
-        // console.log("Edition");
-        this.pageModeCreation = false;
-        this.idCreneau = parseInt(this.route.snapshot.paramMap.get('id'),10);
-        this.getSlot();
+    console.log(this.route.snapshot.paramMap.get('id'));
+    // EDITION CRENEAU
+    if(this.route.snapshot.paramMap.get('id') != null){
+      this.pageModeCreation = false;
+      this.idCreneau = parseInt(this.route.snapshot.paramMap.get('id'),10);
+      this.getSlot();
 
+      this.roomsv.getAll(this.currentUser.idEtablissement)
+      .subscribe( data =>{
+        this.allSalleEtb = data;
+        console.log(this.allSalleEtb);
+        console.log(this.editedCreneau);
 
+        this.titre = "Créneau du " + 
+          moment.unix(this.editedCreneau.dateDebut).format("DD MM YYY à HH:mm");
 
-        this.roomsv.getAll(this.currentUser.idEtablissement)
-        .subscribe( data =>{
-          this.allSalleEtb = data;
-          console.log(this.allSalleEtb);
-  
-          
-          console.log(this.editedCreneau);
-          // console.log(this.allSalleEtb[3].idSalle);
-
-          // this.selectedSalle = this.allSalleEtb[3].idSalle;
-
-          this.allSalleEtb.forEach((salle) => {
-            console.log(this.editedCreneau.salle.idSalle);
-            console.log(salle.idSalle);
-            if(this.editedCreneau.salle.idSalle == salle.idSalle){
-              console.log("found !");
-              this.selectedSalle = salle.idSalle;
-            }
-          });
-
-          // this.allSalleEtb.forEach((salle:Room) => {
-          //   if(salle.idSalle == this.editedCreneau.salle.idSalle) {
-          //     console.log(salle);
-          //     this.selectedSalle = salle;
-          //   }           
-          // });
-
+        this.allSalleEtb.forEach((salle) => {
+          console.log(this.editedCreneau.salle.idSalle);
+          console.log(salle.idSalle);
+          if(this.editedCreneau.salle.idSalle == salle.idSalle){
+            console.log("found !");
+            this.selectedSalle = salle.idSalle;
+          }
         });
+      });
+    // CREATION CRENEAU
+    }else{ 
+      console.log("création");
+      this.pageModeCreation = true;
+      this.titre = "Nouveau créneau";
 
-
-      }else{
-        console.log("création");
-        this.pageModeCreation = true;
-      }
-
-    
-
+      this.roomsv.getAll(this.currentUser.idEtablissement)
+      .subscribe( data =>{
+        this.allSalleEtb = data;
+      });
+    }
   }
-
 
 
   addEleveToSelected() { 
@@ -149,7 +141,7 @@ export class PageCreneauComponent implements OnInit {
     let doublon = false;
     this.selectedEleves.forEach(eleve => {
       if(eleve.idUtilisateur === eleveAdded.idUtilisateur){
-        console.log("eleve present");
+        // console.log("eleve present");
         doublon = true;
       }
     });
@@ -177,28 +169,28 @@ export class PageCreneauComponent implements OnInit {
     }
   }
 
-  addSalleToSelected(value){ 
-    // this.salle = salle;
-    // this.selectedSalle = this.allSalleEtb.find(salle => {
-    //   salle.idSalle == value;
-    // })
-    // console.log("salle added"); 
-    // console.log(salle.idSalle+salle.nom);
+  addSalleToSelected(value){
+
+    this.allSalleEtb.forEach((salle) => {
+      if(value == salle.idSalle){
+        console.log("found Id : " + value);
+        this.selectedSallePut = salle;
+      }
+    });
+
   }
 
-  // addSalleToSelected(value){ 
-  //   this.salle = this.allSalleEtb.find(salle => salle.idSalle == value); // find selected object by finding in original data by ID
-  // }
 
   majTitre() { this.titre = "Création du créneau du " + this.date_creneau.toString(); }
 
   onSend() {
-    this.courseservice.createSlot(moment(this.date_creneau + " " + this.heure_debut).unix(),
-                                  moment(this.date_creneau + " " + this.heure_fin).unix(),
-                                  this.selectedEleves,
-                                  this.selectedProfesseurs,
-                                  this.selectedSalle,
-                                  this.idEtablissement);
+    this.courseservice.createSlot(
+      moment(this.date_creneau + " " + this.heure_debut).unix(),
+      moment(this.date_creneau + " " + this.heure_fin).unix(),
+      this.selectedEleves,
+      this.selectedProfesseurs,
+      this.selectedSallePut,
+      this.idEtablissement);
   }
 
   onEdit(){
@@ -209,7 +201,7 @@ export class PageCreneauComponent implements OnInit {
       moment(this.date_creneau + " " + this.heure_fin).unix(),
       this.selectedEleves,
       this.selectedProfesseurs,
-      this.selectedSalle,
+      this.selectedSallePut,
       this.idEtablissement);
   }
 
@@ -244,39 +236,43 @@ export class PageCreneauComponent implements OnInit {
 
   public getSlot(){
     this.creneauService.getSlot(this.idEtablissement, this.idCreneau)
-          .subscribe((data: CourseSlot) => {
-            this.editedCreneau = data;
-
-            // this.editedCreneau.id = data.id;
-            this.creneauId = data.idCreneau;
-            // this.editedCreneau.dateDebut = data.dateDebut;
-            // this.editedCreneau.dateFin = data.dateFin;
-            // this.editedCreneau.salle = data.salle;
-            
-            
-            // this.selectedSalle = data.salle;
-
-            // this.allSalleEtb = this.roomsv.getAll(this.currentUser.idEtablissement);
-            // this.selectedSalle = this.allSalleEtb[3].idSalle; // set first as selected
-            
-            
-            this.editedCreneau.professeurs = data.professeurs;
-            // this.editedCreneau.eleves = data.eleves;
-
-            console.log(data);
-            this.date_creneau = moment.unix(this.editedCreneau.dateDebut).format("YYYY-MM-DD");
-            this.heure_debut =  moment.unix(this.editedCreneau.dateDebut).format("HH:mm");
-            this.heure_fin =  moment.unix(this.editedCreneau.dateFin).format("HH:mm");
-            this.selectedSalle = this.editedCreneau.salle;
-            this.salle = this.editedCreneau.salle;
-            // this.salle = 
-            this.selectedProfesseurs = this.editedCreneau.professeurs;
-            this.selectedEleves = this.editedCreneau.eleves;
-
-            this.allSalleEtb.forEach(salle => {
-              
-            });
-
-          });
+      .subscribe((data: CourseSlot) => {
+        this.editedCreneau = data;
+        this.creneauId = data.idCreneau;
+        this.editedCreneau.professeurs = data.professeurs;
+        this.date_creneau = moment.unix(this.editedCreneau.dateDebut).format("YYYY-MM-DD");
+        this.heure_debut =  moment.unix(this.editedCreneau.dateDebut).format("HH:mm");
+        this.heure_fin =  moment.unix(this.editedCreneau.dateFin).format("HH:mm");
+        this.selectedSallePut = this.editedCreneau.salle;
+        this.selectedProfesseurs = this.editedCreneau.professeurs;
+        this.selectedEleves = this.editedCreneau.eleves;
+      });
   }
+
+  // https://stackoverflow.com/questions/48984905/mat-slide-toggle-change-all-value-on-all-products-and-value-are-diffrent
+  public onSlideChange(value){
+    if (value.checked === true) { // Eleve absent
+      console.log(1);
+      console.log(value.nom)
+    } else {
+      console.log(0); //0
+    }
+  }
+
+  public onActiveHomeboxP(value){
+    console.log(value);
+    console.log(value.present);
+  }
+
+  /* TODO :
+    Utiliser bouton eleve présent :
+      Ajouter propriété "present" à utilisateur
+      activer méthode vérif sur liste d'élèves récupérés du back si présent :
+        sinon ajout
+    Adapter le titre en français
+    
+    En édition : bouton annuler = réinitialiser valeurs reçues.
+    Changer de page si POST ou PUT successful
+  */
+
 }
