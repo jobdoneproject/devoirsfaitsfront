@@ -14,6 +14,7 @@ import { ContainerSidebarComponent } from './components/container-sidebar/contai
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
 import { SalleComponent } from './components/salle/salle.component';
+import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -58,6 +59,38 @@ const appRoutes: Routes = [
     path: 'creation-utilisateur/:type',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: PageUserEditComponent, outlet: 'connected' }]
+  },
+
+ 
+  { path: 'datepicker',
+  component: ContainerComponent, canActivate: [UrlPermission],
+  children: [{path: '', component: DatepickerComponent, outlet: 'connected'}]
+},
+{ path: 'creneau',
+  component: ContainerComponent, canActivate: [UrlPermission],
+  children: [{path: '', component: PageCreneauComponent, outlet: 'connected'}]
+},
+{ path: 'edition-utilisateur/:type/:id',
+component: ContainerComponent, canActivate: [UrlPermission],
+children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
+},
+
+{ path: 'creation-utilisateur/:type',
+component: ContainerComponent, canActivate: [UrlPermission],
+children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
+},
+{ path: 'salle',
+component: ContainerComponent, canActivate: [UrlPermission],
+children: [{path: '', component: SalleComponent, outlet: 'connected'}]
+},
+  { path: 'edition-utilisateur/:type/:id',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
+  },
+  
+  { path: 'import',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{path: '', component: ImportElevesComponent, outlet: 'connected'}]
   },
 
   { path: '', redirectTo: 'bienvenue', pathMatch: 'full' },

@@ -27,8 +27,6 @@ export class ContainerSidebarComponent implements OnInit {
   constructor(private userService: UserService, public authService: AuthService, public router: Router,private http: Http) { 
     this.currentUser = this.userService.getCurrentUserLogged();
     this.idEtablissement = this.currentUser.idEtablissement;
-    
-    console.log("this.currentUser.privilege : " + this.currentUser.privilege);
     if (this.currentUser.privilege == "Administrateur"){
       
       this.administrateur = true;

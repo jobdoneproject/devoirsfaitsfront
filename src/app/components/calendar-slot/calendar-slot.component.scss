@@ -6,6 +6,11 @@
 }
 
 
+a {
+    text-decoration: none;
+    color : red;
+}
+
 a h2 {
     color: black;
     font-size: 0.8em;
@@ -36,7 +41,7 @@ p.duration {
     padding: 0;
 }
 
-.btn, .btn-link,  span.trash {
+span{
     color: red;
     display: inline-block;
     width: 100%;
@@ -46,4 +51,8 @@ p.duration {
 .col-md-12.d-flex.align-items-stretch.grid-margin{
     margin: 0;
     margin-bottom: 2px;
+}
+
+p {
+    color:black;
 }

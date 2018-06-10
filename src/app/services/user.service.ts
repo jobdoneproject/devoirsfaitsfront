@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
-// import {Http, Response} from "@angular/http";
 import { Observable } from 'rxjs';
-import { of } from 'rxjs/observable/of';
 import {User} from "../model/model.user";
-import { UtilsService } from './utils.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, startWith} from 'rxjs/operators';
 
 import "rxjs/Rx";
-import { Url } from 'url';
 import { Http, Headers, RequestOptions,Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 
@@ -81,6 +76,10 @@ export class UserService {
    })).subscribe(res => true);
   }
 
+  getImportStudentsURL(idEtablissement: number){
+    return environment.API_URL + '/etablissements/'+ idEtablissement+ '/eleves/import/';
+  }
+
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
   }
@@ -88,7 +87,6 @@ export class UserService {
   findById(source, id) {
     for (let i = 0; i < source.length; i++) {
       if (source[i].id === id) {
-        console.log(source[i]);
         return source[i];
       }
     }

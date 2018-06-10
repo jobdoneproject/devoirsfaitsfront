@@ -4,6 +4,9 @@ import { CourseSlot } from '../../model/model.course-slots';
 import { User } from '../../model/model.user';
 import { CreneauService } from '../../services/creneau.service';
 import {UserService} from "../../services/user.service";
+import { Router } from '@angular/router';
+import * as moment from 'moment';
+
 
 
 @Component({
@@ -17,9 +20,8 @@ export class CalendarSlotComponent implements OnInit {
   currentUser: User;
   administrateur: boolean;
 
-  constructor(private userService: UserService, private creneauService: CreneauService) {
+  constructor(private userService: UserService, private creneauService: CreneauService, private router: Router) {
     this.currentUser = this.userService.getCurrentUserLogged();
-    console.log("this.currentUser.privilege : " + this.currentUser.privilege);
 
     if (this.currentUser.privilege == "Administrateur") {
       this.administrateur = true;
@@ -45,7 +47,6 @@ export class CalendarSlotComponent implements OnInit {
     const durationInstance = this.slotValue.dateFin - this.slotValue.dateDebut;
     let date = new Date(1970, 0, 1);
     date.setSeconds(durationInstance);
-
     return date;
   }
 

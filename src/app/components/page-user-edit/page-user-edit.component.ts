@@ -59,7 +59,6 @@ export class PageUserEditComponent implements OnInit {
       this.initUser();
     } else {
       this.newUser();
-      console.log('new user')
     }
 
 

@@ -32,7 +32,6 @@ export class ProfileComponent implements OnInit {
     this.year = moment().toDate().getFullYear();
     this.weekNumber = WeekUtils.getWeekNumberForDate(moment().toDate());
     /////////////////////////////////////////
-
     const attributesAreMissing = this.weekNumber === undefined || this.year === undefined;
     if (attributesAreMissing) {
       this.referenceDate = new Date();
@@ -91,5 +90,9 @@ export class ProfileComponent implements OnInit {
     this.referenceDate = referenceDateAsMoment.toDate();
     this.year = Number(weeknum.toString().substring(0, 4));
     this.weekNumber = Number(weeknum.toString().substring(6, 9));
+  }
+
+  get monthFromDate () {
+    return WeekUtils.getMonthFromDate(this.weekNumber).toString();
   }
 }
