@@ -55,6 +55,9 @@ export class PageCreneauComponent implements OnInit {
   // editedCreneau:CourseSlot;
   editedCreneau:CourseSlot;
   // date_creneau: any;
+  salle: Room;
+  creneauId: number;
+  pageModeCreation: boolean;
 
 
   constructor(private roomsv: RoomService, 
@@ -77,7 +80,8 @@ export class PageCreneauComponent implements OnInit {
 
     this.listProfesseur = this.userService.getUsers("professeur", this.currentUser.idEtablissement);
     this.listEleve =  this.userService.getUsers("eleve", this.currentUser.idEtablissement);
-    this.allSalleEtb = this.roomsv.getAll(this.currentUser.idEtablissement);
+    // this.allSalleEtb = this.roomsv.getAll(this.currentUser.idEtablissement);
+    
 
     this.listEleve.forEach(arrayNomUtilisateur => {
       arrayNomUtilisateur.forEach(utilisateur => {
@@ -87,6 +91,58 @@ export class PageCreneauComponent implements OnInit {
       })
     });
   }
+
+  ngOnInit() {
+    
+      console.log(this.route.snapshot.paramMap.get('id'));
+      if(this.route.snapshot.paramMap.get('id') != null){
+        // console.log("Edition");
+        this.pageModeCreation = false;
+        this.idCreneau = parseInt(this.route.snapshot.paramMap.get('id'),10);
+        this.getSlot();
+
+
+
+        this.roomsv.getAll(this.currentUser.idEtablissement)
+        .subscribe( data =>{
+          this.allSalleEtb = data;
+          console.log(this.allSalleEtb);
+  
+          
+          console.log(this.editedCreneau);
+          // console.log(this.allSalleEtb[3].idSalle);
+
+          // this.selectedSalle = this.allSalleEtb[3].idSalle;
+
+          this.allSalleEtb.forEach((salle) => {
+            console.log(this.editedCreneau.salle.idSalle);
+            console.log(salle.idSalle);
+            if(this.editedCreneau.salle.idSalle == salle.idSalle){
+              console.log("found !");
+              this.selectedSalle = salle.idSalle;
+            }
+          });
+
+          // this.allSalleEtb.forEach((salle:Room) => {
+          //   if(salle.idSalle == this.editedCreneau.salle.idSalle) {
+          //     console.log(salle);
+          //     this.selectedSalle = salle;
+          //   }           
+          // });
+
+        });
+
+
+      }else{
+        console.log("création");
+        this.pageModeCreation = true;
+      }
+
+    
+
+  }
+
+
 
   addEleveToSelected() { 
     let eleveAdded = this.myControl.value;
@@ -121,11 +177,18 @@ export class PageCreneauComponent implements OnInit {
     }
   }
 
-  addSalleToSelected(salle){ 
-    this.selectedSalle = salle;
-    console.log("salle added"); 
-    console.log(salle);
+  addSalleToSelected(value){ 
+    // this.salle = salle;
+    // this.selectedSalle = this.allSalleEtb.find(salle => {
+    //   salle.idSalle == value;
+    // })
+    // console.log("salle added"); 
+    // console.log(salle.idSalle+salle.nom);
   }
+
+  // addSalleToSelected(value){ 
+  //   this.salle = this.allSalleEtb.find(salle => salle.idSalle == value); // find selected object by finding in original data by ID
+  // }
 
   majTitre() { this.titre = "Création du créneau du " + this.date_creneau.toString(); }
 
@@ -138,6 +201,18 @@ export class PageCreneauComponent implements OnInit {
                                   this.idEtablissement);
   }
 
+  onEdit(){
+    console.log("edit !");
+    this.courseservice.prepareEditedTimeSlot(
+      this.idCreneau,
+      moment(this.date_creneau + " " + this.heure_debut).unix(),
+      moment(this.date_creneau + " " + this.heure_fin).unix(),
+      this.selectedEleves,
+      this.selectedProfesseurs,
+      this.selectedSalle,
+      this.idEtablissement);
+  }
+
   onCancel(){
     this.date_creneau = undefined;
     this.heure_debut = undefined;
@@ -145,18 +220,6 @@ export class PageCreneauComponent implements OnInit {
     this.selectedProfesseurs = undefined;
     this.selectedEleves = undefined;
     this.allSalleEtb = undefined;
-  }
-
-  ngOnInit() {
-    this.idCreneau = parseInt(this.route.snapshot.paramMap.get('id'),10);
-    // this.editedCreneau = { id: null, dateDebut: 0, dateFin: 0, professeurs: [], eleves: [], salle: null };
-    // this.editedCreneau = this.creneauService.getSlot(this.idEtablissement, this.idCreneau);
-    // this.editedCreneau = this.getSlot();
-    this.getSlot();
-    // console.log(this.editedCreneau);
-
-    // this.dateCreneau = moment.unix(this.editedCreneau.dateDebut).format("DD/MM/YYYY");
-
   }
 
   onChangeNom(optionDuMenu) { this.filterParNom = optionDuMenu; }
@@ -184,10 +247,19 @@ export class PageCreneauComponent implements OnInit {
           .subscribe((data: CourseSlot) => {
             this.editedCreneau = data;
 
-            this.editedCreneau.id = data.id;
+            // this.editedCreneau.id = data.id;
+            this.creneauId = data.idCreneau;
             // this.editedCreneau.dateDebut = data.dateDebut;
             // this.editedCreneau.dateFin = data.dateFin;
-            this.editedCreneau.salle = data.salle;
+            // this.editedCreneau.salle = data.salle;
+            
+            
+            // this.selectedSalle = data.salle;
+
+            // this.allSalleEtb = this.roomsv.getAll(this.currentUser.idEtablissement);
+            // this.selectedSalle = this.allSalleEtb[3].idSalle; // set first as selected
+            
+            
             this.editedCreneau.professeurs = data.professeurs;
             // this.editedCreneau.eleves = data.eleves;
 
@@ -196,9 +268,14 @@ export class PageCreneauComponent implements OnInit {
             this.heure_debut =  moment.unix(this.editedCreneau.dateDebut).format("HH:mm");
             this.heure_fin =  moment.unix(this.editedCreneau.dateFin).format("HH:mm");
             this.selectedSalle = this.editedCreneau.salle;
+            this.salle = this.editedCreneau.salle;
             // this.salle = 
             this.selectedProfesseurs = this.editedCreneau.professeurs;
             this.selectedEleves = this.editedCreneau.eleves;
+
+            this.allSalleEtb.forEach(salle => {
+              
+            });
 
           });
   }

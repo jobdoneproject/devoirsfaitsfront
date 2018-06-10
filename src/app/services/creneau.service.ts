@@ -15,11 +15,17 @@ export class CreneauService {
               private  httpClient:  HttpClient) {}
 
 
+  getSlot(idEtablissement: number, idCreneau: number){
+    const url =  environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux/" + idCreneau;
+    // return this.http.get(url).pipe(map((resp: Response)=>resp.json()));
+    return  this.httpClient.get(environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux/" + idCreneau);
+  }
+
   createSlot(debut:number, fin:number, eleves:User[], profs:User[], 
               salle:Room, idEtablissement: number) {
-    let newCreneau: CourseSlot = { id: null, dateDebut: 0, dateFin: 0, 
+    let newCreneau: CourseSlot = { idCreneau: null, dateDebut: 0, dateFin: 0, 
       professeurs: [], eleves: [], salle: null };
-                                newCreneau.dateDebut = debut;
+    newCreneau.dateDebut = debut;
     newCreneau.dateFin = fin;
     newCreneau.eleves = eleves;
     newCreneau.professeurs = profs;
@@ -43,9 +49,33 @@ export class CreneauService {
     ).subscribe(res => console.log(res.json()));
   }
 
-  getSlot(idEtablissement: number, idCreneau: number){
-    const url =  environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux/" + idCreneau;
-    // return this.http.get(url).pipe(map((resp: Response)=>resp.json()));
-    return  this.httpClient.get(environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux/" + idCreneau);
+  prepareEditedTimeSlot(idCreneau: number, debut:number, fin:number, eleves:User[], profs:User[], 
+    salle:Room, idEtablissement: number){
+      let editedTimeSlot: CourseSlot = { idCreneau: null, dateDebut: 0, dateFin: 0, 
+        professeurs: [], eleves: [], salle: null };
+      editedTimeSlot.idCreneau = idCreneau;
+      editedTimeSlot.dateDebut = debut;
+      editedTimeSlot.dateFin = fin;
+      editedTimeSlot.eleves = eleves;
+      editedTimeSlot.professeurs = profs;
+      editedTimeSlot.salle = salle;
+      // console.log("editedTYimeSlot");
+      // console.log(editedTimeSlot);
+      this.putSlot(editedTimeSlot, idEtablissement, idCreneau)
   }
+
+  putSlot(editedCreneau:CourseSlot, idEtablissement: number, idCreneau:number) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = JSON.stringify(editedCreneau);
+    let url = environment.API_URL + "/etablissement/" + idEtablissement + "/creneaux/" + idCreneau;
+    // console.log("body put slot :");
+    // console.log(body);
+    this.http.put(
+      url, 
+      body, 
+      options 
+    ).subscribe(res => console.log(res.json()));
+  }
+
 }
