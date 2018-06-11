@@ -7,12 +7,14 @@ import { Room } from '../model/model.room';
 import { environment} from '../../environments/environment';
 import { map, startWith} from 'rxjs/operators';
 import { HttpClient} from  '@angular/common/http';
+import { Router } from "@angular/router";
 
 @Injectable()
 export class CreneauService {
 
   constructor(private http: Http,
-              private  httpClient:  HttpClient) {}
+              private  httpClient:  HttpClient,
+              public router: Router) {}
 
 
   getSlot(idEtablissement: number, idCreneau: number){
@@ -45,7 +47,13 @@ export class CreneauService {
       url, 
       body, 
       options 
-    ).subscribe(res => console.log(res.json()));
+    ).subscribe(res => {
+      console.log(res.json()),
+      // window.location.href = environment.API_URL + "/profile";
+      // this.router.navigate(['liste/' + this.typeUtilisateur]);
+      // this.router.navigate(['/profile']);
+      this.router.navigate(['/profile']);
+    });
   }
 
   prepareEditedTimeSlot(idCreneau: number, debut:number, fin:number, eleves:User[], profs:User[], 
@@ -71,7 +79,10 @@ export class CreneauService {
       url, 
       body, 
       options 
-    ).subscribe(res => console.log(res.json()));
+    ).subscribe(res => {
+      console.log(res.json()),
+      this.router.navigate(['/profile']);
+    });
   }
 
 }

@@ -32,6 +32,7 @@ export class PageCreneauComponent implements OnInit {
 
   selectedEleves: User[] = [];
   selectedProfesseurs: User[] = [];
+  // selectedProfesseursBackup: User[] = [];
   selectedProfesseur: any;
   currentUser: User;
   administrateur: boolean;
@@ -55,6 +56,7 @@ export class PageCreneauComponent implements OnInit {
   salle: Room;
   creneauId: number;
   pageModeCreation: boolean;
+  creneauEditedBackup: CourseSlot;
 
 
   constructor(private roomsv: RoomService, 
@@ -67,13 +69,12 @@ export class PageCreneauComponent implements OnInit {
 
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // console.log("this.currentUser.privilege : " + this.currentUser.privilege);
-
     this.idEtablissement = this.currentUser.idEtablissement;
 
     if (this.currentUser.privilege == "Administrateur") {
       this.administrateur = true;
     }
+
 
     this.listProfesseur = this.userService.getUsers("professeur", this.currentUser.idEtablissement);
     this.listEleve =  this.userService.getUsers("eleve", this.currentUser.idEtablissement);
@@ -86,18 +87,7 @@ export class PageCreneauComponent implements OnInit {
       })
     });
 
-    // this.selectedEleves.forEach(eleve => {
-    //   if(!eleve.hasOwnProperty('present')){
-    //     eleve.present = true;
-    //   }
-    // });
 
-    
-  }
-
-  ngOnInit() {
-    
-    console.log(this.route.snapshot.paramMap.get('id'));
     // EDITION CRENEAU
     if(this.route.snapshot.paramMap.get('id') != null){
       this.pageModeCreation = false;
@@ -107,21 +97,38 @@ export class PageCreneauComponent implements OnInit {
       this.roomsv.getAll(this.currentUser.idEtablissement)
       .subscribe( data =>{
         this.allSalleEtb = data;
-        console.log(this.allSalleEtb);
-        console.log(this.editedCreneau);
+
+        // Titre
+        let titreDateMois = moment.unix(this.editedCreneau.dateDebut).format("MM");
+        // console.log(titreDateMois);
+        let moisString="";
+        switch(titreDateMois){
+          case '01': moisString = "janvier"; break;
+          case '02': moisString = "février"; break;
+          case '03': moisString = "mars"; break;
+          case '04': moisString = "avril"; break;
+          case '05': moisString = "mai"; break;
+          case '06': moisString = "juin"; break;
+          case '07': moisString = "juillet"; break;
+          case '08': moisString = "août"; break;
+          case '09': moisString = "septembre"; break;
+          case '10': moisString = "octobre"; break;
+          case '11': moisString = "novembre"; break;
+          default: moisString = "décembre";
+        }
 
         this.titre = "Créneau du " + 
-          moment.unix(this.editedCreneau.dateDebut).format("DD MM YYY à HH:mm");
+          moment.unix(this.editedCreneau.dateDebut).format("DD ") +
+          moisString +
+          moment.unix(this.editedCreneau.dateDebut).format(" YYYY à HH:mm");
 
         this.allSalleEtb.forEach((salle) => {
-          // console.log(this.editedCreneau.salle.idSalle);
-          // console.log(salle.idSalle);
           if(this.editedCreneau.salle.idSalle == salle.idSalle){
-            console.log("found !");
             this.selectedSalle = salle.idSalle;
           }
         });
       });
+
     // CREATION CRENEAU
     }else{ 
       console.log("création");
@@ -135,13 +142,14 @@ export class PageCreneauComponent implements OnInit {
     }
   }
 
+  ngOnInit() {}
+
 
   addEleveToSelected() { 
     let eleveAdded = this.myControl.value;
     let doublon = false;
     this.selectedEleves.forEach(eleve => {
       if(eleve.idUtilisateur === eleveAdded.idUtilisateur){
-        // console.log("eleve present");
         doublon = true;
       }
     });
@@ -152,21 +160,24 @@ export class PageCreneauComponent implements OnInit {
       }
       this.selectedEleves.push(eleveAdded);
     }
+    // Clear select option :
+    (<HTMLInputElement>document.getElementById("selectedProfesseurs"))
+      .value = "Choisir un professeur";
   }
 
   addProfesseurToSelected(selectedProfesseur) {
     let doublon = false;
-
     this.selectedProfesseurs.forEach(professeur => {
       if(professeur.idUtilisateur === selectedProfesseur.idUtilisateur){
-        console.log("prof present");
         doublon = true;
       }
     })
     if(!doublon){
       this.selectedProfesseurs.push(selectedProfesseur); 
-      console.log(selectedProfesseur); 
     }
+    // Clear select option :
+    (<HTMLInputElement>document.getElementById("selectedProfesseurs"))
+      .value = "-1";
   }
 
   addSalleToSelected(value){
@@ -179,7 +190,6 @@ export class PageCreneauComponent implements OnInit {
     });
 
   }
-
 
   majTitre() { this.titre = "Création du créneau du " + this.date_creneau.toString(); }
 
@@ -214,10 +224,22 @@ export class PageCreneauComponent implements OnInit {
     this.allSalleEtb = undefined;
   }
 
+  onReInit(){
+    this.date_creneau = moment.unix(this.creneauEditedBackup.dateDebut).format("YYYY-MM-DD");
+    this.heure_debut =  moment.unix(this.creneauEditedBackup.dateDebut).format("HH:mm");
+    this.heure_fin =  moment.unix(this.creneauEditedBackup.dateFin).format("HH:mm");
+    this.selectedProfesseurs = this.creneauEditedBackup.professeurs;
+    this.selectedEleves = this.creneauEditedBackup.eleves;
+    let idSalleBackedUp:any = this.creneauEditedBackup.salle.idSalle;
+    this.selectedSalle = idSalleBackedUp;
+  }
+
   onChangeNom(optionDuMenu) { this.filterParNom = optionDuMenu; }
 
   displayFn(user: User): string {
-    return user ? user.nom + " " + user.prenom : user.nom + " " + user.prenom;
+    // return user ? user.nom + " " + user.prenom : user.nom + " " + user.prenom;
+    return null;
+
   }
 
   enleverEleve(eleve: User) {
@@ -246,34 +268,22 @@ export class PageCreneauComponent implements OnInit {
         this.selectedSallePut = this.editedCreneau.salle;
         this.selectedProfesseurs = this.editedCreneau.professeurs;
         this.selectedEleves = this.editedCreneau.eleves;
+
+        // BackupCreneauEdited :
+        console.log(this.editedCreneau.professeurs);
+        this.creneauEditedBackup = this.editedCreneau;
       });
   }
 
   public onSlideChange(value, eleve){
-    console.log(eleve);
     if (value.checked === true) { // Eleve absent
-      // console.log(1);
-      console.log("eleve noté absent :")
       eleve.present = false;
-      console.log(eleve)
     } else {
-      console.log("eleve noté présent :")
       eleve.present = true;
-      console.log(eleve)
     }
   }
 
   public onActiveHomeboxP(value){
   }
-
-  /* TODO :
-    Utiliser bouton eleve présent :
-      activer méthode vérif sur liste d'élèves récupérés du back si présent :
-        sinon ajout
-    Adapter le titre en français
-    
-    En édition : bouton annuler = réinitialiser valeurs reçues.
-    Changer de page si POST ou PUT successful
-  */
 
 }
