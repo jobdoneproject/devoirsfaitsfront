@@ -5,15 +5,16 @@
     </span>
   </div>
 </div>
+Sélectionnez votre période : <input type="week" (change)="setStartDate($event.target.value)"> - <input type="week" (change)="setEndDate($event.target.value)">
 <div class="col-md-12 d-flex align-items-stretch grid-margin">
   <div class="row flex-grow">
     <div class="col-12 stretch-card">
       <div class="card cardlistweek">
         <!--<button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="doTheBack()" >Retour à la liste</button>-->
         <div class="card-body">
-          <mat-selection-list #shoes>
-            <mat-list-option *ngFor="let currentWeek of allweeks">
-              Semaine {{currentWeek | date : 'ww'}} - {{currentWeek | date : 'MMMM yyyy'}}
+          <mat-selection-list #list [(ngModel)]="selectedWeeks">
+            <mat-list-option *ngFor="let currentWeek of allweeks" [selected]="true" [value]="currentWeek">
+              Semaine {{currentWeek*1000 | date : 'ww'}} - {{currentWeek*1000 | date : 'MMMM yyyy'}}
             </mat-list-option>
           </mat-selection-list>
         </div>
@@ -38,3 +39,6 @@
       </div>
     </div>
   </div>
+
+  Actuellement selectionnées : {{selectedWeeks}}
+

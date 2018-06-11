@@ -32,6 +32,7 @@ import { DatepickerComponent } from './components/datepicker/datepicker.componen
 import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
 import { CreneauService } from "./services/creneau.service";
 import { RoomService } from "./services/room.service";
+import { DuplicateService } from "./services/duplicate.service";
 
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarDayComponent } from './components/calendar-day/calendar-day.component';
@@ -92,7 +93,8 @@ import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-we
     UrlPermission,
     UserService,
     CreneauService,
-    RoomService
+    RoomService,
+    DuplicateService
   ],
   bootstrap: [AppComponent]
 })

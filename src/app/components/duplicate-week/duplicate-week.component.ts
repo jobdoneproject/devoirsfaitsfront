@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../model/model.user';
 import * as moment from 'moment';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
+import {Router, Routes, ActivatedRoute} from "@angular/router";
+import { CreneauService } from "../../services/creneau.service";
+import { UserService } from "../../services/user.service";
 
 
 @Component({
@@ -10,18 +13,41 @@ import {MatListModule} from '@angular/material/list';
   styleUrls: ['./duplicate-week.component.scss']
 })
 export class DuplicateWeekComponent implements OnInit {
+  allweeks: number[] = [];
+  selectedWeeks: number[] = [];
+  duplicatedWeeks: number[] = [];
+  startDate: Date;
 
-  selectedHero: User;
-  week: number;
-  allweeks: Date[] = [];
 
-  constructor() { }
- 
+
+  constructor(private userService: UserService, private creneauService: CreneauService, private _Activatedroute:ActivatedRoute, private route: Router) { }
+
   ngOnInit() {
-    this.week = moment().week();
-    for (var i=0; i <= 53; i++) {
-      this.allweeks.push(moment().add(i, 'week').toDate());
+    const param = this._Activatedroute.snapshot.params['semaines'];
+    this.duplicatedWeeks = JSON.parse(param);
+  }
+
+  setStartDate(date: Date) {
+    this.startDate = date;
+  }
+
+  setEndDate(date: Date) {
+    this.allweeks = []; //clean du tableau pour un refresh
+    const startingWeek = moment(this.startDate);
+    const numberOfWeekToDisplay = moment(date).diff(startingWeek, 'weeks');
+    for (var i = 0; i <= numberOfWeekToDisplay; i++) {
+      this.allweeks.push(startingWeek.add(1, 'weeks').unix());
     }
+  }
+
+  onSubmit() {
+    const duplicatedAndSelected: number[][] = [this.duplicatedWeeks, this.selectedWeeks];
+    const idEtablissement: number = this.userService.getCurrentUserLogged().idEtablissement;
+    this.creneauService.duplicateWeeksSelected(duplicatedAndSelected,idEtablissement);
+  }
+
+  onReset() {
+    this.route.navigate(['/profile']);
   }
 }
 

@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import { WeekUtils } from '../../utils/WeekUtils';
 import * as moment from "moment";
 import {UserService} from "../../services/user.service";
+import { DuplicateService } from "../../services/duplicate.service";
 
 
 @Component({
@@ -20,8 +21,9 @@ export class ProfileComponent implements OnInit {
   referenceDate: Date;
   weekNumber: number;
   year: number;
+  weeksToDuplicate: number[] = [];
 
-  constructor(private userService: UserService, public authService: AuthService, public router: Router) {
+  constructor(private userService: UserService, public authService: AuthService, public router: Router, private duplicateService: DuplicateService) {
   
   }
 
@@ -95,5 +97,14 @@ export class ProfileComponent implements OnInit {
 
   get monthFromDate () {
     return WeekUtils.getMonthFromDate(this.weekNumber).toString();
+  }
+
+  addWeekToSelection (){
+    this.weeksToDuplicate.push(moment().year(this.year).week(this.weekNumber).unix());
+  }
+  
+  goToDuplicate () {
+    const param = JSON.stringify(this.weeksToDuplicate);
+    this.router.navigate(['/duplicate', {semaines : param }]);
   }
 }

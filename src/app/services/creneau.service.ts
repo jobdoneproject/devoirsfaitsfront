@@ -37,4 +37,10 @@ export class CreneauService {
     console.log(url);
     return this.http.delete(url).subscribe(res => console.log(res.json()));
   }
+
+  duplicateWeeksSelected (duplicatedAndSelectedWeeks : number[][], id: number) {
+    const url = environment.API_URL+"/etablissements/" + id + "/creneaux/duplication";
+    console.log(JSON.stringify(duplicatedAndSelectedWeeks));
+    this.http.post(url, JSON.stringify(duplicatedAndSelectedWeeks)).subscribe(res => console.log(res.json()));
+  }
 }
