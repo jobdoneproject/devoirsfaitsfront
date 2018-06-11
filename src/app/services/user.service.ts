@@ -80,6 +80,10 @@ export class UserService {
     return environment.API_URL + '/etablissements/'+ idEtablissement+ '/eleves/import/';
   }
 
+  getImportTeachersURL(idEtablissement: number){
+    return environment.API_URL + '/etablissements/'+ idEtablissement+ '/professeurs/import/';
+  }
+
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
   }

@@ -98,7 +98,7 @@ export class ListeUtilisateurComponent implements OnInit {
   }
 
   redirectImportUsers(){
-    this.router.navigate(['import/']);
+    this.router.navigate(['import-' + this.typeUtilisateur + 's/']);
   }
 
   checked() {
