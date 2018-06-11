@@ -73,7 +73,7 @@
           <mat-list-item *ngFor="let eleve of selectedEleves">
               <button type="button" class="btn btn-link pull-right" (click)="enleverEleve(eleve)"><i class="fas fa-trash-alt"></i></button>
               &nbsp;
-            <mat-slide-toggle (change)="onSlideChange($event)" 
+            <mat-slide-toggle (change)="onSlideChange($event, eleve)" 
             (click)="onActiveHomeboxP(eleve)">
               {{ eleve.nom }} {{ eleve.prenom }} - {{ eleve.classe }}</mat-slide-toggle>
             <!-- <button type="button" class="btn btn-link" (click)="enleverEleve(eleve)">Enlever</button> -->

@@ -114,8 +114,8 @@ export class PageCreneauComponent implements OnInit {
           moment.unix(this.editedCreneau.dateDebut).format("DD MM YYY à HH:mm");
 
         this.allSalleEtb.forEach((salle) => {
-          console.log(this.editedCreneau.salle.idSalle);
-          console.log(salle.idSalle);
+          // console.log(this.editedCreneau.salle.idSalle);
+          // console.log(salle.idSalle);
           if(this.editedCreneau.salle.idSalle == salle.idSalle){
             console.log("found !");
             this.selectedSalle = salle.idSalle;
@@ -249,24 +249,25 @@ export class PageCreneauComponent implements OnInit {
       });
   }
 
-  // https://stackoverflow.com/questions/48984905/mat-slide-toggle-change-all-value-on-all-products-and-value-are-diffrent
-  public onSlideChange(value){
+  public onSlideChange(value, eleve){
+    console.log(eleve);
     if (value.checked === true) { // Eleve absent
-      console.log(1);
-      console.log(value.nom)
+      // console.log(1);
+      console.log("eleve noté absent :")
+      eleve.present = false;
+      console.log(eleve)
     } else {
-      console.log(0); //0
+      console.log("eleve noté présent :")
+      eleve.present = true;
+      console.log(eleve)
     }
   }
 
   public onActiveHomeboxP(value){
-    console.log(value);
-    console.log(value.present);
   }
 
   /* TODO :
     Utiliser bouton eleve présent :
-      Ajouter propriété "present" à utilisateur
       activer méthode vérif sur liste d'élèves récupérés du back si présent :
         sinon ajout
     Adapter le titre en français
