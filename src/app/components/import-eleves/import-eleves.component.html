@@ -12,6 +12,12 @@
         <h4 class="card-title">Importer des élèves ...</h4>
             <div *ngIf="administrateur; else elseBlock">
 
+                  <div class="row">
+                    <div class="col-12">
+                      <a href="assets/exemples/eleves.csv">Fichier modèle de CSV</a>
+                    </div>
+                  </div>
+
                 
                   <form (ngSubmit)="submit()">
                       <div class="row">
