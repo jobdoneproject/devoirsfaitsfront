@@ -8,6 +8,14 @@ form {
 
 $buttonsMargin : 10px;
 
+h4.card-title {
+    margin: $buttonsMargin;
+}
+
+a {
+    margin: $buttonsMargin;
+}
+
 button {
     margin: $buttonsMargin;
 }
