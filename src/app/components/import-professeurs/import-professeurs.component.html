@@ -1,0 +1,49 @@
+<div class="row purchace-popup">
+  <div class="col-12">
+    <span class="d-flex alifn-items-center">
+      <h1>Import de professeurs</h1>
+    </span>
+  </div>
+</div>
+<div class="col-md-12 d-flex align-items-stretch grid-margin">
+  <div class="row flex-grow">
+    <div class="col-12 stretch-card">
+      <div class="card">
+        <h4 class="card-title">Importer des professeurs ...</h4>
+            <div *ngIf="administrateur; else elseBlock">
+
+                  <div class="row">
+                    <div class="col-12">
+                      <a href="assets/exemples/eleves.csv">Fichier modèle de CSV</a>
+                    </div>
+                  </div>
+
+                
+                  <form (ngSubmit)="submit()">
+                      <div class="row">
+                        <div class="col-12">
+                            <input type="file" id="upload_file_selection"
+                              name="upload_file_selection" value="Sélectionner"
+                              class="btn btn-light" 
+                            /> 
+                        </div>
+                      </div>
+                         
+                      <div class="row">
+                          <div class="col-12">
+                              <button type="submit" name="submit" id="submit"
+                              class="btn btn-light" >Importer</button>
+                          </div>
+                      </div>
+                  </form>
+
+              </div>
+              <ng-template #elseBlock>
+                  <p>
+                    Vous n'avez pas les droits pour afficher cette page !
+                  </p>
+                </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>

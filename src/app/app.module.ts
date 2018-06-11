@@ -44,6 +44,7 @@ import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
 import { SalleComponent } from './components/salle/salle.component';
 import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 import { UploaderModule }      from 'angular-http-file-upload';
+import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { UploaderModule }      from 'angular-http-file-upload';
     NomDisponiblesPipe,
     SalleComponent,
     ImportElevesComponent,
+    ImportProfesseursComponent,
   ],
   imports: [
     BrowserModule,
