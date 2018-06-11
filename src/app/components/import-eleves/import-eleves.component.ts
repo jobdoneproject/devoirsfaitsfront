@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../model/model.user";
 import { UserService } from '../../services/user.service';
-import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
+import { UploadItem, Uploader }    from 'angular-http-file-upload';
 
 @Component({
   selector: 'app-import-eleves',
@@ -14,25 +14,31 @@ export class ImportElevesComponent implements OnInit {
   currentUser: User;
   fileContent;
 
-  public uploader: FileUploader;
-
-  constructor(public utilisateurService: UserService) {
+  constructor(public utilisateurService: UserService,
+    public uploaderService: Uploader) {
    }
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.uploader  = new FileUploader({url: this.getUploadUrl()});
     if (this.currentUser.privilege == "Administrateur"){
       this.administrateur = true;
     }
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         alert('Fichier importé avec succès');
-     };
   }
 
   submit() {
-    this.uploader.uploadAll()
+    const uploadedFile = (<HTMLInputElement>window.document.
+      getElementById('upload_file_selection')).files[0];
+    const uploadedItem = new UploadItem();
+    uploadedItem.url = this.getUploadUrl();
+    uploadedItem.file = uploadedFile;
+
+    this.uploaderService.onSuccessUpload = (item, response, status, headers) => {
+          console.log('Fichier importé avec succès');
+    };
+    this.uploaderService.onErrorUpload = (item, response, status, headers) => {
+          console.log('Erreur d\'importation de fichier');
+    };
+    this.uploaderService.upload(uploadedItem);
   }
 
   getUploadUrl(){
