@@ -42,7 +42,7 @@ export class ImportProfesseursComponent implements OnInit {
   }
 
   getUploadUrl(){
-    return this.utilisateurService.getImportStudentsURL(4);
+    return this.utilisateurService.getImportTeachersURL(4);
   }
 
   
