@@ -1,0 +1,54 @@
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+  
+  <div class="navbar-menu-wrapper d-flex align-items-center">Collège {{nomEtablissement}}
+    <img src="../../../assets/template-wcs/img/dflogomini.png" alt="logo"/>
+    <!--<h4>DEVOIRS FAITS</h4>-->
+  <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+        <li class="nav-item">
+            <a class="nav-link" href="profile">Calendrier</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="liste/eleve" *ngIf="administrateur">Élèves</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="liste/professeur" *ngIf="administrateur">Professeurs</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="salle" *ngIf="administrateur">Salles</a>
+        </li>
+    </ul>
+  <!-- <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+      <li class="nav-item">
+      <a href="#" class="nav-link"><i class="mdi mdi-image-filter"></i>Calendrier</a>
+      </li>
+      <li class="nav-item">
+      <a href="#" class="nav-link"><i class="mdi mdi-email-outline"></i>Inbox</a>
+      </li>
+      <li class="nav-item">
+      <a href="#" class="nav-link"><i class="mdi mdi-calendar"></i>Calendar</a>
+      </li>
+  </ul> -->
+  <!--<ul class="navbar-nav navbar-nav-right">
+
+
+      <li class="nav-item d-none d-lg-block">
+      <a class="nav-link" href="#">
+
+          <img class="img-xs rounded-circle" src="../../../assets/template-wcs/img/admin.png" alt="">
+      </a>
+      </li>
+
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item "><a href="#" (click)="logOut()"><span class="fas fa-sign-out-alt"></span></a></li>
+  </ul>-->
+  <div class="buttons-navbar-right">
+    <button class="navbar-toggler navbar-toggler-right align-self-center" type="button" (click)="logOut()">
+        <span class="fas fa-sign-out-alt"></span>
+    </button>
+  
+  <button id="burger" class="navbar-toggler navbar-toggler-right d-md-none align-self-center" type="button" data-toggle="offcanvas">
+      <span class="fas fa-bars"></span>
+  </button></div>
+  </div>
+</nav>

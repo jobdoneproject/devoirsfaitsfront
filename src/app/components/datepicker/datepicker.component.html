@@ -1,0 +1,16 @@
+<div class="col-md-12 d-flex align-items-stretch grid-margin">
+  <div class="row flex-grow">
+    <div class="col-12 stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">
+                <form>
+                    <input (change)="update()" id="weeknum" type="week" name="weeknum" [(ngModel)]="weeknum" placeholder="YYYY-W##" min="2012-W32" max="2018-W52" required />
+                  <pre>Du Lundi {{now}} au Dimanche {{nextSunday}}</pre>
+                </form>
+          </h4> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

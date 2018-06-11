@@ -1,0 +1,72 @@
+<div class="row purchace-popup">
+  <div class="col-12">
+    <span class="d-flex alifn-items-center">
+        <h1>
+          {{editedUser.prenom}} {{editedUser.nom}}
+          <span *ngIf="editedUser.privilege ==='Eleve'"> - {{editedUser.classe}}</span>
+        </h1>
+      </span>
+  </div>
+</div>
+  <div class="col-md-12 d-flex align-items-stretch grid-margin">
+    <div class="row flex-grow">
+      <div class="col-12 stretch-card">
+        <div class="card">
+          <button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="doTheBack()" >Retour à la liste</button>
+          <div class="card-body">
+
+          
+            <form class="forms-sample" >
+              <div class="form-group row">
+                <label for="usernom" class="col-sm-3 col-form-label text-sm-right">Nom</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="usernom" name="usernom" [(ngModel)]="editedUser.nom" [ngModelOptions]="{standalone: true}" >
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="userprenom" class="col-sm-3 col-form-label text-sm-right">Prénom</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="userprenom" name="userprenom" [(ngModel)]="editedUser.prenom" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="typeUtilisateur =='eleve'">
+                <label for="userclasse" class="col-sm-3 col-form-label text-sm-right">Classe</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="userclasse" name="userclasse" [(ngModel)]="editedUser.classe" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="email" class="col-sm-3 col-form-label text-sm-right">Email</label>
+                <div class="col-sm-7">
+                  <input type="email" class="form-control" id="email" name="email" [(ngModel)]="editedUser.mail" [ngModelOptions]="{standalone: true}" value={{editedUser.mail}}>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="exampleInputPassword2" class="col-sm-3 col-form-label text-sm-right">Password</label>
+                <div class="col-sm-7">
+                  <input type="password" class="form-control" id="userpassword" name="userpassword" [(ngModel)]="editedUser.password" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="usertelephone" class="col-sm-3 col-form-label text-sm-right">Téléphone</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control" id="usertelephone" name="usertelephone" [(ngModel)]="editedUser.telephone" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="toggle-check col-sm-12 col-form-label"><div class="col-sm-3 text-sm-right" style="display: inline-block;"><span class="text-right">Disponible</span>&nbsp;&nbsp;</div>
+                  <div class="col-sm-7 col-form-label" style="display: inline-block;"><input type="checkbox" class="toggle-check-input" [(ngModel)]="editedUser.disponible" [ngModelOptions]="{standalone: true}" ng-click="editedUser.disponible = !editedUser.disponible" />
+                  <span class="toggle-check-text"></span></div>
+                </label>
+              </div>
+              <div class="form-group row "> 
+                <span class="col-sm-9 align-items-left"><button type="submit" class="btn btn-success mr-2" (click)="onSubmit()">Enregistrer</button>
+                <button type="button" class="btn btn-light mr-2 pull-left" (click)="onReset()">Reinitialiser</button></span>
+                <span *ngIf="editedUser.idUtilisateur != null;" class="col-sm-3 align-items-right"><button type="button" class="btn btn-danger pull-right" (click)="onSupress()">Supprimer</button>
+              </span></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

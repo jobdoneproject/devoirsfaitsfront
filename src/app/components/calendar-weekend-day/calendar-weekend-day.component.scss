@@ -1,0 +1,11 @@
+@import '../calendar-day/calendar-day.component.scss'; // Réutilisation du style de calendar-day
+
+.card-body {
+    @media (min-width: $mdLower) { 
+        height: 39.7vh; // La moitié de la valeur du composant calendar-day
+    }
+}
+
+.courses {
+    //height: 87%;
+}
