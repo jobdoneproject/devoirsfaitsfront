@@ -97,6 +97,10 @@ export class ListeUtilisateurComponent implements OnInit {
     this.router.navigate(['creation-utilisateur/' + this.typeUtilisateur]);
   }
 
+  redirectImportUsers(){
+    this.router.navigate(['import/']);
+  }
+
   checked() {
     return this.filterDisponibles.filter(utilisateur => { return utilisateur.checked; });
   }
