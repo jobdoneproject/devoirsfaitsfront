@@ -1,0 +1,25 @@
+button[type="submit"] {
+    margin-top: 5px;
+}
+
+form {
+    width: 100%;
+}
+
+$buttonsMargin : 10px;
+
+h4.card-title {
+    margin: $buttonsMargin;
+}
+
+a {
+    margin: $buttonsMargin;
+}
+
+button {
+    margin: $buttonsMargin;
+}
+
+input[type="file"] {
+    margin: $buttonsMargin;
+}

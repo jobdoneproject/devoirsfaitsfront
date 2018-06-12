@@ -4,11 +4,11 @@ import { UserService } from '../../services/user.service';
 import { UploadItem, Uploader }    from 'angular-http-file-upload';
 
 @Component({
-  selector: 'app-import-eleves',
-  templateUrl: './import-eleves.component.html',
-  styleUrls: ['./import-eleves.component.scss']
+  selector: 'app-import-professeurs',
+  templateUrl: './import-professeurs.component.html',
+  styleUrls: ['./import-professeurs.component.scss']
 })
-export class ImportElevesComponent implements OnInit {
+export class ImportProfesseursComponent implements OnInit {
 
   administrateur: boolean;
   currentUser: User;
@@ -42,7 +42,7 @@ export class ImportElevesComponent implements OnInit {
   }
 
   getUploadUrl(){
-    return this.utilisateurService.getImportStudentsURL(4);
+    return this.utilisateurService.getImportTeachersURL(4);
   }
 
   
