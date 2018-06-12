@@ -10,11 +10,13 @@
 
     <div class="col-12 stretch-card">
       <div class="card">
-      <button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="redirectNewUser()">Nouveau</button>
-      <button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="redirectImportUsers()">Importer</button>
+      
         <div class="card-body">
           <div *ngIf="isAdministrateur; else elseBlock">
-            
+            <div class="col-12" style="height: 50px;">
+              <button type="button" class="btn btn-light" style="width: 150px; margin-left: 45px;" (click)="redirectNewUser()">Nouveau</button>
+              <button type="button" class="btn btn-light" style="width: 150px; margin-left: 45px;" (click)="redirectImportUsers()">Importer</button>
+          </div>
 
             <div class="col-md-12 d-flex align-items-stretch">
               <div class="row flex-grow">
