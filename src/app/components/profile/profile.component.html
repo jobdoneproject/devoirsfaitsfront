@@ -12,9 +12,12 @@
         <button type="button" class="btn-picker btn btn-success mr-2">Créer Créneau</button>
       </a>
       <button type="button" class="btn-picker btn btn-success mr-2" (click)="addWeekToSelection()">Ajouter à la sélection</button>
-      
-      <button type="button" class="btn-picker btn btn-success mr-2" (click)="goToDuplicate()">Créer Créneau</button>
-    </span>
+      <button type="button" class="btn-picker btn btn-success mr-2 align-items-right" (click)="goToDuplicate()">Créer Créneau</button>
+    <span *ngIf="weeksToDuplicate.length >= 1;" > Semaines sélectionnées  
+      <a *ngFor="let week of weeksToDuplicate">
+        - {{week*1000 | date : 'ww yyyy'}}
+      </a>
+    </span></span>
   </div>
   <div class="col-md-3 offset-3">
     <span class="d-flex alifn-items-center">

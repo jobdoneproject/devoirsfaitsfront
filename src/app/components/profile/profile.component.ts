@@ -5,7 +5,6 @@ import {Router} from "@angular/router";
 import { WeekUtils } from '../../utils/WeekUtils';
 import * as moment from "moment";
 import {UserService} from "../../services/user.service";
-import { DuplicateService } from "../../services/duplicate.service";
 
 
 @Component({
@@ -23,7 +22,7 @@ export class ProfileComponent implements OnInit {
   year: number;
   weeksToDuplicate: number[] = [];
 
-  constructor(private userService: UserService, public authService: AuthService, public router: Router, private duplicateService: DuplicateService) {
+  constructor(private userService: UserService, public authService: AuthService, public router: Router) {
   
   }
 

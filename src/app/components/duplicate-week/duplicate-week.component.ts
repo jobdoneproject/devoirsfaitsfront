@@ -14,7 +14,7 @@ import { UserService } from "../../services/user.service";
 })
 export class DuplicateWeekComponent implements OnInit {
   allweeks: number[] = [];
-  selectedWeeks: number[] = [];
+  selectedWeeks: number[];
   duplicatedWeeks: number[] = [];
   startDate: Date;
 
@@ -32,6 +32,7 @@ export class DuplicateWeekComponent implements OnInit {
   }
 
   setEndDate(date: Date) {
+    this.selectedWeeks = [];  //sinon le pré-cochage n'est pas effectif sans une interraction de notre part
     this.allweeks = []; //clean du tableau pour un refresh
     const startingWeek = moment(this.startDate);
     const numberOfWeekToDisplay = moment(date).diff(startingWeek, 'weeks');
