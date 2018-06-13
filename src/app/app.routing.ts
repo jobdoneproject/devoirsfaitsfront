@@ -11,12 +11,9 @@ import { ContainerComponent } from './components/container/container.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
 import { SalleComponent } from './components/salle/salle.component';
-<<<<<<< HEAD
 import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-week.component';
-=======
 import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
->>>>>>> 85b935354018894180a2779694a20409a3a03ecb
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -32,14 +29,11 @@ const appRoutes: Routes = [
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: ProfileComponent, outlet: 'connected' }]
   },
-<<<<<<< HEAD
   {
     path: 'duplicate',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: DuplicateWeekComponent, outlet: 'connected' }]
   },
-=======
->>>>>>> 85b935354018894180a2779694a20409a3a03ecb
   {
     path: 'datepicker',
     component: ContainerComponent, canActivate: [UrlPermission],

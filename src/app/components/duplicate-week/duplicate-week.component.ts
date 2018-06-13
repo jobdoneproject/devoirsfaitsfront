@@ -29,6 +29,9 @@ export class DuplicateWeekComponent implements OnInit {
 
   setStartDate(date: Date) {
     this.startDate = date;
+    const year = Number(date.toString().substring(0, 4));
+    const weekNumber = Number(date.toString().substring(6, 9));
+    this.startDate = moment().hour(4).day('monday').week(weekNumber).year(year).startOf('day').toDate();
   }
 
   setEndDate(date: Date) {

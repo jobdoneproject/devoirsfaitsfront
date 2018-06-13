@@ -2,6 +2,9 @@
     "version": "0.2.0",
     "configurations": [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4b5983c4d7975df652a4b913a3784970df5c2adb
       {
         "name": "Launch Chrome",
         "type": "chrome",
@@ -31,6 +34,7 @@
         "protocol": "inspector",
         "args": ["${workspaceFolder}/protractor.conf.js"]
       }
+<<<<<<< HEAD
 =======
         {
             "name": "Launch index.html",
@@ -56,5 +60,7 @@
             "request": "launch",
         }
 >>>>>>> 85b935354018894180a2779694a20409a3a03ecb
+=======
+>>>>>>> 4b5983c4d7975df652a4b913a3784970df5c2adb
     ]
   }

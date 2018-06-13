@@ -12,6 +12,10 @@ import { Router } from "@angular/router";
 @Injectable()
 export class CreneauService {
 
+  private options = {
+    headers: new Headers({ 'Content-Type': 'application/json' })
+  };
+
   newCreneau: CourseSlot = { idCreneau: null, dateDebut: 0, dateFin: 0, professeurs: [], eleves: [], salle: null };
 
   constructor(private http: Http,
@@ -95,6 +99,6 @@ export class CreneauService {
   duplicateWeeksSelected (duplicatedAndSelectedWeeks : number[][], id: number) {
     const url = environment.API_URL+"/etablissements/" + id + "/creneaux/duplication";
     console.log(JSON.stringify(duplicatedAndSelectedWeeks));
-    this.http.post(url, JSON.stringify(duplicatedAndSelectedWeeks)).subscribe(res => console.log(res.json()));
+    this.http.post(url, JSON.stringify(duplicatedAndSelectedWeeks), this.options).subscribe(res => console.log(res.json()));
   }
 }
