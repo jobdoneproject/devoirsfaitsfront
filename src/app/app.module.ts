@@ -49,6 +49,7 @@ import { NomAndClassesPipe } from './pipes/nom-classes-user.pipe';
 import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 import { UploaderModule }      from 'angular-http-file-upload';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
+import { ListeAppelComponent } from './components/liste-appel/liste-appel.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,11 @@ import { ImportProfesseursComponent } from './components/import-professeurs/impo
     DuplicateWeekComponent,
     ImportElevesComponent,
     ImportProfesseursComponent,
+<<<<<<< HEAD
     NomAndClassesPipe
+=======
+    ListeAppelComponent,
+>>>>>>> e4cbd334ae1abccd21a26a9ea0fcf8341e943dc5
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,6 @@ export class User {
   etablissement: string='';
   telephone: string='';
   selected: boolean;
-
+  present: boolean;
 
 }
