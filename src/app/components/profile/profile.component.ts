@@ -99,7 +99,7 @@ export class ProfileComponent implements OnInit {
   }
 
   addWeekToSelection (){
-    this.weeksToDuplicate.push(moment().year(this.year).week(this.weekNumber).unix());
+    this.weeksToDuplicate.push(moment().year(this.year).week(this.weekNumber).day('monday').startOf('day').unix());
   }
   
   goToDuplicate () {
