@@ -10,10 +10,13 @@
 
     <div class="col-12 stretch-card">
       <div class="card">
-      <button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="redirectNewUser()">Nouveau</button>
+      
         <div class="card-body">
           <div *ngIf="isAdministrateur; else elseBlock">
-            
+            <div class="col-12" style="height: 50px;">
+              <button type="button" class="btn btn-light" style="width: 150px; margin-left: 45px;" (click)="redirectNewUser()">Nouveau</button>
+              <button type="button" class="btn btn-light" style="width: 150px; margin-left: 45px;" (click)="redirectImportUsers()">Importer</button>
+          </div>
 
             <div class="col-md-12 d-flex align-items-stretch">
               <div class="row flex-grow">
@@ -23,7 +26,7 @@
                     <input type="text" class="form-control" (keyup)="onChangeNom($event.target.value)" >
                   </label>
                 </div>
-                <div class="col-md-3 col-xs-12" *ngIf="typeUtilisateur == 'eleve'" >
+                <div class="col-md-3 col-xs-12" *ngIf="typeUtilisateur === 'eleve'" >
                   <label class="col-form-label">
                     Classe
                     <select id="selectClasse" name="classeDispo" (change)="onChangeClasse($event.target.value)" class="form-control">
@@ -42,17 +45,19 @@
                     </label>
                   </div>
                 </div>
-                <div class="col-md-3 col-xs-12">
-                  <form name="actiongroupee">
-                  <label class="col-form-label">
-                    &nbsp;
-                    <select id="selectAction" name="selectAction" (change)="actionSelectAll($event.target.value)" class="form-control">
+                <div class="col-xs-6 col-xs-12">
+                  <form name="actiongroupee" >
+                    <label class="col-form-label" style="width: 70%">
+                      &nbsp;
+                      <select id="selectAction" name="selectAction" class="form-control" (change)="action($event.target.value)">
                         <option value="" >Actions groupées</option>
                         <option value="supprimer" >Supprimer</option>
                         <option value="indisponible" >Marquer indisponible</option>
                         <option value="disponible" >Marquer disponible</option>
                       </select>
-                  </label></form>
+                    </label>
+                    <button type="button" class="btn btn-light" style="display:inline-block; margin-top: -5px; margin-left: 5px;" (click)="actionsGroupees()" >Ok</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -91,7 +96,7 @@
                   </td>
                   <td>
                     <label class="containerCheck">
-                      <input type="checkbox" class="form-check-input checkbox" name="selectedUtilisateur" (click)="switchSelectedUtilisateur(utilisateur, $event.target)" value="{{utilisateur}}" [checked]="isSelected" />
+                      <input type="checkbox" class="form-check-input checkbox" name="selectedUtilisateurs" (click)="switchSelectedUtilisateur(utilisateur, $event.target)" [checked]="utilisateur.selected" />
                       <span class="checkmark" ></span>
                     </label>
                   </td> 

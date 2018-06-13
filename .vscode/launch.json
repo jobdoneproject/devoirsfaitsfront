@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+<<<<<<< HEAD
       {
         "name": "Launch Chrome",
         "type": "chrome",
@@ -30,5 +31,30 @@
         "protocol": "inspector",
         "args": ["${workspaceFolder}/protractor.conf.js"]
       }
+=======
+        {
+            "name": "Launch index.html",
+            "type": "chrome",
+            "request": "launch",
+            "file": "${workspaceFolder}/index.html"
+        },
+        {
+            "name": "Launch localhost",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Attach",
+            "type": "chrome",
+            "request": "attach"
+        },
+        {
+            "name": "Launch addon",
+            "type": "chrome",
+            "request": "launch",
+        }
+>>>>>>> 85b935354018894180a2779694a20409a3a03ecb
     ]
   }

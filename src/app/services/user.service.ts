@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
-// import {Http, Response} from "@angular/http";
 import { Observable } from 'rxjs';
-import { of } from 'rxjs/observable/of';
 import {User} from "../model/model.user";
-import { UtilsService } from './utils.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, startWith} from 'rxjs/operators';
 
 import "rxjs/Rx";
-import { Url } from 'url';
 import { Http, Headers, RequestOptions,Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 
@@ -79,6 +74,14 @@ export class UserService {
       headers: new Headers({ 'Content-Type': 'application/json' }),
       body: utilisateurs
    })).subscribe(res => true);
+  }
+
+  getImportStudentsURL(idEtablissement: number){
+    return environment.API_URL + '/etablissements/'+ idEtablissement+ '/eleves/import/';
+  }
+
+  getImportTeachersURL(idEtablissement: number){
+    return environment.API_URL + '/etablissements/'+ idEtablissement+ '/professeurs/import/';
   }
 
   private handleError(error: Response) {

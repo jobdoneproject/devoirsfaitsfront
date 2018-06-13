@@ -42,8 +42,14 @@ import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-
 import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
 import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
 import { SalleComponent } from './components/salle/salle.component';
+<<<<<<< HEAD
 import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-week.component';
 
+=======
+import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
+import { UploaderModule }      from 'angular-http-file-upload';
+import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
+>>>>>>> 85b935354018894180a2779694a20409a3a03ecb
 
 @NgModule({
   declarations: [
@@ -69,7 +75,12 @@ import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-we
     EleveClassesPipe,
     NomDisponiblesPipe,
     SalleComponent,
+<<<<<<< HEAD
     DuplicateWeekComponent
+=======
+    ImportElevesComponent,
+    ImportProfesseursComponent,
+>>>>>>> 85b935354018894180a2779694a20409a3a03ecb
   ],
   imports: [
     BrowserModule,
@@ -84,7 +95,8 @@ import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-we
     MatAutocompleteModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    UploaderModule.forRoot(),
   ],
   providers: [
     AuthService,
