@@ -13,6 +13,7 @@ import { PageCreneauComponent } from './components/page-creneau/page-creneau.com
 import { SalleComponent } from './components/salle/salle.component';
 import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
+import { ListeAppelComponent } from './components/liste-appel/liste-appel.component';
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -63,6 +64,11 @@ const appRoutes: Routes = [
   { path: 'import-professeurs',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: ImportProfesseursComponent, outlet: 'connected'}]
+  },
+  {
+    path: 'liste-appel/:id',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{ path: '', component: ListeAppelComponent, outlet: 'connected' }]
   },
 
   { path: '', redirectTo: 'bienvenue', pathMatch: 'full' },
