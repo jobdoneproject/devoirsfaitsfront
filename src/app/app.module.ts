@@ -42,14 +42,12 @@ import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-
 import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
 import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
 import { SalleComponent } from './components/salle/salle.component';
-<<<<<<< HEAD
 import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-week.component';
+import { NomAndClassesPipe } from './pipes/nom-classes-user.pipe';
 
-=======
 import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 import { UploaderModule }      from 'angular-http-file-upload';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
->>>>>>> dev
 
 @NgModule({
   declarations: [
@@ -75,12 +73,10 @@ import { ImportProfesseursComponent } from './components/import-professeurs/impo
     EleveClassesPipe,
     NomDisponiblesPipe,
     SalleComponent,
-<<<<<<< HEAD
-    DuplicateWeekComponent
-=======
+    DuplicateWeekComponent,
     ImportElevesComponent,
     ImportProfesseursComponent,
->>>>>>> dev
+    NomAndClassesPipe
   ],
   imports: [
     BrowserModule,
