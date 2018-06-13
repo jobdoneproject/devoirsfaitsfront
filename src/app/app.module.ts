@@ -26,6 +26,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatAutocompleteModule, MatInputModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSelectModule} from '@angular/material/select';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
@@ -93,6 +94,7 @@ import { ImportProfesseursComponent } from './components/import-professeurs/impo
     BrowserAnimationsModule,
     MatInputModule,
     UploaderModule.forRoot(),
+    MatSelectModule
   ],
   providers: [
     AuthService,

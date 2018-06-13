@@ -1,30 +1,32 @@
 <div class="row purchace-popup">
   <div class="col-12">
-    <span class="d-flex alifn-items-center">
+    <span class="d-flex align-items-center">
       <h1>{{monthFromDate}} {{year}} - Semaine {{weekNumber}}</h1>
     </span>
   </div>
 </div>
-<div class="row purchace-popup">
-  <div class="col-md-6 ">
-    <span class="d-flex alifn-items-center col-xs-12">
-      <a href="creneau">
-        <button type="button" class="btn-picker btn btn-success mr-2">Créer Créneau</button>
-      </a>
-      <button type="button" class="btn-picker btn btn-success mr-2" (click)="addWeekToSelection()">Ajouter à la sélection</button>
-      <button type="button" class="btn-picker btn btn-success mr-2 align-items-right" (click)="goToDuplicate()">Dupliquer</button>
-    <span *ngIf="weeksToDuplicate.length >= 1;" > Semaines sélectionnées  
-      <a *ngFor="let week of weeksToDuplicate">
-        - {{week*1000 | date : 'ww yyyy'}}
-      </a>
-    </span></span>
+<div class="row">
+  <div class="col-md-8 align-self-center">
+    <div class="d-table-row grp-button">
+      <button type="button" class="btn-sm btn-picker btn btn-success mr-2 btn-lg" (click)="goToCreation()">Créer Créneau</button>
+      <button *ngIf="checkPresence()" type="button" class="btn-sm btn-picker btn btn-success mr-2 btn-lg" (click)="addWeekToSelection()">Ajouter à la sélection</button>
+      <button *ngIf="!checkPresence()" type="button" class="btn-sm btn-picker btn btn-danger mr-2 btn-lg" (click)="removeOfSelection()">Retirer de la sélection</button>
+      <button type="button" class="btn-sm btn-picker btn btn-success mr-2 btn-lg" (click)="goToDuplicate()">Dupliquer</button>
+    </div>
+    <mat-form-field>
+      <mat-select placeholder="Semaines Sélectionnées">
+        <mat-option *ngFor="let week of weeksToDuplicate" [value]="week">
+          {{week*1000 | date : 'ww yyyy'}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  <div class="col-md-3 offset-3">
-    <span class="d-flex alifn-items-center">
-      <button type="button" class="btn-picker btn date-picker" (click)="semainePrecedente()">
+  <div class="col-md-4 col-sm-12 col-xs-12">
+    <span class="align-items-center">
+      <button type="button" class=" btn-sm btn-picker btn date-picker" (click)="semainePrecedente()">
         <<</button>
           <input type="week" class="date-picker" (change)="update($event.target.value)" id="weeknum" name="weeknum" value="{{year}}-W{{weekNumber}}">
-          <button type="button" class="btn btn-picker date-picker" (click)="semaineSuivante()">>></button>
+          <button type="button" class=" btn-sm btn btn-picker date-picker" (click)="semaineSuivante()">>></button>
     </span>
   </div>
 </div>
