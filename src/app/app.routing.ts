@@ -8,13 +8,12 @@ import { ListeUtilisateurComponent } from "./components/liste-utilisateur/liste-
 import { PageLandingComponent } from './components/page-landing/page-landing.component';
 import { PageUserEditComponent } from './components/page-user-edit/page-user-edit.component';
 import { ContainerComponent } from './components/container/container.component';
-import { ContainerFooterComponent } from './components/container-footer/container-footer.component';
-import { ContainerNavbarComponent } from './components/container-navbar/container-navbar.component';
-import { ContainerSidebarComponent } from './components/container-sidebar/container-sidebar.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
 import { SalleComponent } from './components/salle/salle.component';
 import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-week.component';
+import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
+import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -25,7 +24,6 @@ const appRoutes: Routes = [
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: ListeUtilisateurComponent, outlet: 'connected' }]
   },
-
   {
     path: 'profile',
     component: ContainerComponent, canActivate: [UrlPermission],
@@ -46,6 +44,10 @@ const appRoutes: Routes = [
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: PageCreneauComponent, outlet: 'connected' }]
   },
+  { path: 'creneau/:id',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{path: '', component: PageCreneauComponent, outlet: 'connected'}]
+  },
   {
     path: 'salle',
     component: ContainerComponent, canActivate: [UrlPermission],
@@ -56,11 +58,17 @@ const appRoutes: Routes = [
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: PageUserEditComponent, outlet: 'connected' }]
   },
-
-  {
-    path: 'creation-utilisateur/:type',
+  { path: 'creation-utilisateur/:type',
     component: ContainerComponent, canActivate: [UrlPermission],
-    children: [{ path: '', component: PageUserEditComponent, outlet: 'connected' }]
+    children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
+  },
+  { path: 'import-eleves',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{path: '', component: ImportElevesComponent, outlet: 'connected'}]
+  },
+  { path: 'import-professeurs',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{path: '', component: ImportProfesseursComponent, outlet: 'connected'}]
   },
 
   { path: '', redirectTo: 'bienvenue', pathMatch: 'full' },
