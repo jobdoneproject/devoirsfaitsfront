@@ -45,6 +45,7 @@ import { SalleComponent } from './components/salle/salle.component';
 import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 import { UploaderModule }      from 'angular-http-file-upload';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
+import { ListeAppelComponent } from './components/liste-appel/liste-appel.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ImportProfesseursComponent } from './components/import-professeurs/impo
     SalleComponent,
     ImportElevesComponent,
     ImportProfesseursComponent,
+    ListeAppelComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ import { PageCreneauComponent } from './components/page-creneau/page-creneau.com
 import { SalleComponent } from './components/salle/salle.component';
 import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
+import { ListeAppelComponent } from './components/liste-appel/liste-appel.component';
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -23,15 +24,11 @@ const appRoutes: Routes = [
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: ListeUtilisateurComponent, outlet: 'connected' }]
   },
-
   {
     path: 'profile',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: ProfileComponent, outlet: 'connected' }]
   },
-
-
-
   {
     path: 'datepicker',
     component: ContainerComponent, canActivate: [UrlPermission],
@@ -41,6 +38,10 @@ const appRoutes: Routes = [
     path: 'creneau',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: PageCreneauComponent, outlet: 'connected' }]
+  },
+  { path: 'creneau/:id',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{path: '', component: PageCreneauComponent, outlet: 'connected'}]
   },
   {
     path: 'salle',
@@ -52,40 +53,10 @@ const appRoutes: Routes = [
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: PageUserEditComponent, outlet: 'connected' }]
   },
-
-  {
-    path: 'creation-utilisateur/:type',
-    component: ContainerComponent, canActivate: [UrlPermission],
-    children: [{ path: '', component: PageUserEditComponent, outlet: 'connected' }]
-  },
-
- 
-  { path: 'datepicker',
-  component: ContainerComponent, canActivate: [UrlPermission],
-  children: [{path: '', component: DatepickerComponent, outlet: 'connected'}]
-},
-{ path: 'creneau',
-  component: ContainerComponent, canActivate: [UrlPermission],
-  children: [{path: '', component: PageCreneauComponent, outlet: 'connected'}]
-},
-{ path: 'edition-utilisateur/:type/:id',
-component: ContainerComponent, canActivate: [UrlPermission],
-children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
-},
-
-{ path: 'creation-utilisateur/:type',
-component: ContainerComponent, canActivate: [UrlPermission],
-children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
-},
-{ path: 'salle',
-component: ContainerComponent, canActivate: [UrlPermission],
-children: [{path: '', component: SalleComponent, outlet: 'connected'}]
-},
-  { path: 'edition-utilisateur/:type/:id',
+  { path: 'creation-utilisateur/:type',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: PageUserEditComponent, outlet: 'connected'}]
   },
-  
   { path: 'import-eleves',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: ImportElevesComponent, outlet: 'connected'}]
@@ -93,6 +64,11 @@ children: [{path: '', component: SalleComponent, outlet: 'connected'}]
   { path: 'import-professeurs',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{path: '', component: ImportProfesseursComponent, outlet: 'connected'}]
+  },
+  {
+    path: 'liste-appel/:id',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{ path: '', component: ListeAppelComponent, outlet: 'connected' }]
   },
 
   { path: '', redirectTo: 'bienvenue', pathMatch: 'full' },
