@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   referenceDate: Date;
   weekNumber: number;
   year: number;
+  weeksToDuplicate: number[] = [];
 
   constructor(private userService: UserService, public authService: AuthService, public router: Router) {
   
@@ -94,5 +95,14 @@ export class ProfileComponent implements OnInit {
 
   get monthFromDate () {
     return WeekUtils.getMonthFromDate(this.weekNumber).toString();
+  }
+
+  addWeekToSelection (){
+    this.weeksToDuplicate.push(moment().year(this.year).week(this.weekNumber).day('monday').startOf('day').unix());
+  }
+  
+  goToDuplicate () {
+    const param = JSON.stringify(this.weeksToDuplicate);
+    this.router.navigate(['/duplicate', {semaines : param }]);
   }
 }
