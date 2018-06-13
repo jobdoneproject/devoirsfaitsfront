@@ -72,19 +72,17 @@
                 </div>
                 <div class="col-md-6 grid-margin stretch-card">
                     <div class="card-body">
-                      <div class="card-body">
-                        <div class="form-group">
-                          <label for="listEleve" class="font-weight-medium">Elèves</label>
-                          <mat-form-field class="example-full-width">
-                            <input type="text" placeholder="Ajouter un élève" aria-label="Number" matInput [formControl]="myControl" 
-                            [matAutocomplete]="auto" (keyup)="onChangeNom($event.target.value)">
-                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addEleveToSelected()" [displayWith]="displayFn">
-                              <mat-option *ngFor="let eleve of listEleve | async | nomDisponibles: filterParNom" [value]="eleve" >
-                                {{ eleve.nom }} {{ eleve.prenom }} - {{ eleve.classe }}
-                              </mat-option>
-                            </mat-autocomplete>
-                          </mat-form-field>
-                        <!-- </div> -->
+                      <div class="form-group">
+                        <label for="listEleve" class="font-weight-medium">Elèves</label>
+                        <mat-form-field class="example-full-width">
+                          <input type="text" placeholder="Ajouter un élève" aria-label="Number" matInput [formControl]="myControl" 
+                          [matAutocomplete]="auto" (keyup)="onChangeNom($event.target.value)">
+                          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addEleveToSelected()" [displayWith]="displayFn">
+                            <mat-option *ngFor="let eleve of listEleve | async | nomAndClasses: filterParNom" [value]="eleve" >
+                              {{ eleve.nom }} {{ eleve.prenom }} - {{ eleve.classe }}
+                            </mat-option>
+                          </mat-autocomplete>
+                        </mat-form-field>
                       <!-- </div> -->
                       <!-- Liste des Eleves sélectionnés : -->
                       <mat-list #eleves>

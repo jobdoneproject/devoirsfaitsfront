@@ -42,6 +42,9 @@ import { ListeUtilisateurComponent } from './components/liste-utilisateur/liste-
 import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
 import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
 import { SalleComponent } from './components/salle/salle.component';
+import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-week.component';
+import { NomAndClassesPipe } from './pipes/nom-classes-user.pipe';
+
 import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 import { UploaderModule }      from 'angular-http-file-upload';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
@@ -71,9 +74,11 @@ import { ListeAppelComponent } from './components/liste-appel/liste-appel.compon
     EleveClassesPipe,
     NomDisponiblesPipe,
     SalleComponent,
+    DuplicateWeekComponent,
     ImportElevesComponent,
     ImportProfesseursComponent,
     ListeAppelComponent,
+    NomAndClassesPipe
   ],
   imports: [
     BrowserModule,

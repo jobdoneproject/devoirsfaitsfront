@@ -42,7 +42,7 @@ export class PageCreneauComponent implements OnInit {
   @Input() date_creneau: any;
   @Input() heure_debut: any;
   @Input() heure_fin: any;
-  nomDisponibles = [];
+  nomAndClasses = [];
   filterParNom: String;
   titre: String;
   myControl: FormControl = new FormControl();
@@ -81,8 +81,8 @@ export class PageCreneauComponent implements OnInit {
     
     this.listEleve.forEach(arrayNomUtilisateur => {
       arrayNomUtilisateur.forEach(utilisateur => {
-        if (this.nomDisponibles.indexOf(utilisateur.nom) == -1) {
-          this.nomDisponibles.push(utilisateur.nom);
+        if (this.nomAndClasses.indexOf(utilisateur.nom) == -1) {
+          this.nomAndClasses.push(utilisateur.nom);
         }
       })
     });
