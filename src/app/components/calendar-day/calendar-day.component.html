@@ -5,7 +5,7 @@
         <div class="card-body">
   <h2>{{dayLabel}} {{dayDate | date:'dd'}}</h2>
   <div class="courses">
-    <calendar-slot [slotValue]="slot" *ngFor="let slot of courseSlots"></calendar-slot>
+    <calendar-slot (sendEvent)="receiveUpdate()" [slotValue]="slot" *ngFor="let slot of courseSlots"></calendar-slot>
   </div>
 </div>
 </div>

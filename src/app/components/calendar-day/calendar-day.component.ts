@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CourseSlot } from '../../model/model.course-slots';
 import { WeekDay } from '../../model/model.week-day';
 import { WeekUtils } from '../../utils/WeekUtils';
@@ -19,6 +19,7 @@ export class CalendarDayComponent implements OnInit {
   @Input() day: WeekDay;
   @Input() weekNumber: number;
   @Input() year: number;
+  @Output() sendEvent = new EventEmitter();
   ngOnChanges(weekNumber: number) {
     this.ngOnInit();
   }
@@ -55,6 +56,11 @@ export class CalendarDayComponent implements OnInit {
 
       return isSameDay;
     });
+  }
+
+  receiveUpdate() {
+    console.log ("dans le day");
+    this.sendEvent.emit();
   }
 
 }

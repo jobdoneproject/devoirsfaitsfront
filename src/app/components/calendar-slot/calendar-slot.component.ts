@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { duration, utc } from 'moment';
 import { CourseSlot } from '../../model/model.course-slots';
 import { User } from '../../model/model.user';
@@ -19,6 +19,7 @@ export class CalendarSlotComponent implements OnInit {
   @Input() private slotValue: CourseSlot;
   currentUser: User;
   administrateur: boolean;
+  @Output() sendEvent = new EventEmitter();
 
   constructor(private userService: UserService, private creneauService: CreneauService, private router: Router) {
     this.currentUser = this.userService.getCurrentUserLogged();
@@ -58,6 +59,10 @@ export class CalendarSlotComponent implements OnInit {
   }
 
   deleteSlot(slotId: number) {
+    console.log ("dans le slot");
     this.creneauService.deleteSelected(this.currentUser.idEtablissement, slotId);
+    this.sendEvent.emit();
   }
+
+
 }
