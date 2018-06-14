@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CourseSlot } from '../../model/model.course-slots';
 import { WeekDay } from '../../model/model.week-day';
 import { WeekUtils } from '../../utils/WeekUtils';
@@ -21,6 +21,7 @@ export class CalendarDayComponent implements OnInit {
   @Input() day: WeekDay;
   @Input() weekNumber: number;
   @Input() year: number;
+  @Output() onDeleteEvent = new EventEmitter();
   currentUser: User;
 
   ngOnChanges(weekNumber: number) {
@@ -63,6 +64,10 @@ export class CalendarDayComponent implements OnInit {
     });
   }
 
+  receiveUpdateOnDeleteSlot() {
+    this.onDeleteEvent.emit();
+  }
+  
   filterSlotsMatchingCurrentUser() {
     const user = this.currentUser;
     this.courseSlots = _.filter(this.courseSlots, (currentSlot) => {
@@ -72,7 +77,7 @@ export class CalendarDayComponent implements OnInit {
         weMustKeepIt = true;
       } 
       else if (user.privilege === "Professeur"){
-        weMustKeepIt = _.findWhere(currentSlot.profs, {mail: user.mail});
+        weMustKeepIt = _.findWhere(currentSlot.professeurs, {mail: user.mail});
       }
       else {
         weMustKeepIt = _.findWhere(currentSlot.eleves, {mail: user.mail});

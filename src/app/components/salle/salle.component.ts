@@ -44,10 +44,12 @@ export class SalleComponent implements OnInit {
   constructor(private roomsv: RoomService, public authService: AuthService, public router: Router, private userService:UserService) {
 
     this.currentUser = this.userService.getCurrentUserLogged();
-
     if (this.currentUser.privilege == "Administrateur") {
       this.administrateur = true;
-    }
+      }
+      if (this.currentUser.privilege != "Administrateur") {
+      this.router.navigate(['/profile']);
+      }
 
     
 

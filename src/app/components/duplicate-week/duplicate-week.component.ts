@@ -31,7 +31,7 @@ export class DuplicateWeekComponent implements OnInit {
     this.startDate = date;
     const year = Number(date.toString().substring(0, 4));
     const weekNumber = Number(date.toString().substring(6, 9));
-    this.startDate = moment().hour(4).day('monday').week(weekNumber).year(year).startOf('day').toDate();
+    this.startDate = moment().hour(4).day('monday').week(weekNumber-1).year(year).startOf('day').toDate();
   }
 
   setEndDate(date: Date) {
@@ -39,7 +39,7 @@ export class DuplicateWeekComponent implements OnInit {
     this.allweeks = []; //clean du tableau pour un refresh
     const startingWeek = moment(this.startDate);
     const numberOfWeekToDisplay = moment(date).diff(startingWeek, 'weeks');
-    for (var i = 0; i <= numberOfWeekToDisplay; i++) {
+    for (var i = 0; i < numberOfWeekToDisplay; i++) {
       this.allweeks.push(startingWeek.add(1, 'weeks').unix());
     }
   }
@@ -67,6 +67,13 @@ export class DuplicateWeekComponent implements OnInit {
       message += " - " + moment(value*1000).format("w/Y");
     });
     return message;
+  }
+
+  ifWeeksSelected(){
+    if(this.selectedWeeks) {
+      return false;
+    }
+    return true;
   }
 }
 
