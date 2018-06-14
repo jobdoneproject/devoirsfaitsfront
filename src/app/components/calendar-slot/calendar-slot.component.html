@@ -11,7 +11,7 @@
                         </div>
                     </div>
                 </a>
-                <span class="trashspan">
+                <span *ngIf="administrateur" class="trashspan">
                     <a class="far fa-trash-alt trash" (click)="deleteSlot(slot.idCreneau)"></a>
                 </span>
             </div>

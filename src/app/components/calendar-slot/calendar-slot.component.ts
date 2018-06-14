@@ -18,8 +18,8 @@ export class CalendarSlotComponent implements OnInit {
 
   @Input() private slotValue: CourseSlot;
   currentUser: User;
-  administrateur: boolean;
   @Output() sendEvent = new EventEmitter();
+  administrateur: boolean = false;
 
   constructor(private userService: UserService, private creneauService: CreneauService, private router: Router) {
     this.currentUser = this.userService.getCurrentUserLogged();
@@ -38,7 +38,7 @@ export class CalendarSlotComponent implements OnInit {
 
   public get teachers() : String[] {
     let arrayToReturn: String[] = [];
-    for (let currentTeacher of this.slotValue.profs){
+    for (let currentTeacher of this.slotValue.professeurs){
       arrayToReturn.push(`${currentTeacher.nom} ${currentTeacher.prenom}`);
     }
     return arrayToReturn;
