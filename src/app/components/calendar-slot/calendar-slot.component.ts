@@ -5,7 +5,6 @@ import { User } from '../../model/model.user';
 import { CreneauService } from '../../services/creneau.service';
 import {UserService} from "../../services/user.service";
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 
 
 
@@ -55,6 +54,25 @@ export class CalendarSlotComponent implements OnInit {
       return this.slotValue.salle.nom;
     }
     return " non définie";
+  }
+
+  public get adresseCreneau(): String {
+    let adresse: String;
+    if (this.currentUser.privilege === "Administrateur"){
+      adresse = `creneau/${this.slotValue.idCreneau}`;
+    }
+    else if (this.currentUser.privilege === "Professeur"){
+      adresse = `liste-appel/${this.slotValue.idCreneau}`;
+    }
+    else adresse = undefined;
+    return adresse;
+  }
+
+  allerSurPageCreneau() {
+    if (this.currentUser.privilege === "Administrateur"
+      || this.currentUser.privilege === "Professeur"){
+        this.router.navigate([this.adresseCreneau]);
+      }
   }
 
   deleteSlot(slotId: number) {

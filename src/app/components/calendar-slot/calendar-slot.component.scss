@@ -56,3 +56,12 @@ span{
 p {
     color:black;
 }
+
+button.card-body {
+    padding: 0.6em;
+}
+
+
+button.card-body > h2 {
+    font-size: 0.8em;
+}
