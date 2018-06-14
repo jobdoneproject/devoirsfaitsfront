@@ -26,7 +26,6 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatAutocompleteModule, MatInputModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSelectModule} from '@angular/material/select';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
@@ -50,6 +49,8 @@ import { ImportElevesComponent } from './components/import-eleves/import-eleves.
 import { UploaderModule }      from 'angular-http-file-upload';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
 import { ListeAppelComponent } from './components/liste-appel/liste-appel.component';
+import {MatSelectModule} from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -78,11 +79,8 @@ import { ListeAppelComponent } from './components/liste-appel/liste-appel.compon
     DuplicateWeekComponent,
     ImportElevesComponent,
     ImportProfesseursComponent,
-<<<<<<< HEAD
-    NomAndClassesPipe
-=======
-    ListeAppelComponent,
->>>>>>> e4cbd334ae1abccd21a26a9ea0fcf8341e943dc5
+    NomAndClassesPipe,
+    ListeAppelComponent
   ],
   imports: [
     BrowserModule,

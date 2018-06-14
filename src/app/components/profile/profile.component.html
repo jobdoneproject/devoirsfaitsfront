@@ -14,7 +14,7 @@
       <button type="button" class="btn-sm btn-picker btn btn-success mr-2 btn-lg" (click)="goToDuplicate()">Dupliquer</button>
     </div>
     <mat-form-field>
-      <mat-select placeholder="Semaines Sélectionnées">
+      <mat-select>
         <mat-option *ngFor="let week of weeksToDuplicate" [value]="week">
           {{week*1000 | date : 'ww yyyy'}}
         </mat-option>
