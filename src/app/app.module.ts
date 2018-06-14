@@ -49,6 +49,8 @@ import { ImportElevesComponent } from './components/import-eleves/import-eleves.
 import { UploaderModule }      from 'angular-http-file-upload';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
 import { ListeAppelComponent } from './components/liste-appel/liste-appel.component';
+import {MatSelectModule} from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -77,8 +79,13 @@ import { ListeAppelComponent } from './components/liste-appel/liste-appel.compon
     DuplicateWeekComponent,
     ImportElevesComponent,
     ImportProfesseursComponent,
+<<<<<<< HEAD
     ListeAppelComponent,
     NomAndClassesPipe
+=======
+    NomAndClassesPipe,
+    ListeAppelComponent
+>>>>>>> dev
   ],
   imports: [
     BrowserModule,
@@ -95,6 +102,7 @@ import { ListeAppelComponent } from './components/liste-appel/liste-appel.compon
     BrowserAnimationsModule,
     MatInputModule,
     UploaderModule.forRoot(),
+    MatSelectModule
   ],
   providers: [
     AuthService,

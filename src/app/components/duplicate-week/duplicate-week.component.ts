@@ -53,5 +53,20 @@ export class DuplicateWeekComponent implements OnInit {
   onReset() {
     this.route.navigate(['/profile']);
   }
+
+  messageCopy() {
+    if (this.selectedWeeks) {
+    return "Vous allez dupliquer " + this.duplicatedWeeks.length + " semaine(s) vers " + this.selectedWeeks.length + " semaine(s) .";
+    }
+    return "Vous n'avez sélectionné aucune période pour la duplication.";
+  }
+
+  weeksSelectedToString() {
+    let message: String = "";
+    this.duplicatedWeeks.forEach(function (value) {
+      message += " - " + moment(value*1000).format("w/Y");
+    });
+    return message;
+  }
 }
 
