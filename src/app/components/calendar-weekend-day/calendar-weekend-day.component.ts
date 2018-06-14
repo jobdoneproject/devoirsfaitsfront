@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarDayComponent } from '../calendar-day/calendar-day.component';
+import { User } from '../../model/model.user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'week-calendar-weekend-day',
@@ -8,14 +10,15 @@ import { CalendarDayComponent } from '../calendar-day/calendar-day.component';
 })
 export class CalendarWeekendDayComponent extends CalendarDayComponent implements OnInit {
 
-  constructor() {
-    super();
+  constructor(userService: UserService) {
+    super(userService);
    }
 
   ngOnInit() {
     this.courseSlotsObservable.subscribe((resp) => {
       this.courseSlots = resp;  
-      this.filterSlots();
+      this.filterSlotsMatchingThisDay();
+      this.filterSlotsMatchingCurrentUser();
     });
   }
 

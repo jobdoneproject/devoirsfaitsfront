@@ -18,7 +18,7 @@ export class CalendarSlotComponent implements OnInit {
 
   @Input() private slotValue: CourseSlot;
   currentUser: User;
-  administrateur: boolean;
+  administrateur: boolean = false;
 
   constructor(private userService: UserService, private creneauService: CreneauService, private router: Router) {
     this.currentUser = this.userService.getCurrentUserLogged();

@@ -3,6 +3,8 @@ import { CourseSlot } from '../../model/model.course-slots';
 import { WeekDay } from '../../model/model.week-day';
 import { WeekUtils } from '../../utils/WeekUtils';
 import { Observable } from 'rxjs/Observable';
+import { User } from '../../model/model.user';
+import { UserService } from '../../services/user.service';
 import * as moment from 'moment';
 import * as _ from 'underscore';
 
@@ -19,17 +21,21 @@ export class CalendarDayComponent implements OnInit {
   @Input() day: WeekDay;
   @Input() weekNumber: number;
   @Input() year: number;
+  currentUser: User;
+
   ngOnChanges(weekNumber: number) {
     this.ngOnInit();
   }
 
-  constructor() {
+  constructor(userService: UserService) {
+    this.currentUser = userService.getCurrentUserLogged();
   }
 
   ngOnInit() {
     this.courseSlotsObservable.subscribe((resp) => {
       this.courseSlots = resp;  
-      this.filterSlots();
+      this.filterSlotsMatchingThisDay();
+      this.filterSlotsMatchingCurrentUser();
     });
   }
 
@@ -45,7 +51,7 @@ export class CalendarDayComponent implements OnInit {
     return matchingDate;
   }
 
-  filterSlots() {
+  filterSlotsMatchingThisDay() {
     this.courseSlots = _.filter(this.courseSlots, (currentSlot) => {
       const dateDebut = moment.unix(currentSlot.dateDebut).utc().toDate();
       const thisDate = this.currentDate();
@@ -54,6 +60,25 @@ export class CalendarDayComponent implements OnInit {
        dateDebut.getMonth() === thisDate.getMonth() && dateDebut.getDay() === thisDate.getDay();
 
       return isSameDay;
+    });
+  }
+
+  filterSlotsMatchingCurrentUser() {
+    const user = this.currentUser;
+    this.courseSlots = _.filter(this.courseSlots, (currentSlot) => {
+      let weMustKeepIt;
+
+      if (user.privilege === "Administrateur"){
+        weMustKeepIt = true;
+      } 
+      else if (user.privilege === "Professeur"){
+        weMustKeepIt = _.findWhere(currentSlot.professeurs, {mail: user.mail});
+      }
+      else {
+        weMustKeepIt = _.findWhere(currentSlot.eleves, {mail: user.mail});
+      }
+
+      return weMustKeepIt;
     });
   }
 
