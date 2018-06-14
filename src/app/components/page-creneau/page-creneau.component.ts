@@ -129,10 +129,6 @@ export class PageCreneauComponent implements OnInit {
       this.heure_debut = "16:00";
       this.heure_fin = "17:00";        
     }
-
-    
-    
-
   }
 
   ngOnInit() {}
