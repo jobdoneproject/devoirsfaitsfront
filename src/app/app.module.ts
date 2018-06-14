@@ -79,13 +79,8 @@ import {MatSelectModule} from '@angular/material/select';
     DuplicateWeekComponent,
     ImportElevesComponent,
     ImportProfesseursComponent,
-<<<<<<< HEAD
-    ListeAppelComponent,
-    NomAndClassesPipe
-=======
     NomAndClassesPipe,
     ListeAppelComponent
->>>>>>> dev
   ],
   imports: [
     BrowserModule,
