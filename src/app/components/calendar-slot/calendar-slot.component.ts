@@ -68,6 +68,13 @@ export class CalendarSlotComponent implements OnInit {
     return adresse;
   }
 
+  allerSurPageCreneau() {
+    if (this.currentUser.privilege === "Administrateur"
+      || this.currentUser.privilege === "Professeur"){
+        this.router.navigate([this.adresseCreneau]);
+      }
+  }
+
   deleteSlot(slotId: number) {
     this.creneauService.deleteSelected(this.currentUser.idEtablissement, slotId);
   }
