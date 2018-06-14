@@ -21,7 +21,7 @@ export class CalendarDayComponent implements OnInit {
   @Input() day: WeekDay;
   @Input() weekNumber: number;
   @Input() year: number;
-  @Output() sendEvent = new EventEmitter();
+  @Output() onDeleteEvent = new EventEmitter();
   currentUser: User;
 
   ngOnChanges(weekNumber: number) {
@@ -64,9 +64,8 @@ export class CalendarDayComponent implements OnInit {
     });
   }
 
-  receiveUpdate() {
-    console.log ("dans le day");
-    this.sendEvent.emit();
+  receiveUpdateOnDeleteSlot() {
+    this.onDeleteEvent.emit();
   }
   
   filterSlotsMatchingCurrentUser() {

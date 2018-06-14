@@ -6,11 +6,11 @@
                     <h2>{{slot.dateDebut * 1000 | date:'HH:mm'}} - {{salle}}</h2>
                     <div class="content">
                         <p class="duration">{{duration | date:'HH:mm'}} h</p>
-                        <span *ngIf="administrateur">
+                        
+                    </div>
+            </button><span *ngIf="administrateur">
                             <a class="far fa-trash-alt trash" (click)="deleteSlot(slot.idCreneau)"></a>
                         </span>
-                    </div>
-            </button>
             </div>
         </div>
     </div>

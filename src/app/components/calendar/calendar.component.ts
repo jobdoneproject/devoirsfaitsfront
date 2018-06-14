@@ -44,8 +44,7 @@ export class CalendarComponent implements OnInit {
 
   }
 
-  receiveUpdate() {
-    console.log ("dans le calendar");
+  receiveUpdateOnDeleteSlot() {
     this.updateSlots();
   }
 
