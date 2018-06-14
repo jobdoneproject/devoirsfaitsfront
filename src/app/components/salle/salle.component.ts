@@ -36,6 +36,8 @@ export class SalleComponent implements OnInit {
   myControl: FormControl = new FormControl();
   selectedSalle: any;
   @Input() newName: string;
+  allSalles: Room[];
+  doublonInfo: string;
 
 
 
@@ -47,28 +49,87 @@ export class SalleComponent implements OnInit {
       this.administrateur = true;
     }
 
-    this.allSalleEtb = this.roomsv.getAll(this.currentUser.idEtablissement);
+    
 
-  this.allSalleEtb.forEach(arrayNomUtilisateur => {
-      arrayNomUtilisateur.forEach(salle => {
-        if (this.nomDisponibles.indexOf(salle.nom) == -1) {
-          this.nomDisponibles.push(salle.nom);
-        }
-      })
-    });
+    // this.allSalleEtb = this.roomsv.getAll(this.currentUser.idEtablissement);
+
+    // this.allSalleEtb.forEach(arrayNomUtilisateur => {
+    //   arrayNomUtilisateur.forEach(salle => {
+    //     if (this.nomDisponibles.indexOf(salle.nom) == -1) {
+    //       this.nomDisponibles.push(salle.nom);
+    //     }
+    //   })
+    // });
+    
+    this.updateList();
+
+    
+
+
+    
   }
 
   ngOnInit() {
   }
 
+  updateList(){
+    this.roomsv.getAll(this.currentUser.idEtablissement).subscribe(
+      (data: Room[]) => {
+        console.log(data)
+        this.allSalles = data;
+        console.log(this.allSalles);
+      }
+    );
+  }
+
   onChangeNom(optionDuMenu) { this.filterParNom = optionDuMenu; }
 
   createSalle(nom:String) {
-    this.roomsv.createNew(this.currentUser.idEtablissement, nom);
+    // console.log(this.allSalles.length)
+    // let doublon = false;
+    // for (let i = 0; i < this.allSalles.length; i++){
+      // this.allSalles.forEach(salle => {
+      //   if(salle.nom === nom){
+      //     doublon = true;
+      //     // console.log('DOUBLON');
+      //     this.doublonInfo = "Salle '" + nom + "' déjà enregistrée.";
+      //   }
+      // });
+    // }
+    if(!this.checkDoublon(nom)){
+      this.roomsv.createNew(this.currentUser.idEtablissement, nom)
+      .subscribe(data =>{
+        // console.log("data");
+        // console.log(data);
+        this.updateList();
+      });
+    }    
+  }
+
+  checkDoublon(nom: String){
+    let doublon = false;
+    // for (let i = 0; i < this.allSalles.length; i++){
+      this.allSalles.forEach(salle => {
+        if(salle.nom === nom){
+          doublon = true;
+          // console.log('DOUBLON');
+          this.doublonInfo = "Salle '" + nom + "' déjà enregistrée.";
+          // setTimeout( 5000 );
+          // this.doublonInfo = "";
+          $('#doublonInfo').delay(0).show(500).delay(3000).hide(500);
+        }
+      });
+    return doublon;
   }
 
   deleteSalle (salle: Room) {
-    this.roomsv.deleteSelected(this.currentUser.idEtablissement,salle.idSalle);
+    this.roomsv.deleteSelected(this.currentUser.idEtablissement,salle.idSalle)
+    .subscribe(data => {
+      // console.log(data);
+      this.updateList();
+      // Clear select option :
+      (<HTMLInputElement>document.getElementById("choisirSalle")).value = "";
+    });
   }
 
   displayFn(salle: Room): String {
@@ -80,6 +141,14 @@ export class SalleComponent implements OnInit {
   }
 
   updateSalle(salle) {
-    this.roomsv.updateSelected(this.currentUser.idEtablissement, salle.idSalle, this.newName)
+    this.roomsv
+    // .updateSelected(this.currentUser.idEtablissement, salle.idSalle, this.newName)
+    .updateSelected2(this.currentUser.idEtablissement, salle.idSalle, this.newName)
+    .subscribe(date => {
+      this.updateList();
+      (<HTMLInputElement>document.getElementById("choisirSalle")).value = this.newName;
+      (<HTMLInputElement>document.getElementById("newName")).value = "";
+    });
   }
+
 }

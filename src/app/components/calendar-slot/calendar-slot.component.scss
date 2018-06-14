@@ -57,6 +57,11 @@ p {
     color:black;
 }
 
-.trashspan {
-    background-color : rgba(225, 225, 225, 0.125);
+button.card-body {
+    padding: 0.6em;
+}
+
+
+button.card-body > h2 {
+    font-size: 0.8em;
 }
