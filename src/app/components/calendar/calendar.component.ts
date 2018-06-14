@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CourseSlotsService } from '../../services/courses-slots.service';
 import { WeekDay } from '../../model/model.week-day';
 import { CourseSlot } from '../../model/model.course-slots';
@@ -43,5 +43,11 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
 
   }
+
+  receiveUpdate() {
+    console.log ("dans le calendar");
+    this.updateSlots();
+  }
+
 
 }

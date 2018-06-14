@@ -3,16 +3,17 @@
         <div class="col-12 stretch-card">
             <div class="card slot">
                 <a href="creneau/{{slot.idCreneau}}">
-                <div class="card-body">
-                    <h2>{{slot.dateDebut * 1000 | date:'HH:mm'}} - {{salle}}</h2>
-                    <div class="content">
-                        <p class="duration">{{duration | date:'HH:mm'}} h</p>
-                        <span *ngIf="administrateur">
-                            <a class="far fa-trash-alt trash" (click)="deleteSlot(slot.idCreneau)" href="/profile"></a>
-                        </span>
+                    <div class="card-body">
+                        <h2>{{slot.dateDebut * 1000 | date:'HH:mm'}} - {{salle}}</h2>
+                        <div class="content">
+                            <p class="duration">{{duration | date:'HH:mm'}} h</p>
+
+                        </div>
                     </div>
-                </div>
                 </a>
+                <span *ngIf="administrateur" class="trashspan">
+                    <a class="far fa-trash-alt trash" (click)="deleteSlot(slot.idCreneau)"></a>
+                </span>
             </div>
         </div>
     </div>

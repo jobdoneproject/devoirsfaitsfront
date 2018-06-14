@@ -27,7 +27,7 @@ import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatAutocompleteModule, MatInputModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
 import { CreneauService } from "./services/creneau.service";
@@ -49,7 +49,7 @@ import { ImportElevesComponent } from './components/import-eleves/import-eleves.
 import { UploaderModule }      from 'angular-http-file-upload';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
 import { ListeAppelComponent } from './components/liste-appel/liste-appel.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({

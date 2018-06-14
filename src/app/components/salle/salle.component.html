@@ -37,8 +37,8 @@
 
                     <div>
                       <input *ngIf="selectedSalle != null;" type="text" name="newName" id="newName" [(ngModel)]="newName" placeholder="Nouveau nom">
-                      <button *ngIf="selectedSalle != null;" type="button" class="btn btn-light" (click)="updateSalle(selectedSalle)">Renommer</button>
-                      <button *ngIf="selectedSalle != null;" type="button" class="btn btn-danger" (click)="deleteSalle(selectedSalle)">Supprimer</button>
+                      <button *ngIf="selectedSalle != null;" type="button" class="custom-button btn btn-light" (click)="updateSalle(selectedSalle)">Renommer</button>
+                      <button *ngIf="selectedSalle != null;" type="button" class="custom-button btn btn-danger" (click)="deleteSalle(selectedSalle)">Supprimer</button>
                     </div>
                     <button type="button" class="btn btn-light">
                       <a href="/profile">Annuler</a>

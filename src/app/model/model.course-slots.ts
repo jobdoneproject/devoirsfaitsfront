@@ -5,7 +5,7 @@ export class CourseSlot {
     idCreneau: number;
     dateDebut: number;
     dateFin: number;
-    profs: User[];
+    professeurs: User[];
     eleves: User[];
     salle: Room;
 }

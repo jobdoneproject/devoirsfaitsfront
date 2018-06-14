@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { duration, utc } from 'moment';
 import { CourseSlot } from '../../model/model.course-slots';
 import { User } from '../../model/model.user';
@@ -18,6 +18,7 @@ export class CalendarSlotComponent implements OnInit {
 
   @Input() private slotValue: CourseSlot;
   currentUser: User;
+  @Output() sendEvent = new EventEmitter();
   administrateur: boolean = false;
 
   constructor(private userService: UserService, private creneauService: CreneauService, private router: Router) {
@@ -37,7 +38,7 @@ export class CalendarSlotComponent implements OnInit {
 
   public get teachers() : String[] {
     let arrayToReturn: String[] = [];
-    for (let currentTeacher of this.slotValue.profs){
+    for (let currentTeacher of this.slotValue.professeurs){
       arrayToReturn.push(`${currentTeacher.nom} ${currentTeacher.prenom}`);
     }
     return arrayToReturn;
@@ -58,6 +59,10 @@ export class CalendarSlotComponent implements OnInit {
   }
 
   deleteSlot(slotId: number) {
+    console.log ("dans le slot");
     this.creneauService.deleteSelected(this.currentUser.idEtablissement, slotId);
+    this.sendEvent.emit();
   }
+
+
 }
