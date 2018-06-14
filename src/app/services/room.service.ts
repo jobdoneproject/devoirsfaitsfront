@@ -22,7 +22,8 @@ export class RoomService {
 
   createNew (idEtablissement:number, name:String) {
     this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles";
-    this.http.post(this.url, {"nom":name}).subscribe(res => console.log(res.json()));
+    // this.http.post(this.url, {"nom":name}).subscribe(res => console.log(res.json()));
+    return this.http.post(this.url, {"nom":name});
   }
 
   getAll (idEtablissement:number): Observable<any> {
@@ -37,7 +38,8 @@ export class RoomService {
 
   deleteSelected (idEtablissement:number, id:number) {
     this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles/" + id + "/";
-    return this.http.delete(this.url).subscribe(res => console.log(res.json()));
+    // return this.http.delete(this.url).subscribe(res => console.log(res.json()));
+    return this.http.delete(this.url);
   }
 
   updateSelected (idEtablissement:number, id:number, name:string) {
@@ -45,5 +47,12 @@ export class RoomService {
     this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles/" + id + "/";
     let body = JSON.stringify(room);
     this.http.put(this.url, body, this.options ).subscribe(res => console.log(res.json()));
+  }
+
+  updateSelected2 (idEtablissement:number, id:number, name:string) {
+    const room:Room = {id_etablissement:idEtablissement, idSalle:id, nom:name};
+    this.url = environment.API_URL+"/etablissements/" + idEtablissement + "/salles/" + id + "/";
+    let body = JSON.stringify(room);
+    return this.http.put(this.url, body, this.options );
   }
 }
