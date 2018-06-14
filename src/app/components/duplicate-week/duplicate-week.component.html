@@ -1,0 +1,45 @@
+<div class="row purchace-popup">
+  <div class="col-12">
+    <span class="d-flex alifn-items-center">
+      <h1>Duplication des semaines {{ weeksSelectedToString() }}</h1>
+    </span>
+  </div>
+</div>
+<div class="card-body">
+  Sélectionnez votre période :
+  Début : <input type="week" class="picker-left" (change)="setStartDate($event.target.value)">
+  Fin : <input type="week" (change)="setEndDate($event.target.value)">
+</div>
+<div class="card-body"><i>Sélectionnez ensuite individuellement les semaines</i></div>
+<div class="col-md-12 d-flex align-items-stretch grid-margin">
+  <div class="row flex-grow">
+    <div class="col-12 stretch-card">
+      <div class="card cardlistweek">
+        <!--<button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="doTheBack()" >Retour à la liste</button>-->
+        <div class="card-body">
+          <mat-selection-list #list [(ngModel)]="selectedWeeks">
+            <mat-list-option *ngFor="let currentWeek of allweeks" [selected]="true" [value]="currentWeek">
+              Semaine {{currentWeek*1000 | date : 'ww'}} - {{currentWeek*1000 | date : 'MMMM yyyy'}}
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12 d-flex align-items-stretch grid-margin">
+  <div class="row flex-grow">
+    <div class="col-12 stretch-card">
+      <div class="card">
+        <!--<button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="doTheBack()" >Retour à la liste</button>-->
+        <div class="card-body">
+          <span>{{messageCopy()}}</span>
+          <div class="form-group row col-12 stretch-card">
+            <button type="submit" class="btn btn-success mr-2" (click)="onSubmit()">Enregistrer</button>
+            <button type="button" class="btn btn-light mr-2 pull-left" (click)="onReset()">Annuler</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

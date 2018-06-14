@@ -5,7 +5,9 @@ import {Router} from "@angular/router";
 import { WeekUtils } from '../../utils/WeekUtils';
 import * as moment from "moment";
 import {UserService} from "../../services/user.service";
-
+import {MatSelectModule} from '@angular/material/select';
+import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +22,7 @@ export class ProfileComponent implements OnInit {
   referenceDate: Date;
   weekNumber: number;
   year: number;
+  weeksToDuplicate: number[] = [];
 
   constructor(private userService: UserService, public authService: AuthService, public router: Router) {
   
@@ -94,5 +97,33 @@ export class ProfileComponent implements OnInit {
 
   get monthFromDate () {
     return WeekUtils.getMonthFromDate(this.weekNumber).toString();
+  }
+
+  addWeekToSelection (){
+    this.weeksToDuplicate.push(moment().year(this.year).week(this.weekNumber).day('monday').startOf('day').unix());
+  }
+  
+  goToDuplicate () {
+    const param = JSON.stringify(this.weeksToDuplicate);
+    this.router.navigate(['/duplicate', {semaines : param }]);
+  }
+
+  goToCreation() {
+    this.router.navigate(['/creneau']);
+  }
+
+  checkPresence() {
+    if (this.weeksToDuplicate.indexOf(moment().year(this.year).week(this.weekNumber).day('monday').startOf('day').unix()) >= 0){
+      return false;
+    }
+    return true;
+  }
+
+  removeOfSelection() {
+    let index: number = this.weeksToDuplicate.indexOf(moment().year(this.year).week(this.weekNumber).day('monday').startOf('day').unix());
+    if (index !== -1) {
+      console.log(index);
+      this.weeksToDuplicate.splice(index, 1);
+    }
   }
 }
