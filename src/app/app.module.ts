@@ -27,7 +27,7 @@ import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatAutocompleteModule, MatInputModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { PageCreneauComponent } from './components/page-creneau/page-creneau.component';
 import { CreneauService } from "./services/creneau.service";
@@ -43,10 +43,14 @@ import { EleveClassesPipe } from './pipes/eleve-classes.pipe';
 import { NomDisponiblesPipe } from './pipes/nom-disponibles.pipe';
 import { SalleComponent } from './components/salle/salle.component';
 import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-week.component';
+import { NomAndClassesPipe } from './pipes/nom-classes-user.pipe';
 
 import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 import { UploaderModule }      from 'angular-http-file-upload';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
+import { ListeAppelComponent } from './components/liste-appel/liste-appel.component';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -75,6 +79,8 @@ import { ImportProfesseursComponent } from './components/import-professeurs/impo
     DuplicateWeekComponent,
     ImportElevesComponent,
     ImportProfesseursComponent,
+    NomAndClassesPipe,
+    ListeAppelComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +97,7 @@ import { ImportProfesseursComponent } from './components/import-professeurs/impo
     BrowserAnimationsModule,
     MatInputModule,
     UploaderModule.forRoot(),
+    MatSelectModule
   ],
   providers: [
     AuthService,

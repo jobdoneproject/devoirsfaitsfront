@@ -42,7 +42,7 @@ export class PageCreneauComponent implements OnInit {
   @Input() date_creneau: any;
   @Input() heure_debut: any;
   @Input() heure_fin: any;
-  nomDisponibles = [];
+  nomAndClasses = [];
   filterParNom: String;
   titre: String;
   myControl: FormControl = new FormControl();
@@ -57,6 +57,7 @@ export class PageCreneauComponent implements OnInit {
   creneauId: number;
   pageModeCreation: boolean;
   creneauEditedBackup: CourseSlot;
+  completeDate: string;
 
 
   constructor(private roomsv: RoomService, 
@@ -81,8 +82,8 @@ export class PageCreneauComponent implements OnInit {
     
     this.listEleve.forEach(arrayNomUtilisateur => {
       arrayNomUtilisateur.forEach(utilisateur => {
-        if (this.nomDisponibles.indexOf(utilisateur.nom) == -1) {
-          this.nomDisponibles.push(utilisateur.nom);
+        if (this.nomAndClasses.indexOf(utilisateur.nom) == -1) {
+          this.nomAndClasses.push(utilisateur.nom);
         }
       })
     });
@@ -117,6 +118,16 @@ export class PageCreneauComponent implements OnInit {
       .subscribe( data =>{
         this.allSalleEtb = data;
       });
+
+      // Placeholder Date et heures
+      let timeStamp = Date.now();
+      let year = new Date(timeStamp).toLocaleDateString("fr-FR")
+      let annee = this.removeChar(year, 0, 6);
+      let mois = this.removeChar(this.removeChar(year, 5, 5), 0, 3);
+      let jour = this.removeChar(year, 2, 8);
+      this.date_creneau = annee + "-" + mois + "-" + jour;
+      this.heure_debut = "16:00";
+      this.heure_fin = "17:00";        
     }
   }
 
@@ -149,6 +160,10 @@ export class PageCreneauComponent implements OnInit {
       moment.unix(dateDebut).format(" YYYY à HH:mm");
     
             
+  }
+
+  removeChar(str, startIndex, count) {
+    return str.substr(0, startIndex) + str.substr(startIndex + count);
   }
 
   addEleveToSelected() { 

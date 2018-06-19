@@ -1,11 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { duration, utc } from 'moment';
 import { CourseSlot } from '../../model/model.course-slots';
 import { User } from '../../model/model.user';
 import { CreneauService } from '../../services/creneau.service';
 import {UserService} from "../../services/user.service";
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 
 
 
@@ -18,7 +17,8 @@ export class CalendarSlotComponent implements OnInit {
 
   @Input() private slotValue: CourseSlot;
   currentUser: User;
-  administrateur: boolean;
+  @Output() onDeleteEvent = new EventEmitter();
+  administrateur: boolean = false;
 
   constructor(private userService: UserService, private creneauService: CreneauService, private router: Router) {
     this.currentUser = this.userService.getCurrentUserLogged();
@@ -37,7 +37,7 @@ export class CalendarSlotComponent implements OnInit {
 
   public get teachers() : String[] {
     let arrayToReturn: String[] = [];
-    for (let currentTeacher of this.slotValue.profs){
+    for (let currentTeacher of this.slotValue.professeurs){
       arrayToReturn.push(`${currentTeacher.nom} ${currentTeacher.prenom}`);
     }
     return arrayToReturn;
@@ -57,7 +57,29 @@ export class CalendarSlotComponent implements OnInit {
     return " non définie";
   }
 
+  public get adresseCreneau(): String {
+    let adresse: String;
+    if (this.currentUser.privilege === "Administrateur"){
+      adresse = `creneau/${this.slotValue.idCreneau}`;
+    }
+    else if (this.currentUser.privilege === "Professeur"){
+      adresse = `liste-appel/${this.slotValue.idCreneau}`;
+    }
+    else adresse = undefined;
+    return adresse;
+  }
+
+  allerSurPageCreneau() {
+    if (this.currentUser.privilege === "Administrateur"
+      || this.currentUser.privilege === "Professeur"){
+        this.router.navigate([this.adresseCreneau]);
+      }
+  }
+
   deleteSlot(slotId: number) {
     this.creneauService.deleteSelected(this.currentUser.idEtablissement, slotId);
+    this.onDeleteEvent.emit();
   }
+
+
 }
