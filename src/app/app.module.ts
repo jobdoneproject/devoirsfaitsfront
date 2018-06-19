@@ -72,7 +72,7 @@ import { ImportProfesseursComponent } from './components/import-professeurs/impo
     EleveClassesPipe,
     NomDisponiblesPipe,
     SalleComponent,
-    DuplicateWeekComponent
+    DuplicateWeekComponent,
     ImportElevesComponent,
     ImportProfesseursComponent,
   ],
