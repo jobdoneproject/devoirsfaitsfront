@@ -15,6 +15,7 @@ import { DuplicateWeekComponent } from './components/duplicate-week/duplicate-we
 import { ImportElevesComponent } from './components/import-eleves/import-eleves.component';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
 import { ListeAppelComponent } from './components/liste-appel/liste-appel.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -76,7 +77,11 @@ const appRoutes: Routes = [
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: ListeAppelComponent, outlet: 'connected' }]
   },
-
+  {
+    path: 'messages/:id',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{ path: '', component: TimelineComponent, outlet: 'connected' }]
+  },
   { path: '', redirectTo: 'bienvenue', pathMatch: 'full' },
 
   // otherwise redirect to profile

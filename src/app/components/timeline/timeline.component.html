@@ -1,0 +1,47 @@
+<div class="timeline">
+  
+  <span class="timeline-label">
+    <span class="label label-default">Aujourd'hui</span>
+</span>
+
+
+
+<div *ngFor="let message of messages$ | async" >
+
+    <div *ngIf="message.redacteur.idUtilisateur == idEleve; else elseBlock" class="timeline-item timeline-item-left" >
+        <div class="timeline-point timeline-point-primary">
+            <i class="fa fa-star"></i>
+        </div>
+        <div class="timeline-event timeline-event-primary">
+            <div class="timeline-heading">
+                <h3>{{message.redacteur.nom}} {{message.redacteur.prenom}}</h3>
+            </div>
+            <div class="timeline-body">
+                <p>{{message.contenu}}</p>
+            </div>
+            <div class="timeline-footer">
+                <p class="text-right">Feb-23-2014</p>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #elseBlock>
+        <div class="timeline-item timeline-item-right">
+            <div class="timeline-point timeline-point-default">
+                <i class="fa fa-circle"></i>
+            </div>
+            <div class="timeline-event timeline-event-default">
+                <div class="timeline-heading">
+                    <h3>Professeur {{message.redacteur.nom}}</h3>
+                </div>
+                <div class="timeline-body">
+                    <p>{{message.contenu}}</p>
+                </div>
+                <div class="timeline-footer">
+                    <p class="text-left">date</p>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    
+</div>
