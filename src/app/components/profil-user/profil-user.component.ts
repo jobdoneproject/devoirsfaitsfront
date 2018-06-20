@@ -44,10 +44,12 @@ export class ProfilUserComponent implements OnInit {
     this.currentUser = this.userService.getCurrentUserLogged();
     if (this.currentUser.privilege == "Administrateur") {
       this.administrateur = true;
-    }
+      this.editedUser = this.currentUser;
+    } else {
     this.userService.getUser(this.currentUser.privilege.toLowerCase(), this.currentUser.idEtablissement, this.currentUser.idUtilisateur)
     .map((value: User) => { this.editedUser = value; })
     .subscribe();
+    }
   }
 
   ngOnInit() {

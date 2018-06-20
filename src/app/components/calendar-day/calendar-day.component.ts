@@ -64,8 +64,8 @@ export class CalendarDayComponent implements OnInit {
     });
   }
 
-  receiveUpdateOnDeleteSlot() {
-    this.onDeleteEvent.emit();
+  receiveUpdateOnDeleteSlot(slot: any) {
+    this.onDeleteEvent.emit(slot);
   }
   
   filterSlotsMatchingCurrentUser() {

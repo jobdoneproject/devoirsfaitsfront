@@ -10,7 +10,7 @@ export class NomAndClassesPipe implements PipeTransform {
 
     transform(utilisateurs: User[], nom?: any): any {
 
-  
+      if(utilisateurs){
       var output: User[] = []; 
       if (nom != null && nom != ""){
         for (var i = 0; i < utilisateurs.length; i++) {
@@ -26,5 +26,5 @@ export class NomAndClassesPipe implements PipeTransform {
         return output;
       }
     } 
-
+  }
 }

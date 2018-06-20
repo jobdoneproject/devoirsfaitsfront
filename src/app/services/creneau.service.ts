@@ -36,8 +36,6 @@ export class CreneauService {
     newCreneau.eleves = eleves;
     newCreneau.professeurs = profs;
     newCreneau.salle = salle;
-    console.log('salle');
-    console.log(salle);
     this.postSlot(newCreneau, idEtablissement);
   }
 
@@ -46,14 +44,12 @@ export class CreneauService {
     let options = new RequestOptions({ headers: headers });
     let body = JSON.stringify(newCreneau);
     let url = environment.API_URL + "/etablissements/" + idEtablissement + "/creneaux";
-    console.log("body");
-    console.log(body);
     this.http.post(
       url, 
       body, 
       options 
     ).subscribe(res => {
-      console.log(res.json()),
+      console.log(res),
       // window.location.href = environment.API_URL + "/profile";
       // this.router.navigate(['liste/' + this.typeUtilisateur]);
       // this.router.navigate(['/profile']);
@@ -71,7 +67,6 @@ export class CreneauService {
     editedTimeSlot.eleves = eleves;
     editedTimeSlot.professeurs = profs;
     editedTimeSlot.salle = salle;
-    console.log(editedTimeSlot);
     this.putSlot(editedTimeSlot, idEtablissement, idCreneau)
   }
 
@@ -92,13 +87,11 @@ export class CreneauService {
 
   deleteSelected (idEtablissement:number, id:number) {
     const url = environment.API_URL+"/etablissements/" + idEtablissement + "/creneaux/" + id + "/";
-    console.log(url);
-    return this.http.delete(url).subscribe(res => console.log(res.json()));
+    return this.http.delete(url).subscribe(res => console.log(res));
   }
 
   duplicateWeeksSelected (duplicatedAndSelectedWeeks : number[][], id: number) {
     const url = environment.API_URL+"/etablissements/" + id + "/creneaux/duplication";
-    console.log(JSON.stringify(duplicatedAndSelectedWeeks));
     this.http.post(url, JSON.stringify(duplicatedAndSelectedWeeks), this.options).subscribe(res => console.log(res.json()));
   }
 }
