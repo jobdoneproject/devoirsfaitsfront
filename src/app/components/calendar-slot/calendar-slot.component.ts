@@ -17,8 +17,9 @@ export class CalendarSlotComponent implements OnInit {
 
   @Input() private slotValue: CourseSlot;
   currentUser: User;
-  @Output() onDeleteEvent = new EventEmitter();
+  @Output() onDeleteEvent = new EventEmitter<any>();
   administrateur: boolean = false;
+  deletedSlot: CourseSlot;
 
   constructor(private userService: UserService, private creneauService: CreneauService, private router: Router) {
     this.currentUser = this.userService.getCurrentUserLogged();
@@ -77,8 +78,13 @@ export class CalendarSlotComponent implements OnInit {
   }
 
   deleteSlot(slotId: number) {
-    this.creneauService.deleteSelected(this.currentUser.idEtablissement, slotId);
-    this.onDeleteEvent.emit();
+    let savedDeletedSlot:CourseSlot;
+    this.creneauService.getSlot(this.currentUser.idEtablissement, slotId).subscribe((data: CourseSlot) => {
+      savedDeletedSlot = data;
+      this.onDeleteEvent.emit(savedDeletedSlot);
+      this.creneauService.deleteSelected(this.currentUser.idEtablissement, slotId);
+      
+    });
   }
 
 

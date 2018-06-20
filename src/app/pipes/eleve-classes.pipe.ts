@@ -11,19 +11,21 @@ export class EleveClassesPipe implements PipeTransform {
 
   transform(utilisateurs: User[], classe?: any): any {
 
-    var output: User[] = []; 
-    if (classe != "Toutes"){
-      for (var i = 0; i < utilisateurs.length; i++) {
-        if (utilisateurs[i].classe === classe) { 
-          output.push(utilisateurs[i]); 
-        } 
-      } 
-      return output;
-    } else {
-      for (var i = 0; i < utilisateurs.length; i++) {
-        output.push(utilisateurs[i]);
-      } 
-      return output;
+    if (utilisateurs) {
+      var output: User[] = [];
+      if (classe != "Toutes") {
+        for (var i = 0; i < utilisateurs.length; i++) {
+          if (utilisateurs[i].classe === classe) {
+            output.push(utilisateurs[i]);
+          }
+        }
+        return output;
+      } else {
+        for (var i = 0; i < utilisateurs.length; i++) {
+          output.push(utilisateurs[i]);
+        }
+        return output;
+      }
     }
-  } 
+  }
 }

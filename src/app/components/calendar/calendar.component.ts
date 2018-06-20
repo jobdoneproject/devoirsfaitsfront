@@ -6,6 +6,9 @@ import { WeekUtils } from '../../utils/WeekUtils';
 import { forEach } from 'underscore';
 import { unix } from 'moment';
 import { Observable } from 'rxjs/Observable';
+import { CreneauService } from '../../services/creneau.service';
+import { UserService } from '../../services/user.service';
+import { User } from '../../model/model.user';
 
 @Component({
   selector: 'week-calendar',
@@ -14,7 +17,8 @@ import { Observable } from 'rxjs/Observable';
 })
 export class CalendarComponent implements OnInit {
 
-  
+  currentUser : User;
+  cancelDeleteSlot : any;
   @Input() year: number;
   @Input() weekNumber: number;
   ngOnChanges(weekNumber: number) {
@@ -32,19 +36,27 @@ export class CalendarComponent implements OnInit {
     Dimanche: WeekDay.Dimanche
   };
 
-  constructor(private coursesSlotService: CourseSlotsService) {
-    this.courseSlotsObservable = coursesSlotService.fetchSlots(1, this.year, this.weekNumber);
+  constructor(private userService : UserService, private coursesSlotService: CourseSlotsService, private creneauService: CreneauService) {
+    this.currentUser = this.userService.getCurrentUserLogged();
+    this.courseSlotsObservable = coursesSlotService.fetchSlots(this.currentUser.idEtablissement, this.year, this.weekNumber);
   }
 
   updateSlots() {
-    this.courseSlotsObservable = this.coursesSlotService.fetchSlots(1, this.year, this.weekNumber);
+    this.courseSlotsObservable = this.coursesSlotService.fetchSlots(this.currentUser.idEtablissement, this.year, this.weekNumber);
   }
 
   ngOnInit() {
 
   }
 
-  receiveUpdateOnDeleteSlot() {
+  cancelDeleteAction () {
+    this.creneauService.postSlot( this.cancelDeleteSlot, this.currentUser.idEtablissement)
+    this.updateSlots();
+    this.cancelDeleteSlot = null;
+  }
+
+  receiveUpdateOnDeleteSlot(slot : any) {
+    this.cancelDeleteSlot = slot;
     this.updateSlots();
   }
 
