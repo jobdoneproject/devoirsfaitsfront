@@ -136,6 +136,11 @@ export class ListeUtilisateurComponent implements OnInit {
     this.router.navigate(['import-' + this.typeUtilisateur + 's/']);
   }
 
+  redirectMessageUser(idUtilisateur: number){
+    this.router.navigate(['messages/' + idUtilisateur +'#fin']);
+
+  }
+
   checked() {
     return this.filterDisponibles.filter(utilisateur => { return utilisateur.checked; });
   }

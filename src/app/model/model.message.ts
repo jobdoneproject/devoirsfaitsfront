@@ -4,6 +4,7 @@ export class Message {
     idMessage: number;
     contenu: String;
     dateMessage: number;
-    redacteur: User;
+    //redacteur: User;
+    utilisateur: User;
     eleve: User;
 }

@@ -18,6 +18,10 @@
   list-style: none;
   font-weight: 300;
 }
+
+.timeline h3 {
+  font-size: 1.5em;
+}
 .timeline .timeline-item {
   padding-left: 0;
   padding-right: 30px;

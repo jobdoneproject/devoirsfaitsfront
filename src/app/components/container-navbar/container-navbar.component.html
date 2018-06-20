@@ -8,6 +8,9 @@
             <a class="nav-link" href="profile">Calendrier</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="messages/{{currentUser.idUtilisateur}}" *ngIf="eleve">Messagerie</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="liste/eleve" *ngIf="administrateur">Élèves</a>
         </li>
         <li class="nav-item">

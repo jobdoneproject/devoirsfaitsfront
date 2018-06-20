@@ -20,6 +20,7 @@ export class TimelineComponent implements OnInit {
   messages$: BehaviorSubject<Message[]>;
   dateMessage: any;
   newMessage: Message = new Message;
+  titrePage: String = "Messagerie";
 
   constructor(
     private userService: UserService,
@@ -35,9 +36,7 @@ export class TimelineComponent implements OnInit {
     this.idEtablissement = this.currentUser.idEtablissement;
 
     this.messageService.getMessages(this.idEleve, this.currentUser.idEtablissement)
-                       .subscribe(newMessages => {
-                              this.messages$ = new BehaviorSubject<Array<Message>>(newMessages);
-
+                       .subscribe(newMessages => {this.messages$ = new BehaviorSubject<Array<Message>>(newMessages);
     })
   }
 
@@ -45,10 +44,18 @@ export class TimelineComponent implements OnInit {
   }
 
   sendMessage(){
-    this.userService.getUser("eleve", this.idEtablissement, this.idEleve).subscribe(user => (this.newMessage.eleve = user));
-    this.newMessage.redacteur = this.currentUser;
+    this.newMessage.utilisateur = this.currentUser;
     this.newMessage.dateMessage = moment().unix();
 
-    this.messageService.postMessage(this.idEtablissement, this.newMessage);
+    this.userService.getUser("eleve", this.idEtablissement, this.idEleve).subscribe(user => (
+      this.newMessage.eleve = user,
+      this.messageService.postMessage(this.idEtablissement, this.newMessage),
+      this.afterSendMessage()
+    ));
+
+  }
+  
+  afterSendMessage(){
+    document.forms["newMessage"].reset()
   }
 }

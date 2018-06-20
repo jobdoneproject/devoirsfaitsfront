@@ -1,52 +1,64 @@
-<div class="timeline">
-  
+<div class="row purchace-popup">
+    <div class="col-12">
+        <span class="d-flex alifn-items-center">
+            <h1>{{titrePage}}</h1>
+        </span>
+    </div>
+</div>
+
+<div *ngIf="currentUser.idUtilisateur == idEleve || currentUser.privilege == 'Professeur' || currentUser.privilege == 'Administrateur'">
+    <div class="timeline">
+
 <!--<span class="timeline-label">
     <span class="label label-default">Aujourd'hui</span>
 </span>-->
 
 
+        <div *ngFor="let message of messages$ | async">
 
-<div *ngFor="let message of messages$ | async" >
+            <div *ngIf="message.redacteur.idUtilisateur == idEleve; else elseBlock" class="timeline-item timeline-item-left">
+                <div class="timeline-point timeline-point-primary">
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="timeline-event timeline-event-primary">
+                    <div class="timeline-heading">
+                        <h3>{{message.redacteur.nom}} {{message.redacteur.prenom}}</h3>
+                    </div>
+                    <div class="timeline-body">
+                        <p>{{message.contenu}}</p>
+                    </div>
+                    <div class="timeline-footer">
+                        <p class="text-right">{{message.dateMessage * 1000 | date:'dd-MM, HH:mm'}}</p>
+                    </div>
+                </div>
+            </div>
 
-    <div *ngIf="message.redacteur.idUtilisateur == idEleve; else elseBlock" class="timeline-item timeline-item-left" >
-        <div class="timeline-point timeline-point-primary">
-            <i class="fa fa-star"></i>
+            <ng-template #elseBlock>
+                <div class="timeline-item timeline-item-right">
+                    <div class="timeline-point timeline-point-default">
+                        <i class="fa fa-circle"></i>
+                    </div>
+                    <div class="timeline-event timeline-event-default">
+                        <div class="timeline-heading">
+                            <h3>Professeur {{message.redacteur.nom}}</h3>
+                        </div>
+                        <div class="timeline-body">
+                            <p>{{message.contenu}}</p>
+                        </div>
+                        <div class="timeline-footer">
+                            <p class="text-left">{{message.dateMessage * 1000 | date:'dd-MM, HH:mm'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
         </div>
-        <div class="timeline-event timeline-event-primary">
-            <div class="timeline-heading">
-                <h3>{{message.redacteur.nom}} {{message.redacteur.prenom}}</h3>
-            </div>
-            <div class="timeline-body">
-                <p>{{message.contenu}}</p>
-            </div>
-            <div class="timeline-footer">
-                <p class="text-right">{{message.dateMessage * 1000 | date:'dd-MM, HH:mm'}}</p>
-            </div>
-        </div>
+    </div>  
+    <div id="fin"></div>
+
+    <div id="sendMessage">
+        <form (ngSubmit)="sendMessage()" id="newMessage">
+            <input type="text" id="contenu" name="contenu" [(ngModel)]="newMessage.contenu">&nbsp;
+            <button type="submit" class="btn btn-light">Envoyer</button>
+        </form>
     </div>
-
-    <ng-template #elseBlock>
-        <div class="timeline-item timeline-item-right">
-            <div class="timeline-point timeline-point-default">
-                <i class="fa fa-circle"></i>
-            </div>
-            <div class="timeline-event timeline-event-default">
-                <div class="timeline-heading">
-                    <h3>Professeur {{message.redacteur.nom}}</h3>
-                </div>
-                <div class="timeline-body">
-                    <p>{{message.contenu}}</p>
-                </div>
-                <div class="timeline-footer">
-                    <p class="text-left">{{message.dateMessage * 1000 | date:'dd-MM, HH:mm'}}</p>
-                </div>
-            </div>
-        </div>
-    </ng-template>
-</div>
-
-<div id="sendMessage">
-    <form (ngSubmit)="sendMessage()">
-        <input type="text" id="contenu" name="contenu" [(ngModel)]="newMessage.contenu">&nbsp;<button type="submit" class="btn btn-light">Envoyer</button>
-    </form>
 </div>
