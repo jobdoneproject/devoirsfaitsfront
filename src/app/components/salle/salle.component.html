@@ -12,7 +12,7 @@
         <div class="card-body">
           <form class="forms-sample">
             <div class="row">
-              <div class="col-md-6 grid-margin stretch-card">
+              <div class="col-md-6 offset-md-3 grid-margin stretch-card">
                 <div class="card-body">
                   <div class="card-body">
                     <div class="form-group">
@@ -20,7 +20,7 @@
                       <input type="text" class="form-control" id="nom_salle" placeholder="" name="nom_salle" id="nom_salle" [(ngModel)]="nom_salle">
                     </div>
                     <div class="form-group">
-                      <button type="button" class="btn btn-success" (click)="createSalle(nom_salle)">Créer</button>
+                      <button type="button" class="btn btn-success col-md-12" (click)="createSalle(nom_salle)">Créer</button>
                       <h5 class="card-title" style="color:red;" id="doublonInfo">{{doublonInfo}}</h5>
                     </div>
 
@@ -32,13 +32,13 @@
 
                     <div class="form-group">
                       <ul *ngFor="let salle of allSalles | nomDisponibles: filterParNom" >
-                        <li (click)="edit(salle.idSalle)">  
+                        <li (click)="edit(salle.idSalle)" class="text-center">
                           <button type="button" class="custom-button btn btn-light">{{ salle.nom }}</button>
                         </li>
                       </ul>
-                      <pre>(Sélectionner une salle pour l'éditer)</pre>
+                      <pre class="text-center">(Sélectionner une salle pour l'éditer)</pre>
 
-                      <button type="button" class="btn btn-light">
+                      <button type="button" class="btn btn-light col-md-12">
                         <a href="/profile">Annuler</a>
                       </button>
                     </div>
