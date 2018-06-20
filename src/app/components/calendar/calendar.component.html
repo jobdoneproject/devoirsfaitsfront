@@ -1,22 +1,22 @@
-
+  <div class="canceldeletion" *ngIf="cancelDeleteSlot!=null;"><a (click)="cancelDeleteAction()">Annuler la suppression</a></div>
   <div class="row custom-fond">
-    <week-calendar-day class="col-12 col-md-2" dayLabel="Lundi" (onDeleteEvent)="receiveUpdateOnDeleteSlot()" [courseSlotsObservable]="courseSlotsObservable"
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Lundi" (onDeleteEvent)="receiveUpdateOnDeleteSlot($event)" [courseSlotsObservable]="courseSlotsObservable"
      [day]="days.Lundi" [weekNumber]="weekNumber" [year]="year">
     
     </week-calendar-day>
-    <week-calendar-day class="col-12 col-md-2" dayLabel="Mardi" (onDeleteEvent)="receiveUpdateOnDeleteSlot()" [courseSlotsObservable]="courseSlotsObservable"
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Mardi" (onDeleteEvent)="receiveUpdateOnDeleteSlot($event)" [courseSlotsObservable]="courseSlotsObservable"
      [day]="days.Mardi" [weekNumber]="weekNumber" [year]="year">
       
     </week-calendar-day>
-    <week-calendar-day class="col-12 col-md-2" dayLabel="Mercredi" (onDeleteEvent)="receiveUpdateOnDeleteSlot()" [courseSlotsObservable]="courseSlotsObservable"
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Mercredi" (onDeleteEvent)="receiveUpdateOnDeleteSlot($event)" [courseSlotsObservable]="courseSlotsObservable"
      [day]="days.Mercredi" [weekNumber]="weekNumber" [year]="year">
       
     </week-calendar-day>
-    <week-calendar-day class="col-12 col-md-2" dayLabel="Jeudi" (onDeleteEvent)="receiveUpdateOnDeleteSlot()" [courseSlotsObservable]="courseSlotsObservable"
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Jeudi" (onDeleteEvent)="receiveUpdateOnDeleteSlot($event)" [courseSlotsObservable]="courseSlotsObservable"
      [day]="days.Jeudi" [weekNumber]="weekNumber" [year]="year">
       
     </week-calendar-day>
-    <week-calendar-day class="col-12 col-md-2" dayLabel="Vendredi" (onDeleteEvent)="receiveUpdateOnDeleteSlot()" [courseSlotsObservable]="courseSlotsObservable"
+    <week-calendar-day class="col-12 col-md-2" dayLabel="Vendredi" (onDeleteEvent)="receiveUpdateOnDeleteSlot($event)" [courseSlotsObservable]="courseSlotsObservable"
      [day]="days.Vendredi" [weekNumber]="weekNumber" [year]="year">
       
     </week-calendar-day>
@@ -29,14 +29,14 @@
         de superposer les jours Samedi et Dimanche.
       -->
       <div class="row">
-        <week-calendar-weekend-day class="col-12" dayLabel="Samedi" (onDeleteEvent)="receiveUpdateOnDeleteSlot()" [courseSlotsObservable]="courseSlotsObservable"
+        <week-calendar-weekend-day class="col-12" dayLabel="Samedi" (onDeleteEvent)="receiveUpdateOnDeleteSlot($event)" [courseSlotsObservable]="courseSlotsObservable"
          [day]="days.Samedi" [weekNumber]="weekNumber" [year]="year">
       
         </week-calendar-weekend-day>
       </div>
 
       <div class="row">
-        <week-calendar-weekend-day class="col-12" dayLabel="Dimanche" (onDeleteEvent)="receiveUpdateOnDeleteSlot()" [courseSlotsObservable]="courseSlotsObservable"
+        <week-calendar-weekend-day class="col-12" dayLabel="Dimanche" (onDeleteEvent)="receiveUpdateOnDeleteSlot($event)" [courseSlotsObservable]="courseSlotsObservable"
          [day]="days.Dimanche" [weekNumber]="weekNumber" [year]="year">
       
         </week-calendar-weekend-day>

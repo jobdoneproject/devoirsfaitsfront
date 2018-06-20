@@ -16,6 +16,7 @@ import { ImportElevesComponent } from './components/import-eleves/import-eleves.
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
 import { ListeAppelComponent } from './components/liste-appel/liste-appel.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
+import { ProfilUserComponent } from './components/profil-user/profil-user.component';
 
 const appRoutes: Routes = [
   { path: 'bienvenue', component: PageLandingComponent },
@@ -81,6 +82,11 @@ const appRoutes: Routes = [
     path: 'messages/:id',
     component: ContainerComponent, canActivate: [UrlPermission],
     children: [{ path: '', component: TimelineComponent, outlet: 'connected' }]
+  },
+  {
+    path: 'profil',
+    component: ContainerComponent, canActivate: [UrlPermission],
+    children: [{ path: '', component: ProfilUserComponent, outlet: 'connected' }]
   },
   { path: '', redirectTo: 'bienvenue', pathMatch: 'full' },
 

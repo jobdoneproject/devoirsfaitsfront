@@ -9,11 +9,10 @@
   <div class="row flex-grow">
     <div class="col-12 stretch-card">
       <div class="card">
-        <!--<button type="button" class="btn btn-light" style="width: 150px; margin: 10px 0 0 45px;" (click)="doTheBack()" >Retour à la liste</button>-->
         <div class="card-body">
           <form class="forms-sample">
             <div class="row">
-              <div class="col-md-6 grid-margin stretch-card">
+              <div class="col-md-6 offset-md-3 grid-margin stretch-card">
                 <div class="card-body">
                   <div class="card-body">
                     <div class="form-group">
@@ -21,29 +20,30 @@
                       <input type="text" class="form-control" id="nom_salle" placeholder="" name="nom_salle" id="nom_salle" [(ngModel)]="nom_salle">
                     </div>
                     <div class="form-group">
-                      <button type="button" class="btn btn-success" (click)="createSalle(nom_salle)">Créer</button>
+                      <button type="button" class="btn btn-success col-md-12" (click)="createSalle(nom_salle)">Créer</button>
                       <h5 class="card-title" style="color:red;" id="doublonInfo">{{doublonInfo}}</h5>
                     </div>
-                    <div class="form-group"><label for="allSalleEtb">Liste des Salles de l'Etablissement</label>
-                      <mat-form-field class="example-full-width">
-                        <input type="text" placeholder="Choisir une salle" aria-label="Number" matInput [formControl]="myControl" 
-                          [matAutocomplete]="auto" (keyup)="onChangeNom($event.target.value)" id="choisirSalle">
-                        <mat-autocomplete (optionSelected)="onSelectionChanged($event.option.value)" #auto="matAutocomplete" [displayWith]="displayFn">
-                          <mat-option *ngFor="let salle of allSalles  | nomDisponibles: filterParNom" [value]="salle">
-                            {{ salle.nom }}
-                          </mat-option>
-                        </mat-autocomplete>
-                      </mat-form-field>
+
+                    <div style="margin-bottom: 10px;">
+                      <input *ngIf="selectedSalle != null;" type="text" name="newName" id="newName" [(ngModel)]="newName" placeholder="Nouveau nom">
+                      <button *ngIf="selectedSalle != null;" type="button" class="custom-button btn btn-light" 
+                        (click)="updateSalle(selectedSalle)" style="margin-bottom:10px;">Renommer</button>
+                        <div></div>
+                      <button *ngIf="selectedSalle != null;" type="button" class="custom-button btn btn-danger col-md-12" (click)="deleteSalle(selectedSalle)">Supprimer</button>
                     </div>
 
-                    <div>
-                      <input *ngIf="selectedSalle != null;" type="text" name="newName" id="newName" [(ngModel)]="newName" placeholder="Nouveau nom">
-                      <button *ngIf="selectedSalle != null;" type="button" class="custom-button btn btn-light" (click)="updateSalle(selectedSalle)">Renommer</button>
-                      <button *ngIf="selectedSalle != null;" type="button" class="custom-button btn btn-danger" (click)="deleteSalle(selectedSalle)">Supprimer</button>
+                    <div class="form-group">
+                      <ul *ngFor="let salle of allSalles | nomDisponibles: filterParNom" >
+                        <li (click)="edit(salle.idSalle)" class="text-center">
+                          <button type="button" class="custom-button btn btn-light">{{ salle.nom }}</button>
+                        </li>
+                      </ul>
+                      <pre class="text-center">(Sélectionner une salle pour l'éditer)</pre>
+
+                      <button type="button" class="btn btn-light col-md-12">
+                        <a href="/profile">Annuler</a>
+                      </button>
                     </div>
-                    <button type="button" class="btn btn-light">
-                      <a href="/profile">Annuler</a>
-                    </button>
                   </div>
                 </div>
               </div>
