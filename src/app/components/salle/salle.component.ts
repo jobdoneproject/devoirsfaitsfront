@@ -79,9 +79,7 @@ export class SalleComponent implements OnInit {
   updateList(){
     this.roomsv.getAll(this.currentUser.idEtablissement).subscribe(
       (data: Room[]) => {
-        // console.log(data)
         this.allSalles = data;
-        // console.log(this.allSalles);
       }
     );
   }
@@ -138,7 +136,9 @@ export class SalleComponent implements OnInit {
   }
 
   displayFn(salle: Room): String {
+    if (salle) {
     return salle ? salle.nom : salle.nom ;
+    }
   }
 
   onSelectionChanged(salle) {

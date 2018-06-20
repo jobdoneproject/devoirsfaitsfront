@@ -50,6 +50,7 @@ import { UploaderModule }      from 'angular-http-file-upload';
 import { ImportProfesseursComponent } from './components/import-professeurs/import-professeurs.component';
 import { ListeAppelComponent } from './components/liste-appel/liste-appel.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ProfilUserComponent } from './components/profil-user/profil-user.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { MatSelectModule } from '@angular/material/select';
     ImportElevesComponent,
     ImportProfesseursComponent,
     NomAndClassesPipe,
-    ListeAppelComponent
+    ListeAppelComponent,
+    ProfilUserComponent
   ],
   imports: [
     BrowserModule,
