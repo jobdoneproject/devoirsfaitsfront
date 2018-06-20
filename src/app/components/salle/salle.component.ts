@@ -17,6 +17,7 @@ import { CreneauService } from '../../services/creneau.service';
 import { UserService } from "../../services/user.service";
 import { RoomService } from "../../services/room.service";
 import { Room } from '../../model/model.room';
+import { identifierModuleUrl } from '@angular/compiler';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class SalleComponent implements OnInit {
   filterParNom: String;
   myControl: FormControl = new FormControl();
   selectedSalle: any;
+  selectedSalleId:number;
   @Input() newName: string;
   allSalles: Room[];
   doublonInfo: string;
@@ -102,8 +104,9 @@ export class SalleComponent implements OnInit {
         // console.log("data");
         // console.log(data);
         this.updateList();
+        (<HTMLInputElement>document.getElementById("nom_salle")).value = "";
       });
-    }    
+    }
   }
 
   checkDoublon(nom: String){
@@ -128,7 +131,7 @@ export class SalleComponent implements OnInit {
       // console.log(data);
       this.updateList();
       // Clear select option :
-      (<HTMLInputElement>document.getElementById("choisirSalle")).value = "";
+      // (<HTMLInputElement>document.getElementById("choisirSalle")).value = "";
     });
   }
 
@@ -139,7 +142,18 @@ export class SalleComponent implements OnInit {
   }
 
   onSelectionChanged(salle) {
+    console.log(salle);
     this.selectedSalle = salle;
+  }
+
+  onSelectionChangedById(id) {
+    console.log(id);
+    for (let i = 0 ; i < this.allSalles.length; i++){
+      if(this.allSalles[i].idSalle == id){
+        this.selectedSalle = this.allSalles[i];
+      }
+    }
+    // this.selectedSalle = salle;
   }
 
   updateSalle(salle) {
@@ -148,9 +162,21 @@ export class SalleComponent implements OnInit {
     .updateSelected2(this.currentUser.idEtablissement, salle.idSalle, this.newName)
     .subscribe(date => {
       this.updateList();
-      (<HTMLInputElement>document.getElementById("choisirSalle")).value = this.newName;
-      (<HTMLInputElement>document.getElementById("newName")).value = "";
+      // (<HTMLInputElement>document.getElementById("choisirSalle")).value = this.newName;
+      // (<HTMLInputElement>document.getElementById("newName")).value = "";
     });
+  }
+
+  edit(id) {
+    // console.log(id);
+    this.selectedSalleId = id;
+    for (let i = 0 ; i < this.allSalles.length; i++){
+      if(this.allSalles[i].idSalle == id){
+        this.selectedSalle = this.allSalles[i];
+        this.newName = String(this.allSalles[i].nom);
+      }
+    }
+    $('html,body').scrollTop(0);
   }
 
 }
