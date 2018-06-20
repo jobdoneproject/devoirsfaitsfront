@@ -1,8 +1,8 @@
 <div class="timeline">
   
-  <span class="timeline-label">
+<!--<span class="timeline-label">
     <span class="label label-default">Aujourd'hui</span>
-</span>
+</span>-->
 
 
 
@@ -20,7 +20,7 @@
                 <p>{{message.contenu}}</p>
             </div>
             <div class="timeline-footer">
-                <p class="text-right">Feb-23-2014</p>
+                <p class="text-right">{{message.dateMessage * 1000 | date:'dd-MM, HH:mm'}}</p>
             </div>
         </div>
     </div>
@@ -38,10 +38,15 @@
                     <p>{{message.contenu}}</p>
                 </div>
                 <div class="timeline-footer">
-                    <p class="text-left">date</p>
+                    <p class="text-left">{{message.dateMessage * 1000 | date:'dd-MM, HH:mm'}}</p>
                 </div>
             </div>
         </div>
     </ng-template>
-    
+</div>
+
+<div id="sendMessage">
+    <form (ngSubmit)="sendMessage()">
+        <input type="text" id="contenu" name="contenu" [(ngModel)]="newMessage.contenu">&nbsp;<button type="submit" class="btn btn-light">Envoyer</button>
+    </form>
 </div>

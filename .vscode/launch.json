@@ -1,41 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4b5983c4d7975df652a4b913a3784970df5c2adb
-      {
-        "name": "Launch Chrome",
-        "type": "chrome",
-        "request": "launch",
-        "url": "http://localhost:4200/#",
-        "webRoot": "${workspaceFolder}"
-      },
-      {
-        "name": "Attach Chrome",
-        "type": "chrome",
-        "request": "attach",
-        "url": "http://localhost:4200/#",
-        "webRoot": "${workspaceFolder}"
-      },
-      {
-        "name": "Launch Chrome (Test)",
-        "type": "chrome",
-        "request": "launch",
-        "url": "http://localhost:9876/debug.html",
-        "webRoot": "${workspaceFolder}"
-      },
-      {
-        "name": "Launch Chrome (E2E)",
-        "type": "node",
-        "request": "launch",
-        "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
-        "protocol": "inspector",
-        "args": ["${workspaceFolder}/protractor.conf.js"]
-      }
-<<<<<<< HEAD
-=======
+
         {
             "name": "Launch index.html",
             "type": "chrome",
@@ -44,8 +10,6 @@
         },
         {
             "name": "Launch localhost",
-            "type": "chrome",
-            "request": "launch",
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
         },
@@ -59,8 +23,5 @@
             "type": "chrome",
             "request": "launch",
         }
->>>>>>> 85b935354018894180a2779694a20409a3a03ecb
-=======
->>>>>>> 4b5983c4d7975df652a4b913a3784970df5c2adb
     ]
   }

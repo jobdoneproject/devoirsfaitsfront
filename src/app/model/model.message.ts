@@ -3,7 +3,7 @@ import { User } from "./model.user";
 export class Message {
     idMessage: number;
     contenu: String;
-    date: number;
+    dateMessage: number;
     redacteur: User;
     eleve: User;
 }
