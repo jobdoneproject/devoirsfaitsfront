@@ -16,7 +16,7 @@
             <div class="col-12" style="height: 50px;">
               <button type="button" class="btn btn-light" style="width: 150px; margin-left: 45px;" (click)="redirectNewUser()">Nouveau</button>
               <button type="button" class="btn btn-light" style="width: 150px; margin-left: 45px;" (click)="redirectImportUsers()">Importer</button>
-          </div>
+            </div>
 
             <div class="col-md-12 d-flex align-items-stretch">
               <div class="row flex-grow">
@@ -29,8 +29,8 @@
                 <div class="col-md-3 col-xs-12" *ngIf="typeUtilisateur === 'eleve'" >
                   <label class="col-form-label">
                     Classe
-                    <select id="selectClasse" name="classeDispo" (change)="onChangeClasse($event.target.value)" class="form-control">
-                      <option *ngFor="let classeDisponible of classeDisponibles;" [value]="classeDisponible" >{{classeDisponible}}</option>
+                    <select id="selectClasse" name="classeDispo" (change)="onChangeClasse($event.target.value)" class="form-control custom-select">
+                      <option *ngFor="let classeDisponible of classeDisponibles;" [value]="classeDisponible">{{classeDisponible}}</option>
                     </select>
                   </label>
                 </div>
@@ -49,26 +49,25 @@
                   <form name="actiongroupee" >
                     <label class="col-form-label" style="width: 70%">
                       &nbsp;
-                      <select id="selectAction" name="selectAction" class="form-control" (change)="action($event.target.value)">
+                      <select id="selectAction" name="selectAction" class="form-control custom-select" (change)="action($event.target.value)">
                         <option value="" >Actions groupées</option>
                         <option value="supprimer" >Supprimer</option>
                         <option value="indisponible" >Marquer indisponible</option>
                         <option value="disponible" >Marquer disponible</option>
                       </select>
                     </label>
-                    <button type="button" class="btn btn-light" style="display:inline-block; margin-top: -5px; margin-left: 5px;" (click)="actionsGroupees()" >Ok</button>
+                    <button type="button" class="btn btn-light" style="display:inline-block; margin-left: 5px;" (click)="actionsGroupees()" >Valider</button>
                   </form>
                 </div>
               </div>
             </div>
 
-
             <br>
-          
         
             <table class="table table-hover" >
               <thead>
                 <tr>
+                  <th *ngIf="typeUtilisateur == 'eleve'">&nbsp;</th>
                   <th>Nom</th>
                   <th *ngIf="typeUtilisateur == 'eleve'" class="hiddenMobile">classe</th>
                   <th class="hiddenMobile">Email</th>
@@ -83,6 +82,8 @@
               </thead>
               <tbody>
                 <tr *ngFor="let utilisateur of utilisateurs$ | async | nomDisponibles: filterParNom | eleveClasses: filterParClasse | utilisateurDisponibles: { disponible: ''} : checked() : false" >
+                  
+                  <td *ngIf="typeUtilisateur == 'eleve'" (click)="redirectMessageUser(utilisateur.idUtilisateur);" class="hiddenMobile" style="cursor: pointer;"><span class="far fa-comments"></span></td>
                   <td (click)="redirectEditUser(utilisateur.idUtilisateur);">
                       <strong>{{ utilisateur.nom }} </strong><em>{{ utilisateur.prenom }}</em>
                   </td>
