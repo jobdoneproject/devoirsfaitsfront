@@ -130,6 +130,8 @@ export class SalleComponent implements OnInit {
     .subscribe(data => {
       // console.log(data);
       this.updateList();
+      (<HTMLInputElement>document.getElementById("newName")).value = "";
+      this.selectedSalle = null;
       // Clear select option :
       // (<HTMLInputElement>document.getElementById("choisirSalle")).value = "";
     });

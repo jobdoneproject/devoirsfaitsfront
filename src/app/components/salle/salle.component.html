@@ -26,8 +26,10 @@
 
                     <div style="margin-bottom: 10px;">
                       <input *ngIf="selectedSalle != null;" type="text" name="newName" id="newName" [(ngModel)]="newName" placeholder="Nouveau nom">
-                      <button *ngIf="selectedSalle != null;" type="button" class="custom-button btn btn-light" (click)="updateSalle(selectedSalle)">Renommer</button>
-                      <button *ngIf="selectedSalle != null;" type="button" class="custom-button btn btn-danger" (click)="deleteSalle(selectedSalle)">Supprimer</button>
+                      <button *ngIf="selectedSalle != null;" type="button" class="custom-button btn btn-light" 
+                        (click)="updateSalle(selectedSalle)" style="margin-bottom:10px;">Renommer</button>
+                        <div></div>
+                      <button *ngIf="selectedSalle != null;" type="button" class="custom-button btn btn-danger col-md-12" (click)="deleteSalle(selectedSalle)">Supprimer</button>
                     </div>
 
                     <div class="form-group">
