@@ -17,7 +17,7 @@ export class TimelineComponent implements OnInit {
   idEleve: number;
   idEtablissement: number;
   messages: Message[];
-  messages$: BehaviorSubject<Message[]>;
+  messages$: BehaviorSubject<Message>;
   dateMessage: any;
   newMessage: Message = new Message;
   titrePage: String = "Messagerie";
@@ -36,7 +36,7 @@ export class TimelineComponent implements OnInit {
     this.idEtablissement = this.currentUser.idEtablissement;
 
     this.messageService.getMessages(this.idEleve, this.currentUser.idEtablissement)
-                       .subscribe(newMessages => {this.messages$ = new BehaviorSubject<Array<Message>>(newMessages);
+                       .subscribe(newMessages => {this.messages$ = new BehaviorSubject<Message>(newMessages);
     })
   }
 
