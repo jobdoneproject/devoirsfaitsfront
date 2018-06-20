@@ -36,6 +36,8 @@
                       </mat-form-field>
                     </div>
 
+                    
+
                     <div>
                       <input *ngIf="selectedSalle != null;" type="text" name="newName" id="newName" [(ngModel)]="newName" placeholder="Nouveau nom">
                       <button *ngIf="selectedSalle != null;" type="button" class="custom-button btn btn-light" (click)="updateSalle(selectedSalle)">Renommer</button>
@@ -44,6 +46,22 @@
                     <button type="button" class="btn btn-light">
                       <a href="/profile">Annuler</a>
                     </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card-body">
+                  <div class="card-body">
+                    <div>
+                      <div class="form-group">
+                        <h3>Liste des salles</h3>
+                        <ul *ngFor="let salle of allSalles | nomDisponibles: filterParNom" >
+                          <li>  
+                            {{ salle.nom }}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

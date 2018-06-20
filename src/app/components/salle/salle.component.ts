@@ -77,9 +77,9 @@ export class SalleComponent implements OnInit {
   updateList(){
     this.roomsv.getAll(this.currentUser.idEtablissement).subscribe(
       (data: Room[]) => {
-        console.log(data)
+        // console.log(data)
         this.allSalles = data;
-        console.log(this.allSalles);
+        // console.log(this.allSalles);
       }
     );
   }
