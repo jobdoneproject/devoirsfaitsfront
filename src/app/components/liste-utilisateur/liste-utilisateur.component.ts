@@ -103,7 +103,7 @@ export class ListeUtilisateurComponent implements OnInit {
   }
 
   redirectMessageUser(idUtilisateur: number){
-    this.router.navigate(['messages/' + idUtilisateur +'#fin']);
+    this.router.navigate(['messages/' + idUtilisateur]);
 
   }
 
