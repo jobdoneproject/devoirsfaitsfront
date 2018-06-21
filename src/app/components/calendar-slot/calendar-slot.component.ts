@@ -87,5 +87,9 @@ export class CalendarSlotComponent implements OnInit {
     });
   }
 
+  goToChecklist(slotId: number) {
+    this.router.navigate(['liste-appel/' + slotId]);
+  }
+
 
 }
