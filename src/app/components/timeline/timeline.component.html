@@ -6,7 +6,7 @@
     </div>
 </div>
 
-<div *ngIf="currentUser.idUtilisateur == idEleve || currentUser.privilege == 'Professeur' || currentUser.privilege == 'Administrateur'">
+<div *ngIf="(currentUser.idUtilisateur == idEleve || currentUser.privilege == 'Professeur' || currentUser.privilege == 'Administrateur') && (messages)" >
     <div class="timeline">
 
 <!--<span class="timeline-label">
@@ -14,7 +14,7 @@
 </span>-->
 
 
-        <div *ngFor="let message of messages$ | async">
+        <div *ngFor="let message of messages">
 
             <div *ngIf="message.redacteur.idUtilisateur == idEleve; else elseBlock" class="timeline-item timeline-item-left">
                 <div class="timeline-point timeline-point-primary">
@@ -52,7 +52,7 @@
                 </div>
             </ng-template>
         </div>
-    </div>  
+    </div>
     <div id="fin"></div>
 
     <div id="sendMessage">
