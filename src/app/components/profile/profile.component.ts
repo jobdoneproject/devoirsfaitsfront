@@ -132,4 +132,8 @@ export class ProfileComponent implements OnInit {
     const plural = `${weeksCount > 1 ? "s" : ""}`;
     return `${weeksCount} semaine${plural} sélectionnée${plural}`;
   }
+
+  get isAdministrateur() : boolean {
+    return this.userService.getCurrentUserLogged().privilege === 'Administrateur';
+  }
 }
