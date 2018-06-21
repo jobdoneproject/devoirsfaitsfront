@@ -25,8 +25,6 @@ export class MessageService {
 
   postMessage(idEtablissement: number,message: Message ){
     const url = environment.API_URL +  '/etablissements/' + idEtablissement + '/messages';
-    this.http.post(url, message, this.options).subscribe( res =>
-      console.log("Message post")
-    );  
+    return this.http.post(url, message, this.options);
   }
 }

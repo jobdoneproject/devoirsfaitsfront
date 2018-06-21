@@ -4,7 +4,7 @@ import {User} from "../../model/model.user";
 import {Message} from "../../model/model.message";
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../services/message.service';
-import { Observable, Subscriber, Subscription, BehaviorSubject } from 'rxjs';
+import { Observable, Subscriber, Subscription, BehaviorSubject, AsyncSubject, Subject } from 'rxjs';
 import * as moment from 'moment';
 
 @Component({
@@ -17,7 +17,7 @@ export class TimelineComponent implements OnInit {
   idEleve: number;
   idEtablissement: number;
   messages: Message[];
-  messages$: BehaviorSubject<Message>;
+  messages$: Subject<Message>;
   dateMessage: any;
   newMessage: Message = new Message;
   titrePage: String = "Messagerie";
@@ -32,11 +32,19 @@ export class TimelineComponent implements OnInit {
       this.idEleve = params['id'];
     });
     this.currentUser = this.userService.getCurrentUserLogged();
-    
+
     this.idEtablissement = this.currentUser.idEtablissement;
 
-    this.messageService.getMessages(this.idEleve, this.currentUser.idEtablissement)
-                       .subscribe(newMessages => {this.messages$ = new BehaviorSubject<Message>(newMessages);
+    this.messageService.getMessages(this.idEleve, this.currentUser.idEtablissement).subscribe(previousMessages => {
+      this.messages = previousMessages;
+      this.messages$ = new BehaviorSubject<Message>(undefined);
+      this.messages$.subscribe(msg => {
+        if (msg !== undefined) {
+          console.log('New msg');
+          this.messages.push(msg);
+          this.newMessage = new Message();
+        }
+      })
     })
   }
 
@@ -44,18 +52,26 @@ export class TimelineComponent implements OnInit {
   }
 
   sendMessage(){
-    this.newMessage.utilisateur = this.currentUser;
+    this.newMessage.redacteur = this.currentUser;
     this.newMessage.dateMessage = moment().unix();
 
-    this.userService.getUser("eleve", this.idEtablissement, this.idEleve).subscribe(user => (
-      this.newMessage.eleve = user,
-      this.messageService.postMessage(this.idEtablissement, this.newMessage),
-      this.afterSendMessage()
-    ));
+    this.userService.getUser("eleve", this.idEtablissement, this.idEleve).subscribe(user => {
+      this.newMessage.eleve = user;
+      this.messageService.postMessage(this.idEtablissement, this.newMessage).subscribe(data =>
+        this.updateMessages(data.json())
+      );
+      //this.afterSendMessage();
+    });
 
   }
-  
+
   afterSendMessage(){
     document.forms["newMessage"].reset()
+  }
+
+  updateMessages(message:Message) {
+    console.log("Data received " + message.contenu);
+    this.messages$.next(message);
+
   }
 }
