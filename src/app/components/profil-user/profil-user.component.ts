@@ -57,7 +57,7 @@ export class ProfilUserComponent implements OnInit {
   }
 
   onReset() {
-    this.router.navigate(['liste/' + this.typeUtilisateur]);
+    this.router.navigate(['profile']);
   }
 
   onSubmit() {

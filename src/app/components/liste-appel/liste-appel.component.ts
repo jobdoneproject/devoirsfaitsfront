@@ -40,7 +40,7 @@ export class ListeAppelComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.idEtablissement = this.currentUser.idEtablissement;
 
-    if (this.currentUser.privilege == "Professeur") {
+    if (this.currentUser.privilege == "Professeur" || this.currentUser.privilege == "Administrateur") {
       this.professeur = true;
     }
 
