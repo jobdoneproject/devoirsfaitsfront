@@ -122,7 +122,6 @@ export class ProfileComponent implements OnInit {
   removeOfSelection() {
     let index: number = this.weeksToDuplicate.indexOf(moment().year(this.year).week(this.weekNumber).day('monday').startOf('day').unix());
     if (index !== -1) {
-      console.log(index);
       this.weeksToDuplicate.splice(index, 1);
     }
   }
