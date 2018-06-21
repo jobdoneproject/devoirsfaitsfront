@@ -323,4 +323,8 @@ export class PageCreneauComponent implements OnInit {
   public onActiveHomeboxP(value){
   }
 
+  goToChecklist() {
+    this.router.navigate(['liste-appel/' + this.idCreneau]);
+  }
+
 }
