@@ -92,6 +92,6 @@ export class CreneauService {
 
   duplicateWeeksSelected (duplicatedAndSelectedWeeks : number[][], id: number) {
     const url = environment.API_URL+"/etablissements/" + id + "/creneaux/duplication";
-    this.http.post(url, JSON.stringify(duplicatedAndSelectedWeeks), this.options).subscribe(res => console.log(res.json()));
+    return this.http.post(url, JSON.stringify(duplicatedAndSelectedWeeks), this.options);
   }
 }

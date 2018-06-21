@@ -20,7 +20,11 @@ export class DuplicateWeekComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService, private creneauService: CreneauService, private _Activatedroute:ActivatedRoute, private route: Router) { }
+  constructor(
+    private userService: UserService, 
+    private creneauService: CreneauService, 
+    private _Activatedroute:ActivatedRoute, 
+    private route: Router) { }
 
   ngOnInit() {
     const param = this._Activatedroute.snapshot.params['semaines'];
@@ -47,7 +51,12 @@ export class DuplicateWeekComponent implements OnInit {
   onSubmit() {
     const duplicatedAndSelected: number[][] = [this.duplicatedWeeks, this.selectedWeeks];
     const idEtablissement: number = this.userService.getCurrentUserLogged().idEtablissement;
-    this.creneauService.duplicateWeeksSelected(duplicatedAndSelected,idEtablissement);
+    this.creneauService
+      .duplicateWeeksSelected(duplicatedAndSelected,idEtablissement)
+      .subscribe(data => {
+        // console.log(data);
+        this.route.navigate(['/profile']);
+      });
   }
 
   onReset() {
