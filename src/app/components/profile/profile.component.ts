@@ -129,7 +129,7 @@ export class ProfileComponent implements OnInit {
 
   get labelSelectedWeeksNumber() : string {
     const weeksCount = this.weeksToDuplicate.length;
-    const plural = `${weeksCount > 1 ? "" : "s"}`;
+    const plural = `${weeksCount > 1 ? "s" : ""}`;
     return `${weeksCount} semaine${plural} sélectionnée${plural}`;
   }
 }
