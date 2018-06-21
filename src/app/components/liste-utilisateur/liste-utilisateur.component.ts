@@ -87,6 +87,7 @@ export class ListeUtilisateurComponent implements OnInit {
 
   ngOnInit() {
 
+
    }
 
   redirectEditUser(idUtilisateur: number) {
@@ -99,6 +100,11 @@ export class ListeUtilisateurComponent implements OnInit {
 
   redirectImportUsers(){
     this.router.navigate(['import-' + this.typeUtilisateur + 's/']);
+  }
+
+  redirectMessageUser(idUtilisateur: number){
+    this.router.navigate(['messages/' + idUtilisateur +'#fin']);
+
   }
 
   checked() {
