@@ -14,7 +14,7 @@
       <button type="button" class="btn-sm btn-picker btn btn-success mr-2 btn-lg" (click)="goToDuplicate()">Dupliquer</button>
     </div>
     <mat-form-field>
-      <mat-select>
+      <mat-select [placeholder]="labelSelectedWeeksNumber">
         <mat-option *ngFor="let week of weeksToDuplicate" [value]="week">
           {{week*1000 | date : 'ww yyyy'}}
         </mat-option>
@@ -24,9 +24,9 @@
   <div class="col-md-4 col-sm-12 col-xs-12">
     <span class="align-items-center">
       <button type="button" class=" btn-sm btn-picker btn date-picker" (click)="semainePrecedente()">
-        <<</button>
+        </button>
           <input type="week" class="date-picker" (change)="update($event.target.value)" id="weeknum" name="weeknum" value="{{year}}-W{{weekNumber}}">
-          <button type="button" class=" btn-sm btn btn-picker date-picker" (click)="semaineSuivante()">>></button>
+          <button type="button" class=" btn-sm btn btn-picker date-picker" (click)="semaineSuivante()"></button>
     </span>
   </div>
 </div>
