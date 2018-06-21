@@ -13,7 +13,7 @@
       <button *ngIf="!checkPresence()" type="button" class="btn-sm btn-picker btn btn-danger mr-2 btn-lg" (click)="removeOfSelection()">Retirer de la sélection</button>
       <button type="button" class="btn-sm btn-picker btn btn-success mr-2 btn-lg" (click)="goToDuplicate()">Dupliquer</button>
     </div>
-    <mat-form-field>
+    <mat-form-field style="width: 280px;">
       <mat-select [placeholder]="labelSelectedWeeksNumber">
         <mat-option *ngFor="let week of weeksToDuplicate" [value]="week">
           {{week*1000 | date : 'ww yyyy'}}
