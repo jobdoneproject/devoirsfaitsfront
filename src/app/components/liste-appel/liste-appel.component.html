@@ -24,6 +24,7 @@
                                 (click)="onActiveHomeboxP(eleve)">
                               {{ eleve.nom }} {{ eleve.prenom }} - {{ eleve.classe }} {{ (eleve.present)? "" : "(absent)" }}
                             </mat-slide-toggle>
+                            &nbsp;<span class="far fa-comments" (click)="redirectMessageUser(eleve.idUtilisateur);"style="cursor: pointer;"></span>
                           </mat-list-item>
                         </mat-list>
                       </div>

@@ -135,4 +135,7 @@ export class ListeAppelComponent implements OnInit {
     this.router.navigate(['/profile']);
   }
 
+  redirectMessageUser(idUtilisateur: number){
+    this.router.navigate(['messages/' + idUtilisateur]);
+  }
 }
