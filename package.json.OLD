@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "build": "ng build --configuration=staging",
+    "install": "./build_staging.sh",
     "start": "ng serve --port 8080",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
