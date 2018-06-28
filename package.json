@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "install": "./clevercloud/build_staging.sh",
+    "install": "./build_staging.sh",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
