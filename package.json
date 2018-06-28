@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build --configuration=staging",
-    "start": "ng serve --host 163.172.235.156 --port 80",
+    "start": "ng serve --port 8080 --host \"0.0.0.0\"",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
