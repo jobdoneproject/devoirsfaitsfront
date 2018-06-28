@@ -2,12 +2,11 @@
   "name": "angular-social-auth",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts.install": "./build_staging.sh",
-  "scripts.start": "ng serve",
   "scripts": {
     "ng": "ng",
+    "install": "./clevercloud/build_staging.sh",
     "start": "ng serve",
-    "build": "ng build --configuration=staging",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
