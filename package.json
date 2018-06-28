@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build --configuration=staging",
-    "start": "ng serve  --host 0.0.0.0 --port 8080",
+    "start": "ng serve --host app-f4ff65e9-499f-4997-b3f3-15b3f90cc4c9.cleverapps.io --port 8080",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
