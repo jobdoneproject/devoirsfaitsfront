@@ -10,12 +10,12 @@ var options = {
   cert: fs.readFileSync('certificate.csr')
 };
 
+
 //var credentials = {key: privateKey, cert: certificate};
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var app = express();
-
 
 // Parsers
 app.use(bodyParser.json());
@@ -29,11 +29,10 @@ console.log(app.routes);
 //app.get('*', app.routes.index);
 //// serve index and view partials
 // app.get('/', routes.index);
-
 // // redirect all others to the index (HTML5 history)
 // app.get('*', routes.index);
 
-
+app.get('/', function (req, res) { res.redirect('/index.html') });
 //Gestion du CORS
 //Dans le cas d'une execution de Angular sur un serveur différent du BackEnd !
 app.use(function (req, res, next) {
