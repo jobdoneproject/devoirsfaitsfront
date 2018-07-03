@@ -6,8 +6,8 @@ var http = require('http');
 var https = require('https');
 
 var options = {
-  key: fs.readFileSync('private.key'),
-  cert: fs.readFileSync('certificate.csr')
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('csr.pem')
 };
 
 
@@ -20,7 +20,7 @@ var app = express();
 // Parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(app.router);
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 console.log(app.routes);
