@@ -13,4 +13,4 @@ app.use(express.static(__dirname + '/dist'));
 // CleverCloud or Heroku port
 
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 80);
