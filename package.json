@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "build": "ng build --configuration=staging --base-href=/devoirsfaits/",
-    "build-dev": "ng build --configuration=dev --base-href=/devoirsfaits/",
+    "build": "ng build --configuration=staging --base-href=/",
+    "build-dev": "ng build --configuration=dev --base-href=/",
     "start": "node server.js",
     "start-dev": "node server-dev.js",
     "test": "ng test",
