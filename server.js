@@ -1,4 +1,5 @@
 // server.js
+import { ProceduralRenderer3 } from '@angular/core/src/render3/interfaces/renderer';
 
 const express = require('express');
 const app = express();
@@ -9,6 +10,7 @@ const app = express();
 app.use(express.static(__dirname + '/dist'));
 
 // Start the app by listening on the default
-// Heroku port
+// CleverCloud or Heroku port
+
 
 app.listen(process.env.PORT || 8080);
