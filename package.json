@@ -2,6 +2,7 @@
   "name": "angular-social-auth",
   "version": "0.0.0",
   "license": "MIT",
+  "scripts.install": "./build_staging.sh",
   "scripts": {
     "ng": "ng",
     "build": "ng build --configuration=staging --base-href=/",
