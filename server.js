@@ -1,13 +1,28 @@
 // server.js
 //import { ProceduralRenderer3 } from '@angular/core/src/render3/interfaces/renderer';
 
-const express = require('express');
-const app = express();
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+var options = {
+  key: fs.readFileSync('sslcert/private.key'),
+  cert: fs.readFileSync('sslcert/certificate.crt'),
+  ca: fs.readFileSync('sslcert/ca_bundle.crt')
+};
 
-// Run the app by serving the static files
-// in the dist directory
+var credentials = {key: privateKey, cert: certificate};
+var express = require('express');
+var bodyParser = require('body-parser');
+var path = require('path');
+var app = express();
 
-app.use(express.static(__dirname + '/dist'));
+
+// Parsers
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Angular DIST output folder
+app.use(express.static(path.join(__dirname, 'dist')));
 // Add headers for CORS
 app.use(function (req, res, next) {
 
@@ -30,7 +45,15 @@ app.use(function (req, res, next) {
   next();
 });
 
+
+// your express configuration here
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(options, app);
+
 // Start the app by listening on the default
 // CleverCloud or Heroku port
 
-app.listen(process.env.PORT || 80);
+httpServer.listen(process.env.PORT || 80);
+httpsServer.listen(8443);
+
