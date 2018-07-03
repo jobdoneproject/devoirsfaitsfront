@@ -7,6 +7,7 @@
     "build": "ng build --configuration=staging --base-href=/devoirsfaits/",
     "build-dev": "ng build --configuration=dev --base-href=/devoirsfaits/",
     "start": "node server.js",
+    "start-dev": "node server-dev.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
