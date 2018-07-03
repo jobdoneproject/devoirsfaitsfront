@@ -10,7 +10,7 @@ var options = {
   cert: fs.readFileSync('certificate.csr')
 };
 
-var credentials = {key: privateKey, cert: certificate};
+//var credentials = {key: privateKey, cert: certificate};
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -23,28 +23,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
-app.get('*', routes.index);
-// Add headers for CORS
+console.log(app.routes);
+
+//
+//app.get('*', app.routes.index);
+//// serve index and view partials
+// app.get('/', routes.index);
+
+// // redirect all others to the index (HTML5 history)
+// app.get('*', routes.index);
+
+
+//Gestion du CORS
+//Dans le cas d'une execution de Angular sur un serveur différent du BackEnd !
 app.use(function (req, res, next) {
-
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*.cleverapps.io');
-
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  // Request headers you wish to allow
-  res.setHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-
-  // Pass to next layer of middleware
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
   next();
 });
+
 
 
 // your express configuration here
