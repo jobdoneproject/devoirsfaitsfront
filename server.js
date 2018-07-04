@@ -7,7 +7,8 @@ var https = require('https');
 
 var options = {
   key: fs.readFileSync('ca.key', 'utf8'),
-  cert: fs.readFileSync('ca.crt', 'utf8')
+  cert: fs.readFileSync('ca.crt', 'utf8'),
+  passphrase: 'Rickan1234'
 };
 
 
