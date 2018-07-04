@@ -4,6 +4,7 @@
 var fs = require('fs');
 var http = require('http');
 var https = require('https');
+var cors = require('cors');
 
 //Avec clé privée et son mot de passe
 // var options = {
@@ -62,33 +63,36 @@ app.use(function(req, res) {
 
 //Gestion du CORS
 //Dans le cas d'une execution de Angular sur un serveur différent du BackEnd !
-app.use(function(req, res, next) {
-  var oneof = false;
-  if(req.headers.origin) {
-      res.header('Access-Control-Allow-Origin', req.headers.origin);
-      oneof = true;
-  }
-  if(req.headers['access-control-request-method']) {
-      res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
-      oneof = true;
-  }
-  if(req.headers['access-control-request-headers']) {
-      res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
-      oneof = true;
-  }
-  if(oneof) {
-      res.header('Access-Control-Max-Age', 60 * 60 * 24 * 365);
-  }
+// app.use(function(req, res, next) {
+//   var oneof = false;
+//   if(req.headers.origin) {
+//       res.header('Access-Control-Allow-Origin', req.headers.origin);
+//       oneof = true;
+//   }
+//   if(req.headers['access-control-request-method']) {
+//       res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+//       oneof = true;
+//   }
+//   if(req.headers['access-control-request-headers']) {
+//       res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+//       oneof = true;
+//   }
+//   if(oneof) {
+//       res.header('Access-Control-Max-Age', 60 * 60 * 24 * 365);
+//   }
 
-  // intercept OPTIONS method
-  if (oneof && req.method == 'OPTIONS') {
-      res.send(200);
-  }
-  else {
-      next();
-  }
-});
+//   // intercept OPTIONS method
+//   if (oneof && req.method == 'OPTIONS') {
+//       res.send(200);
+//   }
+//   else {
+//       next();
+//   }
+// });
 
+//Gestion du CORS
+//Dans le cas d'une execution de Angular sur un serveur différent du BackEnd !
+app.use(cors());
 
 // your express configuration here
 
