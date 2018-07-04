@@ -5,13 +5,22 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 
+//Avec clé privée et son mot de passe
+// var options = {
+//   key: fs.readFileSync('ca.key', 'utf8'),
+//   cert: fs.readFileSync('ca.crt', 'utf8'),
+//   passphrase: 'Rickan1234'
+// };
+
+//Pour du SSL CleverCloud il faut transmettre les certificats et la clé privée à CleverCloud :*
+//https://api.clever-cloud.com/v2/certificates/new
+
 var options = {
-  key: fs.readFileSync('ca.key', 'utf8'),
-  cert: fs.readFileSync('ca.crt', 'utf8'),
-  passphrase: 'Rickan1234'
+  key: fs.readFileSync('ca_spp.key', 'utf8'),
+  cert: fs.readFileSync('ca.crt', 'utf8')
 };
 
-//var credentials = {key: privateKey, cert: certificate};
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
