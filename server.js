@@ -92,7 +92,11 @@ app.use(function(req, res) {
 
 //Gestion du CORS
 //Dans le cas d'une execution de Angular sur un serveur différent du BackEnd !
-app.use(cors());
+var corsOptions = {
+  origin: 'https://app-28286c7a-6571-43b1-96b0-6352d129ffdd.cleverapps.io/devoirsfaits',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors(corsOptions));
 
 // your express configuration here
 
