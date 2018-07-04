@@ -37,6 +37,8 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use(function(req, res) {
   res.sendFile(path.join(__dirname, '/dist', 'index.html'));
 });
+
+
 // OU
 //console.log(app.routes);
 //
@@ -46,18 +48,46 @@ app.use(function(req, res) {
 // // redirect all others to the index (HTML5 history)
 // app.get('*', routes.index);
 
-//app.get('/', function (req, res) { res.redirect('/src/index.html') });
+//app.get('/', function (req, res) { res.redirect('/dist/index.html') });
 
 
 //Gestion du CORS
 //Dans le cas d'une execution de Angular sur un serveur différent du BackEnd !
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, PATCH, DELETE, OPTIONS');
+//   next();
+// });
 
+//Gestion du CORS
+//Dans le cas d'une execution de Angular sur un serveur différent du BackEnd !
+app.use(function(req, res, next) {
+  var oneof = false;
+  if(req.headers.origin) {
+      res.header('Access-Control-Allow-Origin', req.headers.origin);
+      oneof = true;
+  }
+  if(req.headers['access-control-request-method']) {
+      res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+      oneof = true;
+  }
+  if(req.headers['access-control-request-headers']) {
+      res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+      oneof = true;
+  }
+  if(oneof) {
+      res.header('Access-Control-Max-Age', 60 * 60 * 24 * 365);
+  }
+
+  // intercept OPTIONS method
+  if (oneof && req.method == 'OPTIONS') {
+      res.send(200);
+  }
+  else {
+      next();
+  }
+});
 
 
 // your express configuration here
