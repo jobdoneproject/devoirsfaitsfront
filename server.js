@@ -33,6 +33,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, '/src', 'index.html'));
+});
+// OU
+//console.log(app.routes);
+//
+//app.get('*', app.routes.index);
+//// serve index and view partials
+// app.get('/', routes.index);
+// // redirect all others to the index (HTML5 history)
+// app.get('*', routes.index);
+
+//app.get('/', function (req, res) { res.redirect('/src/index.html') });
+
+
 //Gestion du CORS
 //Dans le cas d'une execution de Angular sur un serveur différent du BackEnd !
 app.use(function (req, res, next) {
@@ -42,15 +57,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-//console.log(app.routes);
-//
-//app.get('*', app.routes.index);
-//// serve index and view partials
-// app.get('/', routes.index);
-// // redirect all others to the index (HTML5 history)
-// app.get('*', routes.index);
 
-app.get('/', function (req, res) { res.redirect('/src/index.html') });
 
 // your express configuration here
 
