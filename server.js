@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 //Premuni de "Cannot GET /bienvenue" ou autre lien....
 app.use(function(req, res) {
-  res.sendFile(path.join(__dirname, '/', 'index.html'));
+  res.sendFile(path.join(__dirname, '/dist', 'index.html'));
 });
 // OU
 //console.log(app.routes);
