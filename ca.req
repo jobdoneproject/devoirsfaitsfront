@@ -1,0 +1,62 @@
+Certificate Request:
+    Data:
+        Version: 0 (0x0)
+        Subject: C=FR, ST=PA, L=Bayonne, O=Rickan Software/emailAddress=richard@zaclys.net
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:9d:6a:03:97:a7:12:b3:05:d8:b3:fa:ba:7b:84:
+                    53:7e:19:94:70:5b:9b:19:28:55:6e:26:0d:99:8f:
+                    fe:3a:84:22:15:ee:91:44:a0:b0:d5:e3:b1:76:ff:
+                    3d:d7:0e:d0:97:47:7f:fc:f2:46:e6:6b:7a:22:3c:
+                    43:41:d2:03:58:5a:5e:6d:a6:a5:99:3b:81:8e:ce:
+                    4c:e2:9b:50:ce:ab:06:d9:9d:03:ba:42:05:71:89:
+                    f0:3f:45:d7:36:73:04:c0:64:31:b9:3b:5e:cd:48:
+                    43:56:95:68:e3:a5:91:d4:8b:08:48:7a:85:f5:db:
+                    f9:dd:6f:4e:7d:d1:f9:0a:fc:03:18:dd:2e:f6:63:
+                    ca:8f:49:e2:36:d9:98:d7:9e:ba:16:23:cd:62:21:
+                    f7:c2:1f:4d:4c:1b:9a:74:2b:23:bb:c5:ac:a3:40:
+                    9b:9d:b7:d7:78:0f:df:b6:46:8b:b3:10:c3:11:b2:
+                    ee:8d:d0:58:e7:18:f6:7b:1f:92:42:c3:32:ae:41:
+                    02:60:b0:a5:7b:a5:9f:b8:6e:58:c1:cd:ee:fc:eb:
+                    2f:b9:c2:79:54:44:6b:ab:09:c3:ba:57:fa:76:4e:
+                    83:a9:67:3a:03:3f:4c:4d:d9:27:ae:d1:c8:e0:64:
+                    4f:64:54:36:d3:4d:c3:b5:81:a7:96:7d:85:4c:42:
+                    4f:5f
+                Exponent: 65537 (0x10001)
+        Attributes:
+            a0:00
+    Signature Algorithm: sha256WithRSAEncryption
+         31:e6:c6:c9:3b:32:c7:54:2d:51:10:6c:db:a1:df:3c:df:e7:
+         94:29:83:08:bb:2e:b0:c5:a9:43:e3:ce:e6:9b:39:02:87:df:
+         74:06:0a:19:5b:b3:1c:8b:2a:08:5c:df:36:57:2b:c3:09:5d:
+         a6:df:e6:2b:98:d2:01:a8:44:8f:ef:08:37:8c:c9:af:1a:be:
+         b3:a9:e1:04:48:ed:f2:5e:df:c6:15:fd:ab:ff:da:24:60:32:
+         74:f7:55:8c:5d:0c:3d:c7:7e:01:00:1e:61:10:19:8a:33:5c:
+         ae:cc:c7:fe:85:68:e8:36:d4:11:9d:71:10:df:3f:f0:6a:18:
+         60:a6:80:bd:3f:34:d9:92:4c:b8:c0:ba:b8:84:50:40:37:b6:
+         82:9b:cb:fe:8f:97:22:8f:a8:f1:7f:60:5c:47:53:f3:25:08:
+         08:52:45:b4:ab:86:88:29:2b:00:03:7f:41:1c:56:9a:7e:81:
+         eb:7c:43:ba:91:59:c8:88:a7:d0:7f:bf:d4:3f:f8:9e:5a:b0:
+         55:28:4d:d0:06:c3:dd:30:36:7b:14:b1:32:5e:70:43:b7:b1:
+         db:ed:16:42:5c:e2:a3:3f:b8:23:55:d2:63:e4:fe:d4:bf:0d:
+         bc:8a:4f:ae:02:8a:ef:fe:23:6e:42:cb:8b:17:f6:a0:73:88:
+         b4:ed:72:c9
+-----BEGIN CERTIFICATE REQUEST-----
+MIICrjCCAZYCAQAwaTELMAkGA1UEBhMCRlIxCzAJBgNVBAgMAlBBMRAwDgYDVQQH
+DAdCYXlvbm5lMRgwFgYDVQQKDA9SaWNrYW4gU29mdHdhcmUxITAfBgkqhkiG9w0B
+CQEWEnJpY2hhcmRAemFjbHlzLm5ldDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+AQoCggEBAJ1qA5enErMF2LP6unuEU34ZlHBbmxkoVW4mDZmP/jqEIhXukUSgsNXj
+sXb/PdcO0JdHf/zyRuZreiI8Q0HSA1haXm2mpZk7gY7OTOKbUM6rBtmdA7pCBXGJ
+8D9F1zZzBMBkMbk7Xs1IQ1aVaOOlkdSLCEh6hfXb+d1vTn3R+Qr8AxjdLvZjyo9J
+4jbZmNeeuhYjzWIh98IfTUwbmnQrI7vFrKNAm52313gP37ZGi7MQwxGy7o3QWOcY
+9nsfkkLDMq5BAmCwpXuln7huWMHN7vzrL7nCeVREa6sJw7pX+nZOg6lnOgM/TE3Z
+J67RyOBkT2RUNtNNw7WBp5Z9hUxCT18CAwEAAaAAMA0GCSqGSIb3DQEBCwUAA4IB
+AQAx5sbJOzLHVC1REGzbod883+eUKYMIuy6wxalD487mmzkCh990BgoZW7MciyoI
+XN82VyvDCV2m3+YrmNIBqESP7wg3jMmvGr6zqeEESO3yXt/GFf2r/9okYDJ091WM
+XQw9x34BAB5hEBmKM1yuzMf+hWjoNtQRnXEQ3z/wahhgpoC9PzTZkky4wLq4hFBA
+N7aCm8v+j5cij6jxf2BcR1PzJQgIUkW0q4aIKSsAA39BHFaafoHrfEO6kVnIiKfQ
+f7/UP/ieWrBVKE3QBsPdMDZ7FLEyXnBDt7Hb7RZCXOKjP7gjVdJj5P7Uvw28ik+u
+Aorv/iNuQsuLF/agc4i07XLJ
+-----END CERTIFICATE REQUEST-----

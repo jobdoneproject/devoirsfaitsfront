@@ -6,8 +6,8 @@ var http = require('http');
 var https = require('https');
 
 var options = {
-  key: fs.readFileSync('key.pem', 'utf8'),
-  cert: fs.readFileSync('csr.pem', 'utf8')
+  key: fs.readFileSync('ca.key', 'utf8'),
+  cert: fs.readFileSync('ca.crt', 'utf8')
 };
 
 
