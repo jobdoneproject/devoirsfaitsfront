@@ -2,7 +2,7 @@
 //import { ProceduralRenderer3 } from '@angular/core/src/render3/interfaces/renderer';
 
 var fs = require('fs');
-//var http = require('http');
+var http = require('http');
 var https = require('https');
 
 var options = {
@@ -10,7 +10,6 @@ var options = {
   cert: fs.readFileSync('ca.crt', 'utf8'),
   passphrase: 'Rickan1234'
 };
-
 
 //var credentials = {key: privateKey, cert: certificate};
 var express = require('express');
@@ -45,13 +44,13 @@ app.use(function (req, res, next) {
 app.get('/', function (req, res) { res.redirect('/index.html') });
 
 // your express configuration here
-//Removing http only
-//var httpServer = http.createServer(app);
+
+var httpServer = http.createServer(app);
 var httpsServer = https.createServer(options, app);
 
 // Start the app by listening on the default
 // CleverCloud or Heroku port
 
-//httpServer.listen(process.env.PORT || 80);
+httpServer.listen(process.env.PORT || 80);
 httpsServer.listen(8443);
 
