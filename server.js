@@ -50,7 +50,7 @@ app.use(function (req, res, next) {
 // // redirect all others to the index (HTML5 history)
 // app.get('*', routes.index);
 
-app.get('/', function (req, res) { res.redirect('/index.html') });
+app.get('/', function (req, res) { res.redirect('/src/index.html') });
 
 // your express configuration here
 
