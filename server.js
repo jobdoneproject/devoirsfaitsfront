@@ -3,7 +3,7 @@
 
 var fs = require('fs');
 var http = require('http');
-var https = require('https');
+//var https = require('https');
 var cors = require('cors');
 
 //Avec clé privée et son mot de passe
@@ -13,13 +13,19 @@ var cors = require('cors');
 //   passphrase: 'Rickan1234'
 // };
 
-//Pour du SSL CleverCloud il faut transmettre les certificats et la clé privée à CleverCloud :*
-//https://api.clever-cloud.com/v2/certificates/new
+// NE MARCHERA QUE SI ON A UN NOM DE DOMAINE A NOUS.
+//ICI LE CA_SPP.KEY sera le fichier de notre clé.
+//ClecerCloud fournit deja le TLS pour les domaines cleverapps.io
 
-var options = {
-  key: fs.readFileSync('ca_spp.key', 'utf8'),
-  cert: fs.readFileSync('ca.crt', 'utf8')
-};
+//Pour du SSL CleverCloud il faudra transmettre les certificats intermédiaires et la clé privée à CleverCloud :*
+//https://api.clever-cloud.com/v2/certificates/new
+//LEs certificats intermédiaires sont données pour l'porganisme de cettif a qui on déclare le nom de domaine.
+//On leur donne notre clé privée qui eux signeront et nous donneront en retour ce fameux certificat intémédiare
+
+// var options = {
+//   key: fs.readFileSync('ca_spp.key', 'utf8'),
+//   cert: fs.readFileSync('ca.crt', 'utf8')
+// };
 
 
 var express = require('express');
@@ -108,12 +114,12 @@ app.use(cors(corsOptions));
 
 // your express configuration here
 
-var httpServer = http.createServer(options, app);
-var httpsServer = https.createServer(options, app);
+var httpServer = http.createServer(app);
+//var httpsServer = https.createServer(options, app);
 
 // Start the app by listening on the default
 // CleverCloud or Heroku port
 
 httpServer.listen(process.env.PORT || 80);
-httpsServer.listen(8443);
+//httpsServer.listen(8443);
 
