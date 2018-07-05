@@ -100,10 +100,11 @@ app.use(function(req, res) {
 var corsOptions = {
   origin: '*',
   //headers: 'Content-Type, application/x-www-form-urlencoded',
-  methods: 'GET,HEAD,PUT,PATCH,POST,OPTIONS,DELETE',
+  //methods: 'GET,HEAD,PUT,PATCH,POST,OPTIONS,DELETE',
+  methods: '*',
   preflightContinue: false,
   credentials: true,
-  optionsSuccessStatus: 204 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
 
