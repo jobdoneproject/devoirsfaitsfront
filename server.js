@@ -99,7 +99,7 @@ app.use(function(req, res) {
 var corsOptions = {
   origin: '*',
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
+  preflightContinue: true,
   credentials: true,
   optionsSuccessStatus: 204 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
