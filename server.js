@@ -99,7 +99,7 @@ app.use(function(req, res) {
 // }
 var corsOptions = {
   origin: '*',
-  headers: 'Content-Type, application/x-www-form-urlencoded',
+  //headers: 'Content-Type, application/x-www-form-urlencoded',
   methods: 'GET,HEAD,PUT,PATCH,POST,OPTIONS,DELETE',
   //preflightContinue: false,
   credentials: true,
