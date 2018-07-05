@@ -1,3 +1,4 @@
+import { Headers } from '@angular/http';
 // server.js
 //import { ProceduralRenderer3 } from '@angular/core/src/render3/interfaces/renderer';
 
@@ -98,6 +99,7 @@ app.use(function(req, res) {
 // }
 var corsOptions = {
   origin: '*',
+  headers: "Content-Type, application/x-www-form-urlencoded",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: true,
   credentials: true,
