@@ -8,7 +8,7 @@
     "build": "ng build --configuration=staging --base-href=/",
     "build-dev": "ng build --configuration=dev --base-href=/",
     "start": "node server.js",
-    "start-serve": "ng serve",
+    "start-serve-local": "ng serve",
     "start-serve-with-proxy": "ng serve --proxy-config proxy-dev.conf.js",
     "test": "ng test",
     "lint": "ng lint",

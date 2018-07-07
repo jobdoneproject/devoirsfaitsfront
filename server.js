@@ -61,11 +61,14 @@ app.use(function(req, res) {
 //Gestion du CORS
 //Dans le cas d'une execution de Angular sur un serveur différent du BackEnd !
 // app.use(function (req, res, next) {
-//   res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   //res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Auth-Token, Content-Type, X-Requested-With, Accept, Origin, Authorization, Access-Control-Request-Method, Access-Control-Request-Headers');
 //   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, PATCH, DELETE, OPTIONS');
 //   next();
 // });
+
+
 
 //Gestion du CORS
 //Dans le cas d'une execution de Angular sur un serveur différent du BackEnd !
@@ -105,9 +108,10 @@ app.use(function(req, res) {
 // }
 
 var corsOptions = {
-  origin: '*',
-  credentials: true,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS",
+  "preflightContinue": false,
+  "credentials": true
 }
 
 app.use(cors(corsOptions));
