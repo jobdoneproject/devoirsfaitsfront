@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CourseSlot } from "./../model/model.courseslot";
-import { User } from "./../model/model.user";
+import { CourseSlot } from "../model/model.courseslot";
+import { User } from "../model/model.user";
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Moment } from 'moment';
 import { Room } from '../model/model.room';

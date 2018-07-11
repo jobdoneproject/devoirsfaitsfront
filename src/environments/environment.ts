@@ -6,8 +6,8 @@
 export const environment = {
   production: false,
   //si déployé en mode debug dans Code
-  API_URL : "http://localhost:8080"
+  //API_URL : "http://localhost:8080"
 
-  //Si deployé par maven en ligne de commande tomcat7:deploy
-  //API_URL : "http://localhost:8080/devoirsfaits"
+  //Si deployé par maven en ligne de commande tomcat7:deploy ou par ng serve car le service tomcat ecoute sur 8080
+  API_URL : "http://localhost:8080/devoirsfaits"
 };
