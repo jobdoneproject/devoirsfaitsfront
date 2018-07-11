@@ -5,5 +5,9 @@
 
 export const environment = {
   production: false,
-  API_URL : "http://localhost:8080/devoirsfaits"
+  //si déployé en mode debug dans Code
+  API_URL : "http://localhost:8080"
+
+  //Si deployé par maven en ligne de commande tomcat7:deploy
+  //API_URL : "http://localhost:8080/devoirsfaits"
 };
