@@ -1,0 +1,4 @@
+### all from other branche : a enlever pour la production ###
+/.vscode/
+/node_modules/
+/src/
